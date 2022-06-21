@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:blaze_rod"
+    },
+    "C": {
+      "item": "minecraft:blaze_powder"
+    },
+    "S": {
+      "item": "l2archery:fire_arrow_lv1"
+    }
+  },
+  "pattern": [
+    "CSC",
+    "SAS",
+    "CSC"
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:fire_arrow_lv2"
+  }
+}

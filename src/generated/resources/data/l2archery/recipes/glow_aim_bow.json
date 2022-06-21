@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "l2archery:starter_bow"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "EBG",
+    "GGG"
+  ],
+  "result": {
+    "item": "l2archery:glow_aim_bow"
+  }
+}

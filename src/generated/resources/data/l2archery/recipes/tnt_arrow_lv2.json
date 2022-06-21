@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:end_crystal"
+    },
+    "C": {
+      "item": "minecraft:tnt"
+    },
+    "S": {
+      "item": "l2archery:tnt_arrow_lv1"
+    }
+  },
+  "pattern": [
+    "CSC",
+    "SAS",
+    "CSC"
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:tnt_arrow_lv2"
+  }
+}
