@@ -19,11 +19,15 @@ public record FireArrowFeature(int time) implements OnShootFeature, OnHitFeature
 
 	@Override
 	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target) {
-		target.setRemainingFireTicks(time);
 	}
 
 	@Override
 	public void onHitBlock(GenericArrowEntity genericArrow, BlockHitResult result) {
 
+	}
+
+	@Override
+	public void postHurtEntity(GenericArrowEntity genericArrow, LivingEntity target) {
+		target.setRemainingFireTicks(time);
 	}
 }

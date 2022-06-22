@@ -1,10 +1,5 @@
 package dev.xkmc.l2archery.init.registrate;
 
-import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
-import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemModelProvider;
-import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.DefaultShootFeature;
@@ -14,6 +9,11 @@ import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
+import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
+import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemModelProvider;
+import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
@@ -87,9 +87,9 @@ public class ArcheryItems {
 		OBSIDIAN_ARROW = genArrow("obsidian_arrow", 1.5f, 0, false, FeatureList::end);
 		NO_FALL_ARROW = genArrow("no_fall_arrow", 0, 0, false, e -> e.add(new NoFallArrowFeature(40)));
 		ENDER_ARROW = genArrow("ender_arrow", -1, 0, false, e -> e.add(new EnderArrowFeature()));
-		TNT_1_ARROW = genArrow("tnt_arrow_lv1", 0, 0, false, e -> e.add(new ExplodeArrowFeature(2)));
-		TNT_2_ARROW = genArrow("tnt_arrow_lv2", 0, 0, false, e -> e.add(new ExplodeArrowFeature(4)));
-		TNT_3_ARROW = genArrow("tnt_arrow_lv3", 0, 0, false, e -> e.add(new ExplodeArrowFeature(6)));
+		TNT_1_ARROW = genArrow("tnt_arrow_lv1", 0, 0, false, e -> e.add(new ExplodeArrowFeature(2, true, false)));
+		TNT_2_ARROW = genArrow("tnt_arrow_lv2", 0, 0, false, e -> e.add(new ExplodeArrowFeature(4, true, false)));
+		TNT_3_ARROW = genArrow("tnt_arrow_lv3", 0, 0, false, e -> e.add(new ExplodeArrowFeature(6, true, false)));
 		FIRE_1_ARROW = genArrow("fire_arrow_lv1", 0, 0, false, e -> e
 				.add(new FireArrowFeature(100)).add(new PotionArrowFeature(
 						new MobEffectInstance(ArcheryRegister.FLAME.get(), 100, 0))));

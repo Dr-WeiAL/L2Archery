@@ -29,4 +29,10 @@ public class EnderArrowFeature implements OnHitFeature {
 		}
 		genericArrow.discard();
 	}
+
+	@Override
+	public void postHurtEntity(GenericArrowEntity genericArrow, LivingEntity target) {
+
+	}
+
 }

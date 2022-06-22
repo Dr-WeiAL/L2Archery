@@ -4,15 +4,15 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.xkmc.l2library.util.annotation.ServerOnly;
-import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.types.FlightControlFeature;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
+import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2library.util.annotation.ServerOnly;
+import dev.xkmc.l2library.util.code.GenericItemStack;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
@@ -25,6 +25,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.network.NetworkHooks;
@@ -72,9 +73,16 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	}
 
 	@Override
-	protected void doPostHurtEffects(LivingEntity target) {
-		super.doPostHurtEffects(target);
-		features.hit.forEach(e -> e.onHitEntity(this, target));
+	protected void onHitEntity(EntityHitResult result) {
+		if (result.getEntity() instanceof LivingEntity le) {
+			features.hit.forEach(e -> e.onHitEntity(this, le));
+		}
+		super.onHitEntity(result);
+	}
+
+	@Override
+	public void doPostHurtEffects(LivingEntity target) {
+		features.hit.forEach(e -> e.postHurtEntity(this, target));
 	}
 
 	@ServerOnly

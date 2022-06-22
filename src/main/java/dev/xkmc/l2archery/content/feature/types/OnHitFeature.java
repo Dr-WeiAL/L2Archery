@@ -14,4 +14,7 @@ public interface OnHitFeature extends BowArrowFeature {
 	@ServerOnly
 	void onHitBlock(GenericArrowEntity genericArrow, BlockHitResult result);
 
+	@ServerOnly
+	void postHurtEntity(GenericArrowEntity genericArrow, LivingEntity target);
+
 }

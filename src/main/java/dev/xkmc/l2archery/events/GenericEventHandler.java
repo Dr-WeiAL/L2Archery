@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.events;
 
+import dev.xkmc.l2archery.content.explosion.BaseExplosion;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
@@ -8,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.FOVModifierEvent;
+import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @SuppressWarnings("unused")
@@ -30,4 +32,13 @@ public class GenericEventHandler {
 			event.setNewFov(f * (1 - Math.min(1, i / p) * bow.config.fov()));
 		}
 	}
+
+
+	@SubscribeEvent
+	public static void onDetonate(ExplosionEvent.Detonate event) {
+		if (event.getExplosion() instanceof BaseExplosion exp) {
+			event.getAffectedEntities().removeIf(e -> !exp.hurtEntity(e));
+		}
+	}
+
 }

@@ -11,12 +11,16 @@ public record PotionArrowFeature(MobEffectInstance... instances) implements OnHi
 
 	@Override
 	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target) {
-		for (MobEffectInstance instance : instances) {
-			EffectUtil.addEffect(target, instance, EffectUtil.AddReason.PROF, arrow.getOwner());
-		}
 	}
 
 	@Override
 	public void onHitBlock(GenericArrowEntity arrow, BlockHitResult result) {
+	}
+
+	@Override
+	public void postHurtEntity(GenericArrowEntity arrow, LivingEntity target) {
+		for (MobEffectInstance instance : instances) {
+			EffectUtil.addEffect(target, instance, EffectUtil.AddReason.PROF, arrow.getOwner());
+		}
 	}
 }

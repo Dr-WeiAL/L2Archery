@@ -19,14 +19,20 @@ public class DamageArrowFeature implements OnHitFeature {
 	}
 
 	@Override
-	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target) {
+	public void postHurtEntity(GenericArrowEntity arrow, LivingEntity target) {
 		DamageSource source = this.source.apply(arrow);
 		float damage = this.damage.apply(arrow);
 		target.hurt(source, damage);
 	}
 
 	@Override
+	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target) {
+
+	}
+
+	@Override
 	public void onHitBlock(GenericArrowEntity genericArrow, BlockHitResult result) {
 
 	}
+
 }
