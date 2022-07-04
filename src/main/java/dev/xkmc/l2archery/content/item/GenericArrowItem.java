@@ -7,7 +7,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.NonNullLazy;
 
@@ -30,7 +30,7 @@ public class GenericArrowItem extends ArrowItem {
 	}
 
 	public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
-		int enchant = EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.INFINITY_ARROWS, bow);
+		int enchant = bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS);
 		return enchant > 0 && config.is_inf();
 	}
 

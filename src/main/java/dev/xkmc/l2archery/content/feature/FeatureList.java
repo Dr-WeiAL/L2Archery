@@ -5,6 +5,7 @@ import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2archery.content.feature.types.OnPullFeature;
 import dev.xkmc.l2archery.content.feature.types.OnShootFeature;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class FeatureList {
 		return a.flight == null || b.flight == null;
 	}
 
+	@Nullable
 	public static FeatureList merge(FeatureList a, FeatureList b) {
 		if (a.flight != null && b.flight != null) {
 			return null;

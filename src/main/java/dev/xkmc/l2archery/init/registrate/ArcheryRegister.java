@@ -3,7 +3,9 @@ package dev.xkmc.l2archery.init.registrate;
 import dev.xkmc.l2archery.content.effect.*;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.entity.GenericArrowRenderer;
+import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
 import dev.xkmc.l2library.repack.registrate.util.entry.EntityEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
@@ -14,6 +16,16 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ArcheryRegister {
+
+	public static final L2Registrate.RegistryInstance<BowArrowStatType> STAT_TYPE = L2Archery.REGISTRATE
+			.newRegistry("stat_type", BowArrowStatType.class);
+
+	public static final RegistryEntry<BowArrowStatType> DAMAGE = regStat("damage");
+	public static final RegistryEntry<BowArrowStatType> PUNCH = regStat("punch");
+	public static final RegistryEntry<BowArrowStatType> SPEED = regStat("speed");
+	public static final RegistryEntry<BowArrowStatType> PULL_TIME = regStat("pull_time");
+	public static final RegistryEntry<BowArrowStatType> FOV_TIME = regStat("fov_time");
+	public static final RegistryEntry<BowArrowStatType> MAX_FOV = regStat("max_fov");
 
 	public static final EntityEntry<GenericArrowEntity> ET_ARROW = L2Archery.REGISTRATE
 			.<GenericArrowEntity>entity("generic_arrow", GenericArrowEntity::new, MobCategory.MISC)
@@ -32,6 +44,10 @@ public class ArcheryRegister {
 	public static <T extends MobEffect> RegistryEntry<T> genEffect(String name, NonNullSupplier<T> sup) {
 		return L2Archery.REGISTRATE.entry(name, cb -> new NoConfigBuilder<>(L2Archery.REGISTRATE, L2Archery.REGISTRATE, name, cb, ForgeRegistries.Keys.MOB_EFFECTS, sup))
 				.lang(MobEffect::getDescriptionId).register();
+	}
+
+	public static RegistryEntry<BowArrowStatType> regStat(String id) {
+		return L2Archery.REGISTRATE.generic(STAT_TYPE, id, BowArrowStatType::new).defaultLang().register();
 	}
 
 	public static void register() {

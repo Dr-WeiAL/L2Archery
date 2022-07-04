@@ -31,6 +31,7 @@ public class L2Archery {
 	private static void registerRegistrates(IEventBus bus) {
 		ArcheryRegister.register();
 		ArcheryItems.register();
+		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 	}
 

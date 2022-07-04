@@ -23,7 +23,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -51,7 +50,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	public void releaseUsing(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
 		if (user instanceof Player player) {
 			BowFeatureController.stopUsing(player, new GenericItemStack<>(this, bow));
-			boolean has_inf = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow) > 0;
+			boolean has_inf = player.getAbilities().instabuild || bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS) > 0;
 			ItemStack arrow = player.getProjectile(bow);
 			int pull_time = this.getUseDuration(bow) - remaining_pull_time;
 			pull_time = ForgeEventFactory.onArrowLoose(bow, level, player, pull_time, !arrow.isEmpty() || has_inf);
@@ -103,17 +102,17 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 				abstractarrow.setCritArrow(true);
 			}
 
-			int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bow);
+			int j = bow.getEnchantmentLevel(Enchantments.POWER_ARROWS);
 			if (j > 0) {
 				abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + (double) j * 0.5D + 0.5D);
 			}
 
-			int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, bow);
+			int k = bow.getEnchantmentLevel(Enchantments.PUNCH_ARROWS);
 			if (k > 0) {
 				abstractarrow.setKnockback(k);
 			}
 
-			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, bow) > 0) {
+			if (bow.getEnchantmentLevel(Enchantments.FLAMING_ARROWS) > 0) {
 				abstractarrow.setSecondsOnFire(100);
 			}
 
