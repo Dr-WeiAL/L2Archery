@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.Locale;
 
 public enum NetworkManager {
-	BOWS, ARROWS, EFFECT_FEATURES;
+	STATS, EFFECT_FEATURES;
 
 	public String getID() {
 		return name().toLowerCase(Locale.ROOT);

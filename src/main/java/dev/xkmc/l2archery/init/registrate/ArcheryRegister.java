@@ -20,12 +20,12 @@ public class ArcheryRegister {
 	public static final L2Registrate.RegistryInstance<BowArrowStatType> STAT_TYPE = L2Archery.REGISTRATE
 			.newRegistry("stat_type", BowArrowStatType.class);
 
-	public static final RegistryEntry<BowArrowStatType> DAMAGE = regStat("damage");
-	public static final RegistryEntry<BowArrowStatType> PUNCH = regStat("punch");
-	public static final RegistryEntry<BowArrowStatType> SPEED = regStat("speed");
-	public static final RegistryEntry<BowArrowStatType> PULL_TIME = regStat("pull_time");
-	public static final RegistryEntry<BowArrowStatType> FOV_TIME = regStat("fov_time");
-	public static final RegistryEntry<BowArrowStatType> MAX_FOV = regStat("max_fov");
+	public static final RegistryEntry<BowArrowStatType> DAMAGE = regStat("damage", 0);
+	public static final RegistryEntry<BowArrowStatType> PUNCH = regStat("punch", 0);
+	public static final RegistryEntry<BowArrowStatType> SPEED = regStat("speed", 3);
+	public static final RegistryEntry<BowArrowStatType> PULL_TIME = regStat("pull_time", 20);
+	public static final RegistryEntry<BowArrowStatType> FOV_TIME = regStat("fov_time", 20);
+	public static final RegistryEntry<BowArrowStatType> FOV = regStat("max_fov", 0.15);
 
 	public static final EntityEntry<GenericArrowEntity> ET_ARROW = L2Archery.REGISTRATE
 			.<GenericArrowEntity>entity("generic_arrow", GenericArrowEntity::new, MobCategory.MISC)
@@ -46,8 +46,8 @@ public class ArcheryRegister {
 				.lang(MobEffect::getDescriptionId).register();
 	}
 
-	public static RegistryEntry<BowArrowStatType> regStat(String id) {
-		return L2Archery.REGISTRATE.generic(STAT_TYPE, id, BowArrowStatType::new).defaultLang().register();
+	public static RegistryEntry<BowArrowStatType> regStat(String id, double def) {
+		return L2Archery.REGISTRATE.generic(STAT_TYPE, id, () -> new BowArrowStatType(def)).defaultLang().register();
 	}
 
 	public static void register() {

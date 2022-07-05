@@ -1,17 +1,20 @@
 package dev.xkmc.l2archery.content.item;
 
+import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
 import dev.xkmc.l2archery.content.controller.BowFeatureController;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
+import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.ClientRegister;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.FastItem;
 import dev.xkmc.l2library.util.raytrace.IGlowingTarget;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -31,8 +34,47 @@ import java.util.function.Predicate;
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget {
 
-	public record BowConfig(float damage, int punch, int pull_time, float speed, int fov_time, float fov,
-							FeatureList feature) {
+	public static final class BowConfig {
+
+		private final ResourceLocation id;
+		private final FeatureList feature;
+
+		public BowConfig(ResourceLocation id, FeatureList feature) {
+			this.id = id;
+			this.feature = feature;
+		}
+
+		private double getValue(BowArrowStatType type) {
+			return BowArrowStatConfig.get().bow_stats.get(id).getOrDefault(type, type.getDefault());
+		}
+
+		public float damage() {
+			return (float) getValue(ArcheryRegister.DAMAGE.get());
+		}
+
+		public int punch() {
+			return (int) getValue(ArcheryRegister.PUNCH.get());
+		}
+
+		public int pull_time() {
+			return (int) getValue(ArcheryRegister.PULL_TIME.get());
+		}
+
+		public float speed() {
+			return (float) getValue(ArcheryRegister.SPEED.get());
+		}
+
+		public int fov_time() {
+			return (int) getValue(ArcheryRegister.FOV_TIME.get());
+		}
+
+		public float fov() {
+			return (float) getValue(ArcheryRegister.FOV.get());
+		}
+
+		public FeatureList feature() {
+			return feature;
+		}
 
 	}
 

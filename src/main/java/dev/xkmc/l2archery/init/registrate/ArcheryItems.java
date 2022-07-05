@@ -68,16 +68,16 @@ public class ArcheryItems {
 			ICE_ARROW, DISPELL_ARROW, ACID_ARROW;
 
 	static {
-		STARTER_BOW = genBow("starter_bow", 600, 0, 0, FeatureList::end);
-		IRON_BOW = genBow("iron_bow", 1200, 1, 0, 40, 3.9f, FeatureList::end);
-		MAGNIFY_BOW = genBow("magnify_bow", 600, 0, 0, 20, 3.0f, 60, 0.9f, e -> e.add(new GlowTargetAimFeature(128)));
-		GLOW_AIM_BOW = genBow("glow_aim_bow", 600, 0, 0, e -> e.add(new GlowTargetAimFeature(128)));
-		ENDER_AIM_BOW = genBow("ender_aim_bow", 8, -1, 0, e -> e.add(new EnderShootFeature(128)));
-		EAGLE_BOW = genBow("eagle_bow", 600, 6, 2, 40, 3f, e -> e.add(new DamageArrowFeature(
+		STARTER_BOW = genBow("starter_bow", 600, FeatureList::end);
+		IRON_BOW = genBow("iron_bow", 1200, FeatureList::end);
+		MAGNIFY_BOW = genBow("magnify_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
+		GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
+		ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)));
+		EAGLE_BOW = genBow("eagle_bow", 600, e -> e.add(new DamageArrowFeature(
 				a -> DamageSource.arrow(a, a.getOwner()).bypassArmor(),
 				a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length())
 		)));
-		WIND_BOW = genBow("wind_bow", 600, 0, 1, 10, 3.9f, e -> e
+		WIND_BOW = genBow("wind_bow", 600, e -> e
 				.add(new NoFallArrowFeature(40))
 				.add(new WindBowFeature()));
 
@@ -113,19 +113,11 @@ public class ArcheryItems {
 	public static void register() {
 	}
 
-	public static ItemEntry<GenericBowItem> genBow(String id, int durability, float damage, int punch, Consumer<FeatureList> consumer) {
-		return genBow(id, durability, damage, punch, 20, 3.0f, 20, 0.15f, consumer);
-	}
-
-	public static ItemEntry<GenericBowItem> genBow(String id, int durability, float damage, int punch, int pull_time, float speed, Consumer<FeatureList> consumer) {
-		return genBow(id, durability, damage, punch, pull_time, speed, pull_time, 0.15f, consumer);
-	}
-
-	public static ItemEntry<GenericBowItem> genBow(String id, int durability, float damage, int punch, int pull_time, float speed, int fov_time, float fov, Consumer<FeatureList> consumer) {
+	public static ItemEntry<GenericBowItem> genBow(String id, int durability, Consumer<FeatureList> consumer) {
 		FeatureList features = new FeatureList().add(DefaultShootFeature.INSTANCE);
 		consumer.accept(features);
 		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability),
-						new GenericBowItem.BowConfig(damage, punch, pull_time, speed, fov_time, fov, features)))
+						new GenericBowItem.BowConfig(new ResourceLocation(L2Archery.MODID, id), features)))
 				.model(ArcheryItems::createBowModel).defaultLang().register();
 	}
 
