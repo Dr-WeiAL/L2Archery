@@ -1,11 +1,9 @@
-package dev.xkmc.l2archery.content.feature.bow;
+package dev.xkmc.l2archery.content.feature.types;
 
-import dev.xkmc.l2archery.content.feature.types.OnShootFeature;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 
 import java.util.function.Consumer;
@@ -23,15 +21,15 @@ public class DefaultShootFeature implements OnShootFeature {
 				entity.setCritArrow(true);
 			}
 			ItemStack bow = entity.data.bow().stack();
-			int power = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bow);
+			int power = bow.getEnchantmentLevel(Enchantments.POWER_ARROWS);
 			if (power > 0) {
 				entity.setBaseDamage(entity.getBaseDamage() + (double) power * 0.5D + 0.5D);
 			}
-			int punch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, bow);
+			int punch = bow.getEnchantmentLevel(Enchantments.PUNCH_ARROWS);
 			if (punch > 0) {
 				entity.setKnockback(punch);
 			}
-			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, bow) > 0) {
+			if (bow.getEnchantmentLevel(Enchantments.FLAMING_ARROWS) > 0) {
 				entity.setSecondsOnFire(100);
 			}
 			if (entity.data.no_consume()) {

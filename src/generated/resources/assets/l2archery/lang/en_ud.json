@@ -25,5 +25,11 @@
   "item.l2archery.tnt_arrow_lv1": "ƖʌꞀ ʍoɹɹⱯ ʇu⟘",
   "item.l2archery.tnt_arrow_lv2": "ᄅʌꞀ ʍoɹɹⱯ ʇu⟘",
   "item.l2archery.tnt_arrow_lv3": "ƐʌꞀ ʍoɹɹⱯ ʇu⟘",
-  "item.l2archery.wind_bow": "ʍoᗺ puıM"
+  "item.l2archery.wind_bow": "ʍoᗺ puıM",
+  "stat_type.l2archery.damage": "ǝbɐɯɐᗡ",
+  "stat_type.l2archery.fov_time": "ǝɯı⟘ ʌoℲ",
+  "stat_type.l2archery.max_fov": "ʌoℲ xɐW",
+  "stat_type.l2archery.pull_time": "ǝɯı⟘ ןןnԀ",
+  "stat_type.l2archery.punch": "ɥɔunԀ",
+  "stat_type.l2archery.speed": "pǝǝdS"
 }

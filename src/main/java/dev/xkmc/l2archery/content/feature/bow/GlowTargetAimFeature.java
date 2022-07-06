@@ -1,9 +1,9 @@
 package dev.xkmc.l2archery.content.feature.bow;
 
-import dev.xkmc.l2library.util.code.GenericItemStack;
-import dev.xkmc.l2library.util.raytrace.EntityTarget;
 import dev.xkmc.l2archery.content.feature.types.OnPullFeature;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
+import dev.xkmc.l2library.util.code.GenericItemStack;
+import dev.xkmc.l2library.util.raytrace.EntityTarget;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

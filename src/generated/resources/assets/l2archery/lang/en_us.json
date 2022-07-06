@@ -25,5 +25,11 @@
   "item.l2archery.tnt_arrow_lv1": "Tnt Arrow Lv1",
   "item.l2archery.tnt_arrow_lv2": "Tnt Arrow Lv2",
   "item.l2archery.tnt_arrow_lv3": "Tnt Arrow Lv3",
-  "item.l2archery.wind_bow": "Wind Bow"
+  "item.l2archery.wind_bow": "Wind Bow",
+  "stat_type.l2archery.damage": "Damage",
+  "stat_type.l2archery.fov_time": "Fov Time",
+  "stat_type.l2archery.max_fov": "Max Fov",
+  "stat_type.l2archery.pull_time": "Pull Time",
+  "stat_type.l2archery.punch": "Punch",
+  "stat_type.l2archery.speed": "Speed"
 }

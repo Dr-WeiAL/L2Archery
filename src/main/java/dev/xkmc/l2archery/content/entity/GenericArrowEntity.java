@@ -136,7 +136,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 			DataResult<Pair<ArrowEntityData, Tag>> result = ArrowEntityData.CODEC.decode(NbtOps.INSTANCE, data_tag);
 			result.get().left().ifPresent(e -> this.data = e.getFirst());
 		}
-		features = Objects.requireNonNull(FeatureList.merge(data.bow().item().config.feature(), data.arrow().item().config.feature().get()));
+		features = Objects.requireNonNull(FeatureList.merge(data.bow().item().config, data.arrow().item().config));
 	}
 
 	@Override
@@ -155,7 +155,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		CompoundTag data_tag = additionalData.readAnySizeNbt();
 		DataResult<Pair<ArrowEntityData, Tag>> result = ArrowEntityData.CODEC.decode(NbtOps.INSTANCE, data_tag);
 		result.get().left().ifPresent(e -> this.data = e.getFirst());
-		features = Objects.requireNonNull(FeatureList.merge(data.bow().item().config.feature(), data.arrow().item().config.feature().get()));
+		features = Objects.requireNonNull(FeatureList.merge(data.bow().item().config, data.arrow().item().config));
 		features.shot.forEach(e -> e.onClientShoot(this));
 	}
 

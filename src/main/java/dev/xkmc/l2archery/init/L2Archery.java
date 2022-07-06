@@ -1,6 +1,7 @@
 package dev.xkmc.l2archery.init;
 
 import dev.xkmc.l2archery.events.GenericEventHandler;
+import dev.xkmc.l2archery.init.data.ConfigGen;
 import dev.xkmc.l2archery.init.data.RecipeGen;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
@@ -64,6 +65,7 @@ public class L2Archery {
 	}
 
 	public static void gatherData(GatherDataEvent event) {
+		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
 	}
 
 	public static void onParticleRegistryEvent(ParticleFactoryRegisterEvent event) {

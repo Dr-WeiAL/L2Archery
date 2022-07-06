@@ -1,5 +1,7 @@
 package dev.xkmc.l2archery.init;
 
+import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
+import dev.xkmc.l2library.serial.config.ConfigMerger;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
@@ -7,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.Locale;
 
 public enum NetworkManager {
-	STATS, EFFECT_FEATURES;
+	STATS;
 
 	public String getID() {
 		return name().toLowerCase(Locale.ROOT);
@@ -22,7 +24,7 @@ public enum NetworkManager {
 	}
 
 	public static void register() {
-		//HANDLER.addCachedConfig(MATERIALS.getID(), new ConfigMerger<>(GolemMaterialConfig.class));
+		HANDLER.addCachedConfig(STATS.getID(), new ConfigMerger<>(BowArrowStatConfig.class));
 	}
 
 }

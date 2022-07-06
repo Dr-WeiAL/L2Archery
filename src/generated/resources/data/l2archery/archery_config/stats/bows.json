@@ -1,0 +1,33 @@
+{
+  "_class": "dev.xkmc.l2archery.content.config.BowArrowStatConfig",
+  "arrow_effects": {},
+  "arrow_stats": {},
+  "bow_effects": {},
+  "bow_stats": {
+    "l2archery:eagle_bow": {
+      "l2archery:damage": 6.0,
+      "l2archery:fov_time": 40.0,
+      "l2archery:pull_time": 40.0,
+      "l2archery:punch": 2.0
+    },
+    "l2archery:ender_aim_bow": {
+      "l2archery:damage": -1.0
+    },
+    "l2archery:iron_bow": {
+      "l2archery:damage": 1.0,
+      "l2archery:fov_time": 40.0,
+      "l2archery:pull_time": 40.0,
+      "l2archery:speed": 3.9
+    },
+    "l2archery:magnify_bow": {
+      "l2archery:fov_time": 60.0,
+      "l2archery:max_fov": 0.9
+    },
+    "l2archery:wind_bow": {
+      "l2archery:fov_time": 10.0,
+      "l2archery:pull_time": 10.0,
+      "l2archery:punch": 1.0,
+      "l2archery:speed": 3.9
+    }
+  }
+}

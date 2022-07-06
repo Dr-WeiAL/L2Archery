@@ -1,8 +1,8 @@
 package dev.xkmc.l2archery.content.feature.bow;
 
-import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2archery.content.feature.types.OnPullFeature;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
+import dev.xkmc.l2library.util.code.GenericItemStack;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

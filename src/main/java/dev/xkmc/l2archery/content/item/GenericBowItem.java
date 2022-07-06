@@ -30,22 +30,23 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget {
 
-	public static final class BowConfig {
-
-		private final ResourceLocation id;
-		private final FeatureList feature;
-
-		public BowConfig(ResourceLocation id, FeatureList feature) {
-			this.id = id;
-			this.feature = feature;
-		}
+	public record BowConfig(ResourceLocation id, FeatureList feature) {
 
 		private double getValue(BowArrowStatType type) {
-			return BowArrowStatConfig.get().bow_stats.get(id).getOrDefault(type, type.getDefault());
+			var map = BowArrowStatConfig.get().bow_stats.get(id);
+			if (map == null) return type.getDefault();
+			return map.getOrDefault(type, type.getDefault());
+		}
+
+		public List<MobEffectInstance> getEffects() {
+			var map = BowArrowStatConfig.get().bow_effects.get(id);
+			if (map == null) return List.of();
+			return map.entrySet().stream().map(e -> new MobEffectInstance(e.getKey(), e.getValue().duration(), e.getValue().amplifier())).toList();
 		}
 
 		public float damage() {
@@ -70,10 +71,6 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 		public float fov() {
 			return (float) getValue(ArcheryRegister.FOV.get());
-		}
-
-		public FeatureList feature() {
-			return feature;
 		}
 
 	}

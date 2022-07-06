@@ -1,0 +1,40 @@
+{
+  "_class": "dev.xkmc.l2archery.content.config.BowArrowStatConfig",
+  "arrow_effects": {
+    "l2archery:fire_arrow_lv1": {
+      "l2archery:flame": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
+    "l2archery:fire_arrow_lv2": {
+      "l2archery:flame": {
+        "amplifier": 1,
+        "duration": 100
+      }
+    },
+    "l2archery:frozen_arrow": {
+      "l2archery:frozen": {
+        "amplifier": 0,
+        "duration": 600
+      }
+    }
+  },
+  "arrow_stats": {
+    "l2archery:copper_arrow": {
+      "l2archery:damage": 1.0
+    },
+    "l2archery:ender_arrow": {
+      "l2archery:damage": -1.0
+    },
+    "l2archery:iron_arrow": {
+      "l2archery:damage": 1.0,
+      "l2archery:punch": 1.0
+    },
+    "l2archery:obsidian_arrow": {
+      "l2archery:damage": 2.0
+    }
+  },
+  "bow_effects": {},
+  "bow_stats": {}
+}

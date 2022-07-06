@@ -1,7 +1,7 @@
 package dev.xkmc.l2archery.content.feature.types;
 
-import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
+import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import net.minecraft.world.phys.Vec3;
 
 public class FlightControlFeature implements BowArrowFeature {

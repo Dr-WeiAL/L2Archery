@@ -1,8 +1,8 @@
 package dev.xkmc.l2archery.content.feature.arrow;
 
+import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2archery.content.feature.types.OnShootFeature;
-import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
