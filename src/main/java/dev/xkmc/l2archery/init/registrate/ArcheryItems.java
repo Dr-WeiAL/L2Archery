@@ -48,6 +48,7 @@ public class ArcheryItems {
 
 	static {
 		REGISTRATE.creativeModeTab(() -> TAB_PROF);
+		REGISTRATE.addRawLang("itemGroup.l2archery.profession", "L2 Archery");
 	}
 
 	// -------- archery --------
