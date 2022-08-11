@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2archery:item/fire_arrow_lv2"
+    "layer0": "l2archery:item/arrow/fire_arrow_lv2"
   }
 }

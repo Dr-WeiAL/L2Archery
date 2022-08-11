@@ -62,7 +62,7 @@ public class FeatureList {
 
 	public void addTooltip(List<Component> list) {
 		Set<BowArrowFeature> used = new HashSet<>();
-		List<List<? extends BowArrowFeature>> lists = List.of(pull, shot, List.of(flight), hit);
+		List<List<? extends BowArrowFeature>> lists = List.of(pull, shot, flight == null ? List.of() : List.of(flight), hit);
 		for (var l : lists) {
 			for (var f : l) {
 				if (!used.contains(f)) {

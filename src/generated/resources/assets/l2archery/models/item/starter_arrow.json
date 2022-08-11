@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2archery:item/starter_arrow"
+    "layer0": "l2archery:item/arrow/starter_arrow"
   }
 }

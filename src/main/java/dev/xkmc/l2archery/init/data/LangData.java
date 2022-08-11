@@ -16,7 +16,7 @@ public enum LangData {
 	STAT_DAMAGE("stat.damage", "Damage: %s", 1, ChatFormatting.BLUE),
 	STAT_PUNCH("stat.punch", "Punch: %s", 1, ChatFormatting.BLUE),
 	STAT_PULL_TIME("stat.pull_time", "Pull Time: %s seconds", 1, ChatFormatting.BLUE),
-	STAT_SPEED("stat.speed", "Arrow Speed: %s", 1, ChatFormatting.BLUE),
+	STAT_SPEED("stat.speed", "Arrow Speed: %s m/s", 1, ChatFormatting.BLUE),
 	STAT_FOV("stat.fov", "Magnification: %s", 1, ChatFormatting.BLUE),
 	STAT_EFFECT("stat.effects", "Apply Effects on Hit:", 0, ChatFormatting.GREEN),
 

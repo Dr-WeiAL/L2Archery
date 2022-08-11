@@ -1,5 +1,35 @@
 {
   "itemGroup.l2archery": {
-	"profession": "弓与箭"
+	"archery": "弓艺"
+  },
+  "entity.l2archery.generic_arrow": "箭",
+  "effect.l2archery": {
+	"armor_reduce": "破甲",
+	"flame": "魂火",
+	"frozen": "寒流",
+	"quick_pull": "快速拉弓",
+	"run_bow": "移动射击"
+  },
+  "l2archery": {
+	"feature": {
+	  "aim_flow": "让%s米内被瞄准的目标高亮显示（仅自己可见）",
+	  "ender_arrow": "射中实体时交换玩家和实体的位置。射中方块时传送",
+	  "ender_shoot": "瞄准实体射击时直接命中，未瞄准则不发射",
+	  "explosion.all": "命中时造成半径%s的爆炸",
+	  "explosion.hurt": "命中时造成半径%s的爆炸。不破坏方块",
+	  "fire": "命中目标时，目标着火%s秒",
+	  "no_fall": "箭不会下坠，但是%s秒后消失",
+	  "pierce_armor": "伤害穿透盔甲",
+	  "pierce_magic": "伤害穿透魔法保护",
+	  "wind_bow": "拉弓不减速，并获得短暂的速度提升"
+	},
+	"stat": {
+	  "damage": "伤害: %s",
+	  "effects": "效果:",
+	  "fov": "放大倍率: %s",
+	  "pull_time": "拉弓时间: %s秒",
+	  "punch": "击退: %s",
+	  "speed": "出弓速度: %s米每秒"
+	}
   }
 }
