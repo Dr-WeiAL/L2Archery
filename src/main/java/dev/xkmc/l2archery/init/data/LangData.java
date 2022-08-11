@@ -8,6 +8,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Locale;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
@@ -61,10 +62,10 @@ public enum LangData {
 		return ans;
 	}
 
-	public MutableComponent getWithSign(double val) {
-		String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
-		var comp = Component.translatable(sign, ATTRIBUTE_MODIFIER_FORMAT.format(val));
-		return get(comp);
+	public void getWithSign(List<Component> list, double val) {
+		if (val == 0) return;
+		String sign = val > 0 ? "attribute.modifier.plus.0" : "attribute.modifier.take.0";
+		list.add(get(Component.translatable(sign, ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(val)))));
 	}
 
 	public static void genLang(RegistrateLangProvider pvd) {

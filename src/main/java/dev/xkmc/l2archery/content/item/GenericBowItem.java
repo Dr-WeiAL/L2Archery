@@ -78,9 +78,9 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		}
 
 		public void addTooltip(List<Component> list) {
-			list.add(LangData.STAT_DAMAGE.getWithSign(damage()));
-			list.add(LangData.STAT_PUNCH.getWithSign(punch()));
-			list.add(LangData.STAT_PULL_TIME.get(pull_time() / 20));
+			LangData.STAT_DAMAGE.getWithSign(list, damage());
+			LangData.STAT_PUNCH.getWithSign(list, punch());
+			list.add(LangData.STAT_PULL_TIME.get(pull_time() / 20d));
 			list.add(LangData.STAT_SPEED.get(speed() * 20));
 			list.add(LangData.STAT_FOV.get(fov()));
 			PotionArrowFeature.addTooltip(getEffects(), list);

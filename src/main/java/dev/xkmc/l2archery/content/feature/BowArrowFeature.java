@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface BowArrowFeature {
 
-	public void addTooltip(List<Component> list);
+	void addTooltip(List<Component> list);
 
 }

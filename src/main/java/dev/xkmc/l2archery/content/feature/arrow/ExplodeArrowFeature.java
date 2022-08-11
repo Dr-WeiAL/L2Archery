@@ -58,10 +58,10 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 
 	@Override
 	public void addTooltip(List<Component> list) {
-		if (hurt && breakBlock){
+		if (hurt && breakBlock) {
 			list.add(LangData.FEATURE_EXPLOSION_ALL.get(radius));
 		}
-		if (hurt && !breakBlock){
+		if (hurt && !breakBlock) {
 			list.add(LangData.FEATURE_EXPLOSION_HURT.get(radius));
 		}
 	}

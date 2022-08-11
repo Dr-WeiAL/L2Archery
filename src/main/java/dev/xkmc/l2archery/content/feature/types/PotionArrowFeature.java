@@ -36,7 +36,9 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 	}
 
 	public static void addTooltip(List<MobEffectInstance> instances, List<Component> list) {
-		list.add(LangData.STAT_EFFECT.get());
+		if (instances.size() > 0) {
+			list.add(LangData.STAT_EFFECT.get());
+		}
 		for (var eff : instances) {
 			MutableComponent comp = Component.translatable(eff.getDescriptionId());
 			MobEffect mobeffect = eff.getEffect();

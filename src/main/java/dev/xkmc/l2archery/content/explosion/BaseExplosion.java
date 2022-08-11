@@ -7,11 +7,13 @@ public class BaseExplosion extends Explosion {
 
 	public final BaseExplosionContext base;
 	public final ModExplosionContext mod;
+	public final VanillaExplosionContext mc;
 
 	public BaseExplosion(BaseExplosionContext base, VanillaExplosionContext mc, ModExplosionContext mod) {
 		super(base.level(), mc.entity(), mc.source(), mc.calculator(), base.x(), base.y(), base.z(), base.r(), mc.fire(), mc.type());
 		this.base = base;
 		this.mod = mod;
+		this.mc = mc;
 	}
 
 	/**

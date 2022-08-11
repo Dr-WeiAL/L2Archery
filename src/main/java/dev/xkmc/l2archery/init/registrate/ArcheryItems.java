@@ -121,11 +121,11 @@ public class ArcheryItems {
 	}
 
 	public static <T extends GenericBowItem> void createBowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {
-		ItemModelBuilder builder = pvd.withExistingParent("item/bow/"+ctx.getName()+"/bow", "minecraft:bow");
+		ItemModelBuilder builder = pvd.withExistingParent(ctx.getName(), "minecraft:bow");
 		builder.texture("layer0", "item/bow/" + ctx.getName() + "/bow");
 		for (int i = 0; i < 3; i++) {
 			String name = ctx.getName() + "/bow_pulling_" + i;
-			ItemModelBuilder ret = pvd.getBuilder("item/bow/"+name).parent(new ModelFile.UncheckedModelFile("minecraft:item/bow_pulling_" + i));
+			ItemModelBuilder ret = pvd.getBuilder("item/bow/" + name).parent(new ModelFile.UncheckedModelFile("minecraft:item/bow_pulling_" + i));
 			ret.texture("layer0", "item/bow/" + name);
 			ItemModelBuilder.OverrideBuilder override = builder.override();
 			override.predicate(new ResourceLocation("pulling"), 1);

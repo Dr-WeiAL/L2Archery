@@ -7,6 +7,8 @@ import dev.xkmc.l2archery.init.NetworkManager;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2library.serial.config.CollectType;
+import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.util.annotation.DataGenOnly;
 import net.minecraft.resources.ResourceLocation;
@@ -21,15 +23,19 @@ public class BowArrowStatConfig extends BaseConfig {
 		return NetworkManager.STATS.getMerged();
 	}
 
+	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
 	public HashMap<ResourceLocation, HashMap<BowArrowStatType, Double>> bow_stats = new HashMap<>();
 
+	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
 	public HashMap<ResourceLocation, HashMap<BowArrowStatType, Double>> arrow_stats = new HashMap<>();
 
+	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
 	public HashMap<ResourceLocation, HashMap<MobEffect, Effect>> bow_effects = new HashMap<>();
 
+	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
 	public HashMap<ResourceLocation, HashMap<MobEffect, Effect>> arrow_effects = new HashMap<>();
 

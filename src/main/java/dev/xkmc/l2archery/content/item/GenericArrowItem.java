@@ -27,13 +27,13 @@ public class GenericArrowItem extends ArrowItem {
 	public record ArrowConfig(ResourceLocation id, boolean is_inf, FeatureList feature) {
 
 		private double getValue(BowArrowStatType type) {
-			var map = BowArrowStatConfig.get().bow_stats.get(id);
+			var map = BowArrowStatConfig.get().arrow_stats.get(id);
 			if (map == null) return type.getDefault();
 			return map.getOrDefault(type, type.getDefault());
 		}
 
 		public List<MobEffectInstance> getEffects() {
-			var map = BowArrowStatConfig.get().bow_effects.get(id);
+			var map = BowArrowStatConfig.get().arrow_effects.get(id);
 			if (map == null) return List.of();
 			return map.entrySet().stream().map(e -> new MobEffectInstance(e.getKey(), e.getValue().duration(), e.getValue().amplifier())).toList();
 		}
@@ -47,8 +47,8 @@ public class GenericArrowItem extends ArrowItem {
 		}
 
 		public void addTooltip(List<Component> list) {
-			list.add(LangData.STAT_DAMAGE.getWithSign(damage()));
-			list.add(LangData.STAT_PUNCH.getWithSign(punch()));
+			LangData.STAT_DAMAGE.getWithSign(list, damage());
+			LangData.STAT_PUNCH.getWithSign(list, punch());
 			PotionArrowFeature.addTooltip(getEffects(), list);
 			feature.addTooltip(list);
 		}
