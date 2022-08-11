@@ -2,8 +2,10 @@ package dev.xkmc.l2archery.content.feature.bow;
 
 import dev.xkmc.l2archery.content.feature.types.OnPullFeature;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.EntityTarget;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -12,6 +14,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public record GlowTargetAimFeature(int range) implements OnPullFeature, IGlowFeature {
@@ -42,6 +45,11 @@ public record GlowTargetAimFeature(int range) implements OnPullFeature, IGlowFea
 	@Override
 	public void stopAim(Player player, GenericItemStack<GenericBowItem> bow) {
 		TARGET.updateTarget(null);
+	}
+
+	@Override
+	public void addTooltip(List<Component> list) {
+		list.add(LangData.FEATURE_AIM_GLOW.get(range));
 	}
 
 }

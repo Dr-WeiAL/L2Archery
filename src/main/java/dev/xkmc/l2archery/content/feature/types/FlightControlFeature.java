@@ -2,7 +2,10 @@ package dev.xkmc.l2archery.content.feature.types;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 public class FlightControlFeature implements BowArrowFeature {
 
@@ -19,6 +22,10 @@ public class FlightControlFeature implements BowArrowFeature {
 		velocity = velocity.scale(inertia);
 		float grav = !entity.isNoGravity() && !entity.isNoPhysics() ? gravity : 0;
 		entity.setDeltaMovement(velocity.x, velocity.y - grav, velocity.z);
+	}
+
+	@Override
+	public void addTooltip(List<Component> list) {
 	}
 
 }

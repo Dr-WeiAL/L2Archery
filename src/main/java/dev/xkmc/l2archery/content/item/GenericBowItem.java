@@ -7,13 +7,16 @@ import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
+import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.ClientRegister;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.FastItem;
 import dev.xkmc.l2library.util.raytrace.IGlowingTarget;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -29,6 +32,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -71,6 +75,16 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 		public float fov() {
 			return (float) getValue(ArcheryRegister.FOV.get());
+		}
+
+		public void addTooltip(List<Component> list) {
+			list.add(LangData.STAT_DAMAGE.getWithSign(damage()));
+			list.add(LangData.STAT_PUNCH.getWithSign(punch()));
+			list.add(LangData.STAT_PULL_TIME.get(pull_time()));
+			list.add(LangData.STAT_SPEED.get(speed()));
+			list.add(LangData.STAT_FOV.get(fov()));
+			PotionArrowFeature.addTooltip(getEffects(), list);
+			feature.addTooltip(list);
 		}
 
 	}
@@ -264,6 +278,11 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 			}
 		}
 		return 0;
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		config.addTooltip(list);
 	}
 
 }

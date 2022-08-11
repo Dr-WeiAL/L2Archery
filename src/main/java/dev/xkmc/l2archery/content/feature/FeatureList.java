@@ -1,18 +1,16 @@
 package dev.xkmc.l2archery.content.feature;
 
-import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
-import dev.xkmc.l2archery.content.feature.types.DefaultShootFeature;
-import dev.xkmc.l2archery.content.feature.types.FlightControlFeature;
-import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
-import dev.xkmc.l2archery.content.feature.types.OnPullFeature;
-import dev.xkmc.l2archery.content.feature.types.OnShootFeature;
+import dev.xkmc.l2archery.content.feature.types.*;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FeatureList {
 
@@ -60,5 +58,18 @@ public class FeatureList {
 
 	public void end() {
 
+	}
+
+	public void addTooltip(List<Component> list) {
+		Set<BowArrowFeature> used = new HashSet<>();
+		List<List<? extends BowArrowFeature>> lists = List.of(pull, shot, List.of(flight), hit);
+		for (var l : lists) {
+			for (var f : l) {
+				if (!used.contains(f)) {
+					f.addTooltip(list);
+					used.add(f);
+				}
+			}
+		}
 	}
 }

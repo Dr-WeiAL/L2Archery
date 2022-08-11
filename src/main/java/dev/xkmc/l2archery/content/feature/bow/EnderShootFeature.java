@@ -4,11 +4,14 @@ import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnPullFeature;
 import dev.xkmc.l2archery.content.feature.types.OnShootFeature;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.RayTraceUtil;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeature, IGlowFeature {
@@ -37,5 +40,11 @@ public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeat
 	@Override
 	public void stopAim(Player player, GenericItemStack<GenericBowItem> bow) {
 		RayTraceUtil.TARGET.updateTarget(null);
+	}
+
+
+	@Override
+	public void addTooltip(List<Component> list) {
+		list.add(LangData.FEATURE_ENDER_SHOOT.get());
 	}
 }

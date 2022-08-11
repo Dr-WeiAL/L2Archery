@@ -2,8 +2,11 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.feature.FeatureList;
+import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,8 +15,10 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -41,6 +46,13 @@ public class GenericArrowItem extends ArrowItem {
 			return (int) getValue(ArcheryRegister.PUNCH.get());
 		}
 
+		public void addTooltip(List<Component> list) {
+			list.add(LangData.STAT_DAMAGE.getWithSign(damage()));
+			list.add(LangData.STAT_PUNCH.getWithSign(punch()));
+			PotionArrowFeature.addTooltip(getEffects(), list);
+			feature.addTooltip(list);
+		}
+
 	}
 
 	public final ArrowConfig config;
@@ -59,6 +71,11 @@ public class GenericArrowItem extends ArrowItem {
 	public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
 		int enchant = bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS);
 		return enchant > 0 && config.is_inf();
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		config.addTooltip(list);
 	}
 
 }

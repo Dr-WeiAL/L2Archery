@@ -3,11 +3,16 @@ package dev.xkmc.l2archery.content.feature.arrow;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.explosion.*;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
+import dev.xkmc.l2archery.init.data.LangData;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.phys.BlockHitResult;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock) implements OnHitFeature {
 
@@ -42,6 +47,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 		return hurt;
 	}
 
+	@Nullable
 	private DamageSource getSource(GenericArrowEntity arrow) {
 		Entity ent = arrow.getOwner();
 		if (ent instanceof LivingEntity le) {
@@ -50,4 +56,13 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 		return null;
 	}
 
+	@Override
+	public void addTooltip(List<Component> list) {
+		if (hurt && breakBlock){
+			list.add(LangData.FEATURE_EXPLOSION_ALL.get(radius));
+		}
+		if (hurt && !breakBlock){
+			list.add(LangData.FEATURE_EXPLOSION_HURT.get(radius));
+		}
+	}
 }

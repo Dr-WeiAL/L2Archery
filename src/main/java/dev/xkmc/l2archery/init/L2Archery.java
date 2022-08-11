@@ -2,6 +2,7 @@ package dev.xkmc.l2archery.init;
 
 import dev.xkmc.l2archery.events.GenericEventHandler;
 import dev.xkmc.l2archery.init.data.ConfigGen;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.data.RecipeGen;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
@@ -34,6 +35,7 @@ public class L2Archery {
 		ArcheryItems.register();
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 	}
 
 	private static void registerForgeEvents() {

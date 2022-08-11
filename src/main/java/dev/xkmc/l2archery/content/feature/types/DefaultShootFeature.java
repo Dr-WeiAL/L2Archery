@@ -1,11 +1,13 @@
 package dev.xkmc.l2archery.content.feature.types;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class DefaultShootFeature implements OnShootFeature {
@@ -42,4 +44,10 @@ public class DefaultShootFeature implements OnShootFeature {
 		});
 		return true;
 	}
+
+	@Override
+	public void addTooltip(List<Component> list) {
+
+	}
+
 }

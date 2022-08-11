@@ -8,6 +8,7 @@ import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemModelProvider;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
@@ -44,11 +45,10 @@ public class ArcheryItems {
 		}
 	}
 
-	public static final Tab TAB_PROF = new Tab("profession", () -> ArcheryItems.STARTER_BOW);
+	public static final Tab TAB_PROF = new Tab("archery", () -> ArcheryItems.STARTER_BOW);
 
 	static {
 		REGISTRATE.creativeModeTab(() -> TAB_PROF);
-		REGISTRATE.addRawLang("itemGroup.l2archery.profession", "L2 Archery");
 	}
 
 	// -------- archery --------
@@ -67,7 +67,8 @@ public class ArcheryItems {
 		ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)));
 		EAGLE_BOW = genBow("eagle_bow", 600, e -> e.add(new DamageArrowFeature(
 				a -> DamageSource.arrow(a, a.getOwner()).bypassArmor(),
-				a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length())
+				a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length()),
+				LangData.FEATURE_PIERCE_ARMOR::get
 		)));
 		WIND_BOW = genBow("wind_bow", 600, e -> e
 				.add(new NoFallArrowFeature(40))
@@ -88,7 +89,8 @@ public class ArcheryItems {
 		ACID_ARROW = genArrow("acid_arrow", false, FeatureList::end);
 		DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageArrowFeature(
 				a -> DamageSource.arrow(a, a.getOwner()).bypassMagic(),
-				a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length())
+				a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length()),
+				LangData.FEATURE_PIERCE_MAGIC::get
 		)));
 	}
 
