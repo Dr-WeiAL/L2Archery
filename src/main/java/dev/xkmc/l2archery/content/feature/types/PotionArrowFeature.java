@@ -31,8 +31,8 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 	}
 
 	@Override
-	public void addTooltip(List<Component> list) {
-		addTooltip(instances, list);
+	public void addTooltip(List<MutableComponent> list) {
+		//addTooltip(instances, list);
 	}
 
 	public static void addTooltip(List<MobEffectInstance> instances, List<Component> list) {
@@ -54,4 +54,8 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 		}
 	}
 
+	@Override
+	public boolean allowDuplicate() {
+		return true;
+	}
 }

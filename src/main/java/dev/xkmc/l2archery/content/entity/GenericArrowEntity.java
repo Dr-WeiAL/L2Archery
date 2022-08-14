@@ -30,8 +30,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.network.NetworkHooks;
 
-import java.util.Objects;
-
 @FieldsAreNonnullByDefault
 public class GenericArrowEntity extends AbstractArrow implements IEntityAdditionalSpawnData {
 
@@ -75,14 +73,14 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
 		if (result.getEntity() instanceof LivingEntity le) {
-			features.hit.forEach(e -> e.onHitEntity(this, le));
+			features.hit().forEach(e -> e.onHitEntity(this, le));
 		}
 		super.onHitEntity(result);
 	}
 
 	@Override
 	public void doPostHurtEffects(LivingEntity target) {
-		features.hit.forEach(e -> e.postHurtEntity(this, target));
+		features.hit().forEach(e -> e.postHurtEntity(this, target));
 	}
 
 	@ServerOnly
@@ -95,7 +93,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	public void tick() {
 		Vec3 velocity = getDeltaMovement();
 		super.tick();
-		FlightControlFeature flight = features.getFlightControl();
+		FlightControlFeature flight = features.flight();
 		flight.tickMotion(this, velocity);
 		if (flight.life > 0 && this.tickCount > flight.life) {
 			this.discard();
@@ -104,7 +102,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 
 	protected void tickDespawn() {
 		++this.life;
-		if (this.life >= features.getFlightControl().ground_life) {
+		if (this.life >= features.flight().ground_life) {
 			this.discard();
 		}
 
@@ -112,7 +110,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 
 	protected void onHitBlock(BlockHitResult result) {
 		super.onHitBlock(result);
-		features.hit.forEach(e -> e.onHitBlock(this, result));
+		features.hit().forEach(e -> e.onHitBlock(this, result));
 	}
 
 	@ServerOnly
@@ -123,7 +121,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		if (data_tag.error().isPresent()) {
 			L2Archery.LOGGER.error(data_tag.error().get());
 		} else if (data_tag.get().left().isPresent()) {
-			tag.put("lightland-archery", data_tag.get().left().get());
+			tag.put(L2Archery.MODID, data_tag.get().left().get());
 		}
 	}
 
@@ -131,12 +129,12 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	@Override
 	public void readAdditionalSaveData(CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
-		if (tag.contains("lightland-archery")) {
-			CompoundTag data_tag = tag.getCompound("ligtland-archery");
+		if (tag.contains(L2Archery.MODID)) {
+			CompoundTag data_tag = tag.getCompound(L2Archery.MODID);
 			DataResult<Pair<ArrowEntityData, Tag>> result = ArrowEntityData.CODEC.decode(NbtOps.INSTANCE, data_tag);
 			result.get().left().ifPresent(e -> this.data = e.getFirst());
 		}
-		features = Objects.requireNonNull(FeatureList.merge(data.bow().item().config, data.arrow().item().config));
+		features = FeatureList.merge(data.bow().item().getFeatures(data.bow.stack()), data.arrow().item().getFeatures());
 	}
 
 	@Override
@@ -155,8 +153,8 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		CompoundTag data_tag = additionalData.readAnySizeNbt();
 		DataResult<Pair<ArrowEntityData, Tag>> result = ArrowEntityData.CODEC.decode(NbtOps.INSTANCE, data_tag);
 		result.get().left().ifPresent(e -> this.data = e.getFirst());
-		features = Objects.requireNonNull(FeatureList.merge(data.bow().item().config, data.arrow().item().config));
-		features.shot.forEach(e -> e.onClientShoot(this));
+		features = FeatureList.merge(data.bow().item().getFeatures(data.bow.stack()), data.arrow().item().getFeatures());
+		features.shot().forEach(e -> e.onClientShoot(this));
 	}
 
 	@Override

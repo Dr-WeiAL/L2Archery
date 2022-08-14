@@ -13,7 +13,6 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ArrowFeatureController {
@@ -23,16 +22,16 @@ public class ArrowFeatureController {
 	}
 
 	public static boolean canBowUseArrow(GenericBowItem bow, GenericItemStack<GenericArrowItem> arrow) {
-		return FeatureList.canMerge(bow.config.feature(), arrow.item().config.feature());
+		return FeatureList.canMerge(bow.getFeatures(null), arrow.item().getFeatures());
 	}
 
 	@Nullable
 	public static AbstractArrow createArrowEntity(BowArrowUseContext ctx,
 												  GenericItemStack<GenericBowItem> bow,
 												  GenericItemStack<GenericArrowItem> arrow) {
-		FeatureList features = Objects.requireNonNull(FeatureList.merge(bow.item().config, arrow.item().config));
+		FeatureList features = FeatureList.merge(bow.item().getFeatures(bow.stack()), arrow.item().getFeatures());
 		List<Consumer<GenericArrowEntity>> list = new ArrayList<>();
-		for (OnShootFeature e : features.shot)
+		for (OnShootFeature e : features.shot())
 			if (!e.onShoot(ctx.user, list::add))
 				return null;
 		GenericArrowEntity ans = new GenericArrowEntity(ctx.level(), ctx.user(),

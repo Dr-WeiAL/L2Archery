@@ -1,10 +1,13 @@
 package dev.xkmc.l2archery.init.registrate;
 
-import dev.xkmc.l2archery.content.feature.FeatureList;
+import com.google.common.collect.ImmutableList;
+import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.EnderShootFeature;
 import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
+import dev.xkmc.l2archery.content.item.ArrowConfig;
+import dev.xkmc.l2archery.content.item.BowConfig;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.L2Archery;
@@ -60,8 +63,8 @@ public class ArcheryItems {
 			ICE_ARROW, DISPELL_ARROW, ACID_ARROW;
 
 	static {
-		STARTER_BOW = genBow("starter_bow", 600, FeatureList::end);
-		IRON_BOW = genBow("iron_bow", 1200, FeatureList::end);
+		STARTER_BOW = genBow("starter_bow", 600);
+		IRON_BOW = genBow("iron_bow", 1200);
 		MAGNIFY_BOW = genBow("magnify_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
 		GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
 		ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)));
@@ -74,10 +77,10 @@ public class ArcheryItems {
 				.add(new NoFallArrowFeature(40))
 				.add(new WindBowFeature()));
 
-		STARTER_ARROW = genArrow("starter_arrow", true, FeatureList::end);
-		COPPER_ARROW = genArrow("copper_arrow", false, FeatureList::end);
-		IRON_ARROW = genArrow("iron_arrow", false, FeatureList::end);
-		OBSIDIAN_ARROW = genArrow("obsidian_arrow", false, FeatureList::end);
+		STARTER_ARROW = genArrow("starter_arrow", true);
+		COPPER_ARROW = genArrow("copper_arrow", false);
+		IRON_ARROW = genArrow("iron_arrow", false);
+		OBSIDIAN_ARROW = genArrow("obsidian_arrow", false);
 		NO_FALL_ARROW = genArrow("no_fall_arrow", false, e -> e.add(new NoFallArrowFeature(40)));
 		ENDER_ARROW = genArrow("ender_arrow", false, e -> e.add(new EnderArrowFeature()));
 		TNT_1_ARROW = genArrow("tnt_arrow_lv1", false, e -> e.add(new ExplodeArrowFeature(2, true, false)));
@@ -85,8 +88,8 @@ public class ArcheryItems {
 		TNT_3_ARROW = genArrow("tnt_arrow_lv3", false, e -> e.add(new ExplodeArrowFeature(6, true, false)));
 		FIRE_1_ARROW = genArrow("fire_arrow_lv1", false, e -> e.add(new FireArrowFeature(100)));
 		FIRE_2_ARROW = genArrow("fire_arrow_lv2", false, e -> e.add(new FireArrowFeature(200)));
-		ICE_ARROW = genArrow("frozen_arrow", false, FeatureList::end);
-		ACID_ARROW = genArrow("acid_arrow", false, FeatureList::end);
+		ICE_ARROW = genArrow("frozen_arrow", false);
+		ACID_ARROW = genArrow("acid_arrow", false);
 		DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageArrowFeature(
 				a -> DamageSource.arrow(a, a.getOwner()).bypassMagic(),
 				a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length()),
@@ -94,23 +97,32 @@ public class ArcheryItems {
 		)));
 	}
 
-
 	public static void register() {
 	}
 
-	public static ItemEntry<GenericBowItem> genBow(String id, int durability, Consumer<FeatureList> consumer) {
-		FeatureList features = new FeatureList();
-		consumer.accept(features);
+	public static ItemEntry<GenericBowItem> genBow(String id, int durability) {
+		return genBow(id, durability, e -> {
+		});
+	}
+
+	public static ItemEntry<GenericBowItem> genBow(String id, int durability, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
+		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
+		consumer.accept(f);
 		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability),
-						new GenericBowItem.BowConfig(new ResourceLocation(L2Archery.MODID, id), features)))
+						new BowConfig(new ResourceLocation(L2Archery.MODID, id), f.build())))
 				.model(ArcheryItems::createBowModel).defaultLang().register();
 	}
 
-	public static ItemEntry<GenericArrowItem> genArrow(String id, boolean is_inf, Consumer<FeatureList> consumer) {
-		FeatureList f = new FeatureList();
+	public static ItemEntry<GenericArrowItem> genArrow(String id, boolean is_inf) {
+		return genArrow(id, is_inf, e -> {
+		});
+	}
+
+	public static ItemEntry<GenericArrowItem> genArrow(String id, boolean is_inf, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
+		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
-		return REGISTRATE.item(id, p -> new GenericArrowItem(p, new GenericArrowItem.ArrowConfig(
-						new ResourceLocation(L2Archery.MODID, id), is_inf, f)))
+		return REGISTRATE.item(id, p -> new GenericArrowItem(p, new ArrowConfig(
+						new ResourceLocation(L2Archery.MODID, id), is_inf, f.build())))
 				.model(ArcheryItems::createArrowModel).defaultLang().register();
 	}
 

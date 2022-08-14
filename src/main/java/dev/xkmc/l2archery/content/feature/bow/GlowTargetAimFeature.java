@@ -5,7 +5,7 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.EntityTarget;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -48,7 +48,7 @@ public record GlowTargetAimFeature(int range) implements OnPullFeature, IGlowFea
 	}
 
 	@Override
-	public void addTooltip(List<Component> list) {
+	public void addTooltip(List<MutableComponent> list) {
 		list.add(LangData.FEATURE_AIM_GLOW.get(range));
 	}
 

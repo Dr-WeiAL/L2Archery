@@ -2,7 +2,7 @@ package dev.xkmc.l2archery.content.feature.types;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class FlightControlFeature implements BowArrowFeature {
 	}
 
 	@Override
-	public void addTooltip(List<Component> list) {
+	public void addTooltip(List<MutableComponent> list) {
 	}
 
 }

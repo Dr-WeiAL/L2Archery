@@ -7,7 +7,7 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.RayTraceUtil;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 
@@ -44,7 +44,7 @@ public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeat
 
 
 	@Override
-	public void addTooltip(List<Component> list) {
+	public void addTooltip(List<MutableComponent> list) {
 		list.add(LangData.FEATURE_ENDER_SHOOT.get());
 	}
 }

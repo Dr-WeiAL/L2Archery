@@ -1,6 +1,5 @@
 package dev.xkmc.l2archery.content.item;
 
-import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
 import dev.xkmc.l2archery.content.controller.BowFeatureController;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
@@ -8,16 +7,13 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
-import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.ClientRegister;
-import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.FastItem;
 import dev.xkmc.l2library.util.raytrace.IGlowingTarget;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -39,57 +35,7 @@ import java.util.function.Predicate;
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget {
 
-	public record BowConfig(ResourceLocation id, FeatureList feature) {
-
-		private double getValue(BowArrowStatType type) {
-			var map = BowArrowStatConfig.get().bow_stats.get(id);
-			if (map == null) return type.getDefault();
-			return map.getOrDefault(type, type.getDefault());
-		}
-
-		public List<MobEffectInstance> getEffects() {
-			var map = BowArrowStatConfig.get().bow_effects.get(id);
-			if (map == null) return List.of();
-			return map.entrySet().stream().map(e -> new MobEffectInstance(e.getKey(), e.getValue().duration(), e.getValue().amplifier())).toList();
-		}
-
-		public float damage() {
-			return (float) getValue(ArcheryRegister.DAMAGE.get());
-		}
-
-		public int punch() {
-			return (int) getValue(ArcheryRegister.PUNCH.get());
-		}
-
-		public int pull_time() {
-			return (int) getValue(ArcheryRegister.PULL_TIME.get());
-		}
-
-		public float speed() {
-			return (float) getValue(ArcheryRegister.SPEED.get());
-		}
-
-		public int fov_time() {
-			return (int) getValue(ArcheryRegister.FOV_TIME.get());
-		}
-
-		public float fov() {
-			return (float) getValue(ArcheryRegister.FOV.get());
-		}
-
-		public void addTooltip(List<Component> list) {
-			LangData.STAT_DAMAGE.getWithSign(list, damage());
-			LangData.STAT_PUNCH.getWithSign(list, punch());
-			list.add(LangData.STAT_PULL_TIME.get(pull_time() / 20d));
-			list.add(LangData.STAT_SPEED.get(speed() * 20));
-			list.add(LangData.STAT_FOV.get(fov()));
-			PotionArrowFeature.addTooltip(getEffects(), list);
-			feature.addTooltip(list);
-		}
-
-	}
-
-	public final BowConfig config;
+	private final BowConfig config;
 
 	public GenericBowItem(Properties properties, BowConfig config) {
 		super(properties);
@@ -182,7 +128,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	}
 
 	public float getPullForTime(LivingEntity entity, float time) {
-		float f = time / config.pull_time();
+		float f = time / getConfig().pull_time();
 		MobEffectInstance ins = entity.getEffect(ArcheryRegister.QUICK_PULL.get());
 		if (ins != null) {
 			f *= (1.5 + 0.5 * ins.getAmplifier());
@@ -267,12 +213,12 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	public boolean isFast(ItemStack stack) {
 		if (Proxy.getPlayer().hasEffect(ArcheryRegister.RUN_BOW.get()))
 			return true;
-		return config.feature().pull.stream().anyMatch(e -> e instanceof WindBowFeature);
+		return config.feature().stream().anyMatch(e -> e instanceof WindBowFeature);
 	}
 
 	@Override
 	public int getDistance(ItemStack itemStack) {
-		for (BowArrowFeature feature : config.feature().pull) {
+		for (BowArrowFeature feature : config.feature()) {
 			if (feature instanceof IGlowFeature glow) {
 				return glow.range();
 			}
@@ -283,6 +229,25 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		config.addTooltip(list);
+		getFeatures(stack).addTooltip(list);
+	}
+
+	public FeatureList getFeatures(@Nullable ItemStack stack) {
+		FeatureList ans = new FeatureList();
+		List<MobEffectInstance> bow_eff = config.getEffects();
+		if (bow_eff.size() > 0) ans.add(new PotionArrowFeature(bow_eff));
+		for (BowArrowFeature feature : config.feature()) {
+			ans.add(feature);
+		}
+		ans.stage = FeatureList.Stage.UPGRADE;
+		// TODO add upgrades
+		ans.stage = FeatureList.Stage.ENCHANT;
+		// TODO add enchants
+		return ans;
+	}
+
+	public IBowConfig getConfig() {
+		return config;
 	}
 
 }

@@ -1,13 +1,9 @@
 package dev.xkmc.l2archery.content.item;
 
-import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
+import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
-import dev.xkmc.l2archery.content.stats.BowArrowStatType;
-import dev.xkmc.l2archery.init.data.LangData;
-import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -24,38 +20,7 @@ import java.util.List;
 
 public class GenericArrowItem extends ArrowItem {
 
-	public record ArrowConfig(ResourceLocation id, boolean is_inf, FeatureList feature) {
-
-		private double getValue(BowArrowStatType type) {
-			var map = BowArrowStatConfig.get().arrow_stats.get(id);
-			if (map == null) return type.getDefault();
-			return map.getOrDefault(type, type.getDefault());
-		}
-
-		public List<MobEffectInstance> getEffects() {
-			var map = BowArrowStatConfig.get().arrow_effects.get(id);
-			if (map == null) return List.of();
-			return map.entrySet().stream().map(e -> new MobEffectInstance(e.getKey(), e.getValue().duration(), e.getValue().amplifier())).toList();
-		}
-
-		public float damage() {
-			return (float) getValue(ArcheryRegister.DAMAGE.get());
-		}
-
-		public int punch() {
-			return (int) getValue(ArcheryRegister.PUNCH.get());
-		}
-
-		public void addTooltip(List<Component> list) {
-			LangData.STAT_DAMAGE.getWithSign(list, damage());
-			LangData.STAT_PUNCH.getWithSign(list, punch());
-			PotionArrowFeature.addTooltip(getEffects(), list);
-			feature.addTooltip(list);
-		}
-
-	}
-
-	public final ArrowConfig config;
+	private final ArrowConfig config;
 
 	public GenericArrowItem(Properties properties, ArrowConfig config) {
 		super(properties);
@@ -76,6 +41,23 @@ public class GenericArrowItem extends ArrowItem {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		config.addTooltip(list);
+		getFeatures().addTooltip(list);
+	}
+
+	public FeatureList getFeatures() {
+		FeatureList list = new FeatureList();
+		List<MobEffectInstance> arrow_eff = config.getEffects();
+		if (arrow_eff.size() > 0) {
+			list.add(new PotionArrowFeature(arrow_eff));
+		}
+		for (BowArrowFeature feature : config.feature()) {
+			list.add(feature);
+		}
+		return list;
+	}
+
+	public IGeneralConfig getConfig() {
+		return config;
 	}
 
 }

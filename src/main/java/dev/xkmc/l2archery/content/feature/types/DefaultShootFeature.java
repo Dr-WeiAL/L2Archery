@@ -1,7 +1,7 @@
 package dev.xkmc.l2archery.content.feature.types;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +18,7 @@ public class DefaultShootFeature implements OnShootFeature {
 	public boolean onShoot(Player player, Consumer<Consumer<GenericArrowEntity>> consumer) {
 		consumer.accept(entity -> {
 			entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F,
-					entity.data.power() * entity.data.bow().item().config.speed(), 1.0F);
+					entity.data.power() * entity.data.bow().item().getConfig().speed(), 1.0F);
 			if (entity.data.power() == 1.0F) {
 				entity.setCritArrow(true);
 			}
@@ -37,8 +37,8 @@ public class DefaultShootFeature implements OnShootFeature {
 			if (entity.data.no_consume()) {
 				entity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 			}
-			int knock = entity.getKnockback() + entity.data.bow().item().config.punch() + entity.data.arrow().item().config.punch();
-			double damage = entity.getBaseDamage() + entity.data.bow().item().config.damage() + entity.data.arrow().item().config.damage();
+			int knock = entity.getKnockback() + entity.data.bow().item().getConfig().punch() + entity.data.arrow().item().getConfig().punch();
+			double damage = entity.getBaseDamage() + entity.data.bow().item().getConfig().damage() + entity.data.arrow().item().getConfig().damage();
 			entity.setKnockback(Math.max(0, knock));
 			entity.setBaseDamage(Math.max(damage, 0.5));
 		});
@@ -46,7 +46,7 @@ public class DefaultShootFeature implements OnShootFeature {
 	}
 
 	@Override
-	public void addTooltip(List<Component> list) {
+	public void addTooltip(List<MutableComponent> list) {
 
 	}
 

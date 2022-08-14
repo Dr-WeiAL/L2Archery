@@ -28,8 +28,8 @@ public class GenericEventHandler {
 			if (ins != null) {
 				i *= 1.5 + 0.5 * ins.getAmplifier();
 			}
-			float p = bow.config.fov_time();
-			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * bow.config.fov()));
+			float p = bow.getConfig().fov_time();
+			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * bow.getConfig().fov()));
 		}
 	}
 

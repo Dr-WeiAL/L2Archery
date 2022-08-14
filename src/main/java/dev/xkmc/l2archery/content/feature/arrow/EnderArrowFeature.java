@@ -2,7 +2,7 @@ package dev.xkmc.l2archery.content.feature.arrow;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
@@ -39,7 +39,7 @@ public class EnderArrowFeature implements OnHitFeature {
 	}
 
 	@Override
-	public void addTooltip(List<Component> list) {
+	public void addTooltip(List<MutableComponent> list) {
 
 	}
 

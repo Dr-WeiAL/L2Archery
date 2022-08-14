@@ -2,7 +2,7 @@ package dev.xkmc.l2archery.content.feature.arrow;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
@@ -15,11 +15,11 @@ public class DamageArrowFeature implements OnHitFeature {
 
 	private final Function<GenericArrowEntity, DamageSource> source;
 	private final Function<GenericArrowEntity, Float> damage;
-	private final Supplier<Component> comp;
+	private final Supplier<MutableComponent> comp;
 
 	public DamageArrowFeature(Function<GenericArrowEntity, DamageSource> source,
 							  Function<GenericArrowEntity, Float> damage,
-							  Supplier<Component> comp) {
+							  Supplier<MutableComponent> comp) {
 		this.source = source;
 		this.damage = damage;
 		this.comp = comp;
@@ -43,7 +43,13 @@ public class DamageArrowFeature implements OnHitFeature {
 	}
 
 	@Override
-	public void addTooltip(List<Component> list) {
+	public void addTooltip(List<MutableComponent> list) {
 		list.add(comp.get());
 	}
+
+	@Override
+	public boolean allowDuplicate() {
+		return true;
+	}
+
 }
