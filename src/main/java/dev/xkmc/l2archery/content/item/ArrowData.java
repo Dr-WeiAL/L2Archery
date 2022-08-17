@@ -2,6 +2,7 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
+import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -32,7 +33,7 @@ public record ArrowData(Item item, @Nullable CompoundTag tag) {
 		FeatureList ans = new FeatureList();
 		if (item instanceof SpectralArrowItem) {
 			ans.add(new PotionArrowFeature(List.of(new MobEffectInstance(MobEffects.GLOWING, 200, 0))));
-		} else {
+		} else if (item instanceof TippedArrowItem) {
 			ItemStack stack = new ItemStack(item);
 			stack.setTag(tag);
 			List<MobEffectInstance> list = new ArrayList<>();
@@ -52,5 +53,9 @@ public record ArrowData(Item item, @Nullable CompoundTag tag) {
 			return ans;
 		}
 		return item.getDefaultInstance();
+	}
+
+	public GenericArrowItem getItem() {
+		return item instanceof GenericArrowItem gen ? gen : ArcheryItems.STARTER_ARROW.get();
 	}
 }

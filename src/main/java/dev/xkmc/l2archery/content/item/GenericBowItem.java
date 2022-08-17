@@ -19,16 +19,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -99,14 +96,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	 */
 	private boolean shootArrowOnServer(Player player, Level level, ItemStack bow, ItemStack arrow, float power, boolean no_consume) {
 		AbstractArrow abstractarrow;
-		ArrowData data = null;
-		if (arrow.getItem() instanceof GenericArrowItem gen) {
-			data = ArrowData.of(gen);
-		} else if (arrow.is(Items.SPECTRAL_ARROW)) {
-			data = ArrowData.of(arrow.getItem());
-		} else if (arrow.is(Items.TIPPED_ARROW)) {
-			data = ArrowData.of(arrow.getItem(), arrow);
-		}
+		ArrowData data = parseArrow(arrow);
 		if (data != null) {
 			abstractarrow = ArrowFeatureController.createArrowEntity(
 					new ArrowFeatureController.BowArrowUseContext(level, player, no_consume, power),
@@ -204,7 +194,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 	public Predicate<ItemStack> getAllSupportedProjectiles() {
 		return (stack) -> {
-			if (stack.is(ItemTags.ARROWS)) {
+			if (stack.is(Items.ARROW) || stack.is(Items.SPECTRAL_ARROW) || stack.is(Items.TIPPED_ARROW)) {
 				return true;
 			}
 			if (stack.getItem() instanceof GenericArrowItem arrow) {
@@ -212,6 +202,21 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 			}
 			return false;
 		};
+	}
+
+	@Nullable
+	public ArrowData parseArrow(ItemStack arrow) {
+		ArrowData data = null;
+		if (arrow.getItem() instanceof GenericArrowItem gen) {
+			data = ArrowData.of(gen);
+		} else if (arrow.is(Items.ARROW)) {
+			data = ArrowData.of(arrow.getItem());
+		} else if (arrow.is(Items.SPECTRAL_ARROW)) {
+			data = ArrowData.of(arrow.getItem());
+		} else if (arrow.is(Items.TIPPED_ARROW)) {
+			data = ArrowData.of(arrow.getItem(), arrow);
+		}
+		return data;
 	}
 
 	/**

@@ -5,6 +5,7 @@ import dev.xkmc.l2archery.content.feature.types.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,6 +80,17 @@ public class FeatureList {
 		if (flight == null && feature instanceof FlightControlFeature f) flight = f;
 		if (feature instanceof OnHitFeature f) hit.add(f);
 		return this;
+	}
+
+
+	public void addEffectsTooltip(List<Component> list) {
+		List<MobEffectInstance> ins = new ArrayList<>();
+		for (BowArrowFeature f : all) {
+			if (f instanceof PotionArrowFeature p) {
+				ins.addAll(p.instances());
+			}
+		}
+		PotionArrowFeature.addTooltip(ins, list);
 	}
 
 	public void addTooltip(List<Component> list) {
