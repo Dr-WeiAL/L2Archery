@@ -19,6 +19,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 	@Override
 	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target) {
 		explode(arrow, arrow.getX(), arrow.getY(), arrow.getZ());
+		arrow.discard();
 	}
 
 	@Override

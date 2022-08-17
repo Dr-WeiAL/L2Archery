@@ -9,6 +9,7 @@ import net.minecraft.world.level.Level;
 public class ExplosionHandler {
 
 	public static void explode(BaseExplosion exp) {
+		if (exp.base.level().isClientSide()) return;
 		if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(exp.base.level(), exp)) return;
 		exp.explode();
 		Level level = exp.base.level();

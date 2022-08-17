@@ -2,11 +2,13 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
 import dev.xkmc.l2archery.content.controller.BowFeatureController;
+import dev.xkmc.l2archery.content.enchantment.BowEnchantment;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
+import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.ClientRegister;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
@@ -21,19 +23,28 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget {
+
+	public static List<Upgrade> getUpgrades(ItemStack stack) {
+		List<Upgrade> ans = new ArrayList<>();
+		//TODO
+		return ans;
+	}
 
 	private final BowConfig config;
 
@@ -42,6 +53,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		this.config = config;
 		ClientRegister.BOW_LIKE.add(this);
 	}
+
 
 	/**
 	 * on release bow
@@ -87,11 +99,18 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	 */
 	private boolean shootArrowOnServer(Player player, Level level, ItemStack bow, ItemStack arrow, float power, boolean no_consume) {
 		AbstractArrow abstractarrow;
-		if (arrow.getItem() instanceof GenericArrowItem genericArrow) {
+		ArrowData data = null;
+		if (arrow.getItem() instanceof GenericArrowItem gen) {
+			data = ArrowData.of(gen);
+		} else if (arrow.is(Items.SPECTRAL_ARROW)) {
+			data = ArrowData.of(arrow.getItem());
+		} else if (arrow.is(Items.TIPPED_ARROW)) {
+			data = ArrowData.of(arrow.getItem(), arrow);
+		}
+		if (data != null) {
 			abstractarrow = ArrowFeatureController.createArrowEntity(
 					new ArrowFeatureController.BowArrowUseContext(level, player, no_consume, power),
-					new GenericItemStack<>(this, bow),
-					new GenericItemStack<>(genericArrow, arrow));
+					BowData.of(this, bow), data);
 		} else {
 			ArrowItem arrowitem = (ArrowItem) (arrow.getItem() instanceof ArrowItem ? arrow.getItem() : Items.ARROW);
 			abstractarrow = arrowitem.createArrow(level, arrow, player);
@@ -239,10 +258,16 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		for (BowArrowFeature feature : config.feature()) {
 			ans.add(feature);
 		}
-		ans.stage = FeatureList.Stage.UPGRADE;
-		// TODO add upgrades
-		ans.stage = FeatureList.Stage.ENCHANT;
-		// TODO add enchants
+		if (stack != null) {
+			ans.stage = FeatureList.Stage.UPGRADE;
+			getUpgrades(stack).forEach(e -> ans.add(e.getFeature()));
+			ans.stage = FeatureList.Stage.ENCHANT;
+			stack.getAllEnchantments().forEach((k, v) -> {
+				if (k instanceof BowEnchantment b) {
+					ans.add(b.getFeature(v));
+				}
+			});
+		}
 		return ans;
 	}
 

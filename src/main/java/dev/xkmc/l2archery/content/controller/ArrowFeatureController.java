@@ -3,6 +3,8 @@ package dev.xkmc.l2archery.content.controller;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.types.OnShootFeature;
+import dev.xkmc.l2archery.content.item.ArrowData;
+import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2library.util.code.GenericItemStack;
@@ -26,10 +28,8 @@ public class ArrowFeatureController {
 	}
 
 	@Nullable
-	public static AbstractArrow createArrowEntity(BowArrowUseContext ctx,
-												  GenericItemStack<GenericBowItem> bow,
-												  GenericItemStack<GenericArrowItem> arrow) {
-		FeatureList features = FeatureList.merge(bow.item().getFeatures(bow.stack()), arrow.item().getFeatures());
+	public static AbstractArrow createArrowEntity(BowArrowUseContext ctx, BowData bow, ArrowData arrow) {
+		FeatureList features = FeatureList.merge(bow.getFeatures(), arrow.getFeatures());
 		List<Consumer<GenericArrowEntity>> list = new ArrayList<>();
 		for (OnShootFeature e : features.shot())
 			if (!e.onShoot(ctx.user, list::add))

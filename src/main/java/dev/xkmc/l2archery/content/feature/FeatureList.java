@@ -76,7 +76,7 @@ public class FeatureList {
 
 		if (feature instanceof OnPullFeature f) pull.add(f);
 		if (feature instanceof OnShootFeature f) shot.add(f);
-		if (flight != null && feature instanceof FlightControlFeature f) flight = f;
+		if (flight == null && feature instanceof FlightControlFeature f) flight = f;
 		if (feature instanceof OnHitFeature f) hit.add(f);
 		return this;
 	}

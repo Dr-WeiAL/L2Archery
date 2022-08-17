@@ -56,7 +56,7 @@ public class ArcheryItems {
 
 	// -------- archery --------
 	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
-			EAGLE_BOW, WIND_BOW;
+			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW;
 
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW,
@@ -76,6 +76,8 @@ public class ArcheryItems {
 		WIND_BOW = genBow("wind_bow", 600, e -> e
 				.add(new NoFallArrowFeature(40))
 				.add(new WindBowFeature()));
+		EXPLOSION_BOW = genBow("explosion_bow", 16, e -> e
+				.add(new ExplodeArrowFeature(3, true, false)));
 
 		STARTER_ARROW = genArrow("starter_arrow", true);
 		COPPER_ARROW = genArrow("copper_arrow", false);

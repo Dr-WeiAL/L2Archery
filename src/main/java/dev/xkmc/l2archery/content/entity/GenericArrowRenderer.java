@@ -1,6 +1,7 @@
 package dev.xkmc.l2archery.content.entity;
 
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
+import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +16,12 @@ public class GenericArrowRenderer extends ArrowRenderer<GenericArrowEntity> {
 	@SuppressWarnings("ConstantConditions")
 	@Override
 	public ResourceLocation getTextureLocation(GenericArrowEntity entity) {
-		GenericArrowItem arrow = entity.data.arrow().item();
+		GenericArrowItem arrow;
+		if (entity.data.arrow().item() instanceof GenericArrowItem gen) {
+			arrow = gen;
+		} else {
+			arrow = ArcheryItems.STARTER_ARROW.get();
+		}
 		ResourceLocation rl = ForgeRegistries.ITEMS.getKey(arrow);
 		return new ResourceLocation(rl.getNamespace(), "textures/entity/arrow/" + rl.getPath() + ".png");
 	}
