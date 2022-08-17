@@ -13,11 +13,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
 public class ArrowDisplayOverlay implements IGuiOverlay {
 
@@ -39,15 +42,27 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		BowData bowData = BowData.of(bow, bowStack);
 		FeatureList features = FeatureList.merge(bowData.getFeatures(), arrowData.getFeatures());
 		List<Component> text = new ArrayList<>();
-		addStat(text, bow.getConfig(), arrowData.getItem().getConfig());
+		addStat(text, bowData, bow.getConfig(), arrowData.getItem().getConfig());
 		features.addEffectsTooltip(text);
 		features.addTooltip(text);
 		renderLongText(gui, poseStack, text);
 	}
 
-	private static void addStat(List<Component> list, IBowConfig bow, IGeneralConfig arrow) {
-		LangData.STAT_DAMAGE.getWithSign(list, bow.damage() + arrow.damage());
-		LangData.STAT_PUNCH.getWithSign(list, bow.punch() + arrow.punch());
+	private static void addStat(List<Component> list, BowData data, IBowConfig bow, IGeneralConfig arrow) {
+		double dmg = 2;
+		var map = data.ench();
+		int power = map.getOrDefault(Enchantments.POWER_ARROWS, 0);
+		if (power > 0) {
+			dmg += power * 0.5D + 0.5D;
+		}
+		int punch = map.getOrDefault(Enchantments.PUNCH_ARROWS, 0);
+		dmg += bow.damage() + arrow.damage();
+		dmg *= bow.speed();
+		dmg *= 1.5;
+		dmg = Math.ceil(dmg);
+		String result = ATTRIBUTE_MODIFIER_FORMAT.format(dmg) + "~" + ATTRIBUTE_MODIFIER_FORMAT.format(dmg + dmg / 2 + 2);
+		list.add(LangData.STAT_DAMAGE.get(result));
+		list.add(LangData.STAT_PUNCH.get(punch + bow.punch() + arrow.punch()));
 		list.add(LangData.STAT_PULL_TIME.get(bow.pull_time() / 20d));
 		list.add(LangData.STAT_SPEED.get(bow.speed() * 20));
 		list.add(LangData.STAT_FOV.get(bow.fov()));
@@ -64,7 +79,7 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		for (FormattedCharSequence text : ans) {
-			font.drawShadow(stack, text, x0, y0, 0xFFFFFFFF);
+			font.draw(stack, text, x0, y0, 0xFFFFFFFF);
 			y0 += 12;
 		}
 		RenderSystem.disableBlend();

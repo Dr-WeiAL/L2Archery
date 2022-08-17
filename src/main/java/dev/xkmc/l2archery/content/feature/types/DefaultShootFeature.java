@@ -42,7 +42,7 @@ public class DefaultShootFeature implements OnShootFeature {
 			Item arr = entity.data.arrow().item();
 			IGeneralConfig config = arr instanceof GenericArrowItem gen ? gen.getConfig() : null;
 			int knock = entity.getKnockback() + entity.data.bow().getItem().getConfig().punch() + (config == null ? 0 : config.punch());
-			double damage = entity.getBaseDamage() + entity.data.bow().getItem().getConfig().damage() + (config == null ? 0 : config.punch());
+			double damage = entity.getBaseDamage() + entity.data.bow().getItem().getConfig().damage() + (config == null ? 0 : config.damage());
 			entity.setKnockback(Math.max(0, knock));
 			entity.setBaseDamage(Math.max(damage, 0.5));
 		});
