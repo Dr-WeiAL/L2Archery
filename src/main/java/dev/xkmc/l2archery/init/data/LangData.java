@@ -62,6 +62,10 @@ public enum LangData {
 		return ans;
 	}
 
+	public MutableComponent getWithColor(Object obj, ChatFormatting color) {
+		return get(Component.literal(obj.toString()).withStyle(color));
+	}
+
 	public void getWithSign(List<Component> list, double val) {
 		if (val == 0) return;
 		String sign = val > 0 ? "attribute.modifier.plus.0" : "attribute.modifier.take.0";

@@ -6,6 +6,7 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.item.*;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.util.Proxy;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.player.LocalPlayer;
@@ -61,11 +62,11 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		dmg *= 1.5;
 		dmg = Math.ceil(dmg);
 		String result = ATTRIBUTE_MODIFIER_FORMAT.format(dmg) + "~" + ATTRIBUTE_MODIFIER_FORMAT.format(dmg + dmg / 2 + 2);
-		list.add(LangData.STAT_DAMAGE.get(result));
-		list.add(LangData.STAT_PUNCH.get(punch + bow.punch() + arrow.punch()));
-		list.add(LangData.STAT_PULL_TIME.get(bow.pull_time() / 20d));
-		list.add(LangData.STAT_SPEED.get(bow.speed() * 20));
-		list.add(LangData.STAT_FOV.get(bow.fov()));
+		list.add(LangData.STAT_DAMAGE.getWithColor(result, ChatFormatting.GREEN));
+		list.add(LangData.STAT_PUNCH.getWithColor(punch + bow.punch() + arrow.punch(), ChatFormatting.GREEN));
+		list.add(LangData.STAT_PULL_TIME.getWithColor(bow.pull_time() / 20d, ChatFormatting.GREEN));
+		list.add(LangData.STAT_SPEED.getWithColor(bow.speed() * 20, ChatFormatting.GREEN));
+		list.add(LangData.STAT_FOV.getWithColor(bow.fov(), ChatFormatting.GREEN));
 	}
 
 	private static void renderLongText(ForgeGui gui, PoseStack stack, List<Component> list) {
