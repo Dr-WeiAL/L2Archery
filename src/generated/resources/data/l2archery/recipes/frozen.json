@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:powder_snow_bucket"
+    },
+    "C": {
+      "item": "minecraft:blue_ice"
+    }
+  },
+  "pattern": [
+    "C C",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:frozen"
+    }
+  }
+}

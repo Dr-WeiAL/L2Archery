@@ -1,16 +1,23 @@
 package dev.xkmc.l2archery.content.upgrade;
 
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
-import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.base.NamedEntry;
+import net.minecraftforge.common.util.Lazy;
+
+import java.util.function.Supplier;
 
 public class Upgrade extends NamedEntry<Upgrade> {
 
-	public Upgrade(L2Registrate.RegistryInstance<Upgrade> registry) {
-		super(registry);
+	private final Lazy<BowArrowFeature> feature;
+
+	public Upgrade(Supplier<BowArrowFeature> feature) {
+		super(ArcheryRegister.UPGRADE);
+		this.feature = Lazy.of(feature);
 	}
 
 	public BowArrowFeature getFeature() {
-		return null;//TODO
+		return feature.get();
 	}
+
 }

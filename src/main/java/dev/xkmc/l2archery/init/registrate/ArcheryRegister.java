@@ -5,6 +5,7 @@ import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.entity.GenericArrowRenderer;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.content.stats.StatType;
+import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
@@ -20,6 +21,8 @@ public class ArcheryRegister {
 
 	public static final L2Registrate.RegistryInstance<BowArrowStatType> STAT_TYPE = L2Archery.REGISTRATE
 			.newRegistry("stat_type", BowArrowStatType.class);
+	public static final L2Registrate.RegistryInstance<Upgrade> UPGRADE = L2Archery.REGISTRATE
+			.newRegistry("upgrade", Upgrade.class);
 
 	public static final RegistryEntry<BowArrowStatType> DAMAGE = regStat("damage", StatType.COMMON, 0);
 	public static final RegistryEntry<BowArrowStatType> PUNCH = regStat("punch", StatType.COMMON, 0);

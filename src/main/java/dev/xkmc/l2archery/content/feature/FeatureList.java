@@ -58,6 +58,11 @@ public class FeatureList {
 	private final List<OnHitFeature> hit = new ArrayList<>();
 	private FlightControlFeature flight = null;
 
+	public boolean allow(BowArrowFeature feature){
+		Class<?> cls = feature.getClass();
+		return !map.containsKey(cls) || map.get(cls).allowDuplicate();
+	}
+
 	public FeatureList add(BowArrowFeature feature) {
 		Class<?> cls = feature.getClass();
 		if (map.containsKey(cls) && !map.get(cls).allowDuplicate()) {

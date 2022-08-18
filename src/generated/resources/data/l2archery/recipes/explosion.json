@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:nether_star"
+    },
+    "C": {
+      "item": "minecraft:creeper_head"
+    },
+    "D": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:infinity",
+      "min_level": 1
+    }
+  },
+  "pattern": [
+    "C C",
+    "BAB",
+    "CDC"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:explosion"
+    }
+  }
+}

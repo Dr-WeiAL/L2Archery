@@ -20,6 +20,8 @@
   "item.l2archery.tnt_arrow_lv3": "末影水晶箭",
   "item.l2archery.wind_bow": "八坂的神风",
   "item.l2archery.acid_arrow": "酸液箭",
+  "item.l2archery.explosion_bow": "爆炸箭",
+  "item.l2archery.upgrade": "魔晶",
   "itemGroup.l2archery.archery": "弓艺",
   "entity.l2archery.generic_arrow": "箭",
   "effect.l2archery.armor_reduce": "破甲",
@@ -42,5 +44,11 @@
   "l2archery.stat.fov": "放大倍率: %s",
   "l2archery.stat.pull_time": "拉弓时间: %s秒",
   "l2archery.stat.punch": "击退: %s",
-  "l2archery.stat.speed": "出弓速度: %s米每秒"
+  "l2archery.stat.speed": "出弓速度: %s米每秒",
+  "upgrade.l2archery.anti_gravity": "无重力",
+  "upgrade.l2archery.explosion": "爆炸",
+  "upgrade.l2archery.frozen": "寒流",
+  "upgrade.l2archery.glow": "荧光",
+  "upgrade.l2archery.soul_fire": "狱火",
+  "upgrade.l2archery.void": "虚空"
 }

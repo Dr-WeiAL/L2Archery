@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "1": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:infinity",
+      "min_level": 1
+    },
+    "2": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:mending",
+      "min_level": 1
+    },
+    "3": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:binding_curse",
+      "min_level": 1
+    },
+    "4": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:vanishing_curse",
+      "min_level": 1
+    },
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:dragon_head"
+    },
+    "C": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "pattern": [
+    "3 4",
+    "CAC",
+    "1B2"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:void"
+    }
+  }
+}

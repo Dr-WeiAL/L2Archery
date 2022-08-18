@@ -13,9 +13,15 @@ import dev.xkmc.l2archery.init.ClientRegister;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.GenericItemStack;
+import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import dev.xkmc.l2library.util.raytrace.FastItem;
 import dev.xkmc.l2library.util.raytrace.IGlowingTarget;
+import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -26,6 +32,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -37,10 +44,28 @@ import java.util.function.Predicate;
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget {
 
+	private static final String KEY = "upgrades";
+
 	public static List<Upgrade> getUpgrades(ItemStack stack) {
 		List<Upgrade> ans = new ArrayList<>();
-		//TODO
+		ListTag list = ItemCompoundTag.of(stack).getSubList(KEY, Tag.TAG_STRING).getOrCreate();
+		for (int i = 0; i < list.size(); i++) {
+			Upgrade up = ArcheryRegister.UPGRADE.get().getValue(new ResourceLocation(list.getString(i)));
+			if (up != null) {
+				ans.add(up);
+			}
+		}
 		return ans;
+	}
+
+	public static void addUpgrade(ItemStack result, Upgrade upgrade) {
+		List<Upgrade> list = getUpgrades(result);
+		list.add(upgrade);
+		ListTag tag = new ListTag();
+		for (Upgrade up : list) {
+			tag.add(StringTag.valueOf(up.getID()));
+		}
+		ItemCompoundTag.of(result).getSubList(KEY, Tag.TAG_STRING).setTag(tag);
 	}
 
 	private final BowConfig config;
@@ -50,7 +75,6 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		this.config = config;
 		ClientRegister.BOW_LIKE.add(this);
 	}
-
 
 	/**
 	 * on release bow
@@ -253,6 +277,10 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		config.addTooltip(list);
+		List<Upgrade> ups = getUpgrades(stack);
+		for (Upgrade up : ups) {
+			list.add(Component.translatable(up.getDescriptionId()).withStyle(ChatFormatting.GOLD));
+		}
 		getFeatures(stack).addTooltip(list);
 	}
 
@@ -278,6 +306,16 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 	public IBowConfig getConfig() {
 		return config;
+	}
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if (enchantment == Enchantments.BINDING_CURSE) return true;
+		return super.canApplyAtEnchantingTable(stack, enchantment);
+	}
+
+	public int getBaseUpgradeCount(ItemStack stack) {
+		return 1;
 	}
 
 }

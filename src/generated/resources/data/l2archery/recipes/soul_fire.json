@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:soul_sand"
+    },
+    "C": {
+      "item": "minecraft:blaze_rod"
+    },
+    "D": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "pattern": [
+    "D D",
+    "CAC",
+    "BBB"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:soul_fire"
+    }
+  }
+}
