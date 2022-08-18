@@ -12,6 +12,7 @@ import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.util.annotation.ServerOnly;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.EntityType;
@@ -101,7 +102,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	@Override
 	public void addAdditionalSaveData(CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
-		CompoundTag data_tag = TagCodec.toTag(tag, data);
+		Tag data_tag = TagCodec.valueToTag(data);
 		if (data_tag != null) {
 			tag.put(L2Archery.MODID, data_tag);
 		}
@@ -113,7 +114,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		super.readAdditionalSaveData(tag);
 		if (tag.contains(L2Archery.MODID)) {
 			CompoundTag data_tag = tag.getCompound(L2Archery.MODID);
-			ArrowEntityData temp = TagCodec.fromTag(data_tag, ArrowEntityData.class);
+			ArrowEntityData temp = TagCodec.valueFromTag(data_tag, ArrowEntityData.class);
 			data = temp == null ? ArrowEntityData.DEFAULT : temp;
 		}
 		features = FeatureList.merge(data.bow.getFeatures(), data.arrow().getFeatures());

@@ -7,7 +7,12 @@ import dev.xkmc.l2archery.init.data.LangData;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.HangingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.phys.BlockHitResult;
 
@@ -44,8 +49,19 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 	private boolean onExplosionHurt(GenericArrowEntity arrow, Entity target) {
 		if (target instanceof LivingEntity le) {
 			arrow.doPostHurtEffects(le);
+			return true;
 		}
-		return hurt;
+		if (target instanceof ItemEntity)
+			return false;
+		if (target instanceof ExperienceOrb)
+			return false;
+		if (target instanceof HangingEntity)
+			return false;
+		if (target instanceof Boat)
+			return false;
+		if (target instanceof AbstractMinecart)
+			return false;
+		return true;
 	}
 
 	@Nullable

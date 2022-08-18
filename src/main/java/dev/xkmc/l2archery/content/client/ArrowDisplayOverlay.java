@@ -59,7 +59,6 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		int punch = map.getOrDefault(Enchantments.PUNCH_ARROWS, 0);
 		dmg += bow.damage() + arrow.damage();
 		dmg *= bow.speed();
-		dmg *= 1.5;
 		dmg = Math.ceil(dmg);
 		String result = ATTRIBUTE_MODIFIER_FORMAT.format(dmg) + "~" + ATTRIBUTE_MODIFIER_FORMAT.format(dmg + dmg / 2 + 2);
 		list.add(LangData.STAT_DAMAGE.getWithColor(result, ChatFormatting.GREEN));

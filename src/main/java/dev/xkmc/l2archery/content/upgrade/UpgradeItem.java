@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.content.upgrade;
 
+import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.code.Wrappers;
 import net.minecraft.core.NonNullList;
@@ -61,6 +62,9 @@ public class UpgradeItem extends Item {
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		Upgrade upgrade = getUpgrade(stack);
 		if (upgrade != null) {
+			if (upgrade.getFeature() instanceof PotionArrowFeature arr){
+				PotionArrowFeature.addTooltip(arr.instances(), list);
+			}
 			upgrade.getFeature().addTooltip(Wrappers.cast(list));
 		}
 	}
