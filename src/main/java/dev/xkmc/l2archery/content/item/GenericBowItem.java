@@ -266,7 +266,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 	@Override
 	public int getDistance(ItemStack itemStack) {
-		for (BowArrowFeature feature : getFeatures(itemStack).shot()) {//TODO
+		for (BowArrowFeature feature : getFeatures(itemStack).all()) {
 			if (feature instanceof IGlowFeature glow) {
 				return glow.range();
 			}

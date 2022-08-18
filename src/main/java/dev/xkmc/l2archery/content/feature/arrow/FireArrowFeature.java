@@ -8,6 +8,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -21,7 +22,7 @@ public record FireArrowFeature(int time) implements OnShootFeature, OnHitFeature
 	}
 
 	@Override
-	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target) {
+	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
 	}
 
 	@Override

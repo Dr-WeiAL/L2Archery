@@ -62,7 +62,7 @@ public class UpgradeItem extends Item {
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		Upgrade upgrade = getUpgrade(stack);
 		if (upgrade != null) {
-			if (upgrade.getFeature() instanceof PotionArrowFeature arr){
+			if (upgrade.getFeature() instanceof PotionArrowFeature arr) {
 				PotionArrowFeature.addTooltip(arr.instances(), list);
 			}
 			upgrade.getFeature().addTooltip(Wrappers.cast(list));

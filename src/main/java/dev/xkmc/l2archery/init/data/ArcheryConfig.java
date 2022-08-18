@@ -13,7 +13,7 @@ public class ArcheryConfig {
 
 		Client(ForgeConfigSpec.Builder builder) {
 			showInfo = builder.comment("Show combined bow arrow stats and features when holding bow")
-					.define("showInfo",true);
+					.define("showInfo", true);
 		}
 
 	}

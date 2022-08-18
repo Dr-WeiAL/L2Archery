@@ -10,13 +10,14 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.List;
 
 public record PotionArrowFeature(List<MobEffectInstance> instances) implements OnHitFeature {
 
 	@Override
-	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target) {
+	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
 	}
 
 	@Override

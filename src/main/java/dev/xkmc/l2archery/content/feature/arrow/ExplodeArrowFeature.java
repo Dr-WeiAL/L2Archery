@@ -15,6 +15,7 @@ import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -22,8 +23,8 @@ import java.util.List;
 public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock) implements OnHitFeature {
 
 	@Override
-	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target) {
-		explode(arrow, arrow.getX(), arrow.getY(), arrow.getZ());
+	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
+		explode(arrow, hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z());
 		arrow.discard();
 	}
 
@@ -59,9 +60,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 			return false;
 		if (target instanceof Boat)
 			return false;
-		if (target instanceof AbstractMinecart)
-			return false;
-		return true;
+		return !(target instanceof AbstractMinecart);
 	}
 
 	@Nullable

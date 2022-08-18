@@ -5,11 +5,12 @@ import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2library.util.annotation.ServerOnly;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 public interface OnHitFeature extends BowArrowFeature {
 
 	@ServerOnly
-	void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target);
+	void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit);
 
 	@ServerOnly
 	void onHitBlock(GenericArrowEntity genericArrow, BlockHitResult result);

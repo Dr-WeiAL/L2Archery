@@ -6,6 +6,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.List;
 import java.util.function.Function;
@@ -33,7 +34,7 @@ public class DamageArrowFeature implements OnHitFeature {
 	}
 
 	@Override
-	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target) {
+	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
 
 	}
 

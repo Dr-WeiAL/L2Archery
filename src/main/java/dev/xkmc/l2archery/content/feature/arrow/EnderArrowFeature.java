@@ -7,6 +7,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class EnderArrowFeature implements OnHitFeature {
 
 	@Override
-	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target) {
+	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
 		Entity owner = genericArrow.getOwner();
 		if (owner != null) {
 			Vec3 pos = owner.getPosition(1);

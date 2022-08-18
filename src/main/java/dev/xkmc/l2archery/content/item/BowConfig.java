@@ -12,6 +12,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 
+import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
+
 public record BowConfig(ResourceLocation id, List<BowArrowFeature> feature) implements IBowConfig {
 
 	private double getValue(BowArrowStatType type) {
@@ -55,7 +57,7 @@ public record BowConfig(ResourceLocation id, List<BowArrowFeature> feature) impl
 		LangData.STAT_PUNCH.getWithSign(list, punch());
 		list.add(LangData.STAT_PULL_TIME.get(pull_time() / 20d));
 		list.add(LangData.STAT_SPEED.get(speed() * 20));
-		list.add(LangData.STAT_FOV.get(fov()));
+		list.add(LangData.STAT_FOV.get(ATTRIBUTE_MODIFIER_FORMAT.format(1 / (1 - fov()))));
 		PotionArrowFeature.addTooltip(getEffects(), list);
 	}
 
