@@ -14,13 +14,19 @@ import java.util.function.Supplier;
 
 public class DamageArrowFeature implements OnHitFeature {
 
+	public enum Type {
+		HIT, POST
+	}
+
 	private final Function<GenericArrowEntity, DamageSource> source;
 	private final Function<GenericArrowEntity, Float> damage;
 	private final Supplier<MutableComponent> comp;
+	private final Type type;
 
-	public DamageArrowFeature(Function<GenericArrowEntity, DamageSource> source,
+	public DamageArrowFeature(Type type, Function<GenericArrowEntity, DamageSource> source,
 							  Function<GenericArrowEntity, Float> damage,
 							  Supplier<MutableComponent> comp) {
+		this.type = type;
 		this.source = source;
 		this.damage = damage;
 		this.comp = comp;
@@ -28,14 +34,20 @@ public class DamageArrowFeature implements OnHitFeature {
 
 	@Override
 	public void postHurtEntity(GenericArrowEntity arrow, LivingEntity target) {
-		DamageSource source = this.source.apply(arrow);
-		float damage = this.damage.apply(arrow);
-		target.hurt(source, damage);
+		if (type == Type.POST) {
+			DamageSource source = this.source.apply(arrow);
+			float damage = this.damage.apply(arrow);
+			target.hurt(source, damage);
+		}
 	}
 
 	@Override
-	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
-
+	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
+		if (type == Type.HIT) {
+			DamageSource source = this.source.apply(arrow);
+			float damage = this.damage.apply(arrow);
+			target.hurt(source, damage);
+		}
 	}
 
 	@Override

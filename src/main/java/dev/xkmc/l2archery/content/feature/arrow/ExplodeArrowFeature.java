@@ -50,7 +50,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 	private boolean onExplosionHurt(GenericArrowEntity arrow, Entity target) {
 		if (target instanceof LivingEntity le) {
 			arrow.doPostHurtEffects(le);
-			return true;
+			return hurt;
 		}
 		if (target instanceof ItemEntity)
 			return false;
@@ -60,7 +60,9 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 			return false;
 		if (target instanceof Boat)
 			return false;
-		return !(target instanceof AbstractMinecart);
+		if (target instanceof AbstractMinecart)
+			return false;
+		return hurt;
 	}
 
 	@Nullable
@@ -79,6 +81,9 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 		}
 		if (hurt && !breakBlock) {
 			list.add(LangData.FEATURE_EXPLOSION_HURT.get(radius));
+		}
+		if (!hurt && !breakBlock) {
+			list.add(LangData.FEATURE_EXPLOSION_NONE.get(radius));
 		}
 	}
 }

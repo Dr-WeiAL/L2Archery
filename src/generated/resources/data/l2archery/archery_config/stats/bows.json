@@ -2,7 +2,32 @@
   "_class": "dev.xkmc.l2archery.content.config.BowArrowStatConfig",
   "arrow_effects": {},
   "arrow_stats": {},
-  "bow_effects": {},
+  "bow_effects": {
+    "l2archery:flame_bow": {
+      "l2archery:flame": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
+    "l2archery:froze_bow": {
+      "l2archery:frozen": {
+        "amplifier": 0,
+        "duration": 600
+      }
+    },
+    "l2archery:slow_bow": {
+      "l2archery:stone_cage": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
+    "l2archery:winter_bow": {
+      "l2archery:frozen": {
+        "amplifier": 0,
+        "duration": 600
+      }
+    }
+  },
   "bow_stats": {
     "l2archery:eagle_bow": {
       "l2archery:damage": 6.0,

@@ -25,6 +25,12 @@ public class ConfigGen extends ConfigDataProvider {
 				.putBow(ArcheryItems.MAGNIFY_BOW).fovs(60, 0.9).end()
 				.putBow(ArcheryItems.EAGLE_BOW).damage(6).punch(2).bothTimes(40).end()
 				.putBow(ArcheryItems.WIND_BOW).punch(1).bothTimes(10).speed(3.9).end()
+				.putBow(ArcheryItems.EXPLOSION_BOW).end()
+				.putBow(ArcheryItems.FLAME_BOW).putEffect(ArcheryRegister.FLAME.get(), 100, 0).end()
+				.putBow(ArcheryItems.FROZE_BOW).putEffect(ArcheryRegister.ICE.get(), 600, 0).end()
+				.putBow(ArcheryItems.STORM_BOW).end()
+				.putBow(ArcheryItems.SLOW_BOW).putEffect(ArcheryRegister.STONE_CAGE.get(), 100, 0).end()
+				.putBow(ArcheryItems.WINTER_BOW).putEffect(ArcheryRegister.ICE.get(), 600, 0).end()
 		);
 
 

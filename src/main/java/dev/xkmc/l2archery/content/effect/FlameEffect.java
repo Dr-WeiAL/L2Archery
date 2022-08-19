@@ -15,13 +15,13 @@ public class FlameEffect extends InherentEffect implements ForceEffect {
 	@Override
 	public void applyEffectTick(LivingEntity target, int level) {
 		if (!target.fireImmune()) {
-			target.hurt(DamageSource.IN_FIRE, 2 << level);
+			target.hurt(DamageSource.indirectMagic(target, target.getLastHurtByMob()), 2 << level);
 		}
 	}
 
 	@Override
 	public boolean isDurationEffectTick(int tick, int level) {
-		return tick % 20 == 0;
+		return tick % 10 == 0;
 	}
 
 }

@@ -65,7 +65,7 @@ public class ArcheryItems {
 	// -------- archery --------
 
 	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
-			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW;
+			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW, FLAME_BOW, FROZE_BOW, STORM_BOW, SLOW_BOW, WINTER_BOW;
 
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW,
@@ -83,6 +83,7 @@ public class ArcheryItems {
 			GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
 			ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)));
 			EAGLE_BOW = genBow("eagle_bow", 600, e -> e.add(new DamageArrowFeature(
+					DamageArrowFeature.Type.HIT,
 					a -> DamageSource.arrow(a, a.getOwner()).bypassArmor(),
 					a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length()),
 					LangData.FEATURE_PIERCE_ARMOR::get
@@ -90,8 +91,15 @@ public class ArcheryItems {
 			WIND_BOW = genBow("wind_bow", 600, e -> e
 					.add(new NoFallArrowFeature(40))
 					.add(new WindBowFeature()));
-			EXPLOSION_BOW = genBow("explosion_bow", 16, e -> e
+			EXPLOSION_BOW = genBow("explosion_bow", 32, e -> e
 					.add(new ExplodeArrowFeature(3, true, false)));
+			FLAME_BOW = genBow("flame_bow", 600, e -> e.add(new FireArrowFeature(100)));
+			FROZE_BOW = genBow("froze_bow", 600);
+			SLOW_BOW = genBow("slow_bow", 600);
+			STORM_BOW = genBow("storm_bow", 600, e -> e
+					.add(new ExplodeArrowFeature(3, false, false)));
+			WINTER_BOW = genBow("winter_bow", 600, e -> e
+					.add(new ExplodeArrowFeature(3, false, false)));
 		}
 		{
 			STARTER_ARROW = genArrow("starter_arrow", true);
@@ -108,6 +116,7 @@ public class ArcheryItems {
 			ICE_ARROW = genArrow("frozen_arrow", false);
 			ACID_ARROW = genArrow("acid_arrow", false);
 			DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageArrowFeature(
+					DamageArrowFeature.Type.HIT,
 					a -> DamageSource.arrow(a, a.getOwner()).bypassMagic(),
 					a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length()),
 					LangData.FEATURE_PIERCE_MAGIC::get

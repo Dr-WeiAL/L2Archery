@@ -10,7 +10,7 @@
 	"frozen_arrow": "寒冰箭",
 	"glow_aim_bow": "荧光弓",
 	"iron_arrow": "铁头箭",
-	"iron_bow": "铁弓",
+	"iron_bow": "强弓",
 	"magnify_bow": "放大镜弓",
 	"no_fall_arrow": "悬浮箭",
 	"obsidian_arrow": "黑曜石箭",
@@ -19,9 +19,14 @@
 	"tnt_arrow_lv1": "爆裂箭",
 	"tnt_arrow_lv2": "TNT箭",
 	"tnt_arrow_lv3": "末影水晶箭",
-	"wind_bow": "八坂的神风",
+	"wind_bow": "逐风",
 	"acid_arrow": "酸液箭",
-	"explosion_bow": "爆炸箭",
+	"explosion_bow": "日珥",
+	"flame_bow": "炎怒圆弧",
+	"froze_bow": "白夜零冰",
+	"storm_bow": "岚征暴风",
+	"slow_bow": "黑石灾祸",
+	"winter_bow": "霜夜",
 	"upgrade": "魔晶"
   }
 }
