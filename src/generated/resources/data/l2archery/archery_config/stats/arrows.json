@@ -10,7 +10,7 @@
     "l2archery:fire_arrow_lv2": {
       "l2archery:flame": {
         "amplifier": 1,
-        "duration": 100
+        "duration": 200
       }
     },
     "l2archery:frozen_arrow": {
@@ -23,9 +23,6 @@
   "arrow_stats": {
     "l2archery:copper_arrow": {
       "l2archery:damage": 1.0
-    },
-    "l2archery:ender_arrow": {
-      "l2archery:damage": -1.0
     },
     "l2archery:iron_arrow": {
       "l2archery:damage": 1.0,

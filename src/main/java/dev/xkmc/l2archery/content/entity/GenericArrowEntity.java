@@ -15,6 +15,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -61,6 +62,10 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 			features.hit().forEach(e -> e.onHitEntity(this, le, result));
 		}
 		super.onHitEntity(result);
+	}
+
+	public void onHurtEntity(IndirectEntityDamageSource ind) {
+		features.hit().forEach(e -> e.onHurtEntity(this, ind));
 	}
 
 	@Override

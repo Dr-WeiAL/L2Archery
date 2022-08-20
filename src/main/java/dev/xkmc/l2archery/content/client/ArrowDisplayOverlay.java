@@ -43,13 +43,14 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		BowData bowData = BowData.of(bow, bowStack);
 		FeatureList features = FeatureList.merge(bowData.getFeatures(), arrowData.getFeatures());
 		List<Component> text = new ArrayList<>();
-		addStat(text, bowData, bowData.getConfig(), arrowData.getItem().getConfig());
+		addStat(text, bowData, arrowData.getItem().getConfig());
 		features.addEffectsTooltip(text);
 		features.addTooltip(text);
 		renderLongText(gui, poseStack, text);
 	}
 
-	private static void addStat(List<Component> list, BowData data, IBowConfig bow, IGeneralConfig arrow) {
+	private static void addStat(List<Component> list, BowData data, IGeneralConfig arrow) {
+		IBowConfig bow = data.getConfig();
 		double dmg = 2;
 		var map = data.ench();
 		int power = map.getOrDefault(Enchantments.POWER_ARROWS, 0);

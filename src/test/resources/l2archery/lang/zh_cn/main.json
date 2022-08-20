@@ -25,7 +25,8 @@
 	  "no_fall": "箭不会下坠，但是%s秒后消失",
 	  "pierce_armor": "伤害穿透盔甲",
 	  "pierce_magic": "伤害穿透魔法保护",
-	  "wind_bow": "拉弓不减速，并获得短暂的速度提升"
+	  "wind_bow": "拉弓不减速",
+	  "pull_effect": "拉弓时获得效果："
 	},
 	"stat": {
 	  "damage": "伤害: %s",

@@ -36,9 +36,9 @@ public record StatFeature(float fov, int fov_time, float damage, int punch) impl
 
 	@Override
 	public void addTooltip(List<MutableComponent> list) {
-		list.add(LangData.STAT_DAMAGE.get("x" + damage()));
-		list.add(LangData.STAT_PUNCH.get("+" + punch()));
-		list.add(LangData.STAT_FOV.get("x" + fov()));
+		if (damage() != NOOP.damage()) list.add(LangData.STAT_DAMAGE.get("x" + damage()));
+		if (punch() != NOOP.punch()) list.add(LangData.STAT_PUNCH.get("+" + punch()));
+		if (fov() != NOOP.fov()) list.add(LangData.STAT_FOV.get("x" + fov()));
 	}
 
 	@Override

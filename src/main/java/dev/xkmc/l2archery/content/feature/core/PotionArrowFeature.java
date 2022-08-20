@@ -42,18 +42,22 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 			list.add(LangData.STAT_EFFECT.get());
 		}
 		for (var eff : instances) {
-			MutableComponent comp = Component.translatable(eff.getDescriptionId());
-			MobEffect mobeffect = eff.getEffect();
-			if (eff.getAmplifier() > 0) {
-				comp = Component.translatable("potion.withAmplifier", comp,
-						Component.translatable("potion.potency." + eff.getAmplifier()));
-			}
-			if (eff.getDuration() > 20) {
-				comp = Component.translatable("potion.withDuration", comp,
-						MobEffectUtil.formatDuration(eff, 1));
-			}
-			list.add(comp.withStyle(mobeffect.getCategory().getTooltipFormatting()));
+			list.add(getTooltip(eff));
 		}
+	}
+
+	public static MutableComponent getTooltip(MobEffectInstance eff) {
+		MutableComponent comp = Component.translatable(eff.getDescriptionId());
+		MobEffect mobeffect = eff.getEffect();
+		if (eff.getAmplifier() > 0) {
+			comp = Component.translatable("potion.withAmplifier", comp,
+					Component.translatable("potion.potency." + eff.getAmplifier()));
+		}
+		if (eff.getDuration() > 20) {
+			comp = Component.translatable("potion.withDuration", comp,
+					MobEffectUtil.formatDuration(eff, 1));
+		}
+		return comp.withStyle(mobeffect.getCategory().getTooltipFormatting());
 	}
 
 	@Override

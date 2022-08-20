@@ -22,11 +22,6 @@ public record GlowTargetAimFeature(int range) implements OnPullFeature, IGlowFea
 	public static final EntityTarget TARGET = new EntityTarget(3, Math.PI / 180 * 5, 2);
 
 	@Override
-	public void onPull(Player player, GenericItemStack<GenericBowItem> bow) {
-
-	}
-
-	@Override
 	public void tickAim(Player player, GenericItemStack<GenericBowItem> bow) {
 		if (player.level.isClientSide()) {
 			Vec3 vec3 = player.getEyePosition();

@@ -17,18 +17,18 @@ public record CompoundBowConfig(BowConfig config, StatFeature feature) implement
 	public float fov() {
 		float old = 1 / (1 - config.fov());
 		float next = old * feature.fov();
-		next = Math.max(10, next);
+		next = Math.min(10, next);
 		return 1 - 1 / next;
 	}
 
 	@Override
 	public int pull_time() {
-		return config.pull_time() + feature.pull_time();
+		return config.pull_time() * feature.pull_time();
 	}
 
 	@Override
 	public int fov_time() {
-		return config.fov_time() * feature.fov_time();
+		return config.fov_time() + feature.fov_time();
 	}
 
 	@Override

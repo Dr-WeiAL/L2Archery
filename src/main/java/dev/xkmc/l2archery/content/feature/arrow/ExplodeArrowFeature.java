@@ -34,11 +34,6 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 		arrow.discard();
 	}
 
-	@Override
-	public void postHurtEntity(GenericArrowEntity genericArrow, LivingEntity target) {
-
-	}
-
 	private void explode(GenericArrowEntity arrow, double x, double y, double z) {
 		BaseExplosionContext base = new BaseExplosionContext(arrow.level, x, y, z, radius);
 		Explosion.BlockInteraction type = breakBlock() ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE;

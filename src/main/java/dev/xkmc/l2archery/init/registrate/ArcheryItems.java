@@ -5,6 +5,7 @@ import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.EnderShootFeature;
 import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
+import dev.xkmc.l2archery.content.feature.bow.PullEffectFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
@@ -24,8 +25,8 @@ import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -63,10 +64,9 @@ public class ArcheryItems {
 		REGISTRATE.creativeModeTab(() -> TAB_PROF);
 	}
 
-	// -------- archery --------
-
 	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
-			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW, FLAME_BOW, FROZE_BOW, STORM_BOW, SLOW_BOW, WINTER_BOW;
+			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW, FLAME_BOW, FROZE_BOW, STORM_BOW, SLOW_BOW, WINTER_BOW, TURTLE_BOW,
+			EARTH_BOW, GAIA_BOW;
 
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW,
@@ -85,14 +85,15 @@ public class ArcheryItems {
 			GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
 			ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)));
 			EAGLE_BOW = genBow("eagle_bow", 600, e -> e.add(new DamageArrowFeature(
-					DamageArrowFeature.Type.HIT,
-					a -> DamageSource.arrow(a, a.getOwner()).bypassArmor(),
-					a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length()),
+					(a, s) -> s.bypassArmor(),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			)));
 			WIND_BOW = genBow("wind_bow", 600, e -> e
 					.add(new NoFallArrowFeature(40))
-					.add(new WindBowFeature()));
+					.add(new WindBowFeature())
+					.add(new PullEffectFeature(List.of(
+							() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1)
+					))));
 			EXPLOSION_BOW = genBow("explosion_bow", 32, e -> e
 					.add(new ExplodeArrowFeature(3, true, false)));
 			FLAME_BOW = genBow("flame_bow", 600, e -> e.add(new FireArrowFeature(100)));
@@ -102,6 +103,18 @@ public class ArcheryItems {
 					.add(new ExplodeArrowFeature(3, false, false)));
 			WINTER_BOW = genBow("winter_bow", 600, e -> e
 					.add(new ExplodeArrowFeature(3, false, false)));
+			TURTLE_BOW = genBow("turtle_bow", 600, e -> e.add(new PullEffectFeature(List.of(
+					() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 3),
+					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 2)
+			))));
+			EARTH_BOW = genBow("earth_bow", 600, e -> e.add(new PullEffectFeature(List.of(
+					() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 5),
+					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 3)
+			))));
+			GAIA_BOW = genBow("gaia_bow", 600, e -> e.add(new PullEffectFeature(List.of(
+					() -> new MobEffectInstance(ArcheryRegister.STONE_CAGE.get(), 80, 0),
+					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 4)
+			))));
 		}
 		{
 			STARTER_ARROW = genArrow("starter_arrow", true);
@@ -118,9 +131,7 @@ public class ArcheryItems {
 			ICE_ARROW = genArrow("frozen_arrow", false);
 			ACID_ARROW = genArrow("acid_arrow", false);
 			DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageArrowFeature(
-					DamageArrowFeature.Type.HIT,
-					a -> DamageSource.arrow(a, a.getOwner()).bypassMagic(),
-					a -> (float) (a.getBaseDamage() * a.getDeltaMovement().length()),
+					(a, s) -> s.bypassMagic(),
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
 		}
@@ -160,24 +171,7 @@ public class ArcheryItems {
 				.model(ArcheryItems::createBowModel).defaultLang().register();
 	}
 
-	public static ItemEntry<GenericArrowItem> genArrow(String id, boolean is_inf) {
-		return genArrow(id, is_inf, e -> {
-		}).register();
-	}
-
-	public static ItemBuilder<GenericArrowItem, L2Registrate> genArrow(String id, boolean is_inf, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
-		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
-		consumer.accept(f);
-		return REGISTRATE.item(id, p -> new GenericArrowItem(p, new ArrowConfig(
-						new ResourceLocation(L2Archery.MODID, id), is_inf, f.build())))
-				.model(ArcheryItems::createArrowModel);
-	}
-
 	private static final float[] BOW_PULL_VALS = {0, 0.65f, 0.9f};
-
-	public static <T extends GenericArrowItem> void createArrowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {
-		pvd.generated(ctx, new ResourceLocation(L2Archery.MODID, "item/arrow/" + ctx.getName()));
-	}
 
 	public static <T extends GenericBowItem> void createBowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {
 		ItemModelBuilder builder = pvd.withExistingParent(ctx.getName(), "minecraft:bow");
@@ -192,6 +186,24 @@ public class ArcheryItems {
 				override.predicate(new ResourceLocation("pull"), BOW_PULL_VALS[i]);
 			override.model(new ModelFile.UncheckedModelFile(L2Archery.MODID + ":item/bow/" + name));
 		}
+	}
+
+	public static ItemEntry<GenericArrowItem> genArrow(String id, boolean is_inf) {
+		return genArrow(id, is_inf, e -> {
+		}).register();
+	}
+
+	public static ItemBuilder<GenericArrowItem, L2Registrate> genArrow(String id, boolean is_inf, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
+		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
+		consumer.accept(f);
+		return REGISTRATE.item(id, p -> new GenericArrowItem(p, new ArrowConfig(
+						new ResourceLocation(L2Archery.MODID, id), is_inf, f.build())))
+				.model(ArcheryItems::createArrowModel);
+	}
+
+
+	public static <T extends GenericArrowItem> void createArrowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {
+		pvd.generated(ctx, new ResourceLocation(L2Archery.MODID, "item/arrow/" + ctx.getName()));
 	}
 
 	public static ItemEntry<Item> simpleItem(String id) {

@@ -3,6 +3,7 @@ package dev.xkmc.l2archery.content.feature;
 import com.mojang.datafixers.util.Pair;
 import dev.xkmc.l2archery.content.feature.core.PotionAggregator;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.feature.types.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -103,10 +104,13 @@ public class FeatureList {
 				Pair.of(enchant, ChatFormatting.LIGHT_PURPLE));
 		for (var l : lists) {
 			for (var f : l.getFirst()) {
+				if (f instanceof StatFeature) continue;
 				List<MutableComponent> temp = new ArrayList<>();
 				f.addTooltip(temp);
 				for (MutableComponent c : temp) {
-					list.add(c.withStyle(l.getSecond()));
+					if (c.getStyle().getColor() == null)
+						c.withStyle(l.getSecond());
+					list.add(c);
 				}
 			}
 		}

@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.events;
 
+import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.explosion.BaseExplosion;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.item.BowData;
@@ -8,6 +9,7 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +18,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.level.ExplosionEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @SuppressWarnings("unused")
@@ -41,7 +45,6 @@ public class GenericEventHandler {
 			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * data.getConfig().fov()));
 		}
 	}
-
 
 	@SubscribeEvent
 	public static void onDetonate(ExplosionEvent.Detonate event) {
@@ -71,5 +74,13 @@ public class GenericEventHandler {
 		}
 	}
 
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public static void onArrowHit(LivingAttackEvent event) {
+		if (event.getSource() instanceof IndirectEntityDamageSource ind) {
+			if (ind.getDirectEntity() instanceof GenericArrowEntity arrow) {
+				arrow.onHurtEntity(ind);
+			}
+		}
+	}
 
 }

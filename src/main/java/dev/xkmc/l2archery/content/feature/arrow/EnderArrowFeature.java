@@ -36,11 +36,6 @@ public class EnderArrowFeature implements OnHitFeature {
 	}
 
 	@Override
-	public void postHurtEntity(GenericArrowEntity genericArrow, LivingEntity target) {
-
-	}
-
-	@Override
 	public void addTooltip(List<MutableComponent> list) {
 		list.add(LangData.FEATURE_ENDER_ARROW.get());
 	}

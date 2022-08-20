@@ -23,15 +23,17 @@ public enum LangData {
 
 	FEATURE_NO_FALL("feature.no_fall", "Arrow will not feel gravity, but will disappear after %s seconds.", 1, null),
 	FEATURE_AIM_GLOW("feature.aim_flow", "Aimed targets within range of %s will appear glowing (only to you).", 1, null),
-	FEATURE_WIND_BOW("feature.wind_bow", "Pulling bow will not slow down player, and player will get speed bonus for short time.", 0, null),
+	FEATURE_WIND_BOW("feature.wind_bow", "Pulling bow will not slow down player.", 0, null),
 	FEATURE_ENDER_SHOOT("feature.ender_shoot", "When shooting aimed target, teleport arrow directly to the front of target. Arrow will not be released otherwise.", 0, null),
 	FEATURE_FIRE("feature.fire", "When hit target, set target on fire for %s seconds.", 1, null),
 	FEATURE_ENDER_ARROW("feature.ender_arrow", "When hitting entity, exchange location of player and target. Otherwise, teleport player to hit block.", 0, null),
 	FEATURE_EXPLOSION_ALL("feature.explosion.all", "Create an explosion of radius %s on hit.", 1, null),
 	FEATURE_EXPLOSION_HURT("feature.explosion.hurt", "Create an explosion of radius %s on hit. Will not destroy block.", 1, null),
 	FEATURE_EXPLOSION_NONE("feature.explosion.none", "Create an explosion of radius %s on hit. Will not destroy block or hurt mobs.", 1, null),
-	FEATURE_PIERCE_ARMOR("feature.pierce_armor", "Arrow Damage will pierce armor", 0, null),
-	FEATURE_PIERCE_MAGIC("feature.pierce_magic", "Arrow Damage will bypass magic protection", 0, null);
+	FEATURE_PIERCE_ARMOR("feature.pierce_armor", "Arrow damage will pierce armor", 0, null),
+	FEATURE_PIERCE_MAGIC("feature.pierce_magic", "Arrow damage will bypass magic protection", 0, null),
+	FEATURE_PULL_EFFECT("feature.pull_effect", "Apply effects when pulling bow:", 0, null),
+	;
 
 	private final String key, def;
 	private final int arg;

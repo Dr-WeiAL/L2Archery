@@ -2,6 +2,8 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.enchantment.BowEnchantment;
 import dev.xkmc.l2archery.content.feature.FeatureList;
+import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
+import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -45,7 +47,17 @@ public record BowData(Item item, ArrayList<Upgrade> upgrade, HashMap<Enchantment
 	}
 
 	public IBowConfig getConfig() {
-		return getItem().config;
+		StatFeature stat = null;
+		for (Upgrade up : upgrade) {
+			if (up.getFeature() instanceof StatFeature f) {
+				stat = f;
+			}
+		}
+		if (stat == null) {
+			return getItem().config;
+		} else {
+			return new CompoundBowConfig(getItem().config, stat);
+		}
 	}
 
 }

@@ -7,8 +7,6 @@ import dev.xkmc.l2archery.init.data.LangData;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -19,15 +17,6 @@ public record FireArrowFeature(int time) implements OnShootFeature, OnHitFeature
 	public boolean onShoot(Player player, Consumer<Consumer<GenericArrowEntity>> consumer) {
 		consumer.accept((e) -> e.setRemainingFireTicks(time));
 		return true;
-	}
-
-	@Override
-	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
-	}
-
-	@Override
-	public void onHitBlock(GenericArrowEntity genericArrow, BlockHitResult result) {
-
 	}
 
 	@Override

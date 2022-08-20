@@ -28,11 +28,6 @@ public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeat
 	}
 
 	@Override
-	public void onPull(Player player, GenericItemStack<GenericBowItem> bow) {
-
-	}
-
-	@Override
 	public void tickAim(Player player, GenericItemStack<GenericBowItem> bow) {
 		RayTraceUtil.clientUpdateTarget(player, range);
 	}
