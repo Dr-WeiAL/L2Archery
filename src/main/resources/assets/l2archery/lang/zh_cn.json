@@ -57,5 +57,10 @@
   "upgrade.l2archery.frozen": "寒流",
   "upgrade.l2archery.glow": "荧光",
   "upgrade.l2archery.soul_fire": "狱火",
-  "upgrade.l2archery.void": "虚空"
+  "upgrade.l2archery.void": "虚空",
+  "upgrade.l2archery.damage": "力量",
+  "upgrade.l2archery.magnify_x2": "放大 x2",
+  "upgrade.l2archery.magnify_x4": "放大 x4",
+  "upgrade.l2archery.magnify_x8": "放大 x8",
+  "upgrade.l2archery.punch": "击退"
 }

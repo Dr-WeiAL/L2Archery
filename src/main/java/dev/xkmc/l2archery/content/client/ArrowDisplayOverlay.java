@@ -43,7 +43,7 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		BowData bowData = BowData.of(bow, bowStack);
 		FeatureList features = FeatureList.merge(bowData.getFeatures(), arrowData.getFeatures());
 		List<Component> text = new ArrayList<>();
-		addStat(text, bowData, bow.getConfig(), arrowData.getItem().getConfig());
+		addStat(text, bowData, bowData.getConfig(), arrowData.getItem().getConfig());
 		features.addEffectsTooltip(text);
 		features.addTooltip(text);
 		renderLongText(gui, poseStack, text);

@@ -2,7 +2,7 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
-import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;

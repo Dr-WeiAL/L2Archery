@@ -39,7 +39,7 @@
       "l2archery:damage": -1.0
     },
     "l2archery:iron_bow": {
-      "l2archery:damage": 1.0,
+      "l2archery:damage": 3.0,
       "l2archery:fov_time": 40.0,
       "l2archery:pull_time": 40.0,
       "l2archery:speed": 3.9

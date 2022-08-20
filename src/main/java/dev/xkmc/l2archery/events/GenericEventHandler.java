@@ -2,6 +2,7 @@ package dev.xkmc.l2archery.events;
 
 import dev.xkmc.l2archery.content.explosion.BaseExplosion;
 import dev.xkmc.l2archery.content.feature.FeatureList;
+import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
@@ -27,15 +28,17 @@ public class GenericEventHandler {
 		Player player = Proxy.getClientPlayer();
 		if (player == null)
 			return;
-		if (player.getMainHandItem().getItem() instanceof GenericBowItem bow) {
+		ItemStack stack = player.getMainHandItem();
+		if (stack.getItem() instanceof GenericBowItem bow) {
 			float f = event.getFovModifier();
 			float i = player.getTicksUsingItem();
 			MobEffectInstance ins = player.getEffect(ArcheryRegister.QUICK_PULL.get());
 			if (ins != null) {
 				i *= 1.5 + 0.5 * ins.getAmplifier();
 			}
-			float p = bow.getConfig().fov_time();
-			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * bow.getConfig().fov()));
+			BowData data = BowData.of(bow, stack);
+			float p = data.getConfig().fov_time();
+			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * data.getConfig().fov()));
 		}
 	}
 
@@ -54,7 +57,7 @@ public class GenericEventHandler {
 		if (left.getItem() instanceof GenericBowItem bow && right.getItem() instanceof UpgradeItem) {
 			Upgrade upgrade = UpgradeItem.getUpgrade(right);
 			FeatureList list = bow.getFeatures(left);
-			if (upgrade != null && list.allow(upgrade.getFeature())) {
+			if (upgrade != null && upgrade.allow(bow) && list.allow(upgrade.getFeature())) {
 				int count = GenericBowItem.getUpgrades(left).size();
 				int max = bow.getBaseUpgradeCount(left) + bow.getEnchantmentLevel(left, Enchantments.BINDING_CURSE);
 				if (count < max) {

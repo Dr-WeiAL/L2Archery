@@ -42,6 +42,11 @@
 	"frozen": "寒流",
 	"glow": "荧光",
 	"soul_fire": "狱火",
-	"void": "虚空"
+	"void": "虚空",
+	"damage": "力量",
+	"magnify_x2": "放大 x2",
+	"magnify_x4": "放大 x4",
+	"magnify_x8": "放大 x8",
+	"punch": "击退"
   }
 }

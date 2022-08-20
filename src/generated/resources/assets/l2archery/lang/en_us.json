@@ -59,9 +59,14 @@
   "stat_type.l2archery.punch": "Punch",
   "stat_type.l2archery.speed": "Speed",
   "upgrade.l2archery.anti_gravity": "Anti Gravity",
+  "upgrade.l2archery.damage": "Damage",
   "upgrade.l2archery.explosion": "Explosion",
   "upgrade.l2archery.frozen": "Frozen",
   "upgrade.l2archery.glow": "Glow",
+  "upgrade.l2archery.magnify_x2": "Magnify X2",
+  "upgrade.l2archery.magnify_x4": "Magnify X4",
+  "upgrade.l2archery.magnify_x8": "Magnify X8",
+  "upgrade.l2archery.punch": "Punch",
   "upgrade.l2archery.soul_fire": "Soul Fire",
   "upgrade.l2archery.void": "Void"
 }

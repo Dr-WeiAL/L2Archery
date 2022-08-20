@@ -1,6 +1,7 @@
-package dev.xkmc.l2archery.content.feature.types;
+package dev.xkmc.l2archery.content.feature.core;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
+import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.base.effects.EffectUtil;
 import net.minecraft.network.chat.Component;

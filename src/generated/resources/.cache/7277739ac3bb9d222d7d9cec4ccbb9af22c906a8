@@ -1,6 +1,6 @@
-// 1.19.2	2022-08-19T22:57:43.531913	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-e691cd54b5a676826efcb33de2a2d6895a22efde assets/l2archery/lang/en_ud.json
-d53a0d90327522f607718ddf5844eec9c2bc38e2 assets/l2archery/lang/en_us.json
+// 1.19.2	2022-08-20T15:15:14.324842	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+ca370d580f8c1036328987c61f165dc7128b9f43 assets/l2archery/lang/en_ud.json
+a069a7c183361f409275ccbff2f0e97827a4f277 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
 8175b2d884f037a1a7885ef3284b1cc2e7633b30 assets/l2archery/models/item/bow/eagle_bow/bow_pulling_1.json

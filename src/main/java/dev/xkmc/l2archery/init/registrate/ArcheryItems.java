@@ -6,7 +6,8 @@ import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.EnderShootFeature;
 import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
-import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.item.ArrowConfig;
 import dev.xkmc.l2archery.content.item.BowConfig;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
@@ -73,7 +74,8 @@ public class ArcheryItems {
 
 	public static final ItemEntry<UpgradeItem> UPGRADE;
 
-	public static final RegistryEntry<Upgrade> GLOW, NO_FALL, FIRE, ICE, EXPLOSION, ENDER;
+	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
+			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP;
 
 	static {
 		{
@@ -122,17 +124,24 @@ public class ArcheryItems {
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
 		}
-		UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang().register();
+		{
+			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang().register();
 
-		GLOW = genUpgrade("glow", () -> new GlowTargetAimFeature(128));
-		NO_FALL = genUpgrade("anti_gravity", () -> new NoFallArrowFeature(40));
-		FIRE = genUpgrade("soul_fire", () -> new PotionArrowFeature(
-				List.of(new MobEffectInstance(ArcheryRegister.FLAME.get(), 100, 0))));
-		ICE = genUpgrade("frozen", () -> new PotionArrowFeature(
-				List.of(new MobEffectInstance(ArcheryRegister.ICE.get(), 600, 0))));
-		EXPLOSION = genUpgrade("explosion", () -> new ExplodeArrowFeature(3, true, false));
-		ENDER = genUpgrade("void", () -> new EnderShootFeature(128));
+			MAGNIFY_UP_1 = genUpgrade("magnify_x2", () -> new StatFeature(2, 10, 1, 0));
+			MAGNIFY_UP_2 = genUpgrade("magnify_x4", () -> new StatFeature(4, 30, 1, 0));
+			MAGNIFY_UP_3 = genUpgrade("magnify_x8", () -> new StatFeature(8, 50, 1, 0));
+			DAMAGE_UP = genUpgrade("damage", () -> new StatFeature(1, 1, 2, 0));
+			PUNCH_UP = genUpgrade("punch", () -> new StatFeature(1, 1, 1, 3));
 
+			GLOW_UP = genUpgrade("glow", () -> new GlowTargetAimFeature(128));
+			NO_FALL_UP = genUpgrade("anti_gravity", () -> new NoFallArrowFeature(40));
+			FIRE_UP = genUpgrade("soul_fire", () -> new PotionArrowFeature(
+					List.of(new MobEffectInstance(ArcheryRegister.FLAME.get(), 100, 0))));
+			ICE_UP = genUpgrade("frozen", () -> new PotionArrowFeature(
+					List.of(new MobEffectInstance(ArcheryRegister.ICE.get(), 600, 0))));
+			EXPLOSION_UP = genUpgrade("explosion", () -> new ExplodeArrowFeature(3, true, false));
+			ENDER_UP = genUpgrade("void", () -> new EnderShootFeature(128));
+		}
 	}
 
 	public static void register() {

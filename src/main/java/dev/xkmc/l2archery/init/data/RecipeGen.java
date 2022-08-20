@@ -83,14 +83,14 @@ public class RecipeGen {
 					.define('D', Items.LAPIS_LAZULI)
 					.save(pvd);
 
-			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.GLOW.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.GLOW_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("BCB").pattern("BAB").pattern("B B")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.GLOWSTONE_DUST)
 					.define('C', Items.ENDER_EYE)
 					.save(pvd);
 
-			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.FIRE.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.FIRE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("D D").pattern("CAC").pattern("BBB")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.SOUL_SAND)
@@ -98,14 +98,14 @@ public class RecipeGen {
 					.define('D', Items.GHAST_TEAR)
 					.save(pvd);
 
-			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ICE.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ICE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("C C").pattern("CAC").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.POWDER_SNOW_BUCKET)
 					.define('C', Items.BLUE_ICE)
 					.save(pvd);
 
-			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.EXPLOSION.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.EXPLOSION_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("C C").pattern("BAB").pattern("CDC")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.NETHER_STAR)
@@ -113,14 +113,14 @@ public class RecipeGen {
 					.define('D', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
 					.save(pvd);
 
-			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.NO_FALL.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.NO_FALL_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("C C").pattern("CAC").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.ELYTRA)
 					.define('C', Items.PHANTOM_MEMBRANE)
 					.save(pvd);
 
-			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ENDER.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ENDER_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("3 4").pattern("CAC").pattern("1B2")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.DRAGON_HEAD)

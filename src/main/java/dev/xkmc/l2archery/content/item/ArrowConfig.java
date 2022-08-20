@@ -2,7 +2,7 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
-import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;

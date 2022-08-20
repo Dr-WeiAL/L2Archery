@@ -2,17 +2,12 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
-import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
-import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
-
-import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
 public record BowConfig(ResourceLocation id, List<BowArrowFeature> feature) implements IBowConfig {
 
@@ -50,15 +45,6 @@ public record BowConfig(ResourceLocation id, List<BowArrowFeature> feature) impl
 
 	public float fov() {
 		return (float) getValue(ArcheryRegister.FOV.get());
-	}
-
-	public void addTooltip(List<Component> list) {
-		LangData.STAT_DAMAGE.getWithSign(list, damage());
-		LangData.STAT_PUNCH.getWithSign(list, punch());
-		list.add(LangData.STAT_PULL_TIME.get(pull_time() / 20d));
-		list.add(LangData.STAT_SPEED.get(speed() * 20));
-		list.add(LangData.STAT_FOV.get(ATTRIBUTE_MODIFIER_FORMAT.format(1 / (1 - fov()))));
-		PotionArrowFeature.addTooltip(getEffects(), list);
 	}
 
 }

@@ -1,6 +1,6 @@
 package dev.xkmc.l2archery.content.upgrade;
 
-import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.code.Wrappers;
 import net.minecraft.core.NonNullList;

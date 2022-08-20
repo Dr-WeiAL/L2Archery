@@ -44,4 +44,8 @@ public record BowData(Item item, ArrayList<Upgrade> upgrade, HashMap<Enchantment
 		return (GenericBowItem) item;
 	}
 
+	public IBowConfig getConfig() {
+		return getItem().config;
+	}
+
 }

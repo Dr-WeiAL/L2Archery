@@ -7,7 +7,9 @@ import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
-import dev.xkmc.l2archery.content.feature.types.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.ClientRegister;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
@@ -68,7 +70,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		ItemCompoundTag.of(result).getSubList(KEY, Tag.TAG_STRING).setTag(tag);
 	}
 
-	private final BowConfig config;
+	public final BowConfig config;
 
 	public GenericBowItem(Properties properties, BowConfig config) {
 		super(properties);
@@ -161,7 +163,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	}
 
 	public float getPullForTime(LivingEntity entity, float time) {
-		float f = time / getConfig().pull_time();
+		float f = time / config.pull_time();
 		MobEffectInstance ins = entity.getEffect(ArcheryRegister.QUICK_PULL.get());
 		if (ins != null) {
 			f *= (1.5 + 0.5 * ins.getAmplifier());
@@ -276,12 +278,24 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-		config.addTooltip(list);
 		List<Upgrade> ups = getUpgrades(stack);
+		StatFeature stat = null;
+		for (Upgrade up : ups) {
+			if (up.getFeature() instanceof StatFeature f) {
+				stat = f;
+			}
+		}
+		if (stat == null) {
+			config.addStatTooltip(list);
+		} else {
+			new CompoundBowConfig(config, stat).addStatTooltip(list);
+		}
 		for (Upgrade up : ups) {
 			list.add(Component.translatable(up.getDescriptionId()).withStyle(ChatFormatting.GOLD));
 		}
-		getFeatures(stack).addTooltip(list);
+		FeatureList f = getFeatures(stack);
+		f.addEffectsTooltip(list);
+		f.addTooltip(list);
 	}
 
 	public FeatureList getFeatures(@Nullable ItemStack stack) {
@@ -293,7 +307,11 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		}
 		if (stack != null) {
 			ans.stage = FeatureList.Stage.UPGRADE;
-			getUpgrades(stack).forEach(e -> ans.add(e.getFeature()));
+			for (Upgrade up : getUpgrades(stack)) {
+				BowArrowFeature f = up.getFeature();
+				if (f instanceof StatFeature) continue;
+				ans.add(f);
+			}
 			ans.stage = FeatureList.Stage.ENCHANT;
 			stack.getAllEnchantments().forEach((k, v) -> {
 				if (k instanceof BowEnchantment b) {
@@ -302,10 +320,6 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 			});
 		}
 		return ans;
-	}
-
-	public IBowConfig getConfig() {
-		return config;
 	}
 
 	@Override

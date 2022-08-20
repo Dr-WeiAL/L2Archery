@@ -19,7 +19,7 @@ public class ConfigGen extends ConfigDataProvider {
 	public void add(Map<String, BaseConfig> map) {
 		map.put("stats/bows", new BowArrowStatConfig()
 				.putBow(ArcheryItems.STARTER_BOW).end()
-				.putBow(ArcheryItems.IRON_BOW).damage(1).bothTimes(40).speed(3.9).end()
+				.putBow(ArcheryItems.IRON_BOW).damage(3).bothTimes(40).speed(3.9).end()
 				.putBow(ArcheryItems.GLOW_AIM_BOW).end()
 				.putBow(ArcheryItems.ENDER_AIM_BOW).damage(-1).end()
 				.putBow(ArcheryItems.MAGNIFY_BOW).fovs(60, 0.9).end()

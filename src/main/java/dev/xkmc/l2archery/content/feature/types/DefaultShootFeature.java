@@ -20,7 +20,7 @@ public class DefaultShootFeature implements OnShootFeature {
 	public boolean onShoot(Player player, Consumer<Consumer<GenericArrowEntity>> consumer) {
 		consumer.accept(entity -> {
 			entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F,
-					entity.data.power() * entity.data.bow().getItem().getConfig().speed(), 1.0F);
+					entity.data.power() * entity.data.bow().getConfig().speed(), 1.0F);
 			if (entity.data.power() == 1.0F) {
 				entity.setCritArrow(true);
 			}
@@ -41,8 +41,8 @@ public class DefaultShootFeature implements OnShootFeature {
 			}
 			Item arr = entity.data.arrow().item();
 			IGeneralConfig config = arr instanceof GenericArrowItem gen ? gen.getConfig() : null;
-			int knock = entity.getKnockback() + entity.data.bow().getItem().getConfig().punch() + (config == null ? 0 : config.punch());
-			double damage = entity.getBaseDamage() + entity.data.bow().getItem().getConfig().damage() + (config == null ? 0 : config.damage());
+			int knock = entity.getKnockback() + entity.data.bow().getConfig().punch() + (config == null ? 0 : config.punch());
+			double damage = entity.getBaseDamage() + entity.data.bow().getConfig().damage() + (config == null ? 0 : config.damage());
 			entity.setKnockback(Math.max(0, knock));
 			entity.setBaseDamage(Math.max(damage, 0.5));
 		});

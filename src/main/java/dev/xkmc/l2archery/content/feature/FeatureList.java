@@ -1,11 +1,12 @@
 package dev.xkmc.l2archery.content.feature;
 
 import com.mojang.datafixers.util.Pair;
+import dev.xkmc.l2archery.content.feature.core.PotionAggregator;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.types.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,11 +65,8 @@ public class FeatureList {
 	}
 
 	public FeatureList add(BowArrowFeature feature) {
-		Class<?> cls = feature.getClass();
-		if (map.containsKey(cls) && !map.get(cls).allowDuplicate()) {
-			return this;
-		}
-		map.put(cls, feature);
+		if (!allow(feature)) return this;
+		map.put(feature.getClass(), feature);
 
 		all.add(feature);
 
@@ -89,13 +87,13 @@ public class FeatureList {
 
 
 	public void addEffectsTooltip(List<Component> list) {
-		List<MobEffectInstance> ins = new ArrayList<>();
+		PotionAggregator agg = new PotionAggregator();
 		for (BowArrowFeature f : all) {
 			if (f instanceof PotionArrowFeature p) {
-				ins.addAll(p.instances());
+				agg.addAll(p.instances());
 			}
 		}
-		PotionArrowFeature.addTooltip(ins, list);
+		PotionArrowFeature.addTooltip(agg.build(), list);
 	}
 
 	public void addTooltip(List<Component> list) {
