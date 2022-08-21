@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "l2archery:obsidian_arrow"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:diamond_arrow"
+  }
+}

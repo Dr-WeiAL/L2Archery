@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_master_bow": {
+    "has_gold_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "l2archery:master_bow"
+              "minecraft:gold_ingot"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:storm_bow"
+        "recipe": "l2archery:gold_arrow"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_master_bow",
+      "has_gold_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "l2archery:storm_bow"
+      "l2archery:gold_arrow"
     ]
   }
 }

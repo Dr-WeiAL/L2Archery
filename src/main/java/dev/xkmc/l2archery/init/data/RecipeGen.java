@@ -23,15 +23,25 @@ public class RecipeGen {
 			cross(pvd, Items.IRON_NUGGET, Items.ARROW, ArcheryItems.STARTER_ARROW.get(), 4);
 			cross(pvd, Items.COPPER_INGOT, ArcheryItems.STARTER_ARROW.get(), ArcheryItems.COPPER_ARROW.get(), 4);
 			cross(pvd, Items.IRON_INGOT, ArcheryItems.STARTER_ARROW.get(), ArcheryItems.IRON_ARROW.get(), 4);
+			cross(pvd, Items.GOLD_INGOT, ArcheryItems.IRON_ARROW.get(), ArcheryItems.GOLD_ARROW.get(), 4);
 			cross(pvd, Items.OBSIDIAN, ArcheryItems.STARTER_ARROW.get(), ArcheryItems.OBSIDIAN_ARROW.get(), 4);
+			cross(pvd, Items.DIAMOND, ArcheryItems.OBSIDIAN_ARROW.get(), ArcheryItems.DIAMOND_ARROW.get(), 4);
+			cross(pvd, ArcheryItems.OBSIDIAN_ARROW.get(), Items.QUARTZ, ArcheryItems.QUARTZ_ARROW.get(), 1);
+			cross(pvd, ArcheryItems.STARTER_ARROW.get(), Items.WITHER_ROSE, ArcheryItems.WITHER_ARROW.get(), 1);
+			cross(pvd, ArcheryItems.STARTER_ARROW.get(), Items.BLACKSTONE, ArcheryItems.BLACKSTONE_ARROW.get(), 1);
 			cross(pvd, Items.PHANTOM_MEMBRANE, ArcheryItems.STARTER_ARROW.get(), ArcheryItems.NO_FALL_ARROW.get(), 4);
 			cross(pvd, Items.BLUE_ICE, ArcheryItems.STARTER_ARROW.get(), ArcheryItems.ICE_ARROW.get(), 4);
-			full(pvd, Items.FIRE_CHARGE, ArcheryItems.STARTER_ARROW.get(), Items.TORCH, ArcheryItems.FIRE_1_ARROW.get(), 4);
-			full(pvd, Items.BLAZE_ROD, ArcheryItems.FIRE_1_ARROW.get(), Items.BLAZE_POWDER, ArcheryItems.FIRE_2_ARROW.get(), 4);
+			full(pvd, Items.SOUL_SOIL, ArcheryItems.STARTER_ARROW.get(), Items.GUNPOWDER, ArcheryItems.FIRE_1_ARROW.get(), 4);
+			full(pvd, Items.GHAST_TEAR, ArcheryItems.FIRE_1_ARROW.get(), Items.BLAZE_ROD, ArcheryItems.FIRE_2_ARROW.get(), 4);
 			full(pvd, Items.TNT, ArcheryItems.STARTER_ARROW.get(), Items.FIRE_CHARGE, ArcheryItems.TNT_1_ARROW.get(), 4);
 			full(pvd, Items.END_CRYSTAL, ArcheryItems.TNT_1_ARROW.get(), Items.TNT, ArcheryItems.TNT_2_ARROW.get(), 4);
 			full(pvd, Items.CREEPER_HEAD, ArcheryItems.TNT_2_ARROW.get(), Items.END_CRYSTAL, ArcheryItems.TNT_3_ARROW.get(), 4);
 			full(pvd, Items.OBSIDIAN, Items.END_ROD, Items.ENDER_EYE, ArcheryItems.ENDER_ARROW.get(), 4);
+
+			// TODO arrow: 13remaining
+			//  acid
+			//  dispell
+			//  storm
 		}
 
 		// bow
@@ -42,7 +52,7 @@ public class RecipeGen {
 					.pattern(" AC").pattern("ABC").pattern(" AC")
 					.define('A', Items.BAMBOO)
 					.define('B', Items.BOW)
-					.define('C', Items.IRON_NUGGET)
+					.define('C', Items.VINE)
 					.save(pvd);
 
 			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.GLOW_AIM_BOW.get(), 1)::unlockedBy, ArcheryItems.STARTER_BOW.get())
@@ -56,7 +66,14 @@ public class RecipeGen {
 					.pattern(" AC").pattern("ABC").pattern(" AC")
 					.define('A', Items.IRON_INGOT)
 					.define('B', ArcheryItems.STARTER_BOW.get())
-					.define('C', Items.IRON_NUGGET)
+					.define('C', Items.WEEPING_VINES)
+					.save(pvd);
+
+			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.MASTER_BOW.get(), 1)::unlockedBy, ArcheryItems.STARTER_BOW.get())
+					.pattern(" AC").pattern("ABC").pattern(" AC")
+					.define('A', Items.COPPER_INGOT)
+					.define('B', ArcheryItems.STARTER_BOW.get())
+					.define('C', Items.TWISTING_VINES)
 					.save(pvd);
 
 			unlock(pvd, new ShapelessRecipeBuilder(ArcheryItems.MAGNIFY_BOW.get(), 1)::unlockedBy, ArcheryItems.GLOW_AIM_BOW.get())
@@ -97,14 +114,6 @@ public class RecipeGen {
 					.define('D', Items.GILDED_BLACKSTONE)
 					.save(pvd);
 
-			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.STORM_BOW.get(), 1)::unlockedBy, ArcheryItems.MASTER_BOW.get())
-					.pattern("CBB").pattern("DAB").pattern("CBB")
-					.define('A', ArcheryItems.MASTER_BOW.get())
-					.define('B', Items.FEATHER)
-					.define('C', Items.PHANTOM_MEMBRANE)
-					.define('D', Items.GUNPOWDER)
-					.save(pvd);
-
 			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.TURTLE_BOW.get(), 1)::unlockedBy, ArcheryItems.IRON_BOW.get())
 					.pattern("CCB").pattern("DAB").pattern("CCB")
 					.define('A', ArcheryItems.IRON_BOW.get())
@@ -113,6 +122,16 @@ public class RecipeGen {
 					.define('D', Items.GOLD_INGOT)
 					.save(pvd);
 
+			// TODO bow: 9 remaining
+			// eagle
+			// earth
+			// explosion
+			//gaia
+			//storm
+			//sun
+			//void
+			//wind
+			//winter
 		}
 
 		// upgrade
@@ -172,6 +191,16 @@ public class RecipeGen {
 					.define('3', new EnchantmentIngredient(Enchantments.BINDING_CURSE, 1))
 					.define('4', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
 					.save(pvd);
+
+			// TODO upgrade: 10 remaining
+			// damage
+			// magnify 2 4 8
+			// punch
+			// blackstone
+			// harm
+			// heal
+			// glowing
+			// levitate
 		}
 	}
 

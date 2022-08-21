@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:copper_ingot"
     },
     "B": {
       "item": "l2archery:starter_bow"
     },
     "C": {
-      "item": "minecraft:weeping_vines"
+      "item": "minecraft:twisting_vines"
     }
   },
   "pattern": [
@@ -17,6 +17,6 @@
     " AC"
   ],
   "result": {
-    "item": "l2archery:iron_bow"
+    "item": "l2archery:master_bow"
   }
 }

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soul_soil": {
+    "has_obsidian_arrow": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:soul_soil"
+              "l2archery:obsidian_arrow"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:fire_arrow_lv1"
+        "recipe": "l2archery:quartz_arrow"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_soul_soil",
+      "has_obsidian_arrow",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "l2archery:fire_arrow_lv1"
+      "l2archery:quartz_arrow"
     ]
   }
 }

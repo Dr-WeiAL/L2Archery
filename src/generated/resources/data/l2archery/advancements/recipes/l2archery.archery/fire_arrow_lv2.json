@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blaze_rod": {
+    "has_ghast_tear": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:blaze_rod"
+              "minecraft:ghast_tear"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_blaze_rod",
+      "has_ghast_tear",
       "has_the_recipe"
     ]
   ],
