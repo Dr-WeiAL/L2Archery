@@ -1,4 +1,4 @@
-package dev.xkmc.l2archery.content.effect;
+package dev.xkmc.l2archery.foundation.effect;
 
 import dev.xkmc.l2library.base.effects.api.ForceEffect;
 import dev.xkmc.l2library.base.effects.api.InherentEffect;
@@ -15,7 +15,7 @@ public class FlameEffect extends InherentEffect implements ForceEffect {
 	@Override
 	public void applyEffectTick(LivingEntity target, int level) {
 		if (!target.fireImmune()) {
-			target.hurt(DamageSource.indirectMagic(target, target.getLastHurtByMob()), 2 << level);
+			target.hurt(DamageSource.indirectMagic(target, target.getLastHurtByMob()).setIsFire(), 2 << level);
 		}
 	}
 

@@ -1,4 +1,4 @@
-package dev.xkmc.l2archery.content.effect;
+package dev.xkmc.l2archery.foundation.effect;
 
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2library.base.effects.api.ForceEffect;

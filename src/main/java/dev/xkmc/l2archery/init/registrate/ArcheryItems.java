@@ -15,6 +15,8 @@ import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
+import dev.xkmc.l2archery.foundation.create.ShadowSteelItem;
+import dev.xkmc.l2archery.foundation.item.WindBottle;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.base.L2Registrate;
@@ -77,6 +79,11 @@ public class ArcheryItems {
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
 			LEVITATE_UP;
+
+	public static final ItemEntry<WindBottle> WIND_BOTTLE;
+	public static final ItemEntry<ShadowSteelItem> VOID_EYE;
+	public static final ItemEntry<Item> CAPTURED_WIND, SUN_MEMBRANE, EXPLOSION_SHARD, HARD_ICE, SOUL_FLAME,
+			STORM_CORE, BLACKSTONE_CORE, RESONANT_FEATHER, SPACE_SHARD, FORCE_FIELD;
 
 	static {
 		{
@@ -177,6 +184,21 @@ public class ArcheryItems {
 					List.of(new MobEffectInstance(MobEffects.GLOWING, 600, 0))));
 			LEVITATE_UP = genUpgrade("levitate", () -> new PotionArrowFeature(
 					List.of(new MobEffectInstance(MobEffects.LEVITATION, 300, 0))));
+		}
+		{
+			WIND_BOTTLE = REGISTRATE.item("wind_capture_bottle", WindBottle::new).register();// tested
+			VOID_EYE = REGISTRATE.item("void_eye", ShadowSteelItem::new).register();//TODO
+			CAPTURED_WIND = simpleItem("captured_wind");//tested
+			SUN_MEMBRANE = simpleItem("sun_membrane");//TODO
+			EXPLOSION_SHARD = simpleItem("explosion_shard");//TODO
+			HARD_ICE = simpleItem("hard_ice");//TODO
+			SOUL_FLAME = simpleItem("soul_flame");//TODO
+			STORM_CORE = simpleItem("storm_core");//TODO
+			BLACKSTONE_CORE = simpleItem("blackstone_core");//TODO
+			RESONANT_FEATHER = simpleItem("resonant_feather");//TODO
+			SPACE_SHARD = simpleItem("space_shard");//TODO
+			FORCE_FIELD = simpleItem("force_field");//TODO
+
 		}
 	}
 

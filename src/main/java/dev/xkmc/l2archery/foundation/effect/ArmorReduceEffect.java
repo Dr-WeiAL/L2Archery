@@ -1,4 +1,4 @@
-package dev.xkmc.l2archery.content.effect;
+package dev.xkmc.l2archery.foundation.effect;
 
 import dev.xkmc.l2library.util.math.MathHelper;
 import net.minecraft.world.effect.MobEffect;

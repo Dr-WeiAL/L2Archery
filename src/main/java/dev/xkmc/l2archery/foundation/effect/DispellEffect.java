@@ -1,4 +1,4 @@
-package dev.xkmc.l2archery.content.effect;
+package dev.xkmc.l2archery.foundation.effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

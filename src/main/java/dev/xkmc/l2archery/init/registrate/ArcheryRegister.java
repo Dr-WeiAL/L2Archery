@@ -1,11 +1,11 @@
 package dev.xkmc.l2archery.init.registrate;
 
-import dev.xkmc.l2archery.content.effect.*;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.entity.GenericArrowRenderer;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.content.stats.StatType;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
+import dev.xkmc.l2archery.foundation.effect.*;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;

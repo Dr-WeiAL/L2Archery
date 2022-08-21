@@ -1,7 +1,7 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 
-package dev.xkmc.l2archery.content.effect;
+package dev.xkmc.l2archery.foundation.effect;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 
