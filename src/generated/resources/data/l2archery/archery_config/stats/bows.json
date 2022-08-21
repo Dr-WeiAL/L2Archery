@@ -56,12 +56,16 @@
     "l2archery:iron_bow": {
       "l2archery:damage": 3.0,
       "l2archery:fov_time": 40.0,
-      "l2archery:pull_time": 40.0,
-      "l2archery:speed": 3.9
+      "l2archery:pull_time": 40.0
     },
     "l2archery:magnify_bow": {
       "l2archery:fov_time": 60.0,
       "l2archery:max_fov": 0.9
+    },
+    "l2archery:master_bow": {
+      "l2archery:damage": 1.0,
+      "l2archery:fov_time": 20.0,
+      "l2archery:max_fov": 0.3
     },
     "l2archery:turtle_bow": {
       "l2archery:damage": 6.0,

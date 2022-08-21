@@ -1,6 +1,6 @@
-// 1.19.2	2022-08-21T13:00:26.387675	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-aa984de5d2babdcc638f4674a0d705891a3a5f71 assets/l2archery/lang/en_ud.json
-acfbac683793418bc2e6c16d71cb15ce6fdc2920 assets/l2archery/lang/en_us.json
+// 1.19.2	2022-08-21T16:22:00.454324	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+8c91ddfaf951108079e1039a2cb721f99ff3a7c5 assets/l2archery/lang/en_ud.json
+1a8332c3a131ae7822118ae68b8c41c3c592cb60 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -33,6 +33,9 @@ e8ebf125739bfef2d647663bbc8c92affcb33d52 assets/l2archery/models/item/bow/iron_b
 4a811955ee59d55a6c1a8bbeea5c50c1c58fe990 assets/l2archery/models/item/bow/magnify_bow/bow_pulling_0.json
 63fe91b0cb0dfdb34205dafa47e686f44d9a9daa assets/l2archery/models/item/bow/magnify_bow/bow_pulling_1.json
 6260e84f6b5f09464f387201f4487f7e6e84d887 assets/l2archery/models/item/bow/magnify_bow/bow_pulling_2.json
+adfb8b53dd1b5be7b99bd265b6dbbff03b204d0d assets/l2archery/models/item/bow/master_bow/bow_pulling_0.json
+0952f22c44a7e0933224db503310fc286db90daf assets/l2archery/models/item/bow/master_bow/bow_pulling_1.json
+26ce0f9fcbc3c2d35ba72fc054157b86bf7b714c assets/l2archery/models/item/bow/master_bow/bow_pulling_2.json
 226be2fde4c8ed053b06f4aaaf17bc5baee329c1 assets/l2archery/models/item/bow/slow_bow/bow_pulling_0.json
 f67b3da75048d0c89d21855ccce3d81807850296 assets/l2archery/models/item/bow/slow_bow/bow_pulling_1.json
 ed180b25a8df09f868eff1507401036f2441b771 assets/l2archery/models/item/bow/slow_bow/bow_pulling_2.json
@@ -76,6 +79,7 @@ ea320bbc9f766725900ea9843251df67b37b13fc assets/l2archery/models/item/glow_aim_b
 42068effc1b9c3f1fa0b58925fb7de314d9dd5d0 assets/l2archery/models/item/iron_arrow.json
 67121a17bbc796da4aefefde025c7820abae19bc assets/l2archery/models/item/iron_bow.json
 784da142f8a5b1104b3eb8b64f788c01cbd9ff12 assets/l2archery/models/item/magnify_bow.json
+a4e3f7d3a86843221f485bd832245a50616c5c6b assets/l2archery/models/item/master_bow.json
 b75010a07f33f8eb409225e26d672ea903e02992 assets/l2archery/models/item/no_fall_arrow.json
 4fddbb80a6676c68d7f418c7e0ce257e376e5da5 assets/l2archery/models/item/obsidian_arrow.json
 cccbcfabe67da352c4f8d592db6c575d6097c420 assets/l2archery/models/item/quartz_arrow.json
@@ -99,6 +103,8 @@ f744c6715565502549593e83804b9969406d83f9 assets/l2archery/models/item/winter_bow
 5d0a368048dbc4ca6a21c1250c7af3bae38bdf88 data/l2archery/advancements/recipes/l2archery.archery/ender_arrow.json
 44301a99df5d53146607075bb5796c4092dbe387 data/l2archery/advancements/recipes/l2archery.archery/fire_arrow_lv1.json
 566b3cad658babaf1d78cf9ae75433f8a2a3ff43 data/l2archery/advancements/recipes/l2archery.archery/fire_arrow_lv2.json
+dca5a0755f6eb8ab593ebef938fe706adb9aa250 data/l2archery/advancements/recipes/l2archery.archery/flame_bow.json
+b8ed3f7778a09e9b3727f5173f556a857705a6de data/l2archery/advancements/recipes/l2archery.archery/froze_bow.json
 f75da06d495a104efe1999287c1516e4438152b0 data/l2archery/advancements/recipes/l2archery.archery/frozen_arrow.json
 2f8e2e322b55e8f61160eec8ce9f5a5038ee1613 data/l2archery/advancements/recipes/l2archery.archery/glow_aim_bow.json
 8aac40e34703f228df130b9f9c262066aaa3637e data/l2archery/advancements/recipes/l2archery.archery/iron_arrow.json
@@ -106,11 +112,14 @@ f75da06d495a104efe1999287c1516e4438152b0 data/l2archery/advancements/recipes/l2a
 a5469c17bfb5e23d11bdf9fae73bbd0628f31ac2 data/l2archery/advancements/recipes/l2archery.archery/magnify_bow.json
 00d9c320f3c1cc98adeed9cb16c7783bd325884f data/l2archery/advancements/recipes/l2archery.archery/no_fall_arrow.json
 997ac4d09b575ae46eca10b9ec2a9598696105b4 data/l2archery/advancements/recipes/l2archery.archery/obsidian_arrow.json
+9900b77ff0d48457bed87b21b9e59b853ad9383c data/l2archery/advancements/recipes/l2archery.archery/slow_bow.json
 3c713b3fb8862211523feb3343f5e6027bfa2329 data/l2archery/advancements/recipes/l2archery.archery/starter_arrow.json
 1703edba76e289e8ec3c4e5684396ba6579f6974 data/l2archery/advancements/recipes/l2archery.archery/starter_bow.json
+b0957b8b6c24218996cae58c62537d7347dcbfc1 data/l2archery/advancements/recipes/l2archery.archery/storm_bow.json
 343872911eab7b114623ffae7f36a044dadc5128 data/l2archery/advancements/recipes/l2archery.archery/tnt_arrow_lv1.json
 510a1815da18501ea4e155acf7c9bff4b9de6fe6 data/l2archery/advancements/recipes/l2archery.archery/tnt_arrow_lv2.json
 3f8c0d0007a9fb7e50e1cd167a6df399ce3db764 data/l2archery/advancements/recipes/l2archery.archery/tnt_arrow_lv3.json
+16e679d10cf30869e6217dde982a0e8566760023 data/l2archery/advancements/recipes/l2archery.archery/turtle_bow.json
 b7f6f8e692c0e266c3f70ce331be7157c4c9d48d data/l2archery/advancements/recipes/l2archery.archery/upgrade.json
 89b859f8d324f5fb71e44016d645d86c81034c1c data/l2archery/advancements/recipes/upgrades/anti_gravity.json
 75da2f7c8e5e5abca298d20fa7e8fa3aea449ef9 data/l2archery/advancements/recipes/upgrades/explosion.json
@@ -120,11 +129,13 @@ cb13b231cdb93a9a4553d7073c6d9ed0f60984a1 data/l2archery/advancements/recipes/upg
 06f81e03b95b07228062e330cc321a5301c91852 data/l2archery/advancements/recipes/upgrades/void.json
 cbcc2352f08e691bf28196a3b638f196017405c1 data/l2archery/recipes/anti_gravity.json
 8f03359ffbb8592d29299661fe495463ff84038f data/l2archery/recipes/copper_arrow.json
-3c8005d023bed9ae6b6cf564400b4fc9bee545bc data/l2archery/recipes/ender_aim_bow.json
+4eabfb9c6a3a772e65e7cbd0c3ff52293aab72af data/l2archery/recipes/ender_aim_bow.json
 89a9ef5bc666753d39aab100fb997c590b67ca68 data/l2archery/recipes/ender_arrow.json
 0f3d88ba24291d26b7dd0a6efca83624b7636fe1 data/l2archery/recipes/explosion.json
 3eccd702367d3aec4180292438a08dd169177e05 data/l2archery/recipes/fire_arrow_lv1.json
 6d2734e924e7c96468dae547f19caddde4778c9c data/l2archery/recipes/fire_arrow_lv2.json
+2d7cbf41939e7d84151160a60302f0c71c21fa16 data/l2archery/recipes/flame_bow.json
+1e5610d3a322052ea2c8a4e1de0aed8addc5fcac data/l2archery/recipes/froze_bow.json
 37b40cb1066bdffa2eae206bfe5ccd694f6e47c3 data/l2archery/recipes/frozen.json
 76d7f37072b8ece3336ce8db85358ee5b3be6bba data/l2archery/recipes/frozen_arrow.json
 5f28a19619524bcd596de7668ff3612c2f288407 data/l2archery/recipes/glow.json
@@ -134,11 +145,14 @@ e1b9d3f9e2130b922fd5c2e51a32c161c93b3758 data/l2archery/recipes/iron_bow.json
 6732553cfac85efd039326279b7a4b472137f783 data/l2archery/recipes/magnify_bow.json
 5a48ebca0c08ff735bcbd4176981a0956c12a43e data/l2archery/recipes/no_fall_arrow.json
 1a67cbdb6bdfc18d8ba9e790de04e7328b995737 data/l2archery/recipes/obsidian_arrow.json
-b09fc1dcc2eefd89c9c92893f8709f391f7f621d data/l2archery/recipes/soul_fire.json
+42ce5428a71f92f5fef298d0442105b0441d8b1e data/l2archery/recipes/slow_bow.json
+b919d991c12f1e551642f55b55671c59f611c801 data/l2archery/recipes/soul_fire.json
 071e9d6e2d8f982e22fe3806427054a8e0712eb4 data/l2archery/recipes/starter_arrow.json
 d1080e0bd420d0f7f2ed1326f57d0affb26f76cb data/l2archery/recipes/starter_bow.json
+067db5e71716cabb9917f20b9479836110f4bb7b data/l2archery/recipes/storm_bow.json
 94f3a459f5ce9dc55b5a7f512a241a3b7110dc20 data/l2archery/recipes/tnt_arrow_lv1.json
 5a3d6b7f2ed132b301b845d348d113eabc1d5e59 data/l2archery/recipes/tnt_arrow_lv2.json
 3159d0b735fd5099a68624511f37b796858efad3 data/l2archery/recipes/tnt_arrow_lv3.json
+0902303ed2a65086768de2a6d0117c279af601fd data/l2archery/recipes/turtle_bow.json
 b79206deceeff3ee7ce4c75e4e83f8e461dde1e4 data/l2archery/recipes/upgrade.json
 ab351b7f5870ca031b4c7b640c3700e6d74e187f data/l2archery/recipes/void.json

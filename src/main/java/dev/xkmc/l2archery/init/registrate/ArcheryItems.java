@@ -64,8 +64,8 @@ public class ArcheryItems {
 		REGISTRATE.creativeModeTab(() -> TAB_PROF);
 	}
 
-	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
-			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW, FLAME_BOW, FROZE_BOW, STORM_BOW, SLOW_BOW, WINTER_BOW, TURTLE_BOW,
+	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MASTER_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
+			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW, FLAME_BOW, FROZE_BOW, STORM_BOW, BLACKSTONE_BOW, WINTER_BOW, TURTLE_BOW,
 			EARTH_BOW, GAIA_BOW, VOID_BOW, SUN_BOW;
 
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, GOLD_ARROW, OBSIDIAN_ARROW,
@@ -82,6 +82,7 @@ public class ArcheryItems {
 		{
 			STARTER_BOW = genBow("starter_bow", 600);
 			IRON_BOW = genBow("iron_bow", 1200);
+			MASTER_BOW = genBow("master_bow", 1200);
 			MAGNIFY_BOW = genBow("magnify_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
 			GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e.add(new GlowTargetAimFeature(128)));
 			ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)));
@@ -99,7 +100,7 @@ public class ArcheryItems {
 					.add(new ExplodeArrowFeature(3, true, false)));
 			FLAME_BOW = genBow("flame_bow", 600, e -> e.add(new FireArrowFeature(100)));
 			FROZE_BOW = genBow("froze_bow", 600);
-			SLOW_BOW = genBow("slow_bow", 600);
+			BLACKSTONE_BOW = genBow("slow_bow", 600);
 			STORM_BOW = genBow("storm_bow", 600, e -> e
 					.add(new ExplodeArrowFeature(3, false, false)));
 			WINTER_BOW = genBow("winter_bow", 600, e -> e

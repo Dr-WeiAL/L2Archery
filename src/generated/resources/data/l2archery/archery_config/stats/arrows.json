@@ -40,7 +40,7 @@
       "l2archery:damage": 4.0
     },
     "l2archery:gold_arrow": {
-      "l2archery:damage": 3.0,
+      "l2archery:damage": 2.0,
       "l2archery:punch": 3.0
     },
     "l2archery:iron_arrow": {

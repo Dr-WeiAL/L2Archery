@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:master_bow"
+    },
+    "B": {
+      "item": "minecraft:feather"
+    },
+    "C": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "D": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "pattern": [
+    "CBB",
+    "DAB",
+    "CBB"
+  ],
+  "result": {
+    "item": "l2archery:storm_bow"
+  }
+}

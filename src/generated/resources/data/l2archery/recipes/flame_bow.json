@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
-      "item": "l2archery:upgrade"
+      "item": "l2archery:master_bow"
     },
     "B": {
       "item": "minecraft:soul_soil"
@@ -15,14 +15,11 @@
     }
   },
   "pattern": [
-    "D D",
-    "CAC",
-    "BBB"
+    "DCB",
+    "CAB",
+    "DCB"
   ],
   "result": {
-    "item": "l2archery:upgrade",
-    "nbt": {
-      "upgrade": "l2archery:soul_fire"
-    }
+    "item": "l2archery:flame_bow"
   }
 }

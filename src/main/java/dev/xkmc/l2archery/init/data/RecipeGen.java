@@ -37,6 +37,7 @@ public class RecipeGen {
 		// bow
 		{
 
+			// root
 			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.STARTER_BOW.get(), 1)::unlockedBy, Items.BOW)
 					.pattern(" AC").pattern("ABC").pattern(" AC")
 					.define('A', Items.BAMBOO)
@@ -51,11 +52,6 @@ public class RecipeGen {
 					.define('E', Items.ENDER_EYE)
 					.save(pvd);
 
-			unlock(pvd, new ShapelessRecipeBuilder(ArcheryItems.MAGNIFY_BOW.get(), 1)::unlockedBy, ArcheryItems.GLOW_AIM_BOW.get())
-					.requires(ArcheryItems.GLOW_AIM_BOW.get())
-					.requires(Items.SPYGLASS)
-					.save(pvd);
-
 			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.IRON_BOW.get(), 1)::unlockedBy, ArcheryItems.STARTER_BOW.get())
 					.pattern(" AC").pattern("ABC").pattern(" AC")
 					.define('A', Items.IRON_INGOT)
@@ -63,14 +59,60 @@ public class RecipeGen {
 					.define('C', Items.IRON_NUGGET)
 					.save(pvd);
 
+			unlock(pvd, new ShapelessRecipeBuilder(ArcheryItems.MAGNIFY_BOW.get(), 1)::unlockedBy, ArcheryItems.GLOW_AIM_BOW.get())
+					.requires(ArcheryItems.GLOW_AIM_BOW.get())
+					.requires(Items.SPYGLASS)
+					.save(pvd);
+
 			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.ENDER_AIM_BOW.get(), 1)::unlockedBy, ArcheryItems.GLOW_AIM_BOW.get())
-					.pattern("ROP").pattern("ABP").pattern("ROP")
+					.pattern("2OR").pattern("ABR").pattern("1OR")
 					.define('O', Items.OBSIDIAN)
 					.define('R', Items.END_ROD)
-					.define('P', Items.ENDER_PEARL)
-					.define('A', Items.ENDER_EYE)
+					.define('1', new EnchantmentIngredient(Enchantments.BINDING_CURSE, 1))
+					.define('2', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
+					.define('A', Items.DRAGON_HEAD)
 					.define('B', ArcheryItems.GLOW_AIM_BOW.get())
 					.save(pvd);
+
+			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.FLAME_BOW.get(), 1)::unlockedBy, ArcheryItems.MASTER_BOW.get())
+					.pattern("DCB").pattern("CAB").pattern("DCB")
+					.define('A', ArcheryItems.MASTER_BOW.get())
+					.define('B', Items.SOUL_SOIL)
+					.define('C', Items.BLAZE_ROD)
+					.define('D', Items.GHAST_TEAR)
+					.save(pvd);
+
+			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.FROZE_BOW.get(), 1)::unlockedBy, ArcheryItems.MASTER_BOW.get())
+					.pattern("BBB").pattern("DAB").pattern("BBB")
+					.define('A', ArcheryItems.MASTER_BOW.get())
+					.define('B', Items.BLUE_ICE)
+					.define('D', Items.POWDER_SNOW_BUCKET)
+					.save(pvd);
+
+			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.BLACKSTONE_BOW.get(), 1)::unlockedBy, ArcheryItems.MASTER_BOW.get())
+					.pattern("CBB").pattern("DAB").pattern("CBB")
+					.define('A', ArcheryItems.MASTER_BOW.get())
+					.define('B', Items.BLACKSTONE)
+					.define('C', Items.SOUL_SAND)
+					.define('D', Items.GILDED_BLACKSTONE)
+					.save(pvd);
+
+			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.STORM_BOW.get(), 1)::unlockedBy, ArcheryItems.MASTER_BOW.get())
+					.pattern("CBB").pattern("DAB").pattern("CBB")
+					.define('A', ArcheryItems.MASTER_BOW.get())
+					.define('B', Items.FEATHER)
+					.define('C', Items.PHANTOM_MEMBRANE)
+					.define('D', Items.GUNPOWDER)
+					.save(pvd);
+
+			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.TURTLE_BOW.get(), 1)::unlockedBy, ArcheryItems.IRON_BOW.get())
+					.pattern("CCB").pattern("DAB").pattern("CCB")
+					.define('A', ArcheryItems.IRON_BOW.get())
+					.define('B', Items.SCUTE)
+					.define('C', Items.IRON_INGOT)
+					.define('D', Items.GOLD_INGOT)
+					.save(pvd);
+
 		}
 
 		// upgrade
@@ -93,7 +135,7 @@ public class RecipeGen {
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.FIRE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("D D").pattern("CAC").pattern("BBB")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', Items.SOUL_SAND)
+					.define('B', Items.SOUL_SOIL)
 					.define('C', Items.BLAZE_ROD)
 					.define('D', Items.GHAST_TEAR)
 					.save(pvd);
