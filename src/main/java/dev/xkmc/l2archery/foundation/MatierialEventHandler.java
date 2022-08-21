@@ -4,6 +4,7 @@ import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -54,6 +55,11 @@ public class MatierialEventHandler {
 		if (event.getEntity() instanceof Guardian guardian) {
 			if (!guardian.getLevel().isClientSide() && guardian.hasEffect(ArcheryRegister.STONE_CAGE.get())) {
 				guardian.spawnAtLocation(ArcheryItems.BLACKSTONE_CORE.asStack());
+			}
+		}
+		if (event.getEntity() instanceof WitherBoss wither) {
+			if (!wither.getLevel().isClientSide() && event.getSource().isProjectile()) {
+				wither.spawnAtLocation(ArcheryItems.FORCE_FIELD.asStack());
 			}
 		}
 	}

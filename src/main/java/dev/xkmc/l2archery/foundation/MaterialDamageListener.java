@@ -26,11 +26,6 @@ public class MaterialDamageListener implements AttackListener {
 				}
 			}
 		}
-		if (cache.getAttackTarget() instanceof WitherBoss boss) {
-			if (event.getSource().isProjectile() && cache.getDamageDealt() >= boss.getMaxHealth() / 2f) {
-				boss.spawnAtLocation(ArcheryItems.FORCE_FIELD.asStack());
-			}
-		}
 		if (cache.getAttackTarget() instanceof Chicken chicken) {
 			if (event.getSource().getMsgId().equals("sonic_boom")) {
 				if (cache.getDamageDealt() < chicken.getHealth()) {

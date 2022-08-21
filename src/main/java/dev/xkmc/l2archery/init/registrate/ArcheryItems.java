@@ -187,17 +187,17 @@ public class ArcheryItems {
 		}
 		{
 			WIND_BOTTLE = REGISTRATE.item("wind_capture_bottle", WindBottle::new).register();// tested
-			VOID_EYE = REGISTRATE.item("void_eye", ShadowSteelItem::new).register();//TODO
-			CAPTURED_WIND = simpleItem("captured_wind");//tested
-			SUN_MEMBRANE = simpleItem("sun_membrane");//TODO
-			EXPLOSION_SHARD = simpleItem("explosion_shard");//TODO
-			HARD_ICE = simpleItem("hard_ice");//TODO
-			SOUL_FLAME = simpleItem("soul_flame");//TODO
-			STORM_CORE = simpleItem("storm_core");//TODO
-			BLACKSTONE_CORE = simpleItem("blackstone_core");//TODO
-			RESONANT_FEATHER = simpleItem("resonant_feather");//TODO
-			SPACE_SHARD = simpleItem("space_shard");//TODO
-			FORCE_FIELD = simpleItem("force_field");//TODO
+			VOID_EYE = REGISTRATE.item("void_eye", ShadowSteelItem::new).register();//TODO kill aggroed enderman 16 blocks in void
+			CAPTURED_WIND = simpleItem("captured_wind");// player reach 200m/s
+			SUN_MEMBRANE = simpleItem("sun_membrane");//TODO kill phantom 200 blocks above maximum build height with arrow
+			EXPLOSION_SHARD = simpleItem("explosion_shard");//TODO endure > 100 explosion damage
+			HARD_ICE = simpleItem("hard_ice");//TODO kill drowned with powder snow damage
+			SOUL_FLAME = simpleItem("soul_flame");//TODO kill ghast with soul flame
+			STORM_CORE = simpleItem("storm_core");//TODO kill phantom with explosion
+			BLACKSTONE_CORE = simpleItem("blackstone_core");//TODO kill guardian with stone cage effect
+			RESONANT_FEATHER = simpleItem("resonant_feather");//TODO let chicken survive sonic boom
+			SPACE_SHARD = simpleItem("space_shard");//TODO deal 1000 arrow damage
+			FORCE_FIELD = simpleItem("force_field");//TODO kill wither with arrow
 
 		}
 	}
