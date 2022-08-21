@@ -37,18 +37,5 @@
 	  "punch": "击退: %s",
 	  "speed": "出弓速度: %s米每秒"
 	}
-  },
-  "upgrade.l2archery": {
-	"anti_gravity": "无重力",
-	"explosion": "爆炸",
-	"frozen": "寒流",
-	"glow": "荧光",
-	"soul_fire": "狱火",
-	"void": "虚空",
-	"damage": "力量",
-	"magnify_x2": "放大 x2",
-	"magnify_x4": "放大 x4",
-	"magnify_x8": "放大 x8",
-	"punch": "击退"
   }
 }

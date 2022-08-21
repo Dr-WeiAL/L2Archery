@@ -11,6 +11,7 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.HangingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Explosion;
@@ -44,6 +45,8 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 
 	private boolean onExplosionHurt(GenericArrowEntity arrow, Entity target) {
 		if (target instanceof LivingEntity le) {
+			if (arrow.getOwner() instanceof Player pl)
+				le.setLastHurtByPlayer(pl);
 			arrow.doPostHurtEffects(le);
 			return hurt;
 		}

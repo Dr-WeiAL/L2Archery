@@ -6,6 +6,7 @@ import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.effect.MobEffects;
 
 import java.util.Map;
 
@@ -42,6 +43,9 @@ public class ConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.COPPER_ARROW).damage(1).end()
 				.putArrow(ArcheryItems.IRON_ARROW).damage(1).punch(1).end()
 				.putArrow(ArcheryItems.OBSIDIAN_ARROW).damage(2).end()
+				.putArrow(ArcheryItems.GOLD_ARROW).damage(3).punch(3).end()
+				.putArrow(ArcheryItems.QUARTZ_ARROW).damage(3).end()
+				.putArrow(ArcheryItems.DIAMOND_ARROW).damage(4).end()
 				.putArrow(ArcheryItems.NO_FALL_ARROW).end()
 				.putArrow(ArcheryItems.ENDER_ARROW).end()
 				.putArrow(ArcheryItems.TNT_1_ARROW).end()
@@ -50,8 +54,11 @@ public class ConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.FIRE_1_ARROW).putEffect(ArcheryRegister.FLAME.get(), 100, 0).end()
 				.putArrow(ArcheryItems.FIRE_2_ARROW).putEffect(ArcheryRegister.FLAME.get(), 200, 1).end()
 				.putArrow(ArcheryItems.ICE_ARROW).putEffect(ArcheryRegister.ICE.get(), 600, 0).end()
+				.putArrow(ArcheryItems.BLACKSTONE_ARROW).putEffect(ArcheryRegister.STONE_CAGE.get(), 100, 0).end()
 				.putArrow(ArcheryItems.ACID_ARROW).end()
 				.putArrow(ArcheryItems.DISPELL_ARROW).end()
+				.putArrow(ArcheryItems.WITHER_ARROW).putEffect(MobEffects.WITHER, 200, 0).end()
+				.putArrow(ArcheryItems.STORM_ARROW).end()
 		);
 	}
 

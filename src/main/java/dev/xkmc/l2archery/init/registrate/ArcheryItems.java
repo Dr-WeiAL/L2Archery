@@ -68,14 +68,15 @@ public class ArcheryItems {
 			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW, FLAME_BOW, FROZE_BOW, STORM_BOW, SLOW_BOW, WINTER_BOW, TURTLE_BOW,
 			EARTH_BOW, GAIA_BOW, VOID_BOW, SUN_BOW;
 
-	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, OBSIDIAN_ARROW,
+	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, GOLD_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW,
-			ICE_ARROW, DISPELL_ARROW, ACID_ARROW;
+			ICE_ARROW, DISPELL_ARROW, ACID_ARROW, BLACKSTONE_ARROW, DIAMOND_ARROW, QUARTZ_ARROW, WITHER_ARROW, STORM_ARROW;
 
 	public static final ItemEntry<UpgradeItem> UPGRADE;
 
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
-			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP;
+			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
+			LEVITATE_UP;
 
 	static {
 		{
@@ -127,7 +128,11 @@ public class ArcheryItems {
 			STARTER_ARROW = genArrow("starter_arrow", true);
 			COPPER_ARROW = genArrow("copper_arrow", false);
 			IRON_ARROW = genArrow("iron_arrow", false);
+			GOLD_ARROW = genArrow("gold_arrow", false);
 			OBSIDIAN_ARROW = genArrow("obsidian_arrow", false);
+			BLACKSTONE_ARROW = genArrow("blackstone_arrow", false);
+			QUARTZ_ARROW = genArrow("quartz_arrow", false);
+			DIAMOND_ARROW = genArrow("diamond_arrow", false);
 			NO_FALL_ARROW = genArrow("no_fall_arrow", false, e -> e.add(new NoFallArrowFeature(40))).lang("Anti-Gravity Arrow").register();
 			ENDER_ARROW = genArrow("ender_arrow", false, e -> e.add(new EnderArrowFeature())).register();
 			TNT_1_ARROW = genArrow("tnt_arrow_lv1", false, e -> e.add(new ExplodeArrowFeature(2, true, false))).lang("Explosion Arrow").register();
@@ -141,6 +146,8 @@ public class ArcheryItems {
 					(a, s) -> s.bypassMagic(),
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
+			WITHER_ARROW = genArrow("wither_arrow", false);
+			STORM_ARROW = genArrow("storm_arrow", false, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
 		}
 		{
 			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang().register();
@@ -159,6 +166,16 @@ public class ArcheryItems {
 					List.of(new MobEffectInstance(ArcheryRegister.ICE.get(), 600, 0))));
 			EXPLOSION_UP = genUpgrade("explosion", () -> new ExplodeArrowFeature(3, true, false));
 			ENDER_UP = genUpgrade("void", () -> new EnderShootFeature(128));
+			BLACKSTONE_UP = genUpgrade("blackstone", () -> new PotionArrowFeature(
+					List.of(new MobEffectInstance(ArcheryRegister.STONE_CAGE.get(), 100, 0))));
+			HARM_UP = genUpgrade("harm", () -> new PotionArrowFeature(
+					List.of(new MobEffectInstance(MobEffects.HARM, 1, 1))));
+			HEAL_UP = genUpgrade("heal", () -> new PotionArrowFeature(
+					List.of(new MobEffectInstance(MobEffects.HEAL, 1, 1))));
+			SHINE_UP = genUpgrade("glowing", () -> new PotionArrowFeature(
+					List.of(new MobEffectInstance(MobEffects.GLOWING, 600, 0))));
+			LEVITATE_UP = genUpgrade("levitate", () -> new PotionArrowFeature(
+					List.of(new MobEffectInstance(MobEffects.LEVITATION, 300, 0))));
 		}
 	}
 

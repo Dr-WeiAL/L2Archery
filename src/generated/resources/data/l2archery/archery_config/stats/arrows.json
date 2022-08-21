@@ -1,6 +1,12 @@
 {
   "_class": "dev.xkmc.l2archery.content.config.BowArrowStatConfig",
   "arrow_effects": {
+    "l2archery:blackstone_arrow": {
+      "l2archery:stone_cage": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
     "l2archery:fire_arrow_lv1": {
       "l2archery:flame": {
         "amplifier": 0,
@@ -18,11 +24,24 @@
         "amplifier": 0,
         "duration": 600
       }
+    },
+    "l2archery:wither_arrow": {
+      "minecraft:wither": {
+        "amplifier": 0,
+        "duration": 200
+      }
     }
   },
   "arrow_stats": {
     "l2archery:copper_arrow": {
       "l2archery:damage": 1.0
+    },
+    "l2archery:diamond_arrow": {
+      "l2archery:damage": 4.0
+    },
+    "l2archery:gold_arrow": {
+      "l2archery:damage": 3.0,
+      "l2archery:punch": 3.0
     },
     "l2archery:iron_arrow": {
       "l2archery:damage": 1.0,
@@ -30,6 +49,9 @@
     },
     "l2archery:obsidian_arrow": {
       "l2archery:damage": 2.0
+    },
+    "l2archery:quartz_arrow": {
+      "l2archery:damage": 3.0
     }
   },
   "bow_effects": {},

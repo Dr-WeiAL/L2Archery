@@ -1,7 +1,8 @@
-// 1.19.2	2022-08-21T00:03:25.73382	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-3e1734794cdc3a4ad8d278c54ab29db1208b13cd assets/l2archery/lang/en_ud.json
-145861e59e91c564cd95c3aea62c2495eba48bae assets/l2archery/lang/en_us.json
+// 1.19.2	2022-08-21T13:00:26.387675	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+aa984de5d2babdcc638f4674a0d705891a3a5f71 assets/l2archery/lang/en_ud.json
+acfbac683793418bc2e6c16d71cb15ce6fdc2920 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
+3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
 8175b2d884f037a1a7885ef3284b1cc2e7633b30 assets/l2archery/models/item/bow/eagle_bow/bow_pulling_1.json
 dd3904ac92456bd7e7bbd22cb7045544fd938d88 assets/l2archery/models/item/bow/eagle_bow/bow_pulling_2.json
@@ -57,6 +58,7 @@ d714d94d45105cea5a728b0c07228ba5a398f499 assets/l2archery/models/item/bow/void_b
 b9c1d21dfd16b437602cb402d53ed0f0836b9bf8 assets/l2archery/models/item/bow/winter_bow/bow_pulling_1.json
 639500e705f4b8aef31e42ca997a4ede7faaaaf0 assets/l2archery/models/item/bow/winter_bow/bow_pulling_2.json
 9e7673c8ef7f6156def5aaa6a06f156f8a0036f9 assets/l2archery/models/item/copper_arrow.json
+9a1985baf441729959c104370c8e23a065a3beb6 assets/l2archery/models/item/diamond_arrow.json
 800518596ed78b4c257ec7b51fff735becf459a7 assets/l2archery/models/item/dispell_arrow.json
 a0f72a9e88cd1f4ae994257b59484e73ee522a03 assets/l2archery/models/item/eagle_bow.json
 4baf251dca59b58768d866a399a02bede33e792e assets/l2archery/models/item/earth_bow.json
@@ -70,14 +72,17 @@ a0f72a9e88cd1f4ae994257b59484e73ee522a03 assets/l2archery/models/item/eagle_bow.
 a3196352c2f8e565486aa8c9cf2aa8d33663ad80 assets/l2archery/models/item/frozen_arrow.json
 fde964055bed2545ab7793f20b951aa9fc49114d assets/l2archery/models/item/gaia_bow.json
 ea320bbc9f766725900ea9843251df67b37b13fc assets/l2archery/models/item/glow_aim_bow.json
+517866f297baa5f4890c4578cd1cbcb69608d92f assets/l2archery/models/item/gold_arrow.json
 42068effc1b9c3f1fa0b58925fb7de314d9dd5d0 assets/l2archery/models/item/iron_arrow.json
 67121a17bbc796da4aefefde025c7820abae19bc assets/l2archery/models/item/iron_bow.json
 784da142f8a5b1104b3eb8b64f788c01cbd9ff12 assets/l2archery/models/item/magnify_bow.json
 b75010a07f33f8eb409225e26d672ea903e02992 assets/l2archery/models/item/no_fall_arrow.json
 4fddbb80a6676c68d7f418c7e0ce257e376e5da5 assets/l2archery/models/item/obsidian_arrow.json
+cccbcfabe67da352c4f8d592db6c575d6097c420 assets/l2archery/models/item/quartz_arrow.json
 a3d836f2d92f9df9cd6662442cc2f4cf67d088de assets/l2archery/models/item/slow_bow.json
 f432254df44084ef6833dba562b143e70b33a890 assets/l2archery/models/item/starter_arrow.json
 4da336cef099849162a1e79402c8aecdc5d5b7fc assets/l2archery/models/item/starter_bow.json
+eeab764de79a6c14531d90cb12775317d60660dd assets/l2archery/models/item/storm_arrow.json
 025c3665acd046f73e6afb5157978a89c8467c02 assets/l2archery/models/item/storm_bow.json
 c5446e16cfa6b2eb0e3947fbfe1c0bdd45020089 assets/l2archery/models/item/sun_bow.json
 38c47c75a62b4a9f18098ec3f4f73554160a416d assets/l2archery/models/item/tnt_arrow_lv1.json
@@ -88,6 +93,7 @@ e574f20a9e541c11544be249c530a13649f7dc89 assets/l2archery/models/item/upgrade.js
 dafbcee21344dd3396e25a1627b19e87a487bcfc assets/l2archery/models/item/void_bow.json
 ec95eeb38dc2ba1c4549f52e64381ce95776dac6 assets/l2archery/models/item/wind_bow.json
 f744c6715565502549593e83804b9969406d83f9 assets/l2archery/models/item/winter_bow.json
+1bff1bd4aac473f8fab60ff9fe9371f947c7246c assets/l2archery/models/item/wither_arrow.json
 1994d016b84980770ffe623b02aefa2d39cd7ba5 data/l2archery/advancements/recipes/l2archery.archery/copper_arrow.json
 6c11f7dca77d2819c72b13d471d795acd74334cd data/l2archery/advancements/recipes/l2archery.archery/ender_aim_bow.json
 5d0a368048dbc4ca6a21c1250c7af3bae38bdf88 data/l2archery/advancements/recipes/l2archery.archery/ender_arrow.json
