@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:punch",
+      "min_level": 2
+    },
+    "C": {
+      "item": "l2archery:gold_arrow"
+    }
+  },
+  "pattern": [
+    "C C",
+    " A ",
+    "CBC"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:punch"
+    }
+  }
+}

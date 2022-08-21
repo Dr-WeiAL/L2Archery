@@ -38,10 +38,10 @@ public class RecipeGen {
 			full(pvd, Items.CREEPER_HEAD, ArcheryItems.TNT_2_ARROW.get(), Items.END_CRYSTAL, ArcheryItems.TNT_3_ARROW.get(), 4);
 			full(pvd, Items.OBSIDIAN, Items.END_ROD, Items.ENDER_EYE, ArcheryItems.ENDER_ARROW.get(), 4);
 
-			// TODO arrow: 13remaining
-			//  acid
-			//  dispell
-			//  storm
+			// TODO arrow: 3 remaining
+			// acid
+			// dispell
+			// storm
 		}
 
 		// bow
@@ -192,14 +192,53 @@ public class RecipeGen {
 					.define('4', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
 					.save(pvd);
 
-			// TODO upgrade: 10 remaining
-			// damage
-			// magnify 2 4 8
-			// punch
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.DAMAGE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("C C").pattern("CAC").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', ArcheryItems.DIAMOND_ARROW.get())
+					.define('C', new EnchantmentIngredient(Enchantments.POWER_ARROWS, 5))
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.PUNCH_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("C C").pattern(" A ").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', new EnchantmentIngredient(Enchantments.PUNCH_ARROWS, 2))
+					.define('C', ArcheryItems.GOLD_ARROW.get())
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.MAGNIFY_UP_1.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern(" B ").pattern("CAC").pattern(" C ")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.SPYGLASS)
+					.define('C', Items.COPPER_INGOT)
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.MAGNIFY_UP_2.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern(" B ").pattern("CAC").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.SPYGLASS)
+					.define('C', Items.COPPER_INGOT)
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.MAGNIFY_UP_3.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CBC").pattern("BAB").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.SPYGLASS)
+					.define('C', Items.COPPER_INGOT)
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.SHINE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CBC").pattern("DAD").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('C', Items.SPECTRAL_ARROW)
+					.define('D', Items.GLOWSTONE_DUST)
+					.save(pvd);
+
+			// TODO upgrade: 4 remaining
 			// blackstone
 			// harm
 			// heal
-			// glowing
 			// levitate
 		}
 	}
