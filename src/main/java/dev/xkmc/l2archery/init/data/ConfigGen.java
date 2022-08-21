@@ -34,6 +34,7 @@ public class ConfigGen extends ConfigDataProvider {
 				.putBow(ArcheryItems.TURTLE_BOW).damage(6).bothTimes(40).speed(3).end()
 				.putBow(ArcheryItems.EARTH_BOW).damage(10).bothTimes(60).speed(3).end()
 				.putBow(ArcheryItems.GAIA_BOW).damage(16).bothTimes(80).speed(3).end()
+				.putBow(ArcheryItems.SUN_BOW).putEffect(ArcheryRegister.FLAME.get(), 200, 1).end()
 		);
 
 		map.put("stats/arrows", new BowArrowStatConfig()

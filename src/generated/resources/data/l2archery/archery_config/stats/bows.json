@@ -21,6 +21,12 @@
         "duration": 100
       }
     },
+    "l2archery:sun_bow": {
+      "l2archery:flame": {
+        "amplifier": 1,
+        "duration": 200
+      }
+    },
     "l2archery:winter_bow": {
       "l2archery:frozen": {
         "amplifier": 0,

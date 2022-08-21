@@ -1,6 +1,6 @@
-// 1.19.2	2022-08-20T23:42:21.44828	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-0ab4da112de1060de38198daebdd702abe580358 assets/l2archery/lang/en_ud.json
-b66fbf56ff3b1ea78b45a0ccc5478d20084f7e21 assets/l2archery/lang/en_us.json
+// 1.19.2	2022-08-21T00:03:25.73382	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+3e1734794cdc3a4ad8d278c54ab29db1208b13cd assets/l2archery/lang/en_ud.json
+145861e59e91c564cd95c3aea62c2495eba48bae assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
 8175b2d884f037a1a7885ef3284b1cc2e7633b30 assets/l2archery/models/item/bow/eagle_bow/bow_pulling_1.json
@@ -41,9 +41,15 @@ c1c1ae226dbfd6b98d62be63c5b2cebe5f401fdc assets/l2archery/models/item/bow/starte
 2775ee27d17b80b12da495ac0016124e4c2e555a assets/l2archery/models/item/bow/storm_bow/bow_pulling_0.json
 e211dd3cd3f2e4639a2df1055f32852719c627b5 assets/l2archery/models/item/bow/storm_bow/bow_pulling_1.json
 fe30cd2f21255494ae06efea53eb32c7ac8b06af assets/l2archery/models/item/bow/storm_bow/bow_pulling_2.json
+44ba84f66995edb6c2335b9a76e480fc31547064 assets/l2archery/models/item/bow/sun_bow/bow_pulling_0.json
+489b41e7f20827edf7784085d779111e6bd81724 assets/l2archery/models/item/bow/sun_bow/bow_pulling_1.json
+e7070175735443312c6ac670c66112a52f533998 assets/l2archery/models/item/bow/sun_bow/bow_pulling_2.json
 01ad3d009cce15a6097ac82d7aa2c59f9acbe87c assets/l2archery/models/item/bow/turtle_bow/bow_pulling_0.json
 0d2400757e860f474dc9fd7372e1846799c7d0b7 assets/l2archery/models/item/bow/turtle_bow/bow_pulling_1.json
 af90b9b5818deb5e0833eabbf02569c008de639e assets/l2archery/models/item/bow/turtle_bow/bow_pulling_2.json
+07ed413114836aa03ab3a30bcbacd6087fee71ba assets/l2archery/models/item/bow/void_bow/bow_pulling_0.json
+c0723ca065051cfe557d2c2e9c72f9c161ea2978 assets/l2archery/models/item/bow/void_bow/bow_pulling_1.json
+d714d94d45105cea5a728b0c07228ba5a398f499 assets/l2archery/models/item/bow/void_bow/bow_pulling_2.json
 0539b3e34085bf5918f5ed6584a23c615ec99be9 assets/l2archery/models/item/bow/wind_bow/bow_pulling_0.json
 19314e1cbcb6e7499ea00c31af40d1901b57b47f assets/l2archery/models/item/bow/wind_bow/bow_pulling_1.json
 11e2f882408011a7178eb25db8f7785c3ab08fac assets/l2archery/models/item/bow/wind_bow/bow_pulling_2.json
@@ -73,11 +79,13 @@ a3d836f2d92f9df9cd6662442cc2f4cf67d088de assets/l2archery/models/item/slow_bow.j
 f432254df44084ef6833dba562b143e70b33a890 assets/l2archery/models/item/starter_arrow.json
 4da336cef099849162a1e79402c8aecdc5d5b7fc assets/l2archery/models/item/starter_bow.json
 025c3665acd046f73e6afb5157978a89c8467c02 assets/l2archery/models/item/storm_bow.json
+c5446e16cfa6b2eb0e3947fbfe1c0bdd45020089 assets/l2archery/models/item/sun_bow.json
 38c47c75a62b4a9f18098ec3f4f73554160a416d assets/l2archery/models/item/tnt_arrow_lv1.json
 9542f4ae2289c80b5ae335f69bed34f1bef88311 assets/l2archery/models/item/tnt_arrow_lv2.json
 d0b71942a3a352ff7533d856d16e7ea195298894 assets/l2archery/models/item/tnt_arrow_lv3.json
 b96bd04ebae913f78adcb0e79f9935888662a21c assets/l2archery/models/item/turtle_bow.json
 e574f20a9e541c11544be249c530a13649f7dc89 assets/l2archery/models/item/upgrade.json
+dafbcee21344dd3396e25a1627b19e87a487bcfc assets/l2archery/models/item/void_bow.json
 ec95eeb38dc2ba1c4549f52e64381ce95776dac6 assets/l2archery/models/item/wind_bow.json
 f744c6715565502549593e83804b9969406d83f9 assets/l2archery/models/item/winter_bow.json
 1994d016b84980770ffe623b02aefa2d39cd7ba5 data/l2archery/advancements/recipes/l2archery.archery/copper_arrow.json

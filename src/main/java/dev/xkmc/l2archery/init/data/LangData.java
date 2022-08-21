@@ -32,6 +32,7 @@ public enum LangData {
 	FEATURE_EXPLOSION_NONE("feature.explosion.none", "Create an explosion of radius %s on hit. Will not destroy block or hurt mobs.", 1, null),
 	FEATURE_PIERCE_ARMOR("feature.pierce_armor", "Arrow damage will pierce armor", 0, null),
 	FEATURE_PIERCE_MAGIC("feature.pierce_magic", "Arrow damage will bypass magic protection", 0, null),
+	FEATURE_PIERCE_INVUL("feature.pierce_invul", "Arrow damage will cause void damage", 0, null),
 	FEATURE_PULL_EFFECT("feature.pull_effect", "Apply effects when pulling bow:", 0, null),
 	;
 

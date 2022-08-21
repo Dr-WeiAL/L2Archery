@@ -66,7 +66,7 @@ public class ArcheryItems {
 
 	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
 			EAGLE_BOW, WIND_BOW, EXPLOSION_BOW, FLAME_BOW, FROZE_BOW, STORM_BOW, SLOW_BOW, WINTER_BOW, TURTLE_BOW,
-			EARTH_BOW, GAIA_BOW;
+			EARTH_BOW, GAIA_BOW, VOID_BOW, SUN_BOW;
 
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW,
@@ -115,6 +115,13 @@ public class ArcheryItems {
 					() -> new MobEffectInstance(ArcheryRegister.STONE_CAGE.get(), 80, 0),
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 4)
 			))));
+			VOID_BOW = genBow("void_bow", 32, e -> e.add(new EnderShootFeature(128))
+					.add(new DamageArrowFeature(
+							(a, s) -> s.bypassArmor().bypassMagic().bypassInvul(),
+							LangData.FEATURE_PIERCE_INVUL::get
+					)));
+			SUN_BOW = genBow("sun_bow", 600, e -> e.add(new FireArrowFeature(200))
+					.add(new ExplodeArrowFeature(4, true, false)));
 		}
 		{
 			STARTER_ARROW = genArrow("starter_arrow", true);
