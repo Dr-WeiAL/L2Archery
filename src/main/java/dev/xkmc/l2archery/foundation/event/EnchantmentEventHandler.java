@@ -1,8 +1,6 @@
 package dev.xkmc.l2archery.foundation.event;
 
 import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
-import dev.xkmc.l2archery.init.registrate.ArcheryItems;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
