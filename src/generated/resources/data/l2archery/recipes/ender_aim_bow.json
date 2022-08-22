@@ -12,13 +12,13 @@
       "min_level": 1
     },
     "A": {
-      "item": "minecraft:dragon_head"
+      "item": "l2archery:void_eye"
     },
     "B": {
       "item": "l2archery:glow_aim_bow"
     },
     "O": {
-      "item": "minecraft:obsidian"
+      "item": "minecraft:dragon_head"
     },
     "R": {
       "item": "minecraft:end_rod"

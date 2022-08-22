@@ -11,16 +11,6 @@ public class EnchantmentEventHandler {
 
 	@SubscribeEvent
 	public static void onLivingAttack(LivingAttackEvent event) {
-		if (event.getEntity() instanceof Player player && (player.getAbilities().instabuild || event.getSource().isBypassInvul())) {
-			if (player.getInventory().hasAnyMatching(e -> e.is(ArcheryItems.VOID_ARROW.get()))) {
-				event.setCanceled(true);
-				return;
-			}
-			if (player.getProjectile(ArcheryItems.STARTER_BOW.asStack()).is(ArcheryItems.VOID_ARROW.get())) {
-				event.setCanceled(true);
-				return;
-			}
-		}
 		if (event.getSource().isBypassMagic() || event.getSource().isBypassInvul())
 			return;
 		if (EnchantmentHelper.getEnchantmentLevel(ArcheryEnchantments.ENCH_MAGIC.get(), event.getEntity()) > 0) {

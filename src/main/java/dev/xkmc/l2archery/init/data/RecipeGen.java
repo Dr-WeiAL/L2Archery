@@ -85,18 +85,18 @@ public class RecipeGen {
 
 			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.ENDER_AIM_BOW.get(), 1)::unlockedBy, ArcheryItems.GLOW_AIM_BOW.get())
 					.pattern("2OR").pattern("ABR").pattern("1OR")
-					.define('O', Items.OBSIDIAN)
+					.define('O', Items.DRAGON_HEAD)
 					.define('R', Items.END_ROD)
 					.define('1', new EnchantmentIngredient(Enchantments.BINDING_CURSE, 1))
 					.define('2', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
-					.define('A', Items.DRAGON_HEAD)
+					.define('A', ArcheryItems.VOID_EYE.get())
 					.define('B', ArcheryItems.GLOW_AIM_BOW.get())
 					.save(pvd);
 
 			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.VOID_BOW.get(), 1)::unlockedBy, ArcheryItems.ENDER_AIM_BOW.get())
 					.pattern("2OR").pattern("ABR").pattern("1OR")
 					.define('O', Items.DRAGON_HEAD)
-					.define('R', Items.END_ROD)
+					.define('R', ArcheryItems.SPACE_SHARD.get())
 					.define('1', new EnchantmentIngredient(Enchantments.MENDING, 1))
 					.define('2', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
 					.define('A', ArcheryItems.VOID_EYE.get())
