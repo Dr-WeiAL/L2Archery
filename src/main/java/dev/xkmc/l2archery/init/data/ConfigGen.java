@@ -47,6 +47,7 @@ public class ConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.GOLD_ARROW).damage(2).punch(3).end()
 				.putArrow(ArcheryItems.QUARTZ_ARROW).damage(3).end()
 				.putArrow(ArcheryItems.DIAMOND_ARROW).damage(4).end()
+				.putArrow(ArcheryItems.DESTROYER_ARROW).damage(8).end()
 				.putArrow(ArcheryItems.NO_FALL_ARROW).end()
 				.putArrow(ArcheryItems.ENDER_ARROW).end()
 				.putArrow(ArcheryItems.TNT_1_ARROW).end()

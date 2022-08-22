@@ -7,6 +7,7 @@
 	"quartz_arrow": "石英箭",
 	"gold_arrow": "黄金箭",
 	"diamond_arrow": "钻石箭",
+	"destroyer_arrow": "破灭箭",
 	"wither_arrow": "凋零箭",
 	"storm_arrow": "暴风箭",
 	"blackstone_arrow": "黑石箭",
@@ -39,6 +40,19 @@
 	"gaia_bow": "破天巨岩",
 	"sun_bow": "神威烈焰",
 	"void_bow": "虚空凝视",
-	"upgrade": "魔晶"
+	"upgrade": "魔晶",
+	"wind_capture_bottle": "捕风瓶",
+	"void_eye": "虚空之眼",
+	"captured_wind": "千风精华",
+	"captured_shulker_bullet": "瓶中潜影弹",
+	"sun_membrane": "逐日之翼",
+	"explosion_shard": "破灭残片",
+	"hard_ice": "告死寒霜",
+	"soul_flame": "灵魂火种",
+	"storm_core": "烈空结晶",
+	"blackstone_core": "黑石核心",
+	"resonant_feather": "共振之羽",
+	"space_shard": "空间碎片",
+	"force_field": "守护力场"
   }
 }

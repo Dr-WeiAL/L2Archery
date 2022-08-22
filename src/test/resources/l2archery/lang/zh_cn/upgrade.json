@@ -17,5 +17,13 @@
 	"glowing": "光灵",
 	"levitate": "悬浮",
 	"super_damage": "力量 II"
+  },
+  "effect.l2archery": {
+	"armor_reduce": "破甲",
+	"flame": "魂火",
+	"frozen": "寒流",
+	"stone_cage": "禁锢",
+	"quick_pull": "快速拉弓",
+	"run_bow": "移动射击"
   }
 }

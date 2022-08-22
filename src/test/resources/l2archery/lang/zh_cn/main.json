@@ -3,14 +3,6 @@
 	"archery": "弓艺"
   },
   "entity.l2archery.generic_arrow": "箭",
-  "effect.l2archery": {
-	"armor_reduce": "破甲",
-	"flame": "魂火",
-	"frozen": "寒流",
-	"stone_cage": "禁锢",
-	"quick_pull": "快速拉弓",
-	"run_bow": "移动射击"
-  },
   "l2archery": {
 	"feature": {
 	  "aim_flow": "让%s米内被瞄准的目标高亮显示（仅自己可见）",
@@ -37,5 +29,9 @@
 	  "punch": "击退: %s",
 	  "speed": "出弓速度: %s米每秒"
 	}
+  },
+  "death.attack": {
+	"soul_flame": "%s的灵魂被燃尽了",
+	"soul_flame.player": "%s的灵魂被%s燃尽了"
   }
 }

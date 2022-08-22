@@ -1,4 +1,6 @@
 {
+  "death.attack.soul_flame": "%s has its soul burnt out",
+  "death.attack.soul_flame.player": "%s has its soul burnt out by %s",
   "effect.l2archery.armor_reduce": "Armor Reduce",
   "effect.l2archery.flame": "Flame",
   "effect.l2archery.frozen": "Frozen",
@@ -9,8 +11,10 @@
   "item.l2archery.acid_arrow": "Acid Arrow",
   "item.l2archery.blackstone_arrow": "Blackstone Arrow",
   "item.l2archery.blackstone_core": "Blackstone Core",
+  "item.l2archery.captured_shulker_bullet": "Captured Shulker Bullet",
   "item.l2archery.captured_wind": "Captured Wind",
   "item.l2archery.copper_arrow": "Copper Arrow",
+  "item.l2archery.destroyer_arrow": "Destroyer Arrow",
   "item.l2archery.diamond_arrow": "Diamond Arrow",
   "item.l2archery.dispell_arrow": "Dispell Arrow",
   "item.l2archery.eagle_bow": "Eagle Bow",

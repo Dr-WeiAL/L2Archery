@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:lava_bucket"
+    },
+    "C": {
+      "item": "minecraft:magma_cream"
+    },
+    "S": {
+      "item": "l2archery:starter_arrow"
+    }
+  },
+  "pattern": [
+    "CSC",
+    "SAS",
+    "CSC"
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:acid_arrow"
+  }
+}

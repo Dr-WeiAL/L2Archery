@@ -5,13 +5,13 @@
       "item": "l2archery:upgrade"
     },
     "B": {
-      "item": "l2archery:captured_wind"
+      "item": "minecraft:dragon_breath"
     },
     "C": {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:fermented_spider_eye"
     },
     "E": {
-      "item": "l2archery:captured_shulker_bullet"
+      "item": "minecraft:nether_wart"
     }
   },
   "pattern": [
@@ -22,7 +22,7 @@
   "result": {
     "item": "l2archery:upgrade",
     "nbt": {
-      "upgrade": "l2archery:anti_gravity"
+      "upgrade": "l2archery:harm"
     }
   }
 }

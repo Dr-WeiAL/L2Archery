@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 public class WindBottle extends Item {
 
 	public WindBottle(Properties properties) {
-		super(properties.stacksTo(1));
+		super(properties);
 	}
 
 	@Override

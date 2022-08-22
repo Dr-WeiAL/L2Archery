@@ -1,4 +1,6 @@
 {
+  "death.attack.soul_flame": "ʇno ʇuɹnq ןnos sʇı sɐɥ %s",
+  "death.attack.soul_flame.player": "%s ʎq ʇno ʇuɹnq ןnos sʇı sɐɥ %s",
   "effect.l2archery.armor_reduce": "ǝɔnpǝᴚ ɹoɯɹⱯ",
   "effect.l2archery.flame": "ǝɯɐןℲ",
   "effect.l2archery.frozen": "uǝzoɹℲ",
@@ -9,8 +11,10 @@
   "item.l2archery.acid_arrow": "ʍoɹɹⱯ pıɔⱯ",
   "item.l2archery.blackstone_arrow": "ʍoɹɹⱯ ǝuoʇsʞɔɐןᗺ",
   "item.l2archery.blackstone_core": "ǝɹoƆ ǝuoʇsʞɔɐןᗺ",
+  "item.l2archery.captured_shulker_bullet": "ʇǝןןnᗺ ɹǝʞןnɥS pǝɹnʇdɐƆ",
   "item.l2archery.captured_wind": "puıM pǝɹnʇdɐƆ",
   "item.l2archery.copper_arrow": "ʍoɹɹⱯ ɹǝddoƆ",
+  "item.l2archery.destroyer_arrow": "ʍoɹɹⱯ ɹǝʎoɹʇsǝᗡ",
   "item.l2archery.diamond_arrow": "ʍoɹɹⱯ puoɯɐıᗡ",
   "item.l2archery.dispell_arrow": "ʍoɹɹⱯ ןןǝdsıᗡ",
   "item.l2archery.eagle_bow": "ʍoᗺ ǝןbɐƎ",

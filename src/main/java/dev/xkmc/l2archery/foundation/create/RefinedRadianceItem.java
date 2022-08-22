@@ -11,11 +11,6 @@ public class RefinedRadianceItem extends NoGravMagicalDohickyItem {
 	}
 
 	@Override
-	public boolean isFoil(ItemStack stack) {
-		return true;
-	}
-
-	@Override
 	protected void onCreated(ItemEntity entity, CompoundTag persistentData) {
 		super.onCreated(entity, persistentData);
 		entity.setDeltaMovement(entity.getDeltaMovement()

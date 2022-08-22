@@ -81,6 +81,8 @@ public enum LangData {
 			pvd.add(lang.key, lang.def);
 		}
 		pvd.add("itemGroup." + L2Archery.MODID + ".archery", "L2 Archery");
+		pvd.add("death.attack.soul_flame", "%s has its soul burnt out");
+		pvd.add("death.attack.soul_flame.player", "%s has its soul burnt out by %s");
 
 	}
 

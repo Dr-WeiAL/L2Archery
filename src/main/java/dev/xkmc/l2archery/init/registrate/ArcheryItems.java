@@ -15,6 +15,7 @@ import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
+import dev.xkmc.l2archery.foundation.create.RefinedRadianceItem;
 import dev.xkmc.l2archery.foundation.create.ShadowSteelItem;
 import dev.xkmc.l2archery.foundation.item.WindBottle;
 import dev.xkmc.l2archery.init.L2Archery;
@@ -71,7 +72,7 @@ public class ArcheryItems {
 			EARTH_BOW, GAIA_BOW, VOID_BOW, SUN_BOW;
 
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, GOLD_ARROW, OBSIDIAN_ARROW,
-			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW,
+			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW, DESTROYER_ARROW,
 			ICE_ARROW, DISPELL_ARROW, ACID_ARROW, BLACKSTONE_ARROW, DIAMOND_ARROW, QUARTZ_ARROW, WITHER_ARROW, STORM_ARROW;
 
 	public static final ItemEntry<UpgradeItem> UPGRADE;
@@ -82,7 +83,8 @@ public class ArcheryItems {
 
 	public static final ItemEntry<WindBottle> WIND_BOTTLE;
 	public static final ItemEntry<ShadowSteelItem> VOID_EYE;
-	public static final ItemEntry<Item> CAPTURED_WIND, SUN_MEMBRANE, EXPLOSION_SHARD, HARD_ICE, SOUL_FLAME,
+	public static final ItemEntry<RefinedRadianceItem> SUN_MEMBRANE, SOUL_FLAME;
+	public static final ItemEntry<Item> CAPTURED_WIND, CAPTURED_BULLET, EXPLOSION_SHARD, HARD_ICE,
 			STORM_CORE, BLACKSTONE_CORE, RESONANT_FEATHER, SPACE_SHARD, FORCE_FIELD;
 
 	static {
@@ -141,6 +143,7 @@ public class ArcheryItems {
 			BLACKSTONE_ARROW = genArrow("blackstone_arrow", false);
 			QUARTZ_ARROW = genArrow("quartz_arrow", false);
 			DIAMOND_ARROW = genArrow("diamond_arrow", false);
+			DESTROYER_ARROW = genArrow("destroyer_arrow", false);
 			NO_FALL_ARROW = genArrow("no_fall_arrow", false, e -> e.add(new NoFallArrowFeature(40))).lang("Anti-Gravity Arrow").register();
 			ENDER_ARROW = genArrow("ender_arrow", false, e -> e.add(new EnderArrowFeature())).register();
 			TNT_1_ARROW = genArrow("tnt_arrow_lv1", false, e -> e.add(new ExplodeArrowFeature(2, true, false))).lang("Explosion Arrow").register();
@@ -190,10 +193,11 @@ public class ArcheryItems {
 			WIND_BOTTLE = REGISTRATE.item("wind_capture_bottle", WindBottle::new).register();// tested
 			VOID_EYE = REGISTRATE.item("void_eye", ShadowSteelItem::new).register();//TODO kill aggroed enderman 16 blocks in void
 			CAPTURED_WIND = simpleItem("captured_wind");// player reach 200m/s
-			SUN_MEMBRANE = simpleItem("sun_membrane");//TODO kill phantom 200 blocks above maximum build height with arrow
+			CAPTURED_BULLET = simpleItem("captured_shulker_bullet");// TODO capture bullet
+			SUN_MEMBRANE = REGISTRATE.item("sun_membrane", RefinedRadianceItem::new).register();//TODO kill phantom 200 blocks above maximum build height with arrow
 			EXPLOSION_SHARD = simpleItem("explosion_shard");//TODO endure > 100 explosion damage
-			HARD_ICE = simpleItem("hard_ice");//TODO kill drowned with powder snow damage
-			SOUL_FLAME = simpleItem("soul_flame");//TODO kill ghast with soul flame
+			HARD_ICE = simpleItem("hard_ice");// kill drowned with powder snow damage
+			SOUL_FLAME = REGISTRATE.item("soul_flame", RefinedRadianceItem::new).register();//TODO kill fire immune mobs with soul flame
 			STORM_CORE = simpleItem("storm_core");//TODO kill phantom with explosion
 			BLACKSTONE_CORE = simpleItem("blackstone_core");//TODO kill guardian with stone cage effect
 			RESONANT_FEATHER = simpleItem("resonant_feather");//TODO let chicken survive sonic boom

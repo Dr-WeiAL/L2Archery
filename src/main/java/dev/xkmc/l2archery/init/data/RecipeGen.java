@@ -26,6 +26,7 @@ public class RecipeGen {
 			cross(pvd, Items.GOLD_INGOT, ArcheryItems.IRON_ARROW.get(), ArcheryItems.GOLD_ARROW.get(), 4);
 			cross(pvd, Items.OBSIDIAN, ArcheryItems.STARTER_ARROW.get(), ArcheryItems.OBSIDIAN_ARROW.get(), 4);
 			cross(pvd, Items.DIAMOND, ArcheryItems.OBSIDIAN_ARROW.get(), ArcheryItems.DIAMOND_ARROW.get(), 4);
+			cross(pvd, ArcheryItems.EXPLOSION_SHARD.get(), ArcheryItems.OBSIDIAN_ARROW.get(), ArcheryItems.DESTROYER_ARROW.get(), 4);
 			cross(pvd, ArcheryItems.OBSIDIAN_ARROW.get(), Items.QUARTZ, ArcheryItems.QUARTZ_ARROW.get(), 1);
 			cross(pvd, ArcheryItems.STARTER_ARROW.get(), Items.WITHER_ROSE, ArcheryItems.WITHER_ARROW.get(), 1);
 			cross(pvd, ArcheryItems.STARTER_ARROW.get(), Items.BLACKSTONE, ArcheryItems.BLACKSTONE_ARROW.get(), 1);
@@ -38,10 +39,8 @@ public class RecipeGen {
 			full(pvd, Items.CREEPER_HEAD, ArcheryItems.TNT_2_ARROW.get(), Items.END_CRYSTAL, ArcheryItems.TNT_3_ARROW.get(), 4);
 			full(pvd, Items.OBSIDIAN, Items.END_ROD, Items.ENDER_EYE, ArcheryItems.ENDER_ARROW.get(), 4);
 			full(pvd, Items.PHANTOM_MEMBRANE, ArcheryItems.STARTER_ARROW.get(), Items.GUNPOWDER, ArcheryItems.STORM_ARROW.get(), 4);
-
-			// TODO arrow: 2 remaining
-			// acid
-			// dispell
+			cross(pvd, ArcheryItems.RESONANT_FEATHER.get(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.DISPELL_ARROW.get(), 4);
+			full(pvd, Items.LAVA_BUCKET, ArcheryItems.STARTER_ARROW.get(), Items.MAGMA_CREAM, ArcheryItems.ACID_ARROW.get(), 4);
 		}
 
 		// bow
@@ -243,10 +242,11 @@ public class RecipeGen {
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.NO_FALL_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
-					.pattern("C C").pattern("CAC").pattern("CBC")
+					.pattern("CEC").pattern("CAC").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', Items.ELYTRA)
 					.define('C', Items.PHANTOM_MEMBRANE)
+					.define('E', ArcheryItems.CAPTURED_BULLET.get())
+					.define('B', ArcheryItems.CAPTURED_WIND.get())
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ENDER_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
@@ -318,11 +318,30 @@ public class RecipeGen {
 					.define('E', ArcheryItems.BLACKSTONE_CORE.get())
 					.save(pvd);
 
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.HARM_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("CAC").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', Items.FERMENTED_SPIDER_EYE)
+					.define('E', Items.NETHER_WART)
+					.save(pvd);
 
-			// TODO upgrade: 3 remaining
-			// harm
-			// heal
-			// levitate
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.HEAL_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("CAC").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', Items.GLISTERING_MELON_SLICE)
+					.define('E', Items.NETHER_WART)
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.LEVITATE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("CAC").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', ArcheryItems.CAPTURED_BULLET.get())
+					.define('E', Items.NETHER_WART)
+					.save(pvd);
+
 		}
 
 		unlock(pvd, new ShapelessRecipeBuilder(ArcheryItems.WIND_BOTTLE.get(), 1)::unlockedBy, Items.GLASS_BOTTLE)
