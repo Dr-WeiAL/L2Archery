@@ -1,6 +1,7 @@
 package dev.xkmc.l2archery.init;
 
 import dev.xkmc.l2archery.events.GenericEventHandler;
+import dev.xkmc.l2archery.foundation.event.EnchantmentEventHandler;
 import dev.xkmc.l2archery.foundation.event.MaterialDamageListener;
 import dev.xkmc.l2archery.foundation.event.MaterialEventHandler;
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
@@ -50,6 +51,7 @@ public class L2Archery {
 		ArcheryConfig.init();
 		MinecraftForge.EVENT_BUS.register(GenericEventHandler.class);
 		MinecraftForge.EVENT_BUS.register(MaterialEventHandler.class);
+		MinecraftForge.EVENT_BUS.register(EnchantmentEventHandler.class);
 		AttackEventHandler.LISTENERS.add(new MaterialDamageListener());
 
 	}
