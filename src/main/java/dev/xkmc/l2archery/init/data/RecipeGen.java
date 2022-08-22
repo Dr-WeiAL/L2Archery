@@ -1,6 +1,8 @@
 package dev.xkmc.l2archery.init.data;
 
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
+import dev.xkmc.l2archery.foundation.enchantment.EnchantmentRecipeBuilder;
+import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2library.base.ingredients.EnchantmentIngredient;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
@@ -373,6 +375,49 @@ public class RecipeGen {
 					.define('A', Items.BLACKSTONE)
 					.define('B', Items.GOLD_INGOT)
 					.define('C', ArcheryItems.BLACKSTONE_CORE.get())
+					.save(pvd);
+		}
+
+		// enchantments
+		{
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_PROJECTILE.get(), 1)::unlockedBy, ArcheryItems.FORCE_FIELD.get())
+					.pattern("1B1").pattern("BCB").pattern("2B2")
+					.define('1', new EnchantmentIngredient(Enchantments.PROJECTILE_PROTECTION, 4))
+					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
+					.define('B', ArcheryItems.FORCE_FIELD.get())
+					.define('C', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.save(pvd);
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_EXPLOSION.get(), 1)::unlockedBy, ArcheryItems.EXPLOSION_SHARD.get())
+					.pattern("1B1").pattern("BCB").pattern("2B2")
+					.define('1', new EnchantmentIngredient(Enchantments.BLAST_PROTECTION, 4))
+					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
+					.define('B', ArcheryItems.EXPLOSION_SHARD.get())
+					.define('C', Items.CRYING_OBSIDIAN)
+					.save(pvd);
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_FIRE.get(), 1)::unlockedBy, ArcheryItems.SUN_MEMBRANE.get())
+					.pattern("1B1").pattern("BCB").pattern("2B2")
+					.define('1', new EnchantmentIngredient(Enchantments.FIRE_PROTECTION, 4))
+					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
+					.define('B', ArcheryItems.SUN_MEMBRANE.get())
+					.define('C', Items.NETHERITE_INGOT)
+					.save(pvd);
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_ENVIRONMENT.get(), 1)::unlockedBy, ArcheryItems.VOID_EYE.get())
+					.pattern("1B1").pattern("BCB").pattern("2B2")
+					.define('1', Items.DRAGON_HEAD)
+					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
+					.define('B', ArcheryItems.VOID_EYE.get())
+					.define('C', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
+					.save(pvd);
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_MAGIC.get(), 1)::unlockedBy, ArcheryItems.RESONANT_FEATHER.get())
+					.pattern("1B1").pattern("BCB").pattern("2B2")
+					.define('1', ArcheryItems.VOID_EYE.get())
+					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
+					.define('B', ArcheryItems.RESONANT_FEATHER.get())
+					.define('C', ArcheryItems.SPACE_SHARD.get())
 					.save(pvd);
 		}
 	}

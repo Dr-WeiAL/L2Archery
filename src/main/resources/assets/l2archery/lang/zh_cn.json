@@ -165,10 +165,16 @@
   "upgrade.l2archery.glowing": "光灵",
   "upgrade.l2archery.levitate": "悬浮",
   "upgrade.l2archery.super_damage": "力量 II",
+  "upgrade.l2archery.railgun": "超电磁炮",
   "effect.l2archery.armor_reduce": "破甲",
   "effect.l2archery.flame": "魂火",
   "effect.l2archery.frozen": "寒流",
   "effect.l2archery.stone_cage": "禁锢",
   "effect.l2archery.quick_pull": "快速拉弓",
-  "effect.l2archery.run_bow": "移动射击"
+  "effect.l2archery.run_bow": "移动射击",
+  "enchantment.l2archery.environment_reject": "环境免疫",
+  "enchantment.l2archery.explosion_reject": "爆炸免疫",
+  "enchantment.l2archery.fire_reject": "火焰免疫",
+  "enchantment.l2archery.magic_reject": "魔法免疫",
+  "enchantment.l2archery.projectile_reject": "弹射物免疫"
 }

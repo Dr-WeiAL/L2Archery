@@ -1,13 +1,14 @@
 package dev.xkmc.l2archery.init;
 
 import dev.xkmc.l2archery.events.GenericEventHandler;
-import dev.xkmc.l2archery.foundation.MaterialDamageListener;
-import dev.xkmc.l2archery.foundation.MaterialEventHandler;
+import dev.xkmc.l2archery.foundation.event.MaterialDamageListener;
+import dev.xkmc.l2archery.foundation.event.MaterialEventHandler;
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.data.ConfigGen;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.data.RecipeGen;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
+import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.base.L2Registrate;
@@ -39,6 +40,7 @@ public class L2Archery {
 		ArcheryRegister.register();
 		ArcheryItems.register();
 		ArcheryEffects.register();
+		ArcheryEnchantments.register();
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
@@ -72,6 +74,7 @@ public class L2Archery {
 
 	private static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
+			ArcheryEffects.registerBrewingRecipe();
 		});
 	}
 

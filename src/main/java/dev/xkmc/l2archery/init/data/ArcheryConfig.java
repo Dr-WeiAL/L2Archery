@@ -33,7 +33,7 @@ public class ArcheryConfig {
 			explosionDamage = builder.comment("Requirement for explosion shard drop")
 					.defineInRange("explosionDamage", 80, 1, 10000);
 			spaceDamage = builder.comment("Requirement for space shard drop")
-					.defineInRange("spaceDamage", 1000, 1, 10000);
+					.defineInRange("spaceDamage", 500, 1, 10000);
 		}
 
 	}

@@ -77,7 +77,7 @@ public class ArcheryItems {
 
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
-			LEVITATE_UP, SUPERDAMAGE_UP;
+			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP;
 
 	public static final ItemEntry<WindBottle> WIND_BOTTLE;
 	public static final ItemEntry<ShadowSteelItem> VOID_EYE;
@@ -161,12 +161,12 @@ public class ArcheryItems {
 		{
 			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang().register();
 
-			MAGNIFY_UP_1 = genUpgrade("magnify_x2", () -> new StatFeature(2, 10, 1, 0));
-			MAGNIFY_UP_2 = genUpgrade("magnify_x4", () -> new StatFeature(4, 30, 1, 0));
-			MAGNIFY_UP_3 = genUpgrade("magnify_x8", () -> new StatFeature(8, 50, 1, 0));
-			DAMAGE_UP = genUpgrade("damage", () -> new StatFeature(1, 1, 2, 0));
-			SUPERDAMAGE_UP = genUpgrade("super_damage", () -> new StatFeature(1, 1, 3, 0));
-			PUNCH_UP = genUpgrade("punch", () -> new StatFeature(1, 1, 1, 3));
+			MAGNIFY_UP_1 = genUpgrade("magnify_x2", () -> new StatFeature(2, 10, 1, 0, 1));
+			MAGNIFY_UP_2 = genUpgrade("magnify_x4", () -> new StatFeature(4, 30, 1, 0, 1));
+			MAGNIFY_UP_3 = genUpgrade("magnify_x8", () -> new StatFeature(8, 50, 1, 0, 1));
+			DAMAGE_UP = genUpgrade("damage", () -> new StatFeature(1, 1, 2, 0, 1));
+			SUPERDAMAGE_UP = genUpgrade("super_damage", () -> new StatFeature(1, 1, 3, 0, 1));
+			PUNCH_UP = genUpgrade("punch", () -> new StatFeature(1, 1, 1, 3, 1));
 
 			GLOW_UP = genUpgrade("glow", () -> new GlowTargetAimFeature(128));
 			NO_FALL_UP = genUpgrade("anti_gravity", () -> new NoFallArrowFeature(40));
@@ -186,6 +186,7 @@ public class ArcheryItems {
 					List.of(new MobEffectInstance(MobEffects.GLOWING, 600, 0))));
 			LEVITATE_UP = genUpgrade("levitate", () -> new PotionArrowFeature(
 					List.of(new MobEffectInstance(MobEffects.LEVITATION, 300, 0))));
+			RAILGUN_UP = genUpgrade("railgun", () -> new StatFeature(1, 1, 1, 0, 100));
 		}
 		{
 			WIND_BOTTLE = REGISTRATE.item("wind_capture_bottle", WindBottle::new).register(); // tested
@@ -193,13 +194,13 @@ public class ArcheryItems {
 			CAPTURED_WIND = simpleItem("captured_wind"); // player reach 200m/s
 			CAPTURED_BULLET = simpleItem("captured_shulker_bullet"); //  capture bullet
 			SUN_MEMBRANE = REGISTRATE.item("sun_membrane", RefinedRadianceItem::new).register(); // kill phantom 200 blocks above maximum build height with arrow
-			EXPLOSION_SHARD = simpleItem("explosion_shard"); //TODO endure > 80 explosion damage
+			EXPLOSION_SHARD = simpleItem("explosion_shard"); // endure > 80 explosion damage
 			HARD_ICE = simpleItem("hard_ice"); // kill drowned with powder snow damage
 			SOUL_FLAME = REGISTRATE.item("soul_flame", RefinedRadianceItem::new).register(); // kill hast with soul flame
 			STORM_CORE = simpleItem("storm_core"); // kill phantom with explosion
 			BLACKSTONE_CORE = simpleItem("blackstone_core"); // kill guardian with stone cage effect
 			RESONANT_FEATHER = simpleItem("resonant_feather"); // let chicken survive sonic boom
-			SPACE_SHARD = simpleItem("space_shard"); //TODO deal 1000 arrow damage
+			SPACE_SHARD = simpleItem("space_shard"); // deal 500 arrow damage
 			FORCE_FIELD = simpleItem("force_field"); //kill wither with arrow
 
 		}

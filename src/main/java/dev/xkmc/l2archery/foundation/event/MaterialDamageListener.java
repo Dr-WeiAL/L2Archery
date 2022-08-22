@@ -1,4 +1,4 @@
-package dev.xkmc.l2archery.foundation;
+package dev.xkmc.l2archery.foundation.event;
 
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;

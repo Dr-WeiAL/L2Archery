@@ -1,11 +1,15 @@
-package dev.xkmc.l2archery.foundation;
+package dev.xkmc.l2archery.foundation.event;
 
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.Drowned;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ShulkerBullet;
 import net.minecraft.world.level.Level;
@@ -45,9 +49,9 @@ public class MaterialEventHandler {
 				drowned.spawnAtLocation(ArcheryItems.HARD_ICE.asStack());
 			}
 		}
-		if (event.getEntity() instanceof Guardian guardian) {
-			if (!guardian.getLevel().isClientSide() && guardian.hasEffect(ArcheryEffects.STONE_CAGE.get())) {
-				guardian.spawnAtLocation(ArcheryItems.BLACKSTONE_CORE.asStack());
+		if (event.getEntity() instanceof PiglinBrute brute) {
+			if (!brute.getLevel().isClientSide() && event.getSource().isProjectile() && brute.hasEffect(ArcheryEffects.STONE_CAGE.get())) {
+				brute.spawnAtLocation(ArcheryItems.BLACKSTONE_CORE.asStack());
 			}
 		}
 		if (event.getEntity() instanceof WitherBoss wither) {

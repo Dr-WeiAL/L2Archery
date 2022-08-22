@@ -9,17 +9,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 
-public record StatFeature(float fov, int fov_time, float damage, int punch) implements BowArrowFeature, IBowConfig {
+public record StatFeature(float fov, int fov_time, float damage, int punch,
+						  float speed) implements BowArrowFeature, IBowConfig {
 
-	public static final StatFeature NOOP = new StatFeature(1, 1, 1, 0);
-
-	/**
-	 * should not be implemented
-	 */
-	@Override
-	public float speed() {
-		return 1;
-	}
+	public static final StatFeature NOOP = new StatFeature(1, 1, 1, 0, 1);
 
 	/**
 	 * cannot be implemented due to pulling not having access to ItemStack
@@ -39,6 +32,7 @@ public record StatFeature(float fov, int fov_time, float damage, int punch) impl
 		if (damage() != NOOP.damage()) list.add(LangData.STAT_DAMAGE.get("x" + damage()));
 		if (punch() != NOOP.punch()) list.add(LangData.STAT_PUNCH.get("+" + punch()));
 		if (fov() != NOOP.fov()) list.add(LangData.STAT_FOV.get("x" + fov()));
+		if (speed() != NOOP.speed()) list.add(LangData.STAT_SPEED.get("x" + speed()));
 	}
 
 	@Override

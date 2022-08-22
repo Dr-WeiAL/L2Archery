@@ -10,7 +10,10 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ public class ArcheryEffects {
 	public static final RegistryEntry<Potion> POTION_FLAME_STRONG = genPotion("strong_flame", () -> new Potion(new MobEffectInstance(FLAME.get(), 400, 1)));
 	public static final RegistryEntry<Potion> POTION_ICE = genPotion("frozen", () -> new Potion(new MobEffectInstance(ICE.get(), 3600)));
 	public static final RegistryEntry<Potion> POTION_ICE_LONG = genPotion("long_frozen", () -> new Potion(new MobEffectInstance(ICE.get(), 9600)));
-	public static final RegistryEntry<Potion> POTION_STON = genPotion("stone_cage", () -> new Potion(new MobEffectInstance(STONE_CAGE.get(), 1200)));
+	public static final RegistryEntry<Potion> POTION_STONE = genPotion("stone_cage", () -> new Potion(new MobEffectInstance(STONE_CAGE.get(), 1200)));
 	public static final RegistryEntry<Potion> POTION_STONE_LONG = genPotion("long_stone_cage", () -> new Potion(new MobEffectInstance(STONE_CAGE.get(), 3600)));
 	public static final RegistryEntry<Potion> POTION_RUN_BOW = genPotion("run_bow", () -> new Potion(new MobEffectInstance(RUN_BOW.get(), 1200)));
 	public static final RegistryEntry<Potion> POTION_RUN_BOW_LONG = genPotion("long_run_bow", () -> new Potion(new MobEffectInstance(RUN_BOW.get(), 3600)));
@@ -56,6 +59,28 @@ public class ArcheryEffects {
 		RegistryEntry<T> ans = L2Foundation.REGISTRATE.entry(name, (cb) -> new NoConfigBuilder<>(L2Archery.REGISTRATE, L2Archery.REGISTRATE, name, cb, ForgeRegistries.Keys.POTIONS, sup)).register();
 		POTION_LIST.add(ans);
 		return ans;
+	}
+
+	public static void registerBrewingRecipe() {
+		PotionBrewing.addMix(Potions.AWKWARD, ArcheryItems.SOUL_FLAME.get(), POTION_FLAME.get());
+		PotionBrewing.addMix(POTION_FLAME.get(), Items.REDSTONE, POTION_FLAME_LONG.get());
+		PotionBrewing.addMix(POTION_FLAME.get(), Items.GLOWSTONE_DUST, POTION_FLAME_STRONG.get());
+		PotionBrewing.addMix(Potions.AWKWARD, ArcheryItems.HARD_ICE.get(), POTION_ICE.get());
+		PotionBrewing.addMix(POTION_ICE.get(), Items.REDSTONE, POTION_ICE_LONG.get());
+		PotionBrewing.addMix(Potions.AWKWARD, ArcheryItems.BLACKSTONE_CORE.get(), POTION_STONE.get());
+		PotionBrewing.addMix(POTION_STONE.get(), Items.REDSTONE, POTION_STONE_LONG.get());
+		PotionBrewing.addMix(Potions.AWKWARD, ArcheryItems.CAPTURED_WIND.get(), POTION_RUN_BOW.get());
+		PotionBrewing.addMix(POTION_RUN_BOW.get(), Items.REDSTONE, POTION_RUN_BOW_LONG.get());
+		PotionBrewing.addMix(POTION_RUN_BOW.get(), Items.GLOWSTONE_DUST, POTION_RUN_BOW_STRONG.get());
+		PotionBrewing.addMix(POTION_STONE.get(), Items.REDSTONE, POTION_STONE_LONG.get());
+		PotionBrewing.addMix(Potions.AWKWARD, ArcheryItems.STORM_CORE.get(), POTION_QUICK_PULL.get());
+		PotionBrewing.addMix(POTION_QUICK_PULL.get(), Items.REDSTONE, POTION_QUICK_PULL_LONG.get());
+		PotionBrewing.addMix(POTION_QUICK_PULL.get(), Items.GLOWSTONE_DUST, POTION_QUICK_PULL_STRONG.get());
+		PotionBrewing.addMix(Potions.AWKWARD, ArcheryItems.CAPTURED_BULLET.get(), POTION_LEVITATION.get());
+		PotionBrewing.addMix(POTION_LEVITATION.get(), Items.REDSTONE, POTION_LEVITATION_LONG.get());
+		PotionBrewing.addMix(Potions.AWKWARD, ArcheryItems.EXPLOSION_SHARD.get(), POTION_RESISTANCE.get());
+		PotionBrewing.addMix(POTION_RESISTANCE.get(), Items.REDSTONE, POTION_RESISTANCE_LONG.get());
+		PotionBrewing.addMix(POTION_RESISTANCE.get(), Items.GLOWSTONE_DUST, POTION_RESISTANCE_STRONG.get());
 	}
 
 	public static void register() {
