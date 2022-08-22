@@ -1,12 +1,16 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "l2archery:glow_aim_bow"
-    },
-    {
+  "type": "l2archery:bow_craft",
+  "key": {
+    "A": {
       "item": "minecraft:spyglass"
+    },
+    "B": {
+      "item": "l2archery:glow_aim_bow"
     }
+  },
+  "pattern": [
+    "A",
+    "B"
   ],
   "result": {
     "item": "l2archery:magnify_bow"

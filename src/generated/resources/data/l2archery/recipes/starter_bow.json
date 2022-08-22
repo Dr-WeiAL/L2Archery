@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "l2archery:bow_craft",
   "key": {
     "A": {
       "item": "minecraft:bamboo"

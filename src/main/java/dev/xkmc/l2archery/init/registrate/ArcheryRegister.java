@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.init.registrate;
 
+import dev.xkmc.l2archery.content.crafting.BowRecipe;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.entity.GenericArrowRenderer;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
@@ -7,9 +8,11 @@ import dev.xkmc.l2archery.content.stats.StatType;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.l2library.base.recipe.AbstractShapedRecipe;
 import dev.xkmc.l2library.repack.registrate.util.entry.EntityEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ArcheryRegister {
 
@@ -32,6 +35,10 @@ public class ArcheryRegister {
 					.setShouldReceiveVelocityUpdates(true))
 			.renderer(() -> GenericArrowRenderer::new)
 			.defaultLang().register();
+
+	public static final RegistryEntry<AbstractShapedRecipe.Serializer<BowRecipe>> BOW_RECIPE =
+			L2Archery.REGISTRATE.simple("bow_craft", ForgeRegistries.Keys.RECIPE_SERIALIZERS,
+					() -> new AbstractShapedRecipe.Serializer<>(BowRecipe::new));
 
 	public static RegistryEntry<BowArrowStatType> regStat(String id, StatType type, double def) {
 		return L2Archery.REGISTRATE.generic(STAT_TYPE, id, () -> new BowArrowStatType(type, def)).defaultLang().register();
