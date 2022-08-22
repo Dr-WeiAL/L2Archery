@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "C": {
+      "item": "minecraft:gunpowder"
+    },
+    "S": {
+      "item": "l2archery:starter_arrow"
+    }
+  },
+  "pattern": [
+    "CSC",
+    "SAS",
+    "CSC"
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:storm_arrow"
+  }
+}

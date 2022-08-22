@@ -37,11 +37,11 @@ public class RecipeGen {
 			full(pvd, Items.END_CRYSTAL, ArcheryItems.TNT_1_ARROW.get(), Items.TNT, ArcheryItems.TNT_2_ARROW.get(), 4);
 			full(pvd, Items.CREEPER_HEAD, ArcheryItems.TNT_2_ARROW.get(), Items.END_CRYSTAL, ArcheryItems.TNT_3_ARROW.get(), 4);
 			full(pvd, Items.OBSIDIAN, Items.END_ROD, Items.ENDER_EYE, ArcheryItems.ENDER_ARROW.get(), 4);
+			full(pvd, Items.PHANTOM_MEMBRANE, ArcheryItems.STARTER_ARROW.get(), Items.GUNPOWDER, ArcheryItems.STORM_ARROW.get(), 4);
 
-			// TODO arrow: 3 remaining
+			// TODO arrow: 2 remaining
 			// acid
 			// dispell
-			// storm
 		}
 
 		// bow
@@ -324,6 +324,11 @@ public class RecipeGen {
 			// heal
 			// levitate
 		}
+
+		unlock(pvd, new ShapelessRecipeBuilder(ArcheryItems.WIND_BOTTLE.get(), 1)::unlockedBy, Items.GLASS_BOTTLE)
+				.requires(ArcheryItems.WIND_BOTTLE.get())
+				.requires(Items.PHANTOM_MEMBRANE)
+				.save(pvd);
 	}
 
 	private static void cross(RegistrateRecipeProvider pvd, Item core, Item side, Item out, int count) {
