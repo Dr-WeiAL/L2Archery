@@ -1,6 +1,6 @@
-// 1.19.2	2022-08-22T13:28:02.292483	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-e6e171845d391988c281908fa82dd476329ab64e assets/l2archery/lang/en_ud.json
-9e656906c2587aa29528d0b2e78446428d6c8969 assets/l2archery/lang/en_us.json
+// 1.19.2	2022-08-22T18:23:21.569849	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+2d0434e654cb666237bdc4e3bc13a716c21d2cac assets/l2archery/lang/en_ud.json
+cbea48ff149cefe6d8682eeeab38c966a7f5b02f assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 23d3c6b4800fda202fc86b8b9ecbaa025ae3424c assets/l2archery/models/item/blackstone_core.json
@@ -228,3 +228,11 @@ d23a68722238fc5c640688d6f861a8a0665c2c5c data/l2archery/recipes/void_bow.json
 00c005afb8ef609f50999673981e98156fe4ac6d data/l2archery/recipes/wind_capture_bottle.json
 4726c3542e70d783a1b86685c6826a2005c290a9 data/l2archery/recipes/winter_bow.json
 846e89dc93390511f67ba3bd1cfd33b396a92bd3 data/l2archery/recipes/wither_arrow.json
+c5fddeeb407c9106578c72618ae7e42d3c46d16c data/minecraft/advancements/recipes/building_blocks/ancient_debris.json
+a9f70551ed0c79624e3c47b6c96354400769279d data/minecraft/advancements/recipes/building_blocks/gilded_blackstone.json
+895ad5d91d5b5ee744bea8c593d549f1529be550 data/minecraft/advancements/recipes/misc/echo_shard.json
+99233f28841a722c1893e21a818b01eced698e35 data/minecraft/advancements/recipes/transportation/elytra.json
+769bc7ed47c2593a087b7e7a19b52a5a35220bd9 data/minecraft/recipes/ancient_debris.json
+6c0ecbff6e8cec610740db3f159c7c9c3b833930 data/minecraft/recipes/echo_shard.json
+ed6fd29588413c8ae7bea2e3b15e34260f816cbb data/minecraft/recipes/elytra.json
+5d5a5cf09c19e308b1088db5644374f2853b999c data/minecraft/recipes/gilded_blackstone.json

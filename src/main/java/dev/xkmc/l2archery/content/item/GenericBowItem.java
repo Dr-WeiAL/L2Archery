@@ -12,6 +12,7 @@ import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.ClientRegister;
+import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.GenericItemStack;
@@ -108,9 +109,11 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 			float pitch = 1.0F / (level.getRandom().nextFloat() * 0.4F + 1.2F) + power * 0.5F;
 			level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, pitch);
 			if (!no_consume && !player.getAbilities().instabuild) {
-				arrow.shrink(1);
-				if (arrow.isEmpty()) {
-					player.getInventory().removeItem(arrow);
+				if (!level.isClientSide) {
+					arrow.shrink(1);
+					if (arrow.isEmpty()) {
+						player.getInventory().removeItem(arrow);
+					}
 				}
 			}
 			player.awardStat(Stats.ITEM_USED.get(this));
@@ -164,7 +167,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 	public float getPullForTime(LivingEntity entity, float time) {
 		float f = time / config.pull_time();
-		MobEffectInstance ins = entity.getEffect(ArcheryRegister.QUICK_PULL.get());
+		MobEffectInstance ins = entity.getEffect(ArcheryEffects.QUICK_PULL.get());
 		if (ins != null) {
 			f *= (1.5 + 0.5 * ins.getAmplifier());
 		}
@@ -261,7 +264,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 
 	@Override
 	public boolean isFast(ItemStack stack) {
-		if (Proxy.getPlayer().hasEffect(ArcheryRegister.RUN_BOW.get()))
+		if (Proxy.getPlayer().hasEffect(ArcheryEffects.RUN_BOW.get()))
 			return true;
 		return config.feature().stream().anyMatch(e -> e instanceof WindBowFeature);
 	}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:explosion_shard"
+    },
+    "B": {
+      "item": "l2archery:captured_wind"
+    },
+    "C": {
+      "item": "l2archery:sun_membrane"
+    },
+    "D": {
+      "item": "l2archery:resonant_feather"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "C C",
+    "D D"
+  ],
+  "result": {
+    "item": "minecraft:elytra"
+  }
+}

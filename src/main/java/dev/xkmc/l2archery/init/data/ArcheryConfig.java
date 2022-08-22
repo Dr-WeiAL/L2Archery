@@ -31,7 +31,7 @@ public class ArcheryConfig {
 			phantomHeight = builder.comment("Requirement for sun membrane drop")
 					.defineInRange("phantomHeight", 200, 0, 10000);
 			explosionDamage = builder.comment("Requirement for explosion shard drop")
-					.defineInRange("explosionDamage", 100, 1, 10000);
+					.defineInRange("explosionDamage", 80, 1, 10000);
 			spaceDamage = builder.comment("Requirement for space shard drop")
 					.defineInRange("spaceDamage", 1000, 1, 10000);
 		}

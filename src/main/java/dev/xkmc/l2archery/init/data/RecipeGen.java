@@ -344,10 +344,37 @@ public class RecipeGen {
 
 		}
 
-		unlock(pvd, new ShapelessRecipeBuilder(ArcheryItems.WIND_BOTTLE.get(), 1)::unlockedBy, Items.GLASS_BOTTLE)
-				.requires(ArcheryItems.WIND_BOTTLE.get())
-				.requires(Items.PHANTOM_MEMBRANE)
-				.save(pvd);
+		// misc
+		{
+			unlock(pvd, new ShapelessRecipeBuilder(ArcheryItems.WIND_BOTTLE.get(), 1)::unlockedBy, Items.GLASS_BOTTLE)
+					.requires(ArcheryItems.WIND_BOTTLE.get())
+					.requires(Items.PHANTOM_MEMBRANE)
+					.save(pvd);
+			unlock(pvd, new ShapelessRecipeBuilder(Items.ECHO_SHARD, 1)::unlockedBy, ArcheryItems.RESONANT_FEATHER.get())
+					.requires(ArcheryItems.RESONANT_FEATHER.get())
+					.requires(Items.AMETHYST_SHARD)
+					.save(pvd);
+			unlock(pvd, new ShapedRecipeBuilder(Items.ELYTRA, 1)::unlockedBy, ArcheryItems.SUN_MEMBRANE.get())
+					.pattern("ABA").pattern("C C").pattern("D D")
+					.define('A', ArcheryItems.EXPLOSION_SHARD.get())
+					.define('B', ArcheryItems.CAPTURED_WIND.get())
+					.define('C', ArcheryItems.SUN_MEMBRANE.get())
+					.define('D', ArcheryItems.RESONANT_FEATHER.get())
+					.save(pvd);
+			unlock(pvd, new ShapedRecipeBuilder(Items.ANCIENT_DEBRIS, 1)::unlockedBy, ArcheryItems.EXPLOSION_SHARD.get())
+					.pattern("ABA").pattern("ACA").pattern("ADA")
+					.define('A', ArcheryItems.EXPLOSION_SHARD.get())
+					.define('B', Items.NETHER_STAR)
+					.define('C', Items.CRYING_OBSIDIAN)
+					.define('D', ArcheryItems.FORCE_FIELD.get())
+					.save(pvd);
+			unlock(pvd, new ShapedRecipeBuilder(Items.GILDED_BLACKSTONE, 1)::unlockedBy, ArcheryItems.BLACKSTONE_CORE.get())
+					.pattern("ABA").pattern("BCB").pattern("ABA")
+					.define('A', Items.BLACKSTONE)
+					.define('B', Items.GOLD_INGOT)
+					.define('C', ArcheryItems.BLACKSTONE_CORE.get())
+					.save(pvd);
+		}
 	}
 
 	private static void cross(RegistrateRecipeProvider pvd, Item core, Item side, Item out, int count) {

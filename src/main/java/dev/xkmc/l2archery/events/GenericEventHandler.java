@@ -7,7 +7,7 @@ import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
-import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -36,7 +36,7 @@ public class GenericEventHandler {
 		if (stack.getItem() instanceof GenericBowItem bow) {
 			float f = event.getFovModifier();
 			float i = player.getTicksUsingItem();
-			MobEffectInstance ins = player.getEffect(ArcheryRegister.QUICK_PULL.get());
+			MobEffectInstance ins = player.getEffect(ArcheryEffects.QUICK_PULL.get());
 			if (ins != null) {
 				i *= 1.5 + 0.5 * ins.getAmplifier();
 			}

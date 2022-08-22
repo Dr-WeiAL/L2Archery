@@ -26,7 +26,6 @@ import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemModelProvider;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -43,7 +42,6 @@ import java.util.function.Supplier;
 import static dev.xkmc.l2archery.init.L2Archery.REGISTRATE;
 
 @SuppressWarnings({"rawtypes", "unsafe"})
-@MethodsReturnNonnullByDefault
 public class ArcheryItems {
 
 	public static class Tab extends CreativeModeTab {
@@ -123,7 +121,7 @@ public class ArcheryItems {
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 3)
 			))));
 			GAIA_BOW = genBow("gaia_bow", 600, e -> e.add(new PullEffectFeature(List.of(
-					() -> new MobEffectInstance(ArcheryRegister.STONE_CAGE.get(), 80, 0),
+					() -> new MobEffectInstance(ArcheryEffects.STONE_CAGE.get(), 80, 0),
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 4)
 			))));
 			VOID_BOW = genBow("void_bow", 32, e -> e.add(new EnderShootFeature(128))
@@ -173,13 +171,13 @@ public class ArcheryItems {
 			GLOW_UP = genUpgrade("glow", () -> new GlowTargetAimFeature(128));
 			NO_FALL_UP = genUpgrade("anti_gravity", () -> new NoFallArrowFeature(40));
 			FIRE_UP = genUpgrade("soul_fire", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(ArcheryRegister.FLAME.get(), 100, 0))));
+					List.of(new MobEffectInstance(ArcheryEffects.FLAME.get(), 100, 0))));
 			ICE_UP = genUpgrade("frozen", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(ArcheryRegister.ICE.get(), 600, 0))));
+					List.of(new MobEffectInstance(ArcheryEffects.ICE.get(), 600, 0))));
 			EXPLOSION_UP = genUpgrade("explosion", () -> new ExplodeArrowFeature(3, true, false));
 			ENDER_UP = genUpgrade("void", () -> new EnderShootFeature(128));
 			BLACKSTONE_UP = genUpgrade("blackstone", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(ArcheryRegister.STONE_CAGE.get(), 100, 0))));
+					List.of(new MobEffectInstance(ArcheryEffects.STONE_CAGE.get(), 100, 0))));
 			HARM_UP = genUpgrade("harm", () -> new PotionArrowFeature(
 					List.of(new MobEffectInstance(MobEffects.HARM, 1, 1))));
 			HEAL_UP = genUpgrade("heal", () -> new PotionArrowFeature(
@@ -190,19 +188,19 @@ public class ArcheryItems {
 					List.of(new MobEffectInstance(MobEffects.LEVITATION, 300, 0))));
 		}
 		{
-			WIND_BOTTLE = REGISTRATE.item("wind_capture_bottle", WindBottle::new).register();// tested
-			VOID_EYE = REGISTRATE.item("void_eye", ShadowSteelItem::new).register();//TODO kill aggroed enderman 16 blocks in void
-			CAPTURED_WIND = simpleItem("captured_wind");// player reach 200m/s
-			CAPTURED_BULLET = simpleItem("captured_shulker_bullet");// TODO capture bullet
-			SUN_MEMBRANE = REGISTRATE.item("sun_membrane", RefinedRadianceItem::new).register();//TODO kill phantom 200 blocks above maximum build height with arrow
-			EXPLOSION_SHARD = simpleItem("explosion_shard");//TODO endure > 100 explosion damage
-			HARD_ICE = simpleItem("hard_ice");// kill drowned with powder snow damage
-			SOUL_FLAME = REGISTRATE.item("soul_flame", RefinedRadianceItem::new).register();//TODO kill fire immune mobs with soul flame
-			STORM_CORE = simpleItem("storm_core");//TODO kill phantom with explosion
-			BLACKSTONE_CORE = simpleItem("blackstone_core");//TODO kill guardian with stone cage effect
-			RESONANT_FEATHER = simpleItem("resonant_feather");//TODO let chicken survive sonic boom
-			SPACE_SHARD = simpleItem("space_shard");//TODO deal 1000 arrow damage
-			FORCE_FIELD = simpleItem("force_field");//TODO kill wither with arrow
+			WIND_BOTTLE = REGISTRATE.item("wind_capture_bottle", WindBottle::new).register(); // tested
+			VOID_EYE = REGISTRATE.item("void_eye", ShadowSteelItem::new).register(); // kill aggroed enderman 16 blocks in void
+			CAPTURED_WIND = simpleItem("captured_wind"); // player reach 200m/s
+			CAPTURED_BULLET = simpleItem("captured_shulker_bullet"); //  capture bullet
+			SUN_MEMBRANE = REGISTRATE.item("sun_membrane", RefinedRadianceItem::new).register(); // kill phantom 200 blocks above maximum build height with arrow
+			EXPLOSION_SHARD = simpleItem("explosion_shard"); //TODO endure > 80 explosion damage
+			HARD_ICE = simpleItem("hard_ice"); // kill drowned with powder snow damage
+			SOUL_FLAME = REGISTRATE.item("soul_flame", RefinedRadianceItem::new).register(); // kill hast with soul flame
+			STORM_CORE = simpleItem("storm_core"); // kill phantom with explosion
+			BLACKSTONE_CORE = simpleItem("blackstone_core"); // kill guardian with stone cage effect
+			RESONANT_FEATHER = simpleItem("resonant_feather"); // let chicken survive sonic boom
+			SPACE_SHARD = simpleItem("space_shard"); //TODO deal 1000 arrow damage
+			FORCE_FIELD = simpleItem("force_field"); //kill wither with arrow
 
 		}
 	}
@@ -252,7 +250,6 @@ public class ArcheryItems {
 						new ResourceLocation(L2Archery.MODID, id), is_inf, f.build())))
 				.model(ArcheryItems::createArrowModel);
 	}
-
 
 	public static <T extends GenericArrowItem> void createArrowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {
 		pvd.generated(ctx, new ResourceLocation(L2Archery.MODID, "item/arrow/" + ctx.getName()));
