@@ -15,7 +15,7 @@ import java.util.List;
 public class EnderArrowFeature implements OnHitFeature {
 
 	@Override
-	public void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
+	public void onHitLivingEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
 		Entity owner = genericArrow.getOwner();
 		if (owner != null) {
 			Vec3 pos = owner.getPosition(1);

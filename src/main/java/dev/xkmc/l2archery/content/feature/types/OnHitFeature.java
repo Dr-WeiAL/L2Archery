@@ -4,6 +4,7 @@ import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2library.util.annotation.ServerOnly;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -11,7 +12,14 @@ import net.minecraft.world.phys.EntityHitResult;
 public interface OnHitFeature extends BowArrowFeature {
 
 	@ServerOnly
-	default void onHitEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
+	default void onHitEntity(GenericArrowEntity genericArrow, Entity target, EntityHitResult hit) {
+		if (target instanceof LivingEntity living) {
+			onHitLivingEntity(genericArrow, living, hit);
+		}
+	}
+
+	@ServerOnly
+	default void onHitLivingEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
 	}
 
 	@ServerOnly

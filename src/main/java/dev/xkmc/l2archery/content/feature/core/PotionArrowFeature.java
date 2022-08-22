@@ -18,7 +18,7 @@ import java.util.List;
 public record PotionArrowFeature(List<MobEffectInstance> instances) implements OnHitFeature {
 
 	@Override
-	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
+	public void onHitLivingEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
 	}
 
 	@Override

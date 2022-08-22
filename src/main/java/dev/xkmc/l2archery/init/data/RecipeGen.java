@@ -43,6 +43,7 @@ public class RecipeGen {
 			full(pvd, Items.PHANTOM_MEMBRANE, ArcheryItems.STARTER_ARROW.get(), Items.GUNPOWDER, ArcheryItems.STORM_ARROW.get(), 4);
 			cross(pvd, ArcheryItems.RESONANT_FEATHER.get(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.DISPELL_ARROW.get(), 4);
 			full(pvd, Items.LAVA_BUCKET, ArcheryItems.STARTER_ARROW.get(), Items.MAGMA_CREAM, ArcheryItems.ACID_ARROW.get(), 4);
+			full(pvd, ArcheryItems.DESTROYER_ARROW.get(), ArcheryItems.SPACE_SHARD.get(), ArcheryItems.VOID_EYE.get(), ArcheryItems.VOID_ARROW.get(), 1);
 		}
 
 		// bow
@@ -306,9 +307,10 @@ public class RecipeGen {
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.SUPERDAMAGE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
-					.pattern("C C").pattern("CAC").pattern("CBC")
+					.pattern("CBC").pattern("DAD").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', ArcheryItems.SPACE_SHARD.get())
+					.define('B', ArcheryItems.CAPTURED_WIND.get())
+					.define('D', ArcheryItems.EXPLOSION_SHARD.get())
 					.define('C', new EnchantmentIngredient(Enchantments.POWER_ARROWS, 5))
 					.save(pvd);
 
@@ -342,6 +344,13 @@ public class RecipeGen {
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', ArcheryItems.CAPTURED_BULLET.get())
 					.define('E', Items.NETHER_WART)
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.RAILGUN_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CBC").pattern("BAB").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('C', ArcheryItems.CAPTURED_WIND.get())
+					.define('B', ArcheryItems.SPACE_SHARD.get())
 					.save(pvd);
 
 		}
@@ -409,7 +418,7 @@ public class RecipeGen {
 					.define('1', Items.DRAGON_HEAD)
 					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
 					.define('B', ArcheryItems.VOID_EYE.get())
-					.define('C', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
+					.define('C', ArcheryItems.CAPTURED_WIND.get())
 					.save(pvd);
 
 			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_MAGIC.get(), 1)::unlockedBy, ArcheryItems.RESONANT_FEATHER.get())

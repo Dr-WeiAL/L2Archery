@@ -71,7 +71,8 @@ public class ArcheryItems {
 
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, GOLD_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW, DESTROYER_ARROW,
-			ICE_ARROW, DISPELL_ARROW, ACID_ARROW, BLACKSTONE_ARROW, DIAMOND_ARROW, QUARTZ_ARROW, WITHER_ARROW, STORM_ARROW;
+			ICE_ARROW, DISPELL_ARROW, ACID_ARROW, BLACKSTONE_ARROW, DIAMOND_ARROW, QUARTZ_ARROW, WITHER_ARROW, STORM_ARROW,
+			VOID_ARROW;
 
 	public static final ItemEntry<UpgradeItem> UPGRADE;
 
@@ -157,6 +158,10 @@ public class ArcheryItems {
 			))).register();
 			WITHER_ARROW = genArrow("wither_arrow", false);
 			STORM_ARROW = genArrow("storm_arrow", false, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
+			VOID_ARROW = genArrow("void_arrow", false, e -> e.add(new DamageArrowFeature(
+					(a, s) -> s.bypassArmor().bypassMagic().bypassInvul(),
+					LangData.FEATURE_PIERCE_INVUL::get
+			)).add(new VoidArrowFeature())).register();
 		}
 		{
 			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang().register();
@@ -202,7 +207,6 @@ public class ArcheryItems {
 			RESONANT_FEATHER = simpleItem("resonant_feather"); // let chicken survive sonic boom
 			SPACE_SHARD = simpleItem("space_shard"); // deal 500 arrow damage
 			FORCE_FIELD = simpleItem("force_field"); //kill wither with arrow
-
 		}
 	}
 

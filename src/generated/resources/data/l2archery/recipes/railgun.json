@@ -5,26 +5,21 @@
       "item": "l2archery:upgrade"
     },
     "B": {
-      "item": "l2archery:captured_wind"
+      "item": "l2archery:space_shard"
     },
     "C": {
-      "type": "l2library:enchantment",
-      "enchantment": "minecraft:power",
-      "min_level": 5
-    },
-    "D": {
-      "item": "l2archery:explosion_shard"
+      "item": "l2archery:captured_wind"
     }
   },
   "pattern": [
     "CBC",
-    "DAD",
+    "BAB",
     "CBC"
   ],
   "result": {
     "item": "l2archery:upgrade",
     "nbt": {
-      "upgrade": "l2archery:super_damage"
+      "upgrade": "l2archery:railgun"
     }
   }
 }

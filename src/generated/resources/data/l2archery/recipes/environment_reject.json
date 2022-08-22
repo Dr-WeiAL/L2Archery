@@ -13,9 +13,7 @@
       "item": "l2archery:void_eye"
     },
     "C": {
-      "type": "l2library:enchantment",
-      "enchantment": "minecraft:vanishing_curse",
-      "min_level": 1
+      "item": "l2archery:captured_wind"
     }
   },
   "pattern": [

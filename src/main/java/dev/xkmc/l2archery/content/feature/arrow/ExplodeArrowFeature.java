@@ -24,7 +24,7 @@ import java.util.List;
 public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock) implements OnHitFeature {
 
 	@Override
-	public void onHitEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
+	public void onHitLivingEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
 		explode(arrow, hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z());
 		arrow.discard();
 	}
