@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.item.*;
+import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
@@ -37,6 +38,7 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		int y = gui.screenHeight / 2 - 8;
 		Minecraft.getInstance().getItemRenderer().renderAndDecorateItem(arrowStack, x, y);
 		Minecraft.getInstance().getItemRenderer().renderGuiItemDecorations(Minecraft.getInstance().font, arrowStack, x, y);
+		if (!ArcheryConfig.CLIENT.showInfo.get()) return;
 		if (!(bowStack.getItem() instanceof GenericBowItem bow)) return;
 		ArrowData arrowData = bow.parseArrow(arrowStack);
 		if (arrowData == null) return;

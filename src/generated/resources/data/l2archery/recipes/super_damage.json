@@ -5,24 +5,23 @@
       "item": "l2archery:upgrade"
     },
     "B": {
-      "item": "minecraft:powder_snow_bucket"
+      "item": "l2archery:space_shard"
     },
     "C": {
-      "item": "minecraft:blue_ice"
-    },
-    "E": {
-      "item": "l2archery:hard_ice"
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:power",
+      "min_level": 5
     }
   },
   "pattern": [
-    "CEC",
+    "C C",
     "CAC",
     "CBC"
   ],
   "result": {
     "item": "l2archery:upgrade",
     "nbt": {
-      "upgrade": "l2archery:frozen"
+      "upgrade": "l2archery:super_damage"
     }
   }
 }

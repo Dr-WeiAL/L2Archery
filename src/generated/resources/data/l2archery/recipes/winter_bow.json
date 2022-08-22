@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:froze_bow"
+    },
+    "B": {
+      "item": "minecraft:blue_ice"
+    },
+    "C": {
+      "item": "minecraft:powder_snow_bucket"
+    },
+    "D": {
+      "item": "l2archery:hard_ice"
+    }
+  },
+  "pattern": [
+    "CBB",
+    "DAB",
+    "CBB"
+  ],
+  "result": {
+    "item": "l2archery:winter_bow"
+  }
+}

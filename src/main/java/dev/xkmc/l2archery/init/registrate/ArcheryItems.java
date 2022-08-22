@@ -78,7 +78,7 @@ public class ArcheryItems {
 
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
-			LEVITATE_UP;
+			LEVITATE_UP, SUPERDAMAGE_UP;
 
 	public static final ItemEntry<WindBottle> WIND_BOTTLE;
 	public static final ItemEntry<ShadowSteelItem> VOID_EYE;
@@ -164,6 +164,7 @@ public class ArcheryItems {
 			MAGNIFY_UP_2 = genUpgrade("magnify_x4", () -> new StatFeature(4, 30, 1, 0));
 			MAGNIFY_UP_3 = genUpgrade("magnify_x8", () -> new StatFeature(8, 50, 1, 0));
 			DAMAGE_UP = genUpgrade("damage", () -> new StatFeature(1, 1, 2, 0));
+			SUPERDAMAGE_UP = genUpgrade("super_damage", () -> new StatFeature(1, 1, 3, 0));
 			PUNCH_UP = genUpgrade("punch", () -> new StatFeature(1, 1, 1, 3));
 
 			GLOW_UP = genUpgrade("glow", () -> new GlowTargetAimFeature(128));

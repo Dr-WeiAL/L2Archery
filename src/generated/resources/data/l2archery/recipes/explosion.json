@@ -14,10 +14,13 @@
       "type": "l2library:enchantment",
       "enchantment": "minecraft:infinity",
       "min_level": 1
+    },
+    "E": {
+      "item": "l2archery:explosion_shard"
     }
   },
   "pattern": [
-    "C C",
+    "CEC",
     "BAB",
     "CDC"
   ],

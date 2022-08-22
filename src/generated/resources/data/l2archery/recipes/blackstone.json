@@ -5,13 +5,13 @@
       "item": "l2archery:upgrade"
     },
     "B": {
-      "item": "minecraft:powder_snow_bucket"
+      "item": "minecraft:gilded_blackstone"
     },
     "C": {
-      "item": "minecraft:blue_ice"
+      "item": "minecraft:blackstone"
     },
     "E": {
-      "item": "l2archery:hard_ice"
+      "item": "l2archery:blackstone_core"
     }
   },
   "pattern": [
@@ -22,7 +22,7 @@
   "result": {
     "item": "l2archery:upgrade",
     "nbt": {
-      "upgrade": "l2archery:frozen"
+      "upgrade": "l2archery:blackstone"
     }
   }
 }

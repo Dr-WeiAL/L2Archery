@@ -12,10 +12,13 @@
     },
     "D": {
       "item": "minecraft:ghast_tear"
+    },
+    "E": {
+      "item": "l2archery:soul_flame"
     }
   },
   "pattern": [
-    "D D",
+    "DED",
     "CAC",
     "BBB"
   ],

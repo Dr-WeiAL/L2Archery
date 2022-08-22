@@ -5,16 +5,16 @@
       "item": "l2archery:master_bow"
     },
     "B": {
-      "item": "minecraft:soul_soil"
+      "item": "minecraft:phantom_membrane"
     },
     "C": {
-      "item": "minecraft:blaze_rod"
+      "item": "minecraft:feather"
     },
     "D": {
-      "item": "minecraft:ghast_tear"
+      "item": "minecraft:gunpowder"
     },
     "E": {
-      "item": "l2archery:soul_flame"
+      "item": "l2archery:storm_core"
     }
   },
   "pattern": [
@@ -23,6 +23,6 @@
     "DCB"
   ],
   "result": {
-    "item": "l2archery:flame_bow"
+    "item": "l2archery:storm_bow"
   }
 }

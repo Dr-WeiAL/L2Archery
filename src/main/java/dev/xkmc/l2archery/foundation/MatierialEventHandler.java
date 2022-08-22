@@ -17,7 +17,7 @@ public class MatierialEventHandler {
 	@SubscribeEvent
 	public static void onEntityDeath(LivingDeathEvent event) {
 		if (event.getEntity() instanceof EnderMan ender) {
-			if (!ender.getLevel().isClientSide() && ender.isCreepy()) {
+			if (!ender.getLevel().isClientSide() && ender.isCreepy() && event.getEntity() instanceof Player player) {
 				if (ender.getOnPos().getY() <= ender.getLevel().getMinBuildHeight() - ArcheryConfig.COMMON.belowVoid.get()) {
 					ender.spawnAtLocation(ArcheryItems.VOID_EYE.asStack());
 				}
