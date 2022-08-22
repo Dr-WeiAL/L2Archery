@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.foundation;
 
+import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import net.minecraft.world.damagesource.DamageSource;
@@ -13,14 +14,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class MatierialEventHandler {
 
-	//TODO
-	private static final int ENDER_VOID = 16, PHANTOM_SUN = 200;
-
 	@SubscribeEvent
 	public static void onEntityDeath(LivingDeathEvent event) {
 		if (event.getEntity() instanceof EnderMan ender) {
 			if (!ender.getLevel().isClientSide() && ender.isCreepy()) {
-				if (ender.getOnPos().getY() < ender.getLevel().getMinBuildHeight() - ENDER_VOID) {
+				if (ender.getOnPos().getY() <= ender.getLevel().getMinBuildHeight() - ArcheryConfig.COMMON.belowVoid.get()) {
 					ender.spawnAtLocation(ArcheryItems.VOID_EYE.asStack());
 				}
 			}
@@ -28,9 +26,11 @@ public class MatierialEventHandler {
 		if (event.getEntity() instanceof Phantom phantom) {
 			Level level = phantom.getLevel();
 			if (!level.isClientSide()) {
-				if (event.getSource().isProjectile() && phantom.getOnPos().getY() > level.getMaxBuildHeight() + PHANTOM_SUN) {
-					if (level.isDay() && level.canSeeSky(phantom.getOnPos()) && phantom.isOnFire()) {
-						phantom.spawnAtLocation(ArcheryItems.SUN_MEMBRANE.asStack());
+				if (event.getSource().isProjectile()) {
+					if (phantom.getOnPos().getY() >= level.getMaxBuildHeight() + ArcheryConfig.COMMON.phantomHeight.get()) {
+						if (level.isDay() && level.canSeeSky(phantom.getOnPos()) && phantom.isOnFire()) {
+							phantom.spawnAtLocation(ArcheryItems.SUN_MEMBRANE.asStack());
+						}
 					}
 				}
 				if (event.getSource().isExplosion()) {
