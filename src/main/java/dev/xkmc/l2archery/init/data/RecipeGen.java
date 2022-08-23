@@ -411,13 +411,13 @@ public class RecipeGen {
 					.pattern("1B1").pattern("BCB").pattern("2B2")
 					.define('1', new EnchantmentIngredient(Enchantments.FIRE_PROTECTION, 4))
 					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
-					.define('B', ArcheryItems.SUN_MEMBRANE.get())
-					.define('C', Items.NETHERITE_INGOT)
+					.define('B', ArcheryItems.SOUL_FLAME.get())
+					.define('C', ArcheryItems.HARD_ICE.get())
 					.save(pvd);
 
 			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_ENVIRONMENT.get(), 1)::unlockedBy, ArcheryItems.VOID_EYE.get())
 					.pattern("1B1").pattern("BCB").pattern("2B2")
-					.define('1', Items.DRAGON_HEAD)
+					.define('1', ArcheryItems.SUN_MEMBRANE.get())
 					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
 					.define('B', ArcheryItems.VOID_EYE.get())
 					.define('C', ArcheryItems.CAPTURED_WIND.get())
@@ -428,7 +428,7 @@ public class RecipeGen {
 					.define('1', ArcheryItems.VOID_EYE.get())
 					.define('2', new EnchantmentIngredient(Enchantments.ALL_DAMAGE_PROTECTION, 4))
 					.define('B', ArcheryItems.RESONANT_FEATHER.get())
-					.define('C', ArcheryItems.SPACE_SHARD.get())
+					.define('C', ArcheryItems.FORCE_FIELD.get())
 					.save(pvd);
 		}
 	}

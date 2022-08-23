@@ -12,10 +12,10 @@
       "min_level": 4
     },
     "B": {
-      "item": "l2archery:sun_membrane"
+      "item": "l2archery:soul_flame"
     },
     "C": {
-      "item": "minecraft:netherite_ingot"
+      "item": "l2archery:hard_ice"
     }
   },
   "pattern": [
