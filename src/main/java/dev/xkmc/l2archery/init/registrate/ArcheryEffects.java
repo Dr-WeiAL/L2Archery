@@ -2,7 +2,6 @@ package dev.xkmc.l2archery.init.registrate;
 
 import dev.xkmc.l2archery.foundation.effect.*;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2foundation.init.L2Foundation;
 import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
@@ -54,7 +53,7 @@ public class ArcheryEffects {
 	}
 
 	private static <T extends Potion> RegistryEntry<T> genPotion(String name, NonNullSupplier<T> sup) {
-		RegistryEntry<T> ans = L2Foundation.REGISTRATE.entry(name, (cb) -> new NoConfigBuilder<>(L2Archery.REGISTRATE, L2Archery.REGISTRATE, name, cb, ForgeRegistries.Keys.POTIONS, sup)).register();
+		RegistryEntry<T> ans = L2Archery.REGISTRATE.entry(name, (cb) -> new NoConfigBuilder<>(L2Archery.REGISTRATE, L2Archery.REGISTRATE, name, cb, ForgeRegistries.Keys.POTIONS, sup)).register();
 		POTION_LIST.add(ans);
 		return ans;
 	}
