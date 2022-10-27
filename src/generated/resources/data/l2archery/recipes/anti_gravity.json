@@ -5,13 +5,13 @@
       "item": "l2archery:upgrade"
     },
     "B": {
-      "item": "l2archery:captured_wind"
+      "item": "l2foundation:captured_wind"
     },
     "C": {
       "item": "minecraft:phantom_membrane"
     },
     "E": {
-      "item": "l2archery:captured_shulker_bullet"
+      "item": "l2foundation:captured_shulker_bullet"
     }
   },
   "pattern": [

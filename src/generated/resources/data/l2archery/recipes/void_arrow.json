@@ -5,10 +5,10 @@
       "item": "l2archery:destroyer_arrow"
     },
     "C": {
-      "item": "l2archery:void_eye"
+      "item": "l2foundation:void_eye"
     },
     "S": {
-      "item": "l2archery:space_shard"
+      "item": "l2foundation:space_shard"
     }
   },
   "pattern": [

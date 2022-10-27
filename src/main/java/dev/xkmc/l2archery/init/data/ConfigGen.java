@@ -3,6 +3,7 @@ package dev.xkmc.l2archery.init.data;
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
+import dev.xkmc.l2foundation.init.registrate.LFEffects;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
@@ -28,15 +29,15 @@ public class ConfigGen extends ConfigDataProvider {
 				.putBow(ArcheryItems.EAGLE_BOW).damage(6).punch(2).bothTimes(40).end()
 				.putBow(ArcheryItems.WIND_BOW).punch(1).bothTimes(10).speed(3.9).end()
 				.putBow(ArcheryItems.EXPLOSION_BOW).end()
-				.putBow(ArcheryItems.FLAME_BOW).putEffect(ArcheryEffects.FLAME.get(), 100, 0).end()
-				.putBow(ArcheryItems.FROZE_BOW).putEffect(ArcheryEffects.ICE.get(), 600, 0).end()
+				.putBow(ArcheryItems.FLAME_BOW).putEffect(LFEffects.FLAME.get(), 100, 0).end()
+				.putBow(ArcheryItems.FROZE_BOW).putEffect(LFEffects.ICE.get(), 600, 0).end()
 				.putBow(ArcheryItems.STORM_BOW).end()
-				.putBow(ArcheryItems.BLACKSTONE_BOW).putEffect(ArcheryEffects.STONE_CAGE.get(), 100, 0).end()
-				.putBow(ArcheryItems.WINTER_BOW).putEffect(ArcheryEffects.ICE.get(), 600, 0).end()
+				.putBow(ArcheryItems.BLACKSTONE_BOW).putEffect(LFEffects.STONE_CAGE.get(), 100, 0).end()
+				.putBow(ArcheryItems.WINTER_BOW).putEffect(LFEffects.ICE.get(), 600, 0).end()
 				.putBow(ArcheryItems.TURTLE_BOW).damage(6).bothTimes(40).speed(3).end()
 				.putBow(ArcheryItems.EARTH_BOW).damage(10).bothTimes(60).speed(3).end()
 				.putBow(ArcheryItems.GAIA_BOW).damage(16).bothTimes(80).speed(3).end()
-				.putBow(ArcheryItems.SUN_BOW).putEffect(ArcheryEffects.FLAME.get(), 200, 1).end()
+				.putBow(ArcheryItems.SUN_BOW).putEffect(LFEffects.FLAME.get(), 200, 1).end()
 		);
 
 		map.put("stats/arrows", new BowArrowStatConfig()
@@ -54,10 +55,10 @@ public class ConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.TNT_1_ARROW).end()
 				.putArrow(ArcheryItems.TNT_2_ARROW).end()
 				.putArrow(ArcheryItems.TNT_3_ARROW).end()
-				.putArrow(ArcheryItems.FIRE_1_ARROW).putEffect(ArcheryEffects.FLAME.get(), 100, 0).end()
-				.putArrow(ArcheryItems.FIRE_2_ARROW).putEffect(ArcheryEffects.FLAME.get(), 200, 1).end()
-				.putArrow(ArcheryItems.ICE_ARROW).putEffect(ArcheryEffects.ICE.get(), 600, 0).end()
-				.putArrow(ArcheryItems.BLACKSTONE_ARROW).putEffect(ArcheryEffects.STONE_CAGE.get(), 100, 0).end()
+				.putArrow(ArcheryItems.FIRE_1_ARROW).putEffect(LFEffects.FLAME.get(), 100, 0).end()
+				.putArrow(ArcheryItems.FIRE_2_ARROW).putEffect(LFEffects.FLAME.get(), 200, 1).end()
+				.putArrow(ArcheryItems.ICE_ARROW).putEffect(LFEffects.ICE.get(), 600, 0).end()
+				.putArrow(ArcheryItems.BLACKSTONE_ARROW).putEffect(LFEffects.STONE_CAGE.get(), 100, 0).end()
 				.putArrow(ArcheryItems.ACID_ARROW).end()
 				.putArrow(ArcheryItems.DISPELL_ARROW).end()
 				.putArrow(ArcheryItems.WITHER_ARROW).putEffect(MobEffects.WITHER, 200, 0).end()

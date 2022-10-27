@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "C": {
-      "item": "l2archery:explosion_shard"
+      "item": "l2foundation:explosion_shard"
     },
     "S": {
       "item": "l2archery:obsidian_arrow"

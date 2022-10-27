@@ -1,14 +1,15 @@
 package dev.xkmc.l2archery.init.registrate;
 
-import dev.xkmc.l2archery.foundation.effect.*;
+import dev.xkmc.l2archery.content.effects.QuickPullEffect;
+import dev.xkmc.l2archery.content.effects.RunBowEffect;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2foundation.init.registrate.LFItems;
 import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -22,12 +23,8 @@ import java.util.function.Supplier;
 
 public class ArcheryEffects {
 
-	public static final RegistryEntry<FlameEffect> FLAME = genEffect("flame", () -> new FlameEffect(MobEffectCategory.HARMFUL, 0xFF0000));
-	public static final RegistryEntry<IceEffect> ICE = genEffect("frozen", () -> new IceEffect(MobEffectCategory.HARMFUL, 0x7f7fff));
-	public static final RegistryEntry<ArmorReduceEffect> ARMOR_REDUCE = genEffect("armor_reduce", () -> new ArmorReduceEffect(MobEffectCategory.HARMFUL, 0xFFFFFF));
-	public static final RegistryEntry<MobEffect> RUN_BOW = genEffect("run_bow", () -> new RunBowEffect(MobEffectCategory.BENEFICIAL, 0xffffff));
+	public static final RegistryEntry<RunBowEffect> RUN_BOW = genEffect("run_bow", () -> new RunBowEffect(MobEffectCategory.BENEFICIAL, 0xffffff));
 	public static final RegistryEntry<QuickPullEffect> QUICK_PULL = genEffect("quick_pull", () -> new QuickPullEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF));
-	public static final RegistryEntry<StoneCageEffect> STONE_CAGE = genEffect("stone_cage", () -> new StoneCageEffect(MobEffectCategory.HARMFUL, 0x000000));
 
 	public static final List<RegistryEntry<? extends Potion>> POTION_LIST = new ArrayList<>();
 
@@ -43,13 +40,8 @@ public class ArcheryEffects {
 	}
 
 	public static void register() {
-		regPotion3("flame", FLAME::get, ArcheryItems.SOUL_FLAME::get, 400, 600, 1200, 0, 1);
-		regPotion2("frozen", ICE::get, ArcheryItems.HARD_ICE, 3600, 9600);
-		regPotion2("stone_cage", STONE_CAGE::get, ArcheryItems.BLACKSTONE_CORE, 1200, 3600);
-		regPotion3("run_bow", RUN_BOW, ArcheryItems.CAPTURED_WIND, 600, 1200, 3600, 0, 1);
-		regPotion3("quick_pull", QUICK_PULL::get, ArcheryItems.STORM_CORE, 600, 1200, 3600, 0, 1);
-		regPotion2("levitation", () -> MobEffects.LEVITATION, ArcheryItems.CAPTURED_BULLET, 200, 600);
-		regPotion3("resistance", () -> MobEffects.DAMAGE_RESISTANCE, ArcheryItems.EXPLOSION_SHARD, 400, 600, 1200, 1, 2);
+		regPotion2("run_bow", RUN_BOW::get, LFItems.CAPTURED_WIND, 1200, 3600);
+		regPotion3("quick_pull", QUICK_PULL::get, LFItems.STORM_CORE, 600, 1200, 3600, 0, 1);
 	}
 
 	private static <T extends Potion> RegistryEntry<T> genPotion(String name, NonNullSupplier<T> sup) {

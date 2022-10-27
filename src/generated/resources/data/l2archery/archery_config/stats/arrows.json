@@ -2,25 +2,25 @@
   "_class": "dev.xkmc.l2archery.content.config.BowArrowStatConfig",
   "arrow_effects": {
     "l2archery:blackstone_arrow": {
-      "l2archery:stone_cage": {
+      "l2foundation:stone_cage": {
         "amplifier": 0,
         "duration": 100
       }
     },
     "l2archery:fire_arrow_lv1": {
-      "l2archery:flame": {
+      "l2foundation:flame": {
         "amplifier": 0,
         "duration": 100
       }
     },
     "l2archery:fire_arrow_lv2": {
-      "l2archery:flame": {
+      "l2foundation:flame": {
         "amplifier": 1,
         "duration": 200
       }
     },
     "l2archery:frozen_arrow": {
-      "l2archery:frozen": {
+      "l2foundation:frozen": {
         "amplifier": 0,
         "duration": 600
       }

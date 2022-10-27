@@ -12,7 +12,7 @@
       "min_level": 1
     },
     "A": {
-      "item": "l2archery:void_eye"
+      "item": "l2foundation:void_eye"
     },
     "B": {
       "item": "l2archery:ender_aim_bow"
@@ -21,7 +21,7 @@
       "item": "minecraft:dragon_head"
     },
     "R": {
-      "item": "l2archery:space_shard"
+      "item": "l2foundation:space_shard"
     }
   },
   "pattern": [

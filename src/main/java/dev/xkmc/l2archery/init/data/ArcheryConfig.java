@@ -20,20 +20,7 @@ public class ArcheryConfig {
 
 	public static class Common {
 
-		public final ForgeConfigSpec.IntValue belowVoid;
-		public final ForgeConfigSpec.IntValue phantomHeight;
-		public final ForgeConfigSpec.IntValue explosionDamage;
-		public final ForgeConfigSpec.IntValue spaceDamage;
-
 		Common(ForgeConfigSpec.Builder builder) {
-			belowVoid = builder.comment("Requirement for void eye drop")
-					.defineInRange("belowVoid", 16, 0, 128);
-			phantomHeight = builder.comment("Requirement for sun membrane drop")
-					.defineInRange("phantomHeight", 200, 0, 10000);
-			explosionDamage = builder.comment("Requirement for explosion shard drop")
-					.defineInRange("explosionDamage", 80, 1, 10000);
-			spaceDamage = builder.comment("Requirement for space shard drop")
-					.defineInRange("spaceDamage", 2048, 1, 10000);
 		}
 
 	}

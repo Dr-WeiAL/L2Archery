@@ -5,10 +5,10 @@
       "item": "l2archery:explosion_bow"
     },
     "B": {
-      "item": "l2archery:explosion_shard"
+      "item": "l2foundation:explosion_shard"
     },
     "C": {
-      "item": "l2archery:sun_membrane"
+      "item": "l2foundation:sun_membrane"
     },
     "D": {
       "item": "minecraft:nether_star"

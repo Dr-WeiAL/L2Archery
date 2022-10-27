@@ -14,7 +14,7 @@
       "item": "minecraft:gunpowder"
     },
     "E": {
-      "item": "l2archery:storm_core"
+      "item": "l2foundation:storm_core"
     }
   },
   "pattern": [

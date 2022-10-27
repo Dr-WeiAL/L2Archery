@@ -4,31 +4,31 @@
   "arrow_stats": {},
   "bow_effects": {
     "l2archery:flame_bow": {
-      "l2archery:flame": {
+      "l2foundation:flame": {
         "amplifier": 0,
         "duration": 100
       }
     },
     "l2archery:froze_bow": {
-      "l2archery:frozen": {
+      "l2foundation:frozen": {
         "amplifier": 0,
         "duration": 600
       }
     },
     "l2archery:slow_bow": {
-      "l2archery:stone_cage": {
+      "l2foundation:stone_cage": {
         "amplifier": 0,
         "duration": 100
       }
     },
     "l2archery:sun_bow": {
-      "l2archery:flame": {
+      "l2foundation:flame": {
         "amplifier": 1,
         "duration": 200
       }
     },
     "l2archery:winter_bow": {
-      "l2archery:frozen": {
+      "l2foundation:frozen": {
         "amplifier": 0,
         "duration": 600
       }

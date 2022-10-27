@@ -29,3 +29,9 @@ Combine them for better combat experience
     versionRange="[1.7.3,)"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.l2archery]]
+    modId="l2foundation"
+    mandatory=true
+    versionRange="[0.1.0,)"
+    ordering="AFTER"
+    side="BOTH"

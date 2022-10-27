@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "C": {
-      "item": "l2archery:resonant_feather"
+      "item": "l2foundation:resonant_feather"
     },
     "S": {
       "item": "l2archery:starter_arrow"

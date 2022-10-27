@@ -29,9 +29,5 @@
 	  "punch": "击退: %s",
 	  "speed": "出弓速度: %s米每秒"
 	}
-  },
-  "death.attack": {
-	"soul_flame": "%s的灵魂被燃尽了",
-	"soul_flame.player": "%s的灵魂被%s燃尽了"
   }
 }

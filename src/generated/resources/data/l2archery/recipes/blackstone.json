@@ -11,7 +11,7 @@
       "item": "minecraft:blackstone"
     },
     "E": {
-      "item": "l2archery:blackstone_core"
+      "item": "l2foundation:blackstone_core"
     }
   },
   "pattern": [
