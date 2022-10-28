@@ -40,8 +40,8 @@ public class ArcheryEffects {
 	}
 
 	public static void register() {
-		regPotion2("run_bow", RUN_BOW::get, LFItems.CAPTURED_WIND, 1200, 3600);
-		regPotion3("quick_pull", QUICK_PULL::get, LFItems.STORM_CORE, 600, 1200, 3600, 0, 1);
+		regPotion2("run_bow", RUN_BOW::get, LFItems.CAPTURED_WIND::get, 1200, 3600);
+		regPotion3("quick_pull", QUICK_PULL::get, LFItems.STORM_CORE::get, 600, 1200, 3600, 0, 1);
 	}
 
 	private static <T extends Potion> RegistryEntry<T> genPotion(String name, NonNullSupplier<T> sup) {

@@ -10,20 +10,29 @@ import dev.xkmc.l2library.util.raytrace.RayTraceUtil;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
 public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeature, IGlowFeature {
 
 	@Override
-	public boolean onShoot(Player player, Consumer<Consumer<GenericArrowEntity>> consumer) {
+	public boolean onShoot(@Nullable Player player, Consumer<Consumer<GenericArrowEntity>> consumer) {
 		if (player == null)
 			return false;
 		Entity target = RayTraceUtil.serverGetTarget(player);
 		if (target == null)
 			return false;
-		consumer.accept(entity -> entity.setPos(target.position().lerp(target.getEyePosition(), 0.5).add(entity.getDeltaMovement().scale(-1))));
+
+		consumer.accept(entity -> {
+			float w = target.getBbWidth(), h = target.getBbHeight();
+			Vec3 dst = target.position().add(0, h / 2, 0);
+			double r = Math.sqrt(w * w * 2 + h * h) / 2;
+			Vec3 src = dst.add(entity.getDeltaMovement().normalize().scale(-r - 1));
+			entity.setPos(src);
+		});
 		return true;
 	}
 
