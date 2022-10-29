@@ -9,6 +9,7 @@ public class L2ArcheryClient {
 	public static void onCtorClient(IEventBus bus, IEventBus eventBus) {
 		bus.addListener(ClientRegister::registerOverlays);
 		bus.addListener(ClientRegister::registerKeys);
+		bus.addListener(L2ArcheryClient::clientSetup);
 	}
 
 	@SubscribeEvent

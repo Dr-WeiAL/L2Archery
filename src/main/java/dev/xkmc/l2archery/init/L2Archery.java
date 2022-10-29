@@ -49,9 +49,7 @@ public class L2Archery {
 
 	private static void registerModBusEvents(IEventBus bus) {
 		bus.addListener(L2Archery::setup);
-		bus.addListener(L2ArcheryClient::clientSetup);
 		bus.addListener(EventPriority.LOWEST, L2Archery::gatherData);
-		bus.addListener(L2Archery::onParticleRegistryEvent);
 		bus.addListener(L2Archery::registerCaps);
 	}
 
@@ -73,9 +71,6 @@ public class L2Archery {
 
 	public static void gatherData(GatherDataEvent event) {
 		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
-	}
-
-	public static void onParticleRegistryEvent(RegisterParticleProvidersEvent event) {
 	}
 
 	public static void registerCaps(RegisterCapabilitiesEvent event) {
