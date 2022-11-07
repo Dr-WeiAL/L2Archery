@@ -6,6 +6,7 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.item.*;
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.data.LangData;
+import dev.xkmc.l2library.base.menu.OverlayUtils;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -42,13 +43,14 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		if (!(bowStack.getItem() instanceof GenericBowItem bow)) return;
 		ArrowData arrowData = bow.parseArrow(arrowStack);
 		if (arrowData == null) return;
+		OverlayUtils util = new OverlayUtils(width, height);
 		BowData bowData = BowData.of(bow, bowStack);
 		FeatureList features = FeatureList.merge(bowData.getFeatures(), arrowData.getFeatures());
 		List<Component> text = new ArrayList<>();
 		addStat(text, bowData, arrowData.getItem().getConfig());
 		features.addEffectsTooltip(text);
 		features.addTooltip(text);
-		renderLongText(gui, poseStack, text);
+		util.renderLongText(gui,poseStack,text);
 	}
 
 	private static void addStat(List<Component> list, BowData data, IGeneralConfig arrow) {
@@ -69,23 +71,6 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		list.add(LangData.STAT_PULL_TIME.getWithColor(bow.pull_time() / 20d, ChatFormatting.GREEN));
 		list.add(LangData.STAT_SPEED.getWithColor(bow.speed() * 20, ChatFormatting.GREEN));
 		list.add(LangData.STAT_FOV.getWithColor(ATTRIBUTE_MODIFIER_FORMAT.format(1 / (1 - bow.fov())), ChatFormatting.GREEN));
-	}
-
-	private static void renderLongText(ForgeGui gui, PoseStack stack, List<Component> list) {
-		Font font = gui.getFont();
-		int tooltipTextWidth = list.stream().mapToInt(font::width).max().orElse(0);
-		int maxWidth = gui.screenWidth / 4;
-		List<FormattedCharSequence> ans = list.stream().flatMap(text -> font.split(text, maxWidth).stream()).toList();
-		int height = ans.size() * 12;
-		float x0 = gui.screenWidth / 8f;
-		float y0 = (gui.screenHeight - height) / 2f;
-		RenderSystem.enableBlend();
-		RenderSystem.defaultBlendFunc();
-		for (FormattedCharSequence text : ans) {
-			font.draw(stack, text, x0, y0, 0xFFFFFFFF);
-			y0 += 12;
-		}
-		RenderSystem.disableBlend();
 	}
 
 }

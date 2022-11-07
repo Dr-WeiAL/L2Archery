@@ -8,7 +8,6 @@ import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class BowRecipe extends AbstractShapedRecipe<BowRecipe> {
 
@@ -35,7 +34,7 @@ public class BowRecipe extends AbstractShapedRecipe<BowRecipe> {
 	}
 
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public Serializer<BowRecipe> getSerializer() {
 		return ArcheryRegister.BOW_RECIPE.get();
 	}
 }

@@ -14,7 +14,7 @@ Combine them for better combat experience
 [[dependencies.l2archery]]
     modId="forge"
     mandatory=true
-    versionRange="[42.0.0,)"
+    versionRange="[4.0.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.l2archery]]
@@ -26,12 +26,12 @@ Combine them for better combat experience
 [[dependencies.l2archery]]
     modId="l2library"
     mandatory=true
-    versionRange="[1.7.3,)"
+    versionRange="[1.8.0,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.l2archery]]
     modId="l2foundation"
     mandatory=true
-    versionRange="[0.1.0,)"
+    versionRange="[0.2.0,)"
     ordering="AFTER"
     side="BOTH"
