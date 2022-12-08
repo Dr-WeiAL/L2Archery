@@ -25,7 +25,7 @@ import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 public class BowInfoOverlay extends SideBar implements IGuiOverlay {
 
 	public BowInfoOverlay() {
-		super(60, 5);
+		super(40, 5);
 	}
 
 	@Override
@@ -43,14 +43,13 @@ public class BowInfoOverlay extends SideBar implements IGuiOverlay {
 			return;
 
 		gui.setupOverlayRenderState(true, false);
-		OverlayUtils util = new OverlayUtils(width, height);
 		BowData bowData = BowData.of(bow, bowStack);
 		FeatureList features = FeatureList.merge(bowData.getFeatures(), arrowData.getFeatures());
 		List<Component> text = new ArrayList<>();
 		addStat(text, bowData, arrowData.getItem().getConfig());
 		features.addEffectsTooltip(text);
 		features.addTooltip(text);
-		util.renderLongText(gui, poseStack, text);
+		new Box(width, height).renderLongText(gui, poseStack, text);
 	}
 
 	private static void addStat(List<Component> list, BowData data, IGeneralConfig arrow) {
@@ -99,4 +98,18 @@ public class BowInfoOverlay extends SideBar implements IGuiOverlay {
 		float progress = (max_ease - ease_time) / max_ease;
 		return -Math.round(progress * width / 2);
 	}
+
+	private class Box extends OverlayUtils {
+
+		public Box(int screenWidth, int screenHeight) {
+			super(screenWidth, screenHeight);
+		}
+
+		@Override
+		public int getX(int w) {
+			return w / 8 + getXOffset(screenWidth);
+		}
+
+	}
+
 }

@@ -42,8 +42,8 @@ public class L2ArcheryClient {
 
 	@OnlyIn(Dist.CLIENT)
 	public static void registerOverlays(RegisterGuiOverlaysEvent event) {
-		event.registerAbove(VanillaGuiOverlay.CROSSHAIR.id(), "L2Archery-arrow", new ArrowDisplayOverlay());
-		event.registerBelow(VanillaGuiOverlay.HOTBAR.id(), "L2Archery-info", new BowInfoOverlay());
+		event.registerAbove(VanillaGuiOverlay.CROSSHAIR.id(), "arrow", new ArrowDisplayOverlay());
+		event.registerBelow(VanillaGuiOverlay.HOTBAR.id(), "info", new BowInfoOverlay());
 	}
 
 	@OnlyIn(Dist.CLIENT)
