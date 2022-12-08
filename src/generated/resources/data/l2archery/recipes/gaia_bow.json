@@ -5,13 +5,13 @@
       "item": "l2archery:earth_bow"
     },
     "B": {
-      "item": "l2foundation:blackstone_core"
+      "item": "l2complements:blackstone_core"
     },
     "C": {
       "item": "minecraft:netherite_ingot"
     },
     "D": {
-      "item": "l2foundation:force_field"
+      "item": "l2complements:force_field"
     }
   },
   "pattern": [

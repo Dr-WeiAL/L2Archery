@@ -3,7 +3,7 @@ package dev.xkmc.l2archery.init.registrate;
 import dev.xkmc.l2archery.content.effects.QuickPullEffect;
 import dev.xkmc.l2archery.content.effects.RunBowEffect;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2foundation.init.registrate.LFItems;
+import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
@@ -40,8 +40,8 @@ public class ArcheryEffects {
 	}
 
 	public static void register() {
-		regPotion2("run_bow", RUN_BOW::get, LFItems.CAPTURED_WIND::get, 1200, 3600);
-		regPotion3("quick_pull", QUICK_PULL::get, LFItems.STORM_CORE::get, 600, 1200, 3600, 0, 1);
+		regPotion2("run_bow", RUN_BOW::get, LCItems.CAPTURED_WIND::get, 1200, 3600);
+		regPotion3("quick_pull", QUICK_PULL::get, LCItems.STORM_CORE::get, 600, 1200, 3600, 0, 1);
 	}
 
 	private static <T extends Potion> RegistryEntry<T> genPotion(String name, NonNullSupplier<T> sup) {

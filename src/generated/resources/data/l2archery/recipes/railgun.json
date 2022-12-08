@@ -5,10 +5,10 @@
       "item": "l2archery:upgrade"
     },
     "B": {
-      "item": "l2foundation:space_shard"
+      "item": "l2complements:space_shard"
     },
     "C": {
-      "item": "l2foundation:captured_wind"
+      "item": "l2complements:captured_wind"
     }
   },
   "pattern": [

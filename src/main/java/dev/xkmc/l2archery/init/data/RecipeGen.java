@@ -3,7 +3,7 @@ package dev.xkmc.l2archery.init.data;
 import dev.xkmc.l2archery.content.crafting.BowBuilder;
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
-import dev.xkmc.l2foundation.init.registrate.LFItems;
+import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.base.ingredients.EnchantmentIngredient;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
 import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
@@ -27,7 +27,7 @@ public class RecipeGen {
 			cross(pvd, Items.GOLD_INGOT, ArcheryItems.IRON_ARROW.get(), ArcheryItems.GOLD_ARROW.get(), 4);
 			cross(pvd, Items.OBSIDIAN, ArcheryItems.STARTER_ARROW.get(), ArcheryItems.OBSIDIAN_ARROW.get(), 4);
 			cross(pvd, Items.DIAMOND, ArcheryItems.OBSIDIAN_ARROW.get(), ArcheryItems.DIAMOND_ARROW.get(), 4);
-			cross(pvd, LFItems.EXPLOSION_SHARD.get(), ArcheryItems.OBSIDIAN_ARROW.get(), ArcheryItems.DESTROYER_ARROW.get(), 4);
+			cross(pvd, LCItems.EXPLOSION_SHARD.get(), ArcheryItems.OBSIDIAN_ARROW.get(), ArcheryItems.DESTROYER_ARROW.get(), 4);
 			cross(pvd, ArcheryItems.OBSIDIAN_ARROW.get(), Items.QUARTZ, ArcheryItems.QUARTZ_ARROW.get(), 1);
 			cross(pvd, ArcheryItems.STARTER_ARROW.get(), Items.WITHER_ROSE, ArcheryItems.WITHER_ARROW.get(), 1);
 			cross(pvd, ArcheryItems.STARTER_ARROW.get(), Items.BLACKSTONE, ArcheryItems.BLACKSTONE_ARROW.get(), 1);
@@ -40,9 +40,9 @@ public class RecipeGen {
 			full(pvd, Items.CREEPER_HEAD, ArcheryItems.TNT_2_ARROW.get(), Items.END_CRYSTAL, ArcheryItems.TNT_3_ARROW.get(), 4);
 			full(pvd, Items.OBSIDIAN, Items.END_ROD, Items.ENDER_EYE, ArcheryItems.ENDER_ARROW.get(), 4);
 			full(pvd, Items.PHANTOM_MEMBRANE, ArcheryItems.STARTER_ARROW.get(), Items.GUNPOWDER, ArcheryItems.STORM_ARROW.get(), 4);
-			cross(pvd, LFItems.RESONANT_FEATHER.get(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.DISPELL_ARROW.get(), 4);
+			cross(pvd, LCItems.RESONANT_FEATHER.get(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.DISPELL_ARROW.get(), 4);
 			full(pvd, Items.LAVA_BUCKET, ArcheryItems.STARTER_ARROW.get(), Items.MAGMA_CREAM, ArcheryItems.ACID_ARROW.get(), 4);
-			full(pvd, ArcheryItems.DESTROYER_ARROW.get(), LFItems.SPACE_SHARD.get(), LFItems.VOID_EYE.get(), ArcheryItems.VOID_ARROW.get(), 1);
+			full(pvd, ArcheryItems.DESTROYER_ARROW.get(), LCItems.SPACE_SHARD.get(), LCItems.VOID_EYE.get(), ArcheryItems.VOID_ARROW.get(), 1);
 		}
 
 		// bow
@@ -89,17 +89,17 @@ public class RecipeGen {
 					.define('R', Items.END_ROD)
 					.define('1', new EnchantmentIngredient(Enchantments.BINDING_CURSE, 1))
 					.define('2', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
-					.define('A', LFItems.VOID_EYE.get())
+					.define('A', LCItems.VOID_EYE.get())
 					.define('B', ArcheryItems.GLOW_AIM_BOW.get())
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.VOID_BOW.get(), 1)::unlockedBy, ArcheryItems.ENDER_AIM_BOW.get())
 					.pattern("2OR").pattern("ABR").pattern("1OR")
 					.define('O', Items.DRAGON_HEAD)
-					.define('R', LFItems.SPACE_SHARD.get())
+					.define('R', LCItems.SPACE_SHARD.get())
 					.define('1', new EnchantmentIngredient(Enchantments.MENDING, 1))
 					.define('2', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
-					.define('A', LFItems.VOID_EYE.get())
+					.define('A', LCItems.VOID_EYE.get())
 					.define('B', ArcheryItems.ENDER_AIM_BOW.get())
 					.save(pvd);
 
@@ -109,22 +109,22 @@ public class RecipeGen {
 					.define('B', Items.SOUL_SOIL)
 					.define('C', Items.BLAZE_ROD)
 					.define('D', Items.GHAST_TEAR)
-					.define('E', LFItems.SOUL_FLAME.get())
+					.define('E', LCItems.SOUL_FLAME.get())
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.EXPLOSION_BOW.get(), 1)::unlockedBy, ArcheryItems.FLAME_BOW.get())
 					.pattern("DDB").pattern("CAB").pattern("DDB")
 					.define('A', ArcheryItems.FLAME_BOW.get())
 					.define('B', Items.BLAZE_ROD)
-					.define('D', LFItems.EXPLOSION_SHARD.get())
+					.define('D', LCItems.EXPLOSION_SHARD.get())
 					.define('C', Items.NETHER_STAR)
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.SUN_BOW.get(), 1)::unlockedBy, ArcheryItems.EXPLOSION_BOW.get())
 					.pattern("EDB").pattern("CAB").pattern("EDB")
 					.define('A', ArcheryItems.EXPLOSION_BOW.get())
-					.define('B', LFItems.EXPLOSION_SHARD.get())
-					.define('C', LFItems.SUN_MEMBRANE.get())
+					.define('B', LCItems.EXPLOSION_SHARD.get())
+					.define('C', LCItems.SUN_MEMBRANE.get())
 					.define('D', Items.NETHER_STAR)
 					.define('E', Items.CREEPER_HEAD)
 					.save(pvd);
@@ -141,7 +141,7 @@ public class RecipeGen {
 					.define('A', ArcheryItems.FROZE_BOW.get())
 					.define('B', Items.BLUE_ICE)
 					.define('C', Items.POWDER_SNOW_BUCKET)
-					.define('D', LFItems.HARD_ICE.get())
+					.define('D', LCItems.HARD_ICE.get())
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.STORM_BOW.get(), 1)::unlockedBy, ArcheryItems.MASTER_BOW.get())
@@ -150,7 +150,7 @@ public class RecipeGen {
 					.define('B', Items.PHANTOM_MEMBRANE)
 					.define('C', Items.FEATHER)
 					.define('D', Items.GUNPOWDER)
-					.define('E', LFItems.STORM_CORE.get())
+					.define('E', LCItems.STORM_CORE.get())
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.BLACKSTONE_BOW.get(), 1)::unlockedBy, ArcheryItems.MASTER_BOW.get())
@@ -174,20 +174,20 @@ public class RecipeGen {
 					.define('A', ArcheryItems.TURTLE_BOW.get())
 					.define('B', Items.BLACKSTONE)
 					.define('C', Items.GOLD_INGOT)
-					.define('D', LFItems.BLACKSTONE_CORE.get())
+					.define('D', LCItems.BLACKSTONE_CORE.get())
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.GAIA_BOW.get(), 1)::unlockedBy, ArcheryItems.EARTH_BOW.get())
 					.pattern("CCB").pattern("DAB").pattern("CCB")
 					.define('A', ArcheryItems.EARTH_BOW.get())
-					.define('B', LFItems.BLACKSTONE_CORE.get())
+					.define('B', LCItems.BLACKSTONE_CORE.get())
 					.define('C', Items.NETHERITE_INGOT)
-					.define('D', LFItems.FORCE_FIELD.get())
+					.define('D', LCItems.FORCE_FIELD.get())
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.EAGLE_BOW.get(), 1)::unlockedBy, ArcheryItems.IRON_BOW.get())
 					.pattern("1LO").pattern("AB2").pattern("1LO")
-					.define('O', LFItems.RESONANT_FEATHER.get())
+					.define('O', LCItems.RESONANT_FEATHER.get())
 					.define('L', Items.LEATHER)
 					.define('1', new EnchantmentIngredient(Enchantments.POWER_ARROWS, 5))
 					.define('2', new EnchantmentIngredient(Enchantments.PUNCH_ARROWS, 2))
@@ -224,7 +224,7 @@ public class RecipeGen {
 					.define('B', Items.SOUL_SOIL)
 					.define('C', Items.BLAZE_ROD)
 					.define('D', Items.GHAST_TEAR)
-					.define('E', LFItems.SOUL_FLAME.get())
+					.define('E', LCItems.SOUL_FLAME.get())
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ICE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
@@ -232,7 +232,7 @@ public class RecipeGen {
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.POWDER_SNOW_BUCKET)
 					.define('C', Items.BLUE_ICE)
-					.define('E', LFItems.HARD_ICE.get())
+					.define('E', LCItems.HARD_ICE.get())
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.EXPLOSION_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
@@ -241,21 +241,21 @@ public class RecipeGen {
 					.define('B', Items.NETHER_STAR)
 					.define('C', Items.CREEPER_HEAD)
 					.define('D', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
-					.define('E', LFItems.EXPLOSION_SHARD.get())
+					.define('E', LCItems.EXPLOSION_SHARD.get())
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.NO_FALL_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("CEC").pattern("CAC").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('C', Items.PHANTOM_MEMBRANE)
-					.define('E', LFItems.CAPTURED_BULLET.get())
-					.define('B', LFItems.CAPTURED_WIND.get())
+					.define('E', LCItems.CAPTURED_BULLET.get())
+					.define('B', LCItems.CAPTURED_WIND.get())
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ENDER_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("3 4").pattern("CAC").pattern("1B2")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', LFItems.VOID_EYE.get())
+					.define('B', LCItems.VOID_EYE.get())
 					.define('C', Items.DRAGON_HEAD)
 					.define('1', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
 					.define('2', new EnchantmentIngredient(Enchantments.MENDING, 1))
@@ -309,8 +309,8 @@ public class RecipeGen {
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.SUPERDAMAGE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("CBC").pattern("DAD").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', LFItems.CAPTURED_WIND.get())
-					.define('D', LFItems.EXPLOSION_SHARD.get())
+					.define('B', LCItems.CAPTURED_WIND.get())
+					.define('D', LCItems.EXPLOSION_SHARD.get())
 					.define('C', new EnchantmentIngredient(Enchantments.POWER_ARROWS, 5))
 					.save(pvd);
 
@@ -319,7 +319,7 @@ public class RecipeGen {
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.GILDED_BLACKSTONE)
 					.define('C', Items.BLACKSTONE)
-					.define('E', LFItems.BLACKSTONE_CORE.get())
+					.define('E', LCItems.BLACKSTONE_CORE.get())
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.HARM_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
@@ -342,15 +342,15 @@ public class RecipeGen {
 					.pattern("CEC").pattern("CAC").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.DRAGON_BREATH)
-					.define('C', LFItems.CAPTURED_BULLET.get())
+					.define('C', LCItems.CAPTURED_BULLET.get())
 					.define('E', Items.NETHER_WART)
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.RAILGUN_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("CBC").pattern("BAB").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('C', LFItems.CAPTURED_WIND.get())
-					.define('B', LFItems.SPACE_SHARD.get())
+					.define('C', LCItems.CAPTURED_WIND.get())
+					.define('B', LCItems.SPACE_SHARD.get())
 					.save(pvd);
 		}
 

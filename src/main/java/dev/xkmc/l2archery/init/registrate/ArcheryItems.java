@@ -17,7 +17,7 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.data.LangData;
-import dev.xkmc.l2foundation.init.registrate.LFEffects;
+import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
 import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
@@ -114,7 +114,7 @@ public class ArcheryItems {
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 3)
 			))));
 			GAIA_BOW = genBow("gaia_bow", 600, e -> e.add(new PullEffectFeature(List.of(
-					() -> new MobEffectInstance(LFEffects.STONE_CAGE.get(), 80, 0),
+					() -> new MobEffectInstance(LCEffects.STONE_CAGE.get(), 80, 0),
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 4)
 			))));
 			VOID_BOW = genBow("void_bow", 32, e -> e.add(new EnderShootFeature(128))
@@ -168,13 +168,13 @@ public class ArcheryItems {
 			GLOW_UP = genUpgrade("glow", () -> new GlowTargetAimFeature(128));
 			NO_FALL_UP = genUpgrade("anti_gravity", () -> new NoFallArrowFeature(40));
 			FIRE_UP = genUpgrade("soul_fire", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(LFEffects.FLAME.get(), 100, 0))));
+					List.of(new MobEffectInstance(LCEffects.FLAME.get(), 100, 0))));
 			ICE_UP = genUpgrade("frozen", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(LFEffects.ICE.get(), 600, 0))));
+					List.of(new MobEffectInstance(LCEffects.ICE.get(), 600, 0))));
 			EXPLOSION_UP = genUpgrade("explosion", () -> new ExplodeArrowFeature(3, true, false));
 			ENDER_UP = genUpgrade("void", () -> new EnderShootFeature(128));
 			BLACKSTONE_UP = genUpgrade("blackstone", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(LFEffects.STONE_CAGE.get(), 100, 0))));
+					List.of(new MobEffectInstance(LCEffects.STONE_CAGE.get(), 100, 0))));
 			HARM_UP = genUpgrade("harm", () -> new PotionArrowFeature(
 					List.of(new MobEffectInstance(MobEffects.HARM, 1, 1))));
 			HEAL_UP = genUpgrade("heal", () -> new PotionArrowFeature(

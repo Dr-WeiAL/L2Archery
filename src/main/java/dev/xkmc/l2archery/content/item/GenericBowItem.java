@@ -11,7 +11,7 @@ import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
-import dev.xkmc.l2archery.init.ClientRegister;
+import dev.xkmc.l2archery.init.L2ArcheryClient;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
@@ -76,7 +76,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	public GenericBowItem(Properties properties, BowConfig config) {
 		super(properties);
 		this.config = config;
-		ClientRegister.BOW_LIKE.add(this);
+		L2ArcheryClient.BOW_LIKE.add(this);
 	}
 
 	/**

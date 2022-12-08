@@ -8,7 +8,6 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
-import dev.xkmc.l2foundation.init.registrate.LFEffects;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
