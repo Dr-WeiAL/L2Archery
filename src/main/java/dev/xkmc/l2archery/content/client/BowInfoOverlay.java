@@ -1,12 +1,10 @@
 package dev.xkmc.l2archery.content.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.item.*;
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.data.LangData;
-import dev.xkmc.l2library.base.overlay.OverlayUtils;
-import dev.xkmc.l2library.base.overlay.SideBar;
+import dev.xkmc.l2library.base.overlay.InfoSideBar;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.player.LocalPlayer;
@@ -14,42 +12,35 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public class BowInfoOverlay extends SideBar implements IGuiOverlay {
+public class BowInfoOverlay extends InfoSideBar {
 
 	public BowInfoOverlay() {
-		super(40, 5);
+		super(40, 3);
 	}
 
 	@Override
-	public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int width, int height) {
-		if (!ease(partialTick))
-			return;
-
+	protected List<Component> getText() {
 		LocalPlayer player = Proxy.getClientPlayer();
 		ItemStack bowStack = player.getMainHandItem();
 		ItemStack arrowStack = player.getProjectile(bowStack);
 		if (!(bowStack.getItem() instanceof GenericBowItem bow))
-			return;
+			return List.of();
 		ArrowData arrowData = bow.parseArrow(arrowStack);
 		if (arrowData == null)
-			return;
-
-		gui.setupOverlayRenderState(true, false);
+			return List.of();
 		BowData bowData = BowData.of(bow, bowStack);
 		FeatureList features = FeatureList.merge(bowData.getFeatures(), arrowData.getFeatures());
 		List<Component> text = new ArrayList<>();
 		addStat(text, bowData, arrowData.getItem().getConfig());
 		features.addEffectsTooltip(text);
 		features.addTooltip(text);
-		new Box(width, height).renderLongText(gui, poseStack, text);
+		return text;
 	}
 
 	private static void addStat(List<Component> list, BowData data, IGeneralConfig arrow) {
@@ -91,25 +82,6 @@ public class BowInfoOverlay extends SideBar implements IGuiOverlay {
 		if (!(bowStack.getItem() instanceof GenericBowItem bow)) return false;
 		ArrowData arrowData = bow.parseArrow(arrowStack);
 		return arrowData != null;
-	}
-
-	@Override
-	protected int getXOffset(int width) {
-		float progress = (max_ease - ease_time) / max_ease;
-		return -Math.round(progress * width / 2);
-	}
-
-	private class Box extends OverlayUtils {
-
-		public Box(int screenWidth, int screenHeight) {
-			super(screenWidth, screenHeight);
-		}
-
-		@Override
-		public int getX(int w) {
-			return w / 8 + getXOffset(screenWidth);
-		}
-
 	}
 
 }
