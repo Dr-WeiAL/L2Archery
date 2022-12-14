@@ -4,7 +4,10 @@
     "B": {
       "item": "l2archery:starter_bow"
     },
-    "E": {
+    "C": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "F": {
       "item": "minecraft:ender_eye"
     },
     "G": {
@@ -12,9 +15,9 @@
     }
   },
   "pattern": [
-    "GGG",
-    "EBG",
-    "GGG"
+    "GGC",
+    "FBC",
+    "GGC"
   ],
   "result": {
     "item": "l2archery:glow_aim_bow"

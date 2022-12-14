@@ -83,10 +83,14 @@ public class ArcheryItems {
 			STARTER_BOW = genBow("starter_bow", 600).register();
 			IRON_BOW = genBow("iron_bow", 1200).register();
 			MASTER_BOW = genBow("master_bow", 1200).register();
-			MAGNIFY_BOW = genBow("magnify_bow", 600, e -> e.add(new GlowTargetAimFeature(128)))
+			MAGNIFY_BOW = genBow("magnify_bow", 600, e -> e
+					.add(new NoFallArrowFeature(40))
+					.add(new GlowTargetAimFeature(128)))
+					.lang("Sniper Bow with Lens").register();
+			GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e
+					.add(new NoFallArrowFeature(40))
+					.add(new GlowTargetAimFeature(128)))
 					.lang("Sniper Bow").register();
-			GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e.add(new GlowTargetAimFeature(128)))
-					.lang("Infrared Sniper Bow").register();
 			ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)))
 					.lang("Ender Bow").register();
 			EAGLE_BOW = genBow("eagle_bow", 600, e -> e.add(new DamageArrowFeature(

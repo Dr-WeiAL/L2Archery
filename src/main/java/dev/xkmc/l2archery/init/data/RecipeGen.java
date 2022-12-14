@@ -57,10 +57,11 @@ public class RecipeGen {
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.GLOW_AIM_BOW.get(), 1)::unlockedBy, ArcheryItems.STARTER_BOW.get())
-					.pattern("GGG").pattern("EBG").pattern("GGG")
+					.pattern("GGC").pattern("FBC").pattern("GGC")
+					.define('C', Items.PHANTOM_MEMBRANE)
 					.define('G', Items.GLOWSTONE_DUST)
 					.define('B', ArcheryItems.STARTER_BOW.get())
-					.define('E', Items.ENDER_EYE)
+					.define('F', Items.ENDER_EYE)
 					.save(pvd);
 
 			unlock(pvd, new BowBuilder(ArcheryItems.IRON_BOW.get(), 1)::unlockedBy, ArcheryItems.STARTER_BOW.get())
