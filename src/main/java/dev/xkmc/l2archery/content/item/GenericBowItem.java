@@ -12,6 +12,7 @@ import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2ArcheryClient;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.util.Proxy;
@@ -299,6 +300,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		FeatureList f = getFeatures(stack);
 		f.addEffectsTooltip(list);
 		f.addTooltip(list);
+		list.add(LangData.REMAIN_UPGRADE.get(getUpgradeSlot(stack)));
 	}
 
 	public FeatureList getFeatures(@Nullable ItemStack stack) {
@@ -337,7 +339,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	}
 
 	public int getUpgradeSlot(ItemStack stack) {
-		return config.rank() + getEnchantmentLevel(stack, Enchantments.BINDING_CURSE);
+		return config.rank() + getEnchantmentLevel(stack, Enchantments.BINDING_CURSE) - getUpgrades(stack).size();
 	}
 
 }

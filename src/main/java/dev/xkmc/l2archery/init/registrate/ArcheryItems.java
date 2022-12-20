@@ -17,6 +17,7 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.data.LangData;
+import dev.xkmc.l2archery.init.data.TagGen;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
@@ -219,7 +220,7 @@ public class ArcheryItems {
 		consumer.accept(f);
 		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability),
 						new BowConfig(new ResourceLocation(L2Archery.MODID, id), rank, f.build())))
-				.model(ArcheryItems::createBowModel).defaultLang();
+				.model(ArcheryItems::createBowModel).defaultLang().tag(TagGen.FORGE_BOWS, TagGen.PROF_BOWS);
 	}
 
 	private static final float[] BOW_PULL_VALS = {0, 0.65f, 0.9f};
@@ -249,7 +250,7 @@ public class ArcheryItems {
 		consumer.accept(f);
 		return REGISTRATE.item(id, p -> new GenericArrowItem(p, new ArrowConfig(
 						new ResourceLocation(L2Archery.MODID, id), is_inf, f.build())))
-				.model(ArcheryItems::createArrowModel);
+				.model(ArcheryItems::createArrowModel).tag(TagGen.FORGE_ARROWS, TagGen.PROF_ARROWS);
 	}
 
 	public static <T extends GenericArrowItem> void createArrowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {

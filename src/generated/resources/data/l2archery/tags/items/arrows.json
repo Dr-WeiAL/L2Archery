@@ -1,0 +1,26 @@
+{
+  "values": [
+    "l2archery:starter_arrow",
+    "l2archery:copper_arrow",
+    "l2archery:iron_arrow",
+    "l2archery:gold_arrow",
+    "l2archery:obsidian_arrow",
+    "l2archery:blackstone_arrow",
+    "l2archery:quartz_arrow",
+    "l2archery:diamond_arrow",
+    "l2archery:destroyer_arrow",
+    "l2archery:no_fall_arrow",
+    "l2archery:ender_arrow",
+    "l2archery:tnt_arrow_lv1",
+    "l2archery:tnt_arrow_lv2",
+    "l2archery:tnt_arrow_lv3",
+    "l2archery:fire_arrow_lv1",
+    "l2archery:fire_arrow_lv2",
+    "l2archery:frozen_arrow",
+    "l2archery:acid_arrow",
+    "l2archery:dispell_arrow",
+    "l2archery:wither_arrow",
+    "l2archery:storm_arrow",
+    "l2archery:void_arrow"
+  ]
+}

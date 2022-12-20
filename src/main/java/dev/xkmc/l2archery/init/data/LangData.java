@@ -34,6 +34,9 @@ public enum LangData {
 	FEATURE_PIERCE_MAGIC("feature.pierce_magic", "Arrow damage will bypass magic protection", 0, null),
 	FEATURE_PIERCE_INVUL("feature.pierce_invul", "Arrow damage will cause void damage", 0, null),
 	FEATURE_PULL_EFFECT("feature.pull_effect", "Apply effects when pulling bow:", 0, null),
+
+
+	REMAIN_UPGRADE("tooltip.remain", "Remaining Upgrade Slot: %s", 1, ChatFormatting.GRAY),
 	;
 
 	private final String key, def;

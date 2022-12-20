@@ -2,10 +2,11 @@ package dev.xkmc.l2archery.content.upgrade;
 
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import dev.xkmc.l2library.util.code.Wrappers;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UpgradeItem extends Item {
@@ -65,7 +67,13 @@ public class UpgradeItem extends Item {
 			if (upgrade.getFeature() instanceof PotionArrowFeature arr) {
 				PotionArrowFeature.addTooltip(arr.instances(), list);
 			}
-			upgrade.getFeature().addTooltip(Wrappers.cast(list));
+			List<MutableComponent> temp = new ArrayList<>();
+			upgrade.getFeature().addTooltip(temp);
+			for (MutableComponent c : temp) {
+				if (c.getStyle().getColor() == null)
+					c.withStyle(ChatFormatting.GOLD);
+				list.add(c);
+			}
 		}
 	}
 }

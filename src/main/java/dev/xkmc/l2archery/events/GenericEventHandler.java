@@ -61,8 +61,8 @@ public class GenericEventHandler {
 			FeatureList list = bow.getFeatures(left);
 			if (upgrade != null && upgrade.allow(bow) && list.allow(upgrade.getFeature())) {
 				int count = GenericBowItem.getUpgrades(left).size();
-				int max = bow.getUpgradeSlot(left);
-				if (count < max) {
+				int remain = bow.getUpgradeSlot(left);
+				if (remain > 0) {
 					ItemStack result = left.copy();
 					GenericBowItem.addUpgrade(result, upgrade);
 					event.setOutput(result);

@@ -1,4 +1,6 @@
 {
+  "advancements.l2archery.advancements.archery.binding.description": "ʇoןs ǝpɐɹbdn ǝsɐǝɹɔuı oʇ ʍoq ɐ uo buıpuıq ɟo ǝsɹnɔ ʇnԀ",
+  "advancements.l2archery.advancements.archery.binding.title": "sʇoןS ɐɹʇxƎ",
   "advancements.l2archery.advancements.archery.eagle_bow.description": "ʍoq ǝןbɐǝ uɐ ʇɟɐɹƆ",
   "advancements.l2archery.advancements.archery.eagle_bow.title": "uoıʇɐɹʇǝuǝԀ ɹoɯɹⱯ",
   "advancements.l2archery.advancements.archery.earth_bow.description": "ɥʇɹɐƎ ǝɥʇ ɟo ʍoq ǝɥʇ ʇɟɐɹƆ",
@@ -110,6 +112,7 @@
   "l2archery.stat.pull_time": "spuoɔǝs %s :ǝɯı⟘ ןןnԀ",
   "l2archery.stat.punch": "%s :ɥɔunԀ",
   "l2archery.stat.speed": "s/ɯ %s :pǝǝdS ʍoɹɹⱯ",
+  "l2archery.tooltip.remain": "%s :ʇoןS ǝpɐɹbd∩ buıuıɐɯǝᴚ",
   "stat_type.l2archery.damage": "ǝbɐɯɐᗡ",
   "stat_type.l2archery.fov_time": "ǝɯı⟘ ʌoℲ",
   "stat_type.l2archery.max_fov": "ʌoℲ xɐW",

@@ -10,6 +10,7 @@ import dev.xkmc.l2library.repack.registrate.providers.RegistrateAdvancementProvi
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 public class AdvGen {
 
@@ -74,7 +75,11 @@ public class AdvGen {
 			root.create("upgrade", ArcheryItems.UPGRADE.get(),
 							CriterionBuilder.item(ArcheryItems.UPGRADE.get()),
 							"Mystical Crystal", "Obtain an upgrade")
-					.create("void", LCItems.SPACE_SHARD.get(),
+					.create("binding", Items.ENCHANTED_BOOK,
+							CriterionBuilder.enchanted(TagGen.PROF_BOWS, Enchantments.BINDING_CURSE),
+							"Extra Slots", "Put curse of binding on a bow to increase upgrade slot")
+					.type(FrameType.CHALLENGE);
+			root.enter().create("void", LCItems.SPACE_SHARD.get(),
 							CriterionBuilder.item(LCItems.SPACE_SHARD.get()),
 							"Halfway Godhood", "Obtain a space shard")
 					.type(FrameType.CHALLENGE, true, true, true)

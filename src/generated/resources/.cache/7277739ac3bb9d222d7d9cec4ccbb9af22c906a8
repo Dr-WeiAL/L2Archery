@@ -1,6 +1,6 @@
-// 1.19.2	2022-12-20T10:17:04.892786	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-0d319e981f868f8414a63bdcf8ddf2e2d6a2b983 assets/l2archery/lang/en_ud.json
-6d72f1035b10313c9544ac6a3db5163bf35ba585 assets/l2archery/lang/en_us.json
+// 1.19.2	2022-12-20T11:43:01.713238	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+ce65f1d01d73160d5256b6094e4b2e1c2f36ff47 assets/l2archery/lang/en_ud.json
+046dc8f1e93118da6d34b8e48f1e9a01d7dd5590 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -100,6 +100,8 @@ dafbcee21344dd3396e25a1627b19e87a487bcfc assets/l2archery/models/item/void_bow.j
 ec95eeb38dc2ba1c4549f52e64381ce95776dac6 assets/l2archery/models/item/wind_bow.json
 f744c6715565502549593e83804b9969406d83f9 assets/l2archery/models/item/winter_bow.json
 1bff1bd4aac473f8fab60ff9fe9371f947c7246c assets/l2archery/models/item/wither_arrow.json
+a04e437fcac34d118f85df1d2f3610bd937ad429 data/forge/tags/items/tools/bows.json
+77425e9207c2814320b2951596098262e3382afb data/l2archery/advancements/archery/binding.json
 7e9c050c5e40f76aec3c7b32c4aa0e15e7d02361 data/l2archery/advancements/archery/eagle_bow.json
 c57a0e5e3706d994e4778b637845870fbc88ac1a data/l2archery/advancements/archery/earth_bow.json
 be633b38ef06d37d6bedb24217d334b69183f84c data/l2archery/advancements/archery/ender_aim_bow.json
@@ -243,3 +245,6 @@ d637896b617a898249768a3291e56f551b7b3a5b data/l2archery/recipes/void_bow.json
 93da55705cc4cbf34b054d5e4baaaa63ead0d257 data/l2archery/recipes/wind_bow.json
 0dd69ac202a7da5e708e0abc9f5d93f953c6ac69 data/l2archery/recipes/winter_bow.json
 846e89dc93390511f67ba3bd1cfd33b396a92bd3 data/l2archery/recipes/wither_arrow.json
+81fbdb28283fefcd944474a6bf3ac438185eed66 data/l2archery/tags/items/arrows.json
+a04e437fcac34d118f85df1d2f3610bd937ad429 data/l2archery/tags/items/bows.json
+81fbdb28283fefcd944474a6bf3ac438185eed66 data/minecraft/tags/items/arrows.json

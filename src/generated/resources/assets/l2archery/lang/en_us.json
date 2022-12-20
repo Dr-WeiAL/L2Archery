@@ -1,4 +1,6 @@
 {
+  "advancements.l2archery.advancements.archery.binding.description": "Put curse of binding on a bow to increase upgrade slot",
+  "advancements.l2archery.advancements.archery.binding.title": "Extra Slots",
   "advancements.l2archery.advancements.archery.eagle_bow.description": "Craft an eagle bow",
   "advancements.l2archery.advancements.archery.eagle_bow.title": "Armor Penetration",
   "advancements.l2archery.advancements.archery.earth_bow.description": "Craft the bow of the Earth",
@@ -110,6 +112,7 @@
   "l2archery.stat.pull_time": "Pull Time: %s seconds",
   "l2archery.stat.punch": "Punch: %s",
   "l2archery.stat.speed": "Arrow Speed: %s m/s",
+  "l2archery.tooltip.remain": "Remaining Upgrade Slot: %s",
   "stat_type.l2archery.damage": "Damage",
   "stat_type.l2archery.fov_time": "Fov Time",
   "stat_type.l2archery.max_fov": "Max Fov",
