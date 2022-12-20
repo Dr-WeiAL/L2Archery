@@ -28,6 +28,7 @@
 	  "pull_time": "拉弓时间: %s秒",
 	  "punch": "击退: %s",
 	  "speed": "出弓速度: %s米每秒"
-	}
+	},
+	"tooltip.remain": "剩余升级槽: %s"
   }
 }

@@ -1,11 +1,16 @@
 package dev.xkmc.l2archery.init.data;
 
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
+import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -82,6 +87,13 @@ public enum LangData {
 	public static void genLang(RegistrateLangProvider pvd) {
 		for (LangData lang : LangData.values()) {
 			pvd.add(lang.key, lang.def);
+		}
+		List<Item> list = List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW);
+		for (RegistryEntry<? extends Potion> ent : ArcheryEffects.POTION_LIST) {
+			for (Item item : list) {
+				String str = ent.get().getName(item.getDescriptionId() + ".effect.");
+				pvd.add(str, RegistrateLangProvider.toEnglishName(ent.get().getName("")));
+			}
 		}
 		pvd.add("itemGroup." + L2Archery.MODID + ".archery", "L2 Archery");
 	}
