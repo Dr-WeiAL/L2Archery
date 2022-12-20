@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.entity.PartEntity;
 
 import java.util.List;
 
@@ -18,11 +19,22 @@ public class VoidArrowFeature implements OnHitFeature {
 	public void onHitEntity(GenericArrowEntity genericArrow, Entity target, EntityHitResult hit) {
 		target.hurt(DamageSource.OUT_OF_WORLD, Float.MAX_VALUE);
 		genericArrow.discard();
+		if (target instanceof LivingEntity le) {
+			onHitLivingEntity(genericArrow, le, hit);
+		} else if (target instanceof PartEntity<?> part) {
+			onHitEntity(genericArrow, part.getParent(), hit);
+		}
+	}
+
+	@Override
+	public void onHitLivingEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
+		if (!target.isDeadOrDying()) target.setHealth(0);
+		if (!target.isDeadOrDying()) target.kill();
 	}
 
 	@Override
 	public void postHurtEntity(GenericArrowEntity genericArrow, LivingEntity target) {
-		if (!target.isDeadOrDying()) target.kill();
+
 	}
 
 	@Override
