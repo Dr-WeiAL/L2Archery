@@ -55,9 +55,6 @@
     },
     "l2archery:quartz_arrow": {
       "l2archery:damage": 3.0
-    },
-    "l2archery:void_arrow": {
-      "l2archery:damage": 16.0
     }
   },
   "bow_effects": {},

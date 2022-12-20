@@ -80,59 +80,64 @@ public class ArcheryItems {
 
 	static {
 		{
-			STARTER_BOW = genBow("starter_bow", 600).register();
-			IRON_BOW = genBow("iron_bow", 1200).register();
-			MASTER_BOW = genBow("master_bow", 1200).register();
-			MAGNIFY_BOW = genBow("magnify_bow", 600, e -> e
-					.add(new NoFallArrowFeature(40))
-					.add(new GlowTargetAimFeature(128)))
-					.lang("Sniper Bow with Lens").register();
-			GLOW_AIM_BOW = genBow("glow_aim_bow", 600, e -> e
+			STARTER_BOW = genBow("starter_bow", 0, 600).register();
+
+			IRON_BOW = genBow("iron_bow", 1, 1200).register();
+			MASTER_BOW = genBow("master_bow", 1, 1200).register();
+			GLOW_AIM_BOW = genBow("glow_aim_bow", 1, 300, e -> e
 					.add(new NoFallArrowFeature(40))
 					.add(new GlowTargetAimFeature(128)))
 					.lang("Sniper Bow").register();
-			ENDER_AIM_BOW = genBow("ender_aim_bow", 8, e -> e.add(new EnderShootFeature(128)))
+
+			MAGNIFY_BOW = genBow("magnify_bow", 2, 300, e -> e
+					.add(new NoFallArrowFeature(40))
+					.add(new GlowTargetAimFeature(128)))
+					.lang("Sniper Bow with Lens").register();
+			ENDER_AIM_BOW = genBow("ender_aim_bow", 2, 600, e -> e.add(new EnderShootFeature(128)))
 					.lang("Ender Bow").register();
-			EAGLE_BOW = genBow("eagle_bow", 600, e -> e.add(new DamageArrowFeature(
+			EAGLE_BOW = genBow("eagle_bow", 2, 600, e -> e.add(new DamageArrowFeature(
 					(a, s) -> s.bypassArmor(),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			))).register();
-			WIND_BOW = genBow("wind_bow", 600, e -> e
+			EXPLOSION_BOW = genBow("explosion_bow", 2, 300, e -> e
+					.add(new ExplodeArrowFeature(3, true, false))).register();
+			FLAME_BOW = genBow("flame_bow", 2, 600, e -> e.add(new FireArrowFeature(100)))
+					.lang("Blazing Bow").register();
+			FROZE_BOW = genBow("froze_bow", 2, 600).lang("Freezing Bow").register();
+			BLACKSTONE_BOW = genBow("slow_bow", 2, 600).lang("Bow of Seal").register();
+			STORM_BOW = genBow("storm_bow", 2, 600, e -> e
+					.add(new ExplodeArrowFeature(3, false, false)))
+					.lang("Approaching Storm").register();
+
+			TURTLE_BOW = genBow("turtle_bow", 2, 600, e -> e.add(new PullEffectFeature(List.of(
+					() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 3),
+					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 2)
+			)))).register();
+			EARTH_BOW = genBow("earth_bow", 2, 600, e -> e.add(new PullEffectFeature(List.of(
+					() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 5),
+					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 3)
+			)))).lang("Bow of the Earth").register();
+
+			WIND_BOW = genBow("wind_bow", 3, 600, e -> e
 					.add(new NoFallArrowFeature(40))
 					.add(new WindBowFeature())
 					.add(new PullEffectFeature(List.of(
 							() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1)
 					)))).lang("Bless of Favonius").register();
-			EXPLOSION_BOW = genBow("explosion_bow", 32, e -> e
-					.add(new ExplodeArrowFeature(3, true, false))).register();
-			FLAME_BOW = genBow("flame_bow", 600, e -> e.add(new FireArrowFeature(100)))
-					.lang("Blazing Bow").register();
-			FROZE_BOW = genBow("froze_bow", 600).lang("Freezing Bow").register();
-			BLACKSTONE_BOW = genBow("slow_bow", 600).lang("Bow of Seal").register();
-			STORM_BOW = genBow("storm_bow", 600, e -> e
-					.add(new ExplodeArrowFeature(3, false, false)))
-					.lang("Approaching Storm").register();
-			WINTER_BOW = genBow("winter_bow", 600, e -> e
+
+			WINTER_BOW = genBow("winter_bow", 3, 600, e -> e
 					.add(new ExplodeArrowFeature(3, false, false)))
 					.lang("Ever Freezing Night").register();
-			TURTLE_BOW = genBow("turtle_bow", 600, e -> e.add(new PullEffectFeature(List.of(
-					() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 3),
-					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 2)
-			)))).register();
-			EARTH_BOW = genBow("earth_bow", 600, e -> e.add(new PullEffectFeature(List.of(
-					() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 5),
-					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 3)
-			)))).lang("Bow of the Earth").register();
-			GAIA_BOW = genBow("gaia_bow", 600, e -> e.add(new PullEffectFeature(List.of(
+			GAIA_BOW = genBow("gaia_bow", 3, 600, e -> e.add(new PullEffectFeature(List.of(
 					() -> new MobEffectInstance(LCEffects.STONE_CAGE.get(), 80, 0),
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 4)
 			)))).lang("Bless of Gaia").register();
-			VOID_BOW = genBow("void_bow", 32, e -> e.add(new EnderShootFeature(128))
+			VOID_BOW = genBow("void_bow", 3, 300, e -> e.add(new EnderShootFeature(128))
 					.add(new DamageArrowFeature(
 							(a, s) -> s.bypassArmor().bypassMagic().bypassInvul(),
 							LangData.FEATURE_PIERCE_INVUL::get
 					))).lang("Sight of the Void").register();
-			SUN_BOW = genBow("sun_bow", 600, e -> e.add(new FireArrowFeature(200))
+			SUN_BOW = genBow("sun_bow", 3, 600, e -> e.add(new FireArrowFeature(200))
 					.add(new ExplodeArrowFeature(4, true, false)))
 					.lang("Bless of Helios").register();
 		}
@@ -159,7 +164,10 @@ public class ArcheryItems {
 					(a, s) -> s.bypassMagic(),
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
-			WITHER_ARROW = genArrow("wither_arrow", false);
+			WITHER_ARROW = genArrow("wither_arrow", false, e -> e.add(new DamageArrowFeature(
+					(a, s) -> s.setMagic().bypassArmor(),
+					LangData.FEATURE_PIERCE_ARMOR::get
+			))).register();
 			STORM_ARROW = genArrow("storm_arrow", false, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
 			VOID_ARROW = genArrow("void_arrow", false, e -> e.add(new DamageArrowFeature(
 					(a, s) -> s.bypassArmor().bypassMagic().bypassInvul(),
@@ -201,16 +209,16 @@ public class ArcheryItems {
 	public static void register() {
 	}
 
-	public static ItemBuilder<GenericBowItem, L2Registrate> genBow(String id, int durability) {
-		return genBow(id, durability, e -> {
+	public static ItemBuilder<GenericBowItem, L2Registrate> genBow(String id, int rank, int durability) {
+		return genBow(id, rank, durability, e -> {
 		});
 	}
 
-	public static ItemBuilder<GenericBowItem, L2Registrate> genBow(String id, int durability, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
+	public static ItemBuilder<GenericBowItem, L2Registrate> genBow(String id, int rank, int durability, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
 		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
 		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability),
-						new BowConfig(new ResourceLocation(L2Archery.MODID, id), f.build())))
+						new BowConfig(new ResourceLocation(L2Archery.MODID, id), rank, f.build())))
 				.model(ArcheryItems::createBowModel).defaultLang();
 	}
 

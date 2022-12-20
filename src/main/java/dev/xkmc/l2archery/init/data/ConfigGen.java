@@ -1,7 +1,6 @@
 package dev.xkmc.l2archery.init.data;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
-import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2library.serial.network.BaseConfig;
@@ -49,7 +48,7 @@ public class ConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.QUARTZ_ARROW).damage(3).end()
 				.putArrow(ArcheryItems.DIAMOND_ARROW).damage(4).end()
 				.putArrow(ArcheryItems.DESTROYER_ARROW).damage(8).end()
-				.putArrow(ArcheryItems.VOID_ARROW).damage(16).end()
+				.putArrow(ArcheryItems.VOID_ARROW).end()
 				.putArrow(ArcheryItems.NO_FALL_ARROW).end()
 				.putArrow(ArcheryItems.ENDER_ARROW).end()
 				.putArrow(ArcheryItems.TNT_1_ARROW).end()

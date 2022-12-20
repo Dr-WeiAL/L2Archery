@@ -1,0 +1,37 @@
+{
+  "parent": "l2archery:archery/root",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2archery:upgrade"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.l2archery.advancements.archery.upgrade.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "l2archery:upgrade"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.l2archery.advancements.archery.upgrade.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

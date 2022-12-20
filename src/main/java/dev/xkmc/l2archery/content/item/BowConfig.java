@@ -9,7 +9,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 
-public record BowConfig(ResourceLocation id, List<BowArrowFeature> feature) implements IBowConfig {
+public record BowConfig(ResourceLocation id, int rank, List<BowArrowFeature> feature) implements IBowConfig {
 
 	private double getValue(BowArrowStatType type) {
 		var map = BowArrowStatConfig.get().bow_stats.get(id);

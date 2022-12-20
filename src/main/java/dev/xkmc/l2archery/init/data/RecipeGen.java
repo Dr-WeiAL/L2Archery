@@ -3,6 +3,7 @@ package dev.xkmc.l2archery.init.data;
 import dev.xkmc.l2archery.content.crafting.BowBuilder;
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
+import dev.xkmc.l2complements.init.data.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.base.ingredients.EnchantmentIngredient;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
@@ -87,7 +88,7 @@ public class RecipeGen {
 			unlock(pvd, new BowBuilder(ArcheryItems.ENDER_AIM_BOW.get(), 1)::unlockedBy, ArcheryItems.GLOW_AIM_BOW.get())
 					.pattern("2OR").pattern("ABR").pattern("1OR")
 					.define('O', Items.DRAGON_HEAD)
-					.define('R', Items.END_ROD)
+					.define('R', LCMats.SHULKERATE.getIngot())
 					.define('1', new EnchantmentIngredient(Enchantments.BINDING_CURSE, 1))
 					.define('2', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
 					.define('A', LCItems.VOID_EYE.get())
@@ -196,10 +197,14 @@ public class RecipeGen {
 					.define('B', ArcheryItems.IRON_BOW.get())
 					.save(pvd);
 
-			// TODO bow: 3 remaining
-			// wind
-			// night aurora
-			// high wind
+			unlock(pvd, new BowBuilder(ArcheryItems.WIND_BOW.get(), 1)::unlockedBy, ArcheryItems.STORM_BOW.get())
+					.pattern("CCB").pattern("DAB").pattern("CCB")
+					.define('A', ArcheryItems.STORM_ARROW.get())
+					.define('B', LCItems.WIND_BOTTLE.get())
+					.define('C', Items.PHANTOM_MEMBRANE)
+					.define('D', LCItems.CAPTURED_BULLET.get())
+					.save(pvd);
+
 		}
 
 		// upgrade

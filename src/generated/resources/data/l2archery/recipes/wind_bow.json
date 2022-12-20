@@ -1,0 +1,25 @@
+{
+  "type": "l2archery:bow_craft",
+  "key": {
+    "A": {
+      "item": "l2archery:storm_arrow"
+    },
+    "B": {
+      "item": "l2complements:wind_capture_bottle"
+    },
+    "C": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "D": {
+      "item": "l2complements:captured_shulker_bullet"
+    }
+  },
+  "pattern": [
+    "CCB",
+    "DAB",
+    "CCB"
+  ],
+  "result": {
+    "item": "l2archery:wind_bow"
+  }
+}

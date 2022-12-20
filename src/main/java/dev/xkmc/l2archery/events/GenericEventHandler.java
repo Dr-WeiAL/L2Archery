@@ -13,7 +13,6 @@ import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ComputeFovModifierEvent;
@@ -62,7 +61,7 @@ public class GenericEventHandler {
 			FeatureList list = bow.getFeatures(left);
 			if (upgrade != null && upgrade.allow(bow) && list.allow(upgrade.getFeature())) {
 				int count = GenericBowItem.getUpgrades(left).size();
-				int max = bow.getBaseUpgradeCount(left) + bow.getEnchantmentLevel(left, Enchantments.BINDING_CURSE);
+				int max = bow.getUpgradeSlot(left);
 				if (count < max) {
 					ItemStack result = left.copy();
 					GenericBowItem.addUpgrade(result, upgrade);

@@ -16,13 +16,13 @@ public class VoidArrowFeature implements OnHitFeature {
 
 	@Override
 	public void onHitEntity(GenericArrowEntity genericArrow, Entity target, EntityHitResult hit) {
-		target.hurt(DamageSource.OUT_OF_WORLD, (float) (genericArrow.getBaseDamage() * genericArrow.getDeltaMovement().length()));
+		target.hurt(DamageSource.OUT_OF_WORLD, Float.MAX_VALUE);
 		genericArrow.discard();
 	}
 
 	@Override
 	public void postHurtEntity(GenericArrowEntity genericArrow, LivingEntity target) {
-		target.hurt(DamageSource.OUT_OF_WORLD, (float) (genericArrow.getBaseDamage() * genericArrow.getDeltaMovement().length()));
+		if (!target.isDeadOrDying()) target.kill();
 	}
 
 	@Override

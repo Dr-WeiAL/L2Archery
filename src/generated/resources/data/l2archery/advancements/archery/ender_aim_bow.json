@@ -1,0 +1,38 @@
+{
+  "parent": "l2archery:archery/glow_aim_bow",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2archery:ender_aim_bow"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.l2archery.advancements.archery.ender_aim_bow.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "l2archery:ender_aim_bow",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.l2archery.advancements.archery.ender_aim_bow.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

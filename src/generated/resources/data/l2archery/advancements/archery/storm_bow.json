@@ -1,0 +1,38 @@
+{
+  "parent": "l2archery:archery/master_bow",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2archery:storm_bow"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.l2archery.advancements.archery.storm_bow.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "l2archery:storm_bow",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.l2archery.advancements.archery.storm_bow.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

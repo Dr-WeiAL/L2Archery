@@ -331,8 +331,13 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		return super.canApplyAtEnchantingTable(stack, enchantment);
 	}
 
-	public int getBaseUpgradeCount(ItemStack stack) {
-		return 1;
+	@Override
+	public Rarity getRarity(ItemStack stack) {
+		return Rarity.values()[config.rank()];
+	}
+
+	public int getUpgradeSlot(ItemStack stack) {
+		return config.rank() + getEnchantmentLevel(stack, Enchantments.BINDING_CURSE);
 	}
 
 }

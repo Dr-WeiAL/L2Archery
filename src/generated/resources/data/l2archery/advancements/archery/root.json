@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:arrow"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "l2archery:textures/gui/advancements/backgrounds/archery.png",
+    "description": {
+      "translate": "advancements.l2archery.advancements.archery.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "l2archery:sun_bow",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.l2archery.advancements.archery.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
