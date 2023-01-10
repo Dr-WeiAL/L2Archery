@@ -1,4 +1,4 @@
-// 1.19.2	2022-12-20T13:51:06.452767	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.2	2022-12-31T00:57:42.849953	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 a03a8b7c26bae5762e61f4a51bc833be952f23e2 assets/l2archery/lang/en_ud.json
 f6a57aaa069e2a5593a62e982e265a8de84c64c5 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
@@ -242,7 +242,7 @@ b79206deceeff3ee7ce4c75e4e83f8e461dde1e4 data/l2archery/recipes/upgrade.json
 bd137afef09de85496d6bf5fbcd9ccdd6d0c305e data/l2archery/recipes/void.json
 290f49495fadf6cbdcbccc476fc04fe2ffbb3294 data/l2archery/recipes/void_arrow.json
 d637896b617a898249768a3291e56f551b7b3a5b data/l2archery/recipes/void_bow.json
-93da55705cc4cbf34b054d5e4baaaa63ead0d257 data/l2archery/recipes/wind_bow.json
+b3ab8eaf37b4b16667f69166735edcfc117867f6 data/l2archery/recipes/wind_bow.json
 0dd69ac202a7da5e708e0abc9f5d93f953c6ac69 data/l2archery/recipes/winter_bow.json
 846e89dc93390511f67ba3bd1cfd33b396a92bd3 data/l2archery/recipes/wither_arrow.json
 81fbdb28283fefcd944474a6bf3ac438185eed66 data/l2archery/tags/items/arrows.json

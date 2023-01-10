@@ -200,7 +200,7 @@ public class RecipeGen {
 			unlock(pvd, new BowBuilder(ArcheryItems.WIND_BOW.get(), 1)::unlockedBy, ArcheryItems.STORM_BOW.get())
 					.pattern("CCB").pattern("DAB").pattern("CCB")
 					.define('A', ArcheryItems.STORM_ARROW.get())
-					.define('B', LCItems.WIND_BOTTLE.get())
+					.define('B', LCItems.CAPTURED_WIND.get())
 					.define('C', Items.PHANTOM_MEMBRANE)
 					.define('D', LCItems.CAPTURED_BULLET.get())
 					.save(pvd);
