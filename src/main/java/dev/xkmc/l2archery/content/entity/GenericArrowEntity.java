@@ -58,17 +58,20 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
-		features.hit().forEach(e -> e.onHitEntity(this, result.getEntity(), result));
+		if (!level.isClientSide())
+			features.hit().forEach(e -> e.onHitEntity(this, result.getEntity(), result));
 		super.onHitEntity(result);
 	}
 
 	public void onHurtEntity(IndirectEntityDamageSource ind) {
-		features.hit().forEach(e -> e.onHurtEntity(this, ind));
+		if (!level.isClientSide())
+			features.hit().forEach(e -> e.onHurtEntity(this, ind));
 	}
 
 	@Override
 	public void doPostHurtEffects(LivingEntity target) {
-		features.hit().forEach(e -> e.postHurtEntity(this, target));
+		if (!level.isClientSide())
+			features.hit().forEach(e -> e.postHurtEntity(this, target));
 	}
 
 	@ServerOnly

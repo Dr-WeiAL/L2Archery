@@ -10,10 +10,13 @@ public class ArcheryConfig {
 	public static class Client {
 
 		public final ForgeConfigSpec.BooleanValue showInfo;
+		public final ForgeConfigSpec.BooleanValue showArrow;
 
 		Client(ForgeConfigSpec.Builder builder) {
 			showInfo = builder.comment("Show combined bow arrow stats and features when holding bow")
 					.define("showInfo", true);
+			showArrow = builder.comment("Show projectile selection")
+					.define("showArrow", true);
 		}
 
 	}
