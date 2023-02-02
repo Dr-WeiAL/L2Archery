@@ -283,17 +283,13 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		List<Upgrade> ups = getUpgrades(stack);
-		StatFeature stat = null;
+		IBowConfig config = this.config;
 		for (Upgrade up : ups) {
 			if (up.getFeature() instanceof StatFeature f) {
-				stat = f;
+				config = new CompoundBowConfig(config, f);
 			}
 		}
-		if (stat == null) {
-			config.addStatTooltip(list);
-		} else {
-			new CompoundBowConfig(config, stat).addStatTooltip(list);
-		}
+		config.addStatTooltip(list);
 		for (Upgrade up : ups) {
 			list.add(Component.translatable(up.getDescriptionId()).withStyle(ChatFormatting.GOLD));
 		}

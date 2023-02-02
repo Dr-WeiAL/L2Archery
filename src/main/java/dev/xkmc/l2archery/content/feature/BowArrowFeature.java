@@ -1,6 +1,7 @@
 package dev.xkmc.l2archery.content.feature;
 
 import dev.xkmc.l2archery.content.item.BowConfig;
+import dev.xkmc.l2archery.content.item.IBowConfig;
 import net.minecraft.network.chat.MutableComponent;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface BowArrowFeature {
 		return false;
 	}
 
-	default boolean allow(BowConfig config) {
+	default boolean allow(IBowConfig config) {
 		return true;
 	}
 }

@@ -6,7 +6,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 
-public record CompoundBowConfig(BowConfig config, StatFeature feature) implements IBowConfig {
+public record CompoundBowConfig(IBowConfig config, StatFeature feature) implements IBowConfig {
 
 	@Override
 	public float speed() {

@@ -1,13 +1,14 @@
 package dev.xkmc.l2archery.content.feature.core;
 
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
-import dev.xkmc.l2archery.content.item.BowConfig;
 import dev.xkmc.l2archery.content.item.IBowConfig;
+import dev.xkmc.l2archery.content.upgrade.StatHolder;
 import dev.xkmc.l2archery.init.data.LangData;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
+import java.util.Set;
 
 public record StatFeature(float fov, int fov_time, float damage, int punch,
 						  float speed) implements BowArrowFeature, IBowConfig {
@@ -36,8 +37,18 @@ public record StatFeature(float fov, int fov_time, float damage, int punch,
 	}
 
 	@Override
-	public boolean allow(BowConfig config) {
+	public boolean allow(IBowConfig config) {
 		if (damage > 1f && config.damage() == 0f) return false;
 		return !(fov() > 1f) || !(1 / (1 - config.fov()) >= 9.9f);
 	}
+
+	public boolean addStatHolder(Set<StatHolder> set) {
+		boolean success = true;
+		if (damage() != NOOP.damage()) success &= set.add(StatHolder.DAMAGE);
+		if (punch() != NOOP.punch()) success &= set.add(StatHolder.PUNCH);
+		if (fov() != NOOP.fov()) success &= set.add(StatHolder.FOV);
+		if (speed() != NOOP.speed()) success &= set.add(StatHolder.SPEED);
+		return success;
+	}
+
 }
