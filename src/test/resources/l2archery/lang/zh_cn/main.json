@@ -3,6 +3,13 @@
 	"archery": "弓艺"
   },
   "entity.l2archery.generic_arrow": "箭",
+
+  "stat_type.l2archery.damage": "伤害",
+  "stat_type.l2archery.fov_time": "放大时间",
+  "stat_type.l2archery.max_fov": "放大",
+  "stat_type.l2archery.pull_time": "拉弓时间",
+  "stat_type.l2archery.punch": "击退",
+  "stat_type.l2archery.speed": "出弓速度",
   "l2archery": {
 	"feature": {
 	  "aim_flow": "让%s米内被瞄准的目标高亮显示（仅自己可见）",
@@ -29,6 +36,7 @@
 	  "punch": "击退: %s",
 	  "speed": "出弓速度: %s米每秒"
 	},
-	"tooltip.remain": "剩余升级槽: %s"
+	"tooltip.remain": "剩余升级槽: %s",
+	"tooltip.damage": "增幅弓的伤害增益。对没有伤害增益对弓没有效果。"
   }
 }

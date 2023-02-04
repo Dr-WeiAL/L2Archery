@@ -1,6 +1,8 @@
 package dev.xkmc.l2archery.content.upgrade;
 
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.StatFeature;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
@@ -16,7 +18,9 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UpgradeItem extends Item {
 
@@ -73,6 +77,11 @@ public class UpgradeItem extends Item {
 				if (c.getStyle().getColor() == null)
 					c.withStyle(ChatFormatting.GOLD);
 				list.add(c);
+			}
+			if (upgrade.getFeature() instanceof StatFeature stat) {
+				if (!stat.addStatHolder(new HashSet<>(Set.of(StatHolder.DAMAGE)))) {
+					list.add(LangData.DAMAGE_UPGRADE.get());
+				}
 			}
 		}
 	}

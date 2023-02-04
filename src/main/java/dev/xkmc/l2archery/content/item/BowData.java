@@ -50,7 +50,7 @@ public record BowData(Item item, ArrayList<Upgrade> upgrade, HashMap<Enchantment
 		IBowConfig ans = getItem().config;
 		for (Upgrade up : upgrade) {
 			if (up.getFeature() instanceof StatFeature f) {
-				ans = new CompoundBowConfig(getItem().config, f);
+				ans = new CompoundBowConfig(ans, f);
 			}
 		}
 		return ans;
