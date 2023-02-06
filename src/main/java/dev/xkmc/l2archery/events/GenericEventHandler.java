@@ -19,6 +19,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.GrindstoneEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -84,7 +85,7 @@ public class GenericEventHandler {
 			GenericBowItem.addUpgrade(result, upgrade);
 			event.setOutput(result);
 			event.setMaterialCost(1);
-			event.setCost(4 << (count * 2));
+			event.setCost(8 << (count));
 
 		}
 	}
@@ -95,6 +96,15 @@ public class GenericEventHandler {
 			if (ind.getDirectEntity() instanceof GenericArrowEntity arrow) {
 				arrow.onHurtEntity(ind);
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onGrind(GrindstoneEvent.OnplaceItem event) {
+		if (event.getTopItem().getItem() instanceof GenericBowItem bow) {
+			ItemStack copy = event.getTopItem().copy();
+			copy.getOrCreateTag().remove(GenericBowItem.KEY);
+			event.setOutput(copy);
 		}
 	}
 

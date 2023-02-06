@@ -48,7 +48,7 @@ import java.util.function.Predicate;
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget {
 
-	private static final String KEY = "upgrades";
+	public static final String KEY = "upgrades";
 
 	public static List<Upgrade> getUpgrades(ItemStack stack) {
 		List<Upgrade> ans = new ArrayList<>();
