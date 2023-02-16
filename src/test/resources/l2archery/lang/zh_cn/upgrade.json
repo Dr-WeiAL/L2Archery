@@ -1,26 +1,27 @@
 {
   "upgrade.l2archery": {
-	"anti_gravity": "无重力",
-	"explosion": "爆炸",
-	"frozen": "寒流",
-	"glow": "荧光",
-	"soul_fire": "狱火",
-	"void": "虚空",
-	"damage": "力量",
-	"magnify_x2": "放大 x2",
-	"magnify_x4": "放大 x4",
-	"magnify_x8": "放大 x8",
-	"punch": "击退",
-	"blackstone": "禁锢",
-	"harm": "瞬间伤害",
-	"heal": "瞬间治疗",
-	"glowing": "光灵",
-	"levitate": "悬浮",
-	"super_damage": "力量 II",
-	"railgun": "超电磁炮"
+    "anti_gravity": "无重力",
+    "explosion": "爆炸",
+    "frozen": "寒流",
+    "glow": "荧光",
+    "soul_fire": "狱火",
+    "void": "虚空",
+    "damage": "力量",
+    "magnify_x2": "放大 x2",
+    "magnify_x4": "放大 x4",
+    "magnify_x8": "放大 x8",
+    "punch": "击退",
+    "blackstone": "禁锢",
+    "harm": "瞬间伤害",
+    "heal": "瞬间治疗",
+    "glowing": "光灵",
+    "levitate": "悬浮",
+    "super_damage": "力量 II",
+    "railgun": "超电磁炮",
+    "flux_up": "通量升级"
   },
   "effect.l2archery": {
-	"quick_pull": "快速拉弓",
-	"run_bow": "移动射击"
+    "quick_pull": "快速拉弓",
+    "run_bow": "移动射击"
   }
 }

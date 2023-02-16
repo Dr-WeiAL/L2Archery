@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "forge:gears/gold"
+    },
+    "G": {
+      "tag": "forge:gears/tin"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "item": "minecraft:redstone"
+    },
+    "X": {
+      "item": "l2archery:upgrade"
+    }
+  },
+  "pattern": [
+    " X ",
+    "ICI",
+    "GPG"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:flux_up"
+    }
+  }
+}

@@ -26,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 public class L2Archery {
 
 	public static final String MODID = "l2archery";
+
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
 
