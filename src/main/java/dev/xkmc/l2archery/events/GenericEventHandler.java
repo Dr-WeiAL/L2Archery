@@ -66,20 +66,7 @@ public class GenericEventHandler {
 			Upgrade upgrade = UpgradeItem.getUpgrade(right);
 			FeatureList list = bow.getFeatures(left);
 			if (upgrade == null) return;
-			if (!upgrade.allow(bow)) return;
-			int remain = bow.getUpgradeSlot(left);
-			if (remain <= 0) return;
-			if (!list.allow(upgrade.getFeature())) return;
-			if (upgrade.getFeature() instanceof StatFeature stat) {
-				var ups = GenericBowItem.getUpgrades(left);
-				Set<StatHolder> set = new TreeSet<>();
-				for (var up : ups) {
-					if (up.getFeature() instanceof StatFeature f) {
-						f.addStatHolder(set);
-					}
-				}
-				if (!stat.addStatHolder(set)) return;
-			}
+			if (!allowUpgrade(bow, left, upgrade)) return;
 			int count = GenericBowItem.getUpgrades(left).size();
 			ItemStack result = left.copy();
 			GenericBowItem.addUpgrade(result, upgrade);
@@ -88,6 +75,25 @@ public class GenericEventHandler {
 			event.setCost(8 << (count));
 
 		}
+	}
+
+	public static boolean allowUpgrade(GenericBowItem bow, ItemStack bowStack, Upgrade upgrade) {
+		FeatureList list = bow.getFeatures(bowStack);
+		if (!upgrade.allow(bow)) return false;
+		int remain = bow.getUpgradeSlot(bowStack);
+		if (remain <= 0) return false;
+		if (!list.allow(upgrade.getFeature())) return false;
+		if (upgrade.getFeature() instanceof StatFeature stat) {
+			var ups = GenericBowItem.getUpgrades(bowStack);
+			Set<StatHolder> set = new TreeSet<>();
+			for (var up : ups) {
+				if (up.getFeature() instanceof StatFeature f) {
+					f.addStatHolder(set);
+				}
+			}
+			return stat.addStatHolder(set);
+		}
+		return true;
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
