@@ -364,9 +364,9 @@ public class RecipeGen {
 					.pattern(" X ")
 					.pattern("ICI")
 					.pattern("GPG")
-					.define('C', TagGen.GEARS_GOLD)
-					.define('G', TagGen.GEARS_TIN)
-					.define('I', Tags.Items.INGOTS_IRON)
+					.define('C', Items.GOLD_INGOT)
+					.define('G', Items.COPPER_INGOT)
+					.define('I', Items.IRON_INGOT)
 					.define('P', Items.REDSTONE)
 					.define('X', ArcheryItems.UPGRADE.get())
 					.save(pvd);

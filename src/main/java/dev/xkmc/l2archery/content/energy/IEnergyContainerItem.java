@@ -16,9 +16,18 @@ import static net.minecraft.util.Mth.clamp;
  *
  * @author King Lemming
  */
-public interface IEnergyContainerItem extends IContainerItem {
+public interface IEnergyContainerItem {
 
 	Capability<? extends IEnergyStorage> getEnergyCapability();
+
+	int getExtract(ItemStack container);
+
+	int getReceive(ItemStack container);
+
+	/**
+	 * Get the max amount of energy that can be stored in the container item.
+	 */
+	int getMaxEnergyStored(ItemStack container);
 
 	default CompoundTag getOrCreateEnergyTag(ItemStack container) {
 		return container.getOrCreateTag();
@@ -43,16 +52,6 @@ public interface IEnergyContainerItem extends IContainerItem {
 		CompoundTag tag = getOrCreateEnergyTag(container);
 		return Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
 	}
-
-	int getExtract(ItemStack container);
-
-	int getReceive(ItemStack container);
-
-	/**
-	 * Get the max amount of energy that can be stored in the container item.
-	 */
-	int getMaxEnergyStored(ItemStack container);
-
 	default void setEnergyStored(ItemStack container, int energy) {
 		CompoundTag tag = getOrCreateEnergyTag(container);
 		tag.putInt(TAG_ENERGY, clamp(energy, 0, getMaxEnergyStored(container)));
@@ -68,7 +67,6 @@ public interface IEnergyContainerItem extends IContainerItem {
 	 * @return Amount of energy that was (or would have been, if simulated) received by the item.
 	 */
 	default int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
-
 		CompoundTag tag = getOrCreateEnergyTag(container);
 		int stored = Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
 		int receive = Math.min(Math.min(maxReceive, getReceive(container)), getSpace(container));

@@ -1,4 +1,4 @@
-package dev.xkmc.l2archery.content.feature.core;
+package dev.xkmc.l2archery.content.feature.bow;
 
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.init.data.LangData;
@@ -13,4 +13,5 @@ public record FluxFeature(int maxEnergy, int extract, int receive, int perUsed) 
 	public void addTooltip(List<MutableComponent> list) {
 		list.add(LangData.FEATURE_FLUX_UP.get());
 	}
+
 }

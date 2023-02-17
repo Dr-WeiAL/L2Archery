@@ -17,8 +17,6 @@ public class TagGen {
 
 	public static final TagKey<Item> PROF_BOWS = ItemTags.create(new ResourceLocation(L2Archery.MODID, "bows"));
 	public static final TagKey<Item> PROF_ARROWS = ItemTags.create(new ResourceLocation(L2Archery.MODID, "arrows"));
-	public static final TagKey<Item> GEARS_GOLD = ItemTags.create(new ResourceLocation(ID_FORGE, "gears/gold"));
-	public static final TagKey<Item> GEARS_TIN = ItemTags.create(new ResourceLocation(ID_FORGE, "gears/tin"));
 
 	public static void onBlockTagGen(RegistrateTagsProvider<Block> pvd) {
 	}

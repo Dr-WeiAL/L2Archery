@@ -7,7 +7,7 @@ import dev.xkmc.l2archery.content.feature.bow.EnderShootFeature;
 import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
 import dev.xkmc.l2archery.content.feature.bow.PullEffectFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
-import dev.xkmc.l2archery.content.feature.core.FluxFeature;
+import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.item.ArrowConfig;

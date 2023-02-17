@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
  *
  * @author King Lemming
  */
-public class EnergyContainerItemWrapper implements IRedstoneFluxStorage, ICapabilityProvider {
+public class EnergyContainerItemWrapper implements IEnergyStorage, ICapabilityProvider {
 
 	private final Capability<? extends IEnergyStorage> capability;
 	private final LazyOptional<IEnergyStorage> holder = LazyOptional.of(() -> this);
@@ -33,7 +33,6 @@ public class EnergyContainerItemWrapper implements IRedstoneFluxStorage, ICapabi
 	// region IEnergyStorage
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
-
 		if (!canReceive()) {
 			return 0;
 		}

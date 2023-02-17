@@ -1,6 +1,7 @@
 package dev.xkmc.l2archery.content.energy;
 
-import net.minecraft.ChatFormatting;
+import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
+import dev.xkmc.l2archery.init.data.LangData;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -26,19 +27,48 @@ public interface IFluxItem extends IEnergyContainerItem, IForgeItem {
 		return ForgeCapabilities.ENERGY;
 	}
 
-	int getEnergyPerUse(ItemStack container);
+	@Nullable
+	FluxFeature getFluxFeature(ItemStack stack);
+
+	int getStorageRank(ItemStack stack);
+
+	int getConsumptionRank(ItemStack stack);
+
+	// region IEnergyContainerItem
+	@Override
+	default int getExtract(ItemStack container) {
+		FluxFeature fluxFeature = getFluxFeature(container);
+		if (fluxFeature == null) return 0;
+		return fluxFeature.extract();
+	}
+
+	@Override
+	default int getReceive(ItemStack container) {
+		FluxFeature fluxFeature = getFluxFeature(container);
+		if (fluxFeature == null) return 0;
+		return fluxFeature.receive();
+	}
+
+	@Override
+	default int getMaxEnergyStored(ItemStack container) {
+		FluxFeature fluxFeature = getFluxFeature(container);
+		if (fluxFeature == null) return 0;
+		return (int) (Math.pow(2, getStorageRank(container)) * fluxFeature.maxEnergy());
+	}
+
+	default int getEnergyPerUse(ItemStack container) {
+		FluxFeature fluxFeature = getFluxFeature(container);
+		if (fluxFeature == null) return 0;
+		return (int) (Math.pow(2, getConsumptionRank(container)) * fluxFeature.perUsed());
+	}
 
 	default boolean hasEnergy(ItemStack stack, int amount) {
 		return getEnergyStored(stack) >= amount;
 	}
 
-	default boolean hasEnergy(ItemStack stack) {
-		return hasEnergy(stack, getEnergyPerUse(stack));
-	}
-
 	default boolean useEnergy(ItemStack stack, int amount, boolean simulate) {
 		if (simulate) {
-			return true;
+			return hasEnergy(stack, amount);
 		}
 		if (hasEnergy(stack, amount)) {
 			extractEnergy(stack, amount, false);
@@ -48,9 +78,9 @@ public interface IFluxItem extends IEnergyContainerItem, IForgeItem {
 	}
 
 	default boolean useEnergy(ItemStack stack, int amount, Entity entity) {
-		return useEnergy(stack, amount, entity instanceof Player player && player.isCreative());
+		if (entity instanceof Player player && player.isCreative()) return true;
+		return useEnergy(stack, amount, false);
 	}
-
 
 	default <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
 		if (useEnergy(stack, amount * getEnergyPerUse(stack), entity)) return 0;
@@ -63,10 +93,9 @@ public interface IFluxItem extends IEnergyContainerItem, IForgeItem {
 	}
 
 	default void tooltipDelegate(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		if (getExtract(stack) <= 0) return;
-		tooltip.add(Component.translatable("l2archery.tooltip.energy").append(": " + getScaledNumber(getEnergyStored(stack)) + " / " + getScaledNumber(getMaxEnergyStored(stack)) + " ").append(Component.translatable("l2archery.tooltip.unit_rf")).withStyle(ChatFormatting.GOLD));
+		if (getFluxFeature(stack) == null) return;
+		tooltip.add(LangData.ENERGY_STORED.get(getScaledNumber(getEnergyStored(stack)), getScaledNumber(getMaxEnergyStored(stack))));
 	}
-
 
 	static String getScaledNumber(long number) {
 		if (number >= 1_000_000_000) {

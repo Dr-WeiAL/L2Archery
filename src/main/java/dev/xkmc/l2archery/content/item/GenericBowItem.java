@@ -10,7 +10,7 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
-import dev.xkmc.l2archery.content.feature.core.FluxFeature;
+import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
@@ -352,44 +352,24 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		tag.putInt(TAG_ENERGY, 0);
 	}
 
-	private FluxFeature getFluxFeature(ItemStack stack) {
-		ListTag list = ItemCompoundTag.of(stack).getSubList(KEY, Tag.TAG_STRING).getOrCreate();
-		for (int i = 0; i < list.size(); i++) {
-			Upgrade up = ArcheryRegister.UPGRADE.get().getValue(new ResourceLocation(list.getString(i)));
-			if (up != null && up.getFeature() instanceof FluxFeature ff) {
+	@Nullable
+	public FluxFeature getFluxFeature(ItemStack stack) {
+		for (var upgrade : getUpgrades(stack)) {
+			if (upgrade.getFeature() instanceof FluxFeature ff) {
 				return ff;
 			}
 		}
 		return null;
 	}
 
-	// region IEnergyContainerItem
 	@Override
-	public int getExtract(ItemStack container) {
-		FluxFeature fluxFeature = getFluxFeature(container);
-		if (fluxFeature == null) return 0;
-		return fluxFeature.extract();
+	public int getStorageRank(ItemStack stack) {
+		return config.rank();
 	}
 
 	@Override
-	public int getReceive(ItemStack container) {
-		FluxFeature fluxFeature = getFluxFeature(container);
-		if (fluxFeature == null) return 0;
-		return fluxFeature.receive();
+	public int getConsumptionRank(ItemStack stack) {
+		return config.rank() + Math.min(4, getUpgrades(stack).size());
 	}
 
-	@Override
-	public int getMaxEnergyStored(ItemStack container) {
-		FluxFeature fluxFeature = getFluxFeature(container);
-		if (fluxFeature == null) return 0;
-		return getMaxStored(container, (int) (Math.pow(2, config.rank()) * fluxFeature.maxEnergy()));
-	}
-
-	@Override
-	public int getEnergyPerUse(ItemStack container) {
-		FluxFeature fluxFeature = getFluxFeature(container);
-		if (fluxFeature == null) return 10000000;
-		return (int) (Math.pow(2, config.rank() + config.feature().size()) * fluxFeature.perUsed());
-	}
-	// end region
 }
