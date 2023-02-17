@@ -304,7 +304,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		FeatureList f = getFeatures(stack);
 		f.addEffectsTooltip(list);
 		f.addTooltip(list);
-		tooltipDelegate(stack, level, list, flag);
+		tooltipDelegate(stack, list);
 		list.add(LangData.REMAIN_UPGRADE.get(getUpgradeSlot(stack)));
 	}
 

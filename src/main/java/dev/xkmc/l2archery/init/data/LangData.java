@@ -44,7 +44,8 @@ public enum LangData {
 	DAMAGE_UPGRADE("tooltip.damage", "Increase the damage bonus of bows. Doesn't work on bows without damage bonus.", 0, ChatFormatting.GRAY),
 	REMAIN_UPGRADE("tooltip.remain", "Remaining Upgrade Slot: %s", 1, ChatFormatting.GRAY),
 
-	ENERGY_STORED("tooltip.energy", "Energy Stored: %s/%s FE", 2, ChatFormatting.GOLD);
+	ENERGY_STORED("tooltip.energy.store", "Energy Stored: %s/%s FE", 2, ChatFormatting.GOLD),
+	ENERGY_CONSUME("tooltip.energy.consume", "Energy Consumption: %s FE", 1, ChatFormatting.GOLD);
 
 	private final String key, def;
 	private final int arg;

@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "C": {
-      "tag": "forge:gears/gold"
+      "item": "minecraft:gold_ingot"
     },
     "G": {
-      "tag": "forge:gears/tin"
+      "item": "minecraft:copper_ingot"
     },
     "I": {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:iron_ingot"
     },
     "P": {
       "item": "minecraft:redstone"

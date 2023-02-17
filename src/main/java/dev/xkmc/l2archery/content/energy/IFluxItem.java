@@ -8,8 +8,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -92,9 +90,10 @@ public interface IFluxItem extends IEnergyContainerItem, IForgeItem {
 		return new EnergyContainerItemWrapper(stack, this, getEnergyCapability());
 	}
 
-	default void tooltipDelegate(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+	default void tooltipDelegate(ItemStack stack, List<Component> tooltip) {
 		if (getFluxFeature(stack) == null) return;
 		tooltip.add(LangData.ENERGY_STORED.get(getScaledNumber(getEnergyStored(stack)), getScaledNumber(getMaxEnergyStored(stack))));
+		tooltip.add(LangData.ENERGY_CONSUME.get(getScaledNumber(getEnergyPerUse(stack))));
 	}
 
 	static String getScaledNumber(long number) {
