@@ -130,6 +130,7 @@
   "l2archery.stat.effects": "Apply Effects on Hit:",
   "l2archery.stat.fov": "Magnification: %s",
   "l2archery.stat.pull_time": "Pull Time: %s seconds",
+  "l2archery.feature.flux_up": "Consume energy instead of durability loss",
   "l2archery.stat.punch": "Punch: %s",
   "l2archery.stat.speed": "Arrow Speed: %s m/s",
   "l2archery.tooltip.damage": "Increase the damage bonus of bows. Doesn't work on bows without damage bonus.",
@@ -143,6 +144,8 @@
   "upgrade.l2archery.anti_gravity": "Anti Gravity",
   "upgrade.l2archery.blackstone": "Blackstone",
   "upgrade.l2archery.damage": "Damage",
+  "l2archery.tooltip.energy": "Energy",
+  "l2archery.tooltip.unit_rf": "RF",
   "upgrade.l2archery.explosion": "Explosion",
   "upgrade.l2archery.frozen": "Frozen",
   "upgrade.l2archery.glow": "Glow",
@@ -157,5 +160,6 @@
   "upgrade.l2archery.railgun": "Railgun",
   "upgrade.l2archery.soul_fire": "Soul Fire",
   "upgrade.l2archery.super_damage": "Super Damage",
-  "upgrade.l2archery.void": "Void"
+  "upgrade.l2archery.void": "Void",
+  "upgrade.l2archery.flux_up": "Flux Up"
 }
