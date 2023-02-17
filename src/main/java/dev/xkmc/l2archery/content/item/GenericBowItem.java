@@ -372,4 +372,21 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		return config.rank() + Math.min(4, getUpgrades(stack).size());
 	}
 
+	@Override
+	public boolean isBarVisible(ItemStack stack) {
+		//TODO flux
+		return super.isBarVisible(stack);
+	}
+
+	@Override
+	public int getBarWidth(ItemStack stack) {
+		//TODO flux
+		return super.getBarWidth(stack);
+	}
+
+	@Override
+	public int getBarColor(ItemStack stack) {
+		//TODO flux
+		return super.getBarColor(stack);
+	}
 }
