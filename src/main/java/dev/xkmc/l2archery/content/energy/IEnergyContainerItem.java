@@ -4,6 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.IEnergyStorage;
+
 import static dev.xkmc.l2archery.init.data.TagGen.TAG_ENERGY;
 import static net.minecraft.util.Mth.clamp;
 
@@ -17,87 +18,89 @@ import static net.minecraft.util.Mth.clamp;
  */
 public interface IEnergyContainerItem extends IContainerItem {
 
-    Capability<? extends IEnergyStorage> getEnergyCapability();
+	Capability<? extends IEnergyStorage> getEnergyCapability();
 
-    default CompoundTag getOrCreateEnergyTag(ItemStack container) {
-        return container.getOrCreateTag();
-    }
+	default CompoundTag getOrCreateEnergyTag(ItemStack container) {
+		return container.getOrCreateTag();
+	}
 
-    default int getSpace(ItemStack container) {
-        return getMaxEnergyStored(container) - getEnergyStored(container);
-    }
-    static int round(double d) {
-        return (int) (d + 0.5D);
-    }
-    default int getScaledEnergyStored(ItemStack container, int scale) {
-        return round((double) getEnergyStored(container) * scale / getMaxEnergyStored(container));
-    }
+	default int getSpace(ItemStack container) {
+		return getMaxEnergyStored(container) - getEnergyStored(container);
+	}
 
-    /**
-     * Get the amount of energy currently stored in the container item.
-     */
-    default int getEnergyStored(ItemStack container) {
-        CompoundTag tag = getOrCreateEnergyTag(container);
-        return Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
-    }
+	static int round(double d) {
+		return (int) (d + 0.5D);
+	}
 
-    int getExtract(ItemStack container);
+	default int getScaledEnergyStored(ItemStack container, int scale) {
+		return round((double) getEnergyStored(container) * scale / getMaxEnergyStored(container));
+	}
 
-    int getReceive(ItemStack container);
+	/**
+	 * Get the amount of energy currently stored in the container item.
+	 */
+	default int getEnergyStored(ItemStack container) {
+		CompoundTag tag = getOrCreateEnergyTag(container);
+		return Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
+	}
 
-    /**
-     * Get the max amount of energy that can be stored in the container item.
-     */
-    int getMaxEnergyStored(ItemStack container);
+	int getExtract(ItemStack container);
 
-    default void setEnergyStored(ItemStack container, int energy) {
-        CompoundTag tag = getOrCreateEnergyTag(container);
-        tag.putInt(TAG_ENERGY, clamp(energy, 0, getMaxEnergyStored(container)));
-    }
+	int getReceive(ItemStack container);
 
-    /**
-     * Adds energy to a container item. Returns the quantity of energy that was accepted. This should always return 0
-     * if the item cannot be externally charged.
-     *
-     * @param container  ItemStack to be charged.
-     * @param maxReceive Maximum amount of energy to be sent into the item.
-     * @param simulate   If TRUE, the charge will only be simulated.
-     * @return Amount of energy that was (or would have been, if simulated) received by the item.
-     */
-    default int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
+	/**
+	 * Get the max amount of energy that can be stored in the container item.
+	 */
+	int getMaxEnergyStored(ItemStack container);
 
-        CompoundTag tag = getOrCreateEnergyTag(container);
-        int stored = Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
-        int receive = Math.min(Math.min(maxReceive, getReceive(container)), getSpace(container));
+	default void setEnergyStored(ItemStack container, int energy) {
+		CompoundTag tag = getOrCreateEnergyTag(container);
+		tag.putInt(TAG_ENERGY, clamp(energy, 0, getMaxEnergyStored(container)));
+	}
 
-        if (!simulate) {
-            stored += receive;
-            tag.putInt(TAG_ENERGY, stored);
-        }
-        return receive;
-    }
+	/**
+	 * Adds energy to a container item. Returns the quantity of energy that was accepted. This should always return 0
+	 * if the item cannot be externally charged.
+	 *
+	 * @param container  ItemStack to be charged.
+	 * @param maxReceive Maximum amount of energy to be sent into the item.
+	 * @param simulate   If TRUE, the charge will only be simulated.
+	 * @return Amount of energy that was (or would have been, if simulated) received by the item.
+	 */
+	default int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
 
-    /**
-     * Removes energy from a container item. Returns the quantity of energy that was removed. This should always
-     * return 0 if the item cannot be externally discharged.
-     *
-     * @param container  ItemStack to be discharged.
-     * @param maxExtract Maximum amount of energy to be extracted from the item.
-     * @param simulate   If TRUE, the discharge will only be simulated.
-     * @return Amount of energy that was (or would have been, if simulated) extracted from the item.
-     */
-    default int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
+		CompoundTag tag = getOrCreateEnergyTag(container);
+		int stored = Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
+		int receive = Math.min(Math.min(maxReceive, getReceive(container)), getSpace(container));
 
-        CompoundTag tag = getOrCreateEnergyTag(container);
-        int stored = Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
-        int extract = Math.min(Math.min(maxExtract, getExtract(container)), stored);
+		if (!simulate) {
+			stored += receive;
+			tag.putInt(TAG_ENERGY, stored);
+		}
+		return receive;
+	}
 
-        if (!simulate) {
-            stored -= extract;
-            tag.putInt(TAG_ENERGY, stored);
-        }
-        return extract;
-    }
+	/**
+	 * Removes energy from a container item. Returns the quantity of energy that was removed. This should always
+	 * return 0 if the item cannot be externally discharged.
+	 *
+	 * @param container  ItemStack to be discharged.
+	 * @param maxExtract Maximum amount of energy to be extracted from the item.
+	 * @param simulate   If TRUE, the discharge will only be simulated.
+	 * @return Amount of energy that was (or would have been, if simulated) extracted from the item.
+	 */
+	default int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
+
+		CompoundTag tag = getOrCreateEnergyTag(container);
+		int stored = Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
+		int extract = Math.min(Math.min(maxExtract, getExtract(container)), stored);
+
+		if (!simulate) {
+			stored -= extract;
+			tag.putInt(TAG_ENERGY, stored);
+		}
+		return extract;
+	}
 
 }
 

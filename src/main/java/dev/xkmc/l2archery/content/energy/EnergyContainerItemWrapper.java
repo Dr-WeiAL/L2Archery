@@ -17,72 +17,72 @@ import javax.annotation.Nullable;
  */
 public class EnergyContainerItemWrapper implements IRedstoneFluxStorage, ICapabilityProvider {
 
-    private final Capability<? extends IEnergyStorage> capability;
-    private final LazyOptional<IEnergyStorage> holder = LazyOptional.of(() -> this);
+	private final Capability<? extends IEnergyStorage> capability;
+	private final LazyOptional<IEnergyStorage> holder = LazyOptional.of(() -> this);
 
-    protected final ItemStack container;
-    protected final IEnergyContainerItem item;
+	protected final ItemStack container;
+	protected final IEnergyContainerItem item;
 
-    public EnergyContainerItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn, Capability<? extends IEnergyStorage> capability) {
+	public EnergyContainerItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn, Capability<? extends IEnergyStorage> capability) {
 
-        this.container = containerIn;
-        this.item = itemIn;
-        this.capability = capability;
-    }
+		this.container = containerIn;
+		this.item = itemIn;
+		this.capability = capability;
+	}
 
-    // region IEnergyStorage
-    @Override
-    public int receiveEnergy(int maxReceive, boolean simulate) {
+	// region IEnergyStorage
+	@Override
+	public int receiveEnergy(int maxReceive, boolean simulate) {
 
-        if (!canReceive()) {
-            return 0;
-        }
-        return item.receiveEnergy(container, maxReceive, simulate);
-    }
+		if (!canReceive()) {
+			return 0;
+		}
+		return item.receiveEnergy(container, maxReceive, simulate);
+	}
 
-    @Override
-    public int extractEnergy(int maxExtract, boolean simulate) {
+	@Override
+	public int extractEnergy(int maxExtract, boolean simulate) {
 
-        if (!canExtract()) {
-            return 0;
-        }
-        return item.extractEnergy(container, maxExtract, simulate);
-    }
+		if (!canExtract()) {
+			return 0;
+		}
+		return item.extractEnergy(container, maxExtract, simulate);
+	}
 
-    @Override
-    public int getEnergyStored() {
+	@Override
+	public int getEnergyStored() {
 
-        return item.getEnergyStored(container);
-    }
+		return item.getEnergyStored(container);
+	}
 
-    @Override
-    public int getMaxEnergyStored() {
+	@Override
+	public int getMaxEnergyStored() {
 
-        return item.getMaxEnergyStored(container);
-    }
+		return item.getMaxEnergyStored(container);
+	}
 
-    @Override
-    public boolean canExtract() {
+	@Override
+	public boolean canExtract() {
 
-        return item.getExtract(container) > 0;
-    }
+		return item.getExtract(container) > 0;
+	}
 
-    @Override
-    public boolean canReceive() {
+	@Override
+	public boolean canReceive() {
 
-        return item.getReceive(container) > 0;
-    }
-    // endregion
+		return item.getReceive(container) > 0;
+	}
+	// endregion
 
-    // region ICapabilityProvider
-    @Nonnull
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+	// region ICapabilityProvider
+	@Nonnull
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 
-        if (cap == capability) {
-            return holder.cast();
-        }
-        return LazyOptional.empty();
-    }
-    // endregion
+		if (cap == capability) {
+			return holder.cast();
+		}
+		return LazyOptional.empty();
+	}
+	// endregion
 }
 

@@ -111,6 +111,7 @@ public class GenericEventHandler {
 		if (event.getTopItem().getItem() instanceof GenericBowItem bow) {
 			ItemStack copy = event.getTopItem().copy();
 			copy.getOrCreateTag().remove(GenericBowItem.KEY);
+			GenericBowItem.remakeEnergy(copy);
 			event.setOutput(copy);
 		}
 	}
