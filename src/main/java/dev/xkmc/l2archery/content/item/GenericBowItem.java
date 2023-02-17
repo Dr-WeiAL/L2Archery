@@ -1,13 +1,16 @@
 package dev.xkmc.l2archery.content.item;
 
+
 import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
 import dev.xkmc.l2archery.content.controller.BowFeatureController;
 import dev.xkmc.l2archery.content.enchantment.BowEnchantment;
+import dev.xkmc.l2archery.content.energy.IFluxItem;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
+import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
@@ -21,6 +24,7 @@ import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import dev.xkmc.l2library.util.raytrace.FastItem;
 import dev.xkmc.l2library.util.raytrace.IGlowingTarget;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
@@ -46,9 +50,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget {
+import static dev.xkmc.l2archery.init.data.TagGen.TAG_ENERGY;
+
+
+public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget, IFluxItem {
 
 	public static final String KEY = "upgrades";
+
 
 	public static List<Upgrade> getUpgrades(ItemStack stack) {
 		List<Upgrade> ans = new ArrayList<>();
@@ -296,6 +304,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		FeatureList f = getFeatures(stack);
 		f.addEffectsTooltip(list);
 		f.addTooltip(list);
+		tooltipDelegate(stack, list);
 		list.add(LangData.REMAIN_UPGRADE.get(getUpgradeSlot(stack)));
 	}
 
@@ -338,4 +347,46 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget 
 		return config.rank() + getEnchantmentLevel(stack, Enchantments.BINDING_CURSE) - getUpgrades(stack).size();
 	}
 
+	public static void remakeEnergy(ItemStack stack) {
+		CompoundTag tag = stack.getOrCreateTag();
+		tag.putInt(TAG_ENERGY, 0);
+	}
+
+	@Nullable
+	public FluxFeature getFluxFeature(ItemStack stack) {
+		for (var upgrade : getUpgrades(stack)) {
+			if (upgrade.getFeature() instanceof FluxFeature ff) {
+				return ff;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public int getStorageRank(ItemStack stack) {
+		return config.rank();
+	}
+
+	@Override
+	public int getConsumptionRank(ItemStack stack) {
+		return config.rank() + Math.min(4, getUpgrades(stack).size());
+	}
+
+	@Override
+	public boolean isBarVisible(ItemStack stack) {
+		//TODO flux
+		return super.isBarVisible(stack);
+	}
+
+	@Override
+	public int getBarWidth(ItemStack stack) {
+		//TODO flux
+		return super.getBarWidth(stack);
+	}
+
+	@Override
+	public int getBarColor(ItemStack stack) {
+		//TODO flux
+		return super.getBarColor(stack);
+	}
 }

@@ -70,6 +70,7 @@ public class GenericEventHandler {
 			int count = GenericBowItem.getUpgrades(left).size();
 			ItemStack result = left.copy();
 			GenericBowItem.addUpgrade(result, upgrade);
+			GenericBowItem.remakeEnergy(result);
 			event.setOutput(result);
 			event.setMaterialCost(1);
 			event.setCost(8 << (count));
@@ -110,6 +111,7 @@ public class GenericEventHandler {
 		if (event.getTopItem().getItem() instanceof GenericBowItem bow) {
 			ItemStack copy = event.getTopItem().copy();
 			copy.getOrCreateTag().remove(GenericBowItem.KEY);
+			GenericBowItem.remakeEnergy(copy);
 			event.setOutput(copy);
 		}
 	}

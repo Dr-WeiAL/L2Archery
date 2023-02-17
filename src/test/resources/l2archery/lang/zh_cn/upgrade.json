@@ -17,7 +17,8 @@
 	"glowing": "光灵",
 	"levitate": "悬浮",
 	"super_damage": "力量 II",
-	"railgun": "超电磁炮"
+	"railgun": "超电磁炮",
+	"flux_up": "通量升级"
   },
   "effect.l2archery": {
 	"quick_pull": "快速拉弓",

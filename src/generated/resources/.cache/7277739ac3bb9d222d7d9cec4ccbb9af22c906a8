@@ -1,6 +1,6 @@
-// 1.19.2	2023-02-03T21:09:28.340791	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-55978a4cdc006e33ab605f708ccecfc102f4c484 assets/l2archery/lang/en_ud.json
-0e3e9459bd98a4201dbfefbdc466ebf1a67e38ba assets/l2archery/lang/en_us.json
+// 1.19.2	2023-02-16T22:12:19.032923	Registrate Provider for l2archery [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+417523f3796d7ecafb5aa4487d117077b2e636eb assets/l2archery/lang/en_ud.json
+7c363ed03320a3134c23e102d110aea4f58ef3f0 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -171,6 +171,7 @@ c3aa6704e5c0a5f6b460e9662efc57d51fb724ae data/l2archery/advancements/recipes/l2a
 2fbb41659b6ff85181147c3a35ccb6fecefc0ba8 data/l2archery/advancements/recipes/upgrades/blackstone.json
 9853ef1b4455c79e9e3d6b98c86e3accb82c0102 data/l2archery/advancements/recipes/upgrades/damage.json
 75da2f7c8e5e5abca298d20fa7e8fa3aea449ef9 data/l2archery/advancements/recipes/upgrades/explosion.json
+2ad3582584d824b71fedb6e6a359b6104adccdef data/l2archery/advancements/recipes/upgrades/flux_up.json
 da742e7f56f0c3be6763e9f7ad3b333a1d87d513 data/l2archery/advancements/recipes/upgrades/frozen.json
 cb13b231cdb93a9a4553d7073c6d9ed0f60984a1 data/l2archery/advancements/recipes/upgrades/glow.json
 eed0fc446fb71a8abafae7e6bfeace4caf83b2e2 data/l2archery/advancements/recipes/upgrades/glowing.json
@@ -203,6 +204,7 @@ bfafe36815e33b5f8ff82a532257036d1b818f1a data/l2archery/recipes/eagle_bow.json
 0b1a2607a7cb2f46edf6ba02e49542a9d4b3144b data/l2archery/recipes/fire_arrow_lv1.json
 1e89a0af731848fd4ddc335eb6f5ecdb240e13ca data/l2archery/recipes/fire_arrow_lv2.json
 94a37dcbd88b79c991093a18a704fb75a6aad6ca data/l2archery/recipes/flame_bow.json
+df4b3bca6c5d497ee0fbeacf9574278593ae00f6 data/l2archery/recipes/flux_up.json
 bdb70b8facfb8ee0489523c72d20a0b83a568d79 data/l2archery/recipes/froze_bow.json
 79d791ddf25646077b0fb17428f521677b2004ad data/l2archery/recipes/frozen.json
 76d7f37072b8ece3336ce8db85358ee5b3be6bba data/l2archery/recipes/frozen_arrow.json

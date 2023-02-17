@@ -13,6 +13,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.BiFunction;
 
@@ -357,6 +358,17 @@ public class RecipeGen {
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('C', LCItems.CAPTURED_WIND.get())
 					.define('B', LCItems.SPACE_SHARD.get())
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.FLUX_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern(" X ")
+					.pattern("ICI")
+					.pattern("GPG")
+					.define('C', Items.GOLD_INGOT)
+					.define('G', Items.COPPER_INGOT)
+					.define('I', Items.IRON_INGOT)
+					.define('P', Items.REDSTONE)
+					.define('X', ArcheryItems.UPGRADE.get())
 					.save(pvd);
 		}
 

@@ -3,15 +3,12 @@ package dev.xkmc.l2archery.init;
 import dev.xkmc.l2archery.content.client.ArrowDisplayOverlay;
 import dev.xkmc.l2archery.content.client.BowInfoOverlay;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RegisterItemDecorationsEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -46,7 +43,7 @@ public class L2ArcheryClient {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static void registerItemColors(RegisterColorHandlersEvent.Item event){
+	public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
 		//event.register(ItemColor
 
 	}

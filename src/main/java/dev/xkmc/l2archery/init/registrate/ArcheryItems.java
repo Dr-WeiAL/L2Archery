@@ -7,6 +7,7 @@ import dev.xkmc.l2archery.content.feature.bow.EnderShootFeature;
 import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
 import dev.xkmc.l2archery.content.feature.bow.PullEffectFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
+import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.item.ArrowConfig;
@@ -77,7 +78,7 @@ public class ArcheryItems {
 
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
-			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP;
+			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP;
 
 	static {
 		{
@@ -204,6 +205,7 @@ public class ArcheryItems {
 			LEVITATE_UP = genUpgrade("levitate", () -> new PotionArrowFeature(
 					List.of(new MobEffectInstance(MobEffects.LEVITATION, 300, 0))));
 			RAILGUN_UP = genUpgrade("railgun", () -> new StatFeature(1, 1, 1, 0, 100));
+			FLUX_UP = genUpgrade("flux_up", () -> FluxFeature.DEFAULT);
 		}
 	}
 

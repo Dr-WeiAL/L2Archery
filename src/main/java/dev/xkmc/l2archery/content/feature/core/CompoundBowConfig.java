@@ -1,6 +1,5 @@
 package dev.xkmc.l2archery.content.feature.core;
 
-import dev.xkmc.l2archery.content.item.BowConfig;
 import dev.xkmc.l2archery.content.item.IBowConfig;
 import net.minecraft.world.effect.MobEffectInstance;
 

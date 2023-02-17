@@ -3,7 +3,6 @@
 	"archery": "弓艺"
   },
   "entity.l2archery.generic_arrow": "箭",
-
   "stat_type.l2archery.damage": "伤害",
   "stat_type.l2archery.fov_time": "放大时间",
   "stat_type.l2archery.max_fov": "放大",
@@ -26,7 +25,8 @@
 	  "pierce_magic": "伤害穿透魔法保护",
 	  "pierce_invul": "造成虚空伤害",
 	  "wind_bow": "拉弓不减速",
-	  "pull_effect": "拉弓时获得效果："
+	  "pull_effect": "拉弓时获得效果：",
+	  "flux_up": "消耗能源代替耐久损耗"
 	},
 	"stat": {
 	  "damage": "伤害: %s",
@@ -36,7 +36,11 @@
 	  "punch": "击退: %s",
 	  "speed": "出弓速度: %s米每秒"
 	},
-	"tooltip.remain": "剩余升级槽: %s",
-	"tooltip.damage": "增幅弓的伤害增益。对没有伤害增益对弓没有效果。"
+	"tooltip": {
+	  "remain": "剩余升级槽: %s",
+	  "damage": "增幅弓的伤害增益。对没有伤害增益对弓没有效果。",
+	  "energy.consume": "能量消耗: %s FE",
+	  "energy.store": "能量: %s/%s FE"
+	}
   }
 }
