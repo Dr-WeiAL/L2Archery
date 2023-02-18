@@ -7,10 +7,10 @@ import dev.xkmc.l2archery.content.enchantment.BowEnchantment;
 import dev.xkmc.l2archery.content.energy.IFluxItem;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
+import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
-import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
@@ -374,19 +374,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 
 	@Override
 	public boolean isBarVisible(ItemStack stack) {
-		//TODO flux
-		return super.isBarVisible(stack);
+		return getFluxFeature(stack) != null || super.isBarVisible(stack);
 	}
 
-	@Override
-	public int getBarWidth(ItemStack stack) {
-		//TODO flux
-		return super.getBarWidth(stack);
-	}
-
-	@Override
-	public int getBarColor(ItemStack stack) {
-		//TODO flux
-		return super.getBarColor(stack);
-	}
 }

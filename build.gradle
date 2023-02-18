@@ -143,6 +143,7 @@ dependencies {
     runtimeOnly fg.deobf('curse.maven:max-health-fix-492246:3943055')
     runtimeOnly fg.deobf('curse.maven:bookshelf-228525:4153136')
     runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:4277356')
+    runtimeOnly fg.deobf('curse.maven:mekanism-268560:3954410')
 
 }
 
