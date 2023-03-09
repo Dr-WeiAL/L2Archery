@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "C": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "E": {
+      "item": "l2complements:captured_shulker_bullet"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "EAE",
+    "CBC"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:levitation"
+    }
+  }
+}

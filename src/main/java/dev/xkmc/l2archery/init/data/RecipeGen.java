@@ -43,7 +43,7 @@ public class RecipeGen {
 			full(pvd, Items.OBSIDIAN, Items.END_ROD, Items.ENDER_EYE, ArcheryItems.ENDER_ARROW.get(), 4);
 			full(pvd, Items.PHANTOM_MEMBRANE, ArcheryItems.STARTER_ARROW.get(), Items.GUNPOWDER, ArcheryItems.STORM_ARROW.get(), 4);
 			cross(pvd, LCItems.RESONANT_FEATHER.get(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.DISPELL_ARROW.get(), 4);
-			full(pvd, Items.LAVA_BUCKET, ArcheryItems.STARTER_ARROW.get(), Items.MAGMA_CREAM, ArcheryItems.ACID_ARROW.get(), 4);
+			full(pvd, Items.FERMENTED_SPIDER_EYE, ArcheryItems.STARTER_ARROW.get(), Items.MAGMA_CREAM, ArcheryItems.ACID_ARROW.get(), 4);
 			full(pvd, ArcheryItems.DESTROYER_ARROW.get(), LCItems.SPACE_SHARD.get(), LCItems.VOID_EYE.get(), ArcheryItems.VOID_ARROW.get(), 1);
 		}
 
@@ -369,6 +369,22 @@ public class RecipeGen {
 					.define('I', Items.IRON_INGOT)
 					.define('P', Items.REDSTONE)
 					.define('X', ArcheryItems.UPGRADE.get())
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.FLOAT_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("EAE").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', Items.PHANTOM_MEMBRANE)
+					.define('E', LCItems.CAPTURED_BULLET.get())
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.SLOW_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("CAC").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', LCItems.BLACK_CHARGE.get())
+					.define('E', LCItems.BLACKSTONE_CORE.get())
 					.save(pvd);
 		}
 

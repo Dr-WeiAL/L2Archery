@@ -26,7 +26,7 @@ public class L2ArcheryClient {
 
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
-		L2ArcheryClient.registerItemProperties();
+		event.enqueueWork(L2ArcheryClient::registerItemProperties);
 	}
 
 	public static final List<GenericBowItem> BOW_LIKE = new ArrayList<>();

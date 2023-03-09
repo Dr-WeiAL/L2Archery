@@ -58,7 +58,7 @@ public class ConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.FIRE_2_ARROW).putEffect(LCEffects.FLAME.get(), 200, 1).end()
 				.putArrow(ArcheryItems.ICE_ARROW).putEffect(LCEffects.ICE.get(), 600, 0).end()
 				.putArrow(ArcheryItems.BLACKSTONE_ARROW).putEffect(LCEffects.STONE_CAGE.get(), 100, 0).end()
-				.putArrow(ArcheryItems.ACID_ARROW).end()
+				.putArrow(ArcheryItems.ACID_ARROW).putEffect(LCEffects.ARMOR_REDUCE.get(), 100, 0).end()
 				.putArrow(ArcheryItems.DISPELL_ARROW).end()
 				.putArrow(ArcheryItems.WITHER_ARROW).putEffect(MobEffects.WITHER, 200, 0).end()
 				.putArrow(ArcheryItems.STORM_ARROW).end()

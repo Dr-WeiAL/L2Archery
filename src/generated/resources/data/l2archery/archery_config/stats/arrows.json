@@ -1,6 +1,12 @@
 {
   "_class": "dev.xkmc.l2archery.content.config.BowArrowStatConfig",
   "arrow_effects": {
+    "l2archery:acid_arrow": {
+      "l2complements:armor_reduce": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
     "l2archery:blackstone_arrow": {
       "l2complements:stone_cage": {
         "amplifier": 0,

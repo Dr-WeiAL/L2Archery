@@ -112,6 +112,8 @@
   "upgrade.l2archery.super_damage": "力量 II",
   "upgrade.l2archery.railgun": "超电磁炮",
   "upgrade.l2archery.flux_up": "通量升级",
+  "upgrade.l2archery.levitation": "漂浮",
+  "upgrade.l2archery.slowness": "缓慢",
   "effect.l2archery.quick_pull": "快速拉弓",
   "effect.l2archery.run_bow": "移动射击",
   "advancements.l2archery.advancements.archery.binding.description": "通过在弓上附魔绑定诅咒以获得更多升级槽位",

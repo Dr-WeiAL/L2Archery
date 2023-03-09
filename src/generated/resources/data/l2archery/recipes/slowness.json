@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "C": {
+      "item": "l2complements:black_fire_charge"
+    },
+    "E": {
+      "item": "l2complements:blackstone_core"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:slowness"
+    }
+  }
+}
