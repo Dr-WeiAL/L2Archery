@@ -18,17 +18,22 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ArcheryEffects {
 
-	public static final RegistryEntry<RunBowEffect> RUN_BOW = genEffect("run_bow", () -> new RunBowEffect(MobEffectCategory.BENEFICIAL, 0xffffff));
-	public static final RegistryEntry<QuickPullEffect> QUICK_PULL = genEffect("quick_pull", () -> new QuickPullEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF));
-
 	public static final List<RegistryEntry<? extends Potion>> POTION_LIST = new ArrayList<>();
+	public static final Map<String, String> NAME_CACHE = new HashMap<>();
 
-	public static <T extends MobEffect> RegistryEntry<T> genEffect(String name, NonNullSupplier<T> sup) {
+	public static final RegistryEntry<RunBowEffect> RUN_BOW = genEffect("run_bow", "Sprinting Archer", () -> new RunBowEffect(MobEffectCategory.BENEFICIAL, 0xffffff));
+	public static final RegistryEntry<QuickPullEffect> QUICK_PULL = genEffect("quick_pull", "Fast Pulling", () -> new QuickPullEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF));
+
+
+	public static <T extends MobEffect> RegistryEntry<T> genEffect(String name, String lang, NonNullSupplier<T> sup) {
+		NAME_CACHE.put(name, lang);
 		return L2Archery.REGISTRATE.entry(name, cb -> new NoConfigBuilder<>(L2Archery.REGISTRATE, L2Archery.REGISTRATE, name, cb, ForgeRegistries.Keys.MOB_EFFECTS, sup))
 				.lang(MobEffect::getDescriptionId).register();
 	}

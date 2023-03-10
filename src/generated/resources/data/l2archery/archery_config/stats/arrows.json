@@ -3,8 +3,8 @@
   "arrow_effects": {
     "l2archery:acid_arrow": {
       "l2complements:armor_reduce": {
-        "amplifier": 0,
-        "duration": 100
+        "amplifier": 2,
+        "duration": 1200
       }
     },
     "l2archery:blackstone_arrow": {
