@@ -7,8 +7,11 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.raytrace.RayTraceUtil;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
@@ -19,16 +22,21 @@ import java.util.function.Consumer;
 public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeature, IGlowFeature {
 
 	@Override
-	public boolean onShoot(@Nullable Player player, Consumer<Consumer<GenericArrowEntity>> consumer) {
+	public boolean onShoot(@Nullable LivingEntity player, Consumer<Consumer<GenericArrowEntity>> consumer) {
 		if (player == null)
 			return false;
-		Entity target = RayTraceUtil.serverGetTarget(player);
+		Entity target = null;
+		if (player instanceof Player pl) {
+			target = RayTraceUtil.serverGetTarget(pl);
+		} else if (player instanceof Mob mob) {
+			target = mob.getTarget();
+		}
 		if (target == null)
 			return false;
-
+		Entity finalTarget = target;
 		consumer.accept(entity -> {
-			float w = target.getBbWidth(), h = target.getBbHeight();
-			Vec3 dst = target.position().add(0, h / 2, 0);
+			float w = finalTarget.getBbWidth(), h = finalTarget.getBbHeight();
+			Vec3 dst = finalTarget.position().add(0, h / 2, 0);
 			double r = Math.sqrt(w * w * 2 + h * h) / 2;
 			Vec3 src = dst.add(entity.getDeltaMovement().normalize().scale(-r - 1));
 			entity.setPos(src);
@@ -37,13 +45,14 @@ public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeat
 	}
 
 	@Override
-	public void tickAim(Player player, GenericItemStack<GenericBowItem> bow) {
-		RayTraceUtil.clientUpdateTarget(player, range);
+	public void tickAim(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
+		if (player instanceof Player pl) RayTraceUtil.clientUpdateTarget(pl, range);
 	}
 
 	@Override
-	public void stopAim(Player player, GenericItemStack<GenericBowItem> bow) {
-		RayTraceUtil.TARGET.updateTarget(null);
+	public void stopAim(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
+		if (player instanceof LocalPlayer)
+			RayTraceUtil.TARGET.updateTarget(null);
 	}
 
 

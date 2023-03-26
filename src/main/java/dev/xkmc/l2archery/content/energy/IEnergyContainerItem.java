@@ -52,6 +52,7 @@ public interface IEnergyContainerItem {
 		CompoundTag tag = getOrCreateEnergyTag(container);
 		return Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
 	}
+
 	default void setEnergyStored(ItemStack container, int energy) {
 		CompoundTag tag = getOrCreateEnergyTag(container);
 		tag.putInt(TAG_ENERGY, clamp(energy, 0, getMaxEnergyStored(container)));

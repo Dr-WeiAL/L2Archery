@@ -47,7 +47,9 @@ import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static dev.xkmc.l2archery.init.data.TagGen.TAG_ENERGY;
@@ -55,8 +57,22 @@ import static dev.xkmc.l2archery.init.data.TagGen.TAG_ENERGY;
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget, IFluxItem {
 
-	public static final String KEY = "upgrades";
+	private static final HashSet<Class<?>> BLACKLIST = new HashSet<>();
 
+	@SuppressWarnings("ConstantConditions")
+	private boolean arrowIsInfinite(ArrowItem item, ItemStack arrow, ItemStack bow) {
+		if (BLACKLIST.contains(item.getClass())) {
+			return false;
+		}
+		try {
+			return item.isInfinite(arrow, bow, null);
+		} catch (NullPointerException npe) {
+			BLACKLIST.add(item.getClass());
+		}
+		return false;
+	}
+
+	public static final String KEY = "upgrades";
 
 	public static List<Upgrade> getUpgrades(ItemStack stack) {
 		List<Upgrade> ans = new ArrayList<>();
@@ -93,46 +109,66 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	 */
 	public void releaseUsing(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
 		if (user instanceof Player player) {
-			BowFeatureController.stopUsing(player, new GenericItemStack<>(this, bow));
-			boolean has_inf = player.getAbilities().instabuild || bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS) > 0;
-			ItemStack arrow = player.getProjectile(bow);
-			int pull_time = this.getUseDuration(bow) - remaining_pull_time;
-			pull_time = ForgeEventFactory.onArrowLoose(bow, level, player, pull_time, !arrow.isEmpty() || has_inf);
-			if (pull_time < 0) return;
-			if (arrow.isEmpty() && !has_inf) {
-				return;
-			}
-			if (arrow.isEmpty()) { // no arrow: use default arrow
-				arrow = new ItemStack(Items.ARROW);
-			}
-			float power = getPowerForTime(user, pull_time);
-			if (((double) power < 0.1D)) { // not enough power: cancel
-				return;
-			}
-			boolean no_consume = player.getAbilities().instabuild || (arrow.getItem() instanceof ArrowItem && ((ArrowItem) arrow.getItem()).isInfinite(arrow, bow, player));
-			if (!level.isClientSide) {
-				if (!shootArrowOnServer(player, level, bow, arrow, power, no_consume))
-					return;
-			}
+			var arrow = releaseUsingAndShootArrow(bow, level, player, remaining_pull_time);
+			arrow.ifPresent(level::addFreshEntity);
+		}
+	}
 
-			float pitch = 1.0F / (level.getRandom().nextFloat() * 0.4F + 1.2F) + power * 0.5F;
-			level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, pitch);
-			if (!no_consume && !player.getAbilities().instabuild) {
-				if (!level.isClientSide) {
-					arrow.shrink(1);
-					if (arrow.isEmpty()) {
-						player.getInventory().removeItem(arrow);
-					}
+	public Optional<AbstractArrow> releaseUsingAndShootArrow(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
+		boolean instabuild = user instanceof Player pl && pl.getAbilities().instabuild;
+		BowFeatureController.stopUsing(user, new GenericItemStack<>(this, bow));
+		boolean has_inf = instabuild || bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS) > 0;
+		ItemStack arrow = user.getProjectile(bow);
+		int pull_time = this.getUseDuration(bow) - remaining_pull_time;
+		if (user instanceof Player player) {
+			pull_time = ForgeEventFactory.onArrowLoose(bow, level, player, pull_time, !arrow.isEmpty() || has_inf);
+		}
+		if (pull_time < 0) return Optional.empty();
+		if (arrow.isEmpty() && !has_inf) {
+			return Optional.empty();
+		}
+		if (arrow.isEmpty()) { // no arrow: use default arrow
+			arrow = new ItemStack(Items.ARROW);
+		}
+		float power = getPowerForTime(user, pull_time);
+		if (((double) power < 0.1D)) { // not enough power: cancel
+			return Optional.empty();
+		}
+		boolean no_consume = instabuild;
+		if (arrow.getItem() instanceof ArrowItem arrowItem) {
+			if (user instanceof Player player) {
+				no_consume |= arrowItem.isInfinite(arrow, bow, player);
+			} else {
+				no_consume = arrowIsInfinite(arrowItem, arrow, bow);
+			}
+		}
+		Optional<AbstractArrow> arrowOpt = Optional.empty();
+		if (!level.isClientSide) {
+			arrowOpt = shootArrowOnServer(user, level, bow, arrow, power, no_consume);
+			if (arrowOpt.isEmpty())
+				return Optional.empty();
+		}
+
+		float pitch = 1.0F / (level.getRandom().nextFloat() * 0.4F + 1.2F) + power * 0.5F;
+		level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, pitch);
+		if (!no_consume) {
+			if (!level.isClientSide) {
+				arrow.shrink(1);
+				if (arrow.isEmpty() && user instanceof Player player) {
+					player.getInventory().removeItem(arrow);
 				}
 			}
+		}
+		if (user instanceof Player player) {
 			player.awardStat(Stats.ITEM_USED.get(this));
 		}
+		return arrowOpt;
 	}
 
 	/**
 	 * create arrow entity and add to world
 	 */
-	private boolean shootArrowOnServer(Player player, Level level, ItemStack bow, ItemStack arrow, float power, boolean no_consume) {
+	private Optional<AbstractArrow> shootArrowOnServer(LivingEntity player, Level level, ItemStack bow, ItemStack arrow, float power, boolean no_consume) {
 		AbstractArrow abstractarrow;
 		ArrowData data = parseArrow(arrow);
 		if (data != null) {
@@ -161,17 +197,15 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 			if (bow.getEnchantmentLevel(Enchantments.FLAMING_ARROWS) > 0) {
 				abstractarrow.setSecondsOnFire(100);
 			}
-
-			if (no_consume || player.getAbilities().instabuild && (arrow.is(Items.SPECTRAL_ARROW) || arrow.is(Items.TIPPED_ARROW))) {
+			if (no_consume) {
 				abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 			}
 		}
 		if (abstractarrow == null) {
-			return false;
+			return Optional.empty();
 		}
 		bow.hurtAndBreak(1, player, (pl) -> pl.broadcastBreakEvent(player.getUsedItemHand()));
-		level.addFreshEntity(abstractarrow);
-		return true;
+		return Optional.of(abstractarrow);
 	}
 
 	public float getPullForTime(LivingEntity entity, float time) {

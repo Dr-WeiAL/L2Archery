@@ -8,7 +8,6 @@ import dev.xkmc.l2library.util.raytrace.EntityTarget;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
@@ -22,7 +21,7 @@ public record GlowTargetAimFeature(int range) implements OnPullFeature, IGlowFea
 	public static final EntityTarget TARGET = new EntityTarget(3, Math.PI / 180 * 5, 2);
 
 	@Override
-	public void tickAim(Player player, GenericItemStack<GenericBowItem> bow) {
+	public void tickAim(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
 		if (player.level.isClientSide()) {
 			Vec3 vec3 = player.getEyePosition();
 			Vec3 vec31 = player.getViewVector(1.0F).scale(range);
@@ -38,7 +37,7 @@ public record GlowTargetAimFeature(int range) implements OnPullFeature, IGlowFea
 	}
 
 	@Override
-	public void stopAim(Player player, GenericItemStack<GenericBowItem> bow) {
+	public void stopAim(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
 		TARGET.updateTarget(null);
 	}
 

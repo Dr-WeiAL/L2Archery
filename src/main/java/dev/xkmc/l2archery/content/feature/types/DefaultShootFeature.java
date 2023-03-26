@@ -4,7 +4,7 @@ import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.IGeneralConfig;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -17,7 +17,7 @@ public class DefaultShootFeature implements OnShootFeature {
 	public static final DefaultShootFeature INSTANCE = new DefaultShootFeature();
 
 	@Override
-	public boolean onShoot(Player player, Consumer<Consumer<GenericArrowEntity>> consumer) {
+	public boolean onShoot(LivingEntity player, Consumer<Consumer<GenericArrowEntity>> consumer) {
 		consumer.accept(entity -> {
 			entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F,
 					entity.data.power() * entity.data.bow().getConfig().speed(), 1.0F);

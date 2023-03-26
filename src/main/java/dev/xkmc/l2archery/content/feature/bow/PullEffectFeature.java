@@ -9,7 +9,7 @@ import dev.xkmc.l2library.util.code.GenericItemStack;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 public record PullEffectFeature(List<Supplier<MobEffectInstance>> effects) implements OnPullFeature {
 
 	@Override
-	public void onPull(Player player, GenericItemStack<GenericBowItem> bow) {
+	public void onPull(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
 		if (player instanceof ServerPlayer) {
 			for (var eff : effects) {
 				EffectUtil.addEffect(player, eff.get(), EffectUtil.AddReason.SELF, player);

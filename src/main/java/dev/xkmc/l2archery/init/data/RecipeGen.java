@@ -13,7 +13,6 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.common.Tags;
 
 import java.util.function.BiFunction;
 

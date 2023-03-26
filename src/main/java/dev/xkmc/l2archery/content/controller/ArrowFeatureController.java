@@ -8,7 +8,7 @@ import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2library.util.code.GenericItemStack;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
 
@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 
 public class ArrowFeatureController {
 
-	public record BowArrowUseContext(Level level, Player user, boolean no_consume, float power) {
+	public record BowArrowUseContext(Level level, LivingEntity user, boolean no_consume, float power) {
 
 	}
 
