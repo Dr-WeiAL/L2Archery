@@ -32,6 +32,6 @@ Combine them for better combat experience
 [[dependencies.l2archery]]
     modId="l2complements"
     mandatory=true
-    versionRange="[0.2.6,)"
+    versionRange="[1.2.3,)"
     ordering="AFTER"
     side="BOTH"

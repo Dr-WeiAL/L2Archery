@@ -3,7 +3,7 @@ package dev.xkmc.l2archery.init.data;
 import dev.xkmc.l2archery.content.crafting.BowBuilder;
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
-import dev.xkmc.l2complements.init.data.LCMats;
+import dev.xkmc.l2complements.init.materials.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.base.ingredients.EnchantmentIngredient;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;

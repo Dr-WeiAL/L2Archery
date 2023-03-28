@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.init;
 
+import dev.xkmc.l2archery.compat.GolemCompat;
 import dev.xkmc.l2archery.events.GenericEventHandler;
 import dev.xkmc.l2archery.init.data.*;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
@@ -34,6 +35,7 @@ public class L2Archery {
 		ArcheryItems.register();
 		ArcheryEffects.register();
 		NetworkManager.register();
+		GolemCompat.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.ADVANCEMENT, AdvGen::genAdvancements);
