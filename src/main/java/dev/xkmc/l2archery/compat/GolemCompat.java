@@ -8,8 +8,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 
-;
-
 public class GolemCompat {
 
 	public static void register() {
