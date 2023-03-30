@@ -6,17 +6,10 @@ import dev.xkmc.modulargolems.events.event.GolemBowAttackEvent;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 
 public class GolemCompat {
 
 	public static void register() {
-		if (ModList.get().isLoaded("modulargolems")) {
-			registerImpl();
-		}
-	}
-
-	private static void registerImpl() {
 		MinecraftForge.EVENT_BUS.register(GolemCompat.class);
 	}
 
