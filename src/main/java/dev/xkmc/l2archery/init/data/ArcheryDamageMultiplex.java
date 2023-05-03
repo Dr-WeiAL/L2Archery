@@ -10,6 +10,7 @@ import dev.xkmc.l2library.init.events.damage.DefaultDamageState;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -21,15 +22,14 @@ import java.util.concurrent.CompletableFuture;
 
 public class ArcheryDamageMultiplex extends DamageTypeAndTagsGen {
 
-	public static final DamageTypeRoot ARROW = new DamageTypeRoot(DamageTypes.ARROW,
-			(type) -> new DamageType("mob", 0.1F));
+	public static final DamageTypeRoot ARROW = new DamageTypeRoot(L2Archery.MODID, DamageTypes.ARROW,
+			List.of(DamageTypeTags.IS_PROJECTILE), (type) -> new DamageType("arrow", 0.1F));
 
 	public static void register() {
 		ARROW.add(DefaultDamageState.BYPASS_MAGIC);
 		ARROW.add(DefaultDamageState.BYPASS_ARMOR);
 		ARROW.add(ArcheryDamageState.BYPASS_INVUL);
-		DamageTypeRoot.configureGeneration(Set.of(L2Archery.MODID), L2Archery.MODID, LIST);
-		DamageTypeRoot.configureGeneration(Set.of(L2Library.MODID), L2Archery.MODID, LIST);
+		DamageTypeRoot.configureGeneration(Set.of(L2Library.MODID, L2Archery.MODID), L2Archery.MODID, LIST);
 	}
 
 	protected static final List<DamageTypeWrapper> LIST = new ArrayList<>();
