@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "A": {
       "item": "minecraft:amethyst_shard"
@@ -21,5 +22,6 @@
   ],
   "result": {
     "item": "l2archery:upgrade"
-  }
+  },
+  "show_notification": true
 }

@@ -2,8 +2,8 @@ package dev.xkmc.l2archery.content.feature.types;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
+import dev.xkmc.l2library.init.events.attack.CreateSourceEvent;
 import dev.xkmc.l2library.util.annotation.ServerOnly;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
@@ -31,7 +31,7 @@ public interface OnHitFeature extends BowArrowFeature {
 	}
 
 	@ServerOnly
-	default void onHurtEntity(GenericArrowEntity genericArrow, DamageSource source) {
+	default void onHurtEntity(GenericArrowEntity genericArrow, CreateSourceEvent source) {
 
 	}
 

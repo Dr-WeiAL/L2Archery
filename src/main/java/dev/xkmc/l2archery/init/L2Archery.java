@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.init;
 
+import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2archery.compat.GolemCompat;
 import dev.xkmc.l2archery.events.GenericEventHandler;
 import dev.xkmc.l2archery.init.data.*;
@@ -7,7 +8,6 @@ import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
@@ -36,6 +36,7 @@ public class L2Archery {
 		ArcheryItems.register();
 		ArcheryEffects.register();
 		NetworkManager.register();
+		ArcheryDamageMultiplex.register();
 		if (ModList.get().isLoaded("modulargolems")) GolemCompat.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
@@ -71,7 +72,12 @@ public class L2Archery {
 	}
 
 	public static void gatherData(GatherDataEvent event) {
-		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
+		boolean gen = event.includeServer();
+		var output = event.getGenerator().getPackOutput();
+		var lookup = event.getLookupProvider();
+		var helper = event.getExistingFileHelper();
+		event.getGenerator().addProvider(gen, new ConfigGen(event.getGenerator()));
+		new ArcheryDamageMultiplex(output, lookup, helper).generate(gen, event.getGenerator());
 	}
 
 	public static void registerCaps(RegisterCapabilitiesEvent event) {

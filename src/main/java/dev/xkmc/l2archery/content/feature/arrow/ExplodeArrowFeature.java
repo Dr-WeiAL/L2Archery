@@ -37,7 +37,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 
 	private void explode(GenericArrowEntity arrow, double x, double y, double z) {
 		BaseExplosionContext base = new BaseExplosionContext(arrow.level, x, y, z, radius);
-		Explosion.BlockInteraction type = breakBlock() ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE;
+		Explosion.BlockInteraction type = breakBlock() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP;
 		VanillaExplosionContext mc = new VanillaExplosionContext(arrow, getSource(arrow), null, false, type);
 		ModExplosionContext mod = entity -> onExplosionHurt(arrow, entity);
 		ExplosionHandler.explode(new BaseExplosion(base, mc, mod));
@@ -67,7 +67,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 	private DamageSource getSource(GenericArrowEntity arrow) {
 		Entity ent = arrow.getOwner();
 		if (ent instanceof LivingEntity le) {
-			return DamageSource.explosion(le);
+			return le.level.damageSources().explosion(arrow, ent);
 		}
 		return null;
 	}

@@ -1,5 +1,7 @@
 package dev.xkmc.l2archery.init.registrate;
 
+import com.tterrag.registrate.util.entry.EntityEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.crafting.BowRecipe;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.entity.GenericArrowRenderer;
@@ -9,8 +11,6 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.base.recipe.AbstractShapedRecipe;
-import dev.xkmc.l2library.repack.registrate.util.entry.EntityEntry;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.ForgeRegistries;
 

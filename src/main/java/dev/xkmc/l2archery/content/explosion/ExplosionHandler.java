@@ -18,7 +18,7 @@ public class ExplosionHandler {
 		double y = exp.base.y();
 		double z = exp.base.z();
 		float r = exp.base.r();
-		boolean flag = exp.mc.type() == Explosion.BlockInteraction.NONE;
+		boolean flag = exp.mc.type() == Explosion.BlockInteraction.KEEP;
 		if (flag) {
 			exp.clearToBlow();
 		}

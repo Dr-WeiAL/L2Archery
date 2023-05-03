@@ -11,7 +11,6 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2library.util.Proxy;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -95,15 +94,6 @@ public class GenericEventHandler {
 			return stat.addStatHolder(set);
 		}
 		return true;
-	}
-
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public static void onArrowHit(LivingAttackEvent event) {
-		if (event.getSource() instanceof IndirectEntityDamageSource ind) {
-			if (ind.getDirectEntity() instanceof GenericArrowEntity arrow) {
-				arrow.onHurtEntity(ind);
-			}
-		}
 	}
 
 	@SubscribeEvent

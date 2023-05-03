@@ -1,5 +1,6 @@
 {
-  "type": "l2archery:bow_craft",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "1": {
       "type": "l2library:enchantment",
@@ -31,5 +32,6 @@
   ],
   "result": {
     "item": "l2archery:void_bow"
-  }
+  },
+  "show_notification": false
 }

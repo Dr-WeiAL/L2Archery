@@ -1,13 +1,13 @@
 package dev.xkmc.l2archery.init.data;
 
+import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
+import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.base.advancements.AdvancementGenerator;
 import dev.xkmc.l2library.base.advancements.CriterionBuilder;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateAdvancementProvider;
-import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;

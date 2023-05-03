@@ -1,18 +1,11 @@
 package dev.xkmc.l2archery.compat;
 
-import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
-import dev.xkmc.l2archery.content.item.GenericBowItem;
-import dev.xkmc.modulargolems.events.event.GolemBowAttackEvent;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
 public class GolemCompat {
 
-	public static void register() {
-		MinecraftForge.EVENT_BUS.register(GolemCompat.class);
+	public static void register() {//TODO golem compat
+		//MinecraftForge.EVENT_BUS.register(GolemCompat.class);
 	}
-
+/*
 	@SubscribeEvent
 	public static void onEquip(GolemBowAttackEvent event) {
 		var golem = event.getEntity();
@@ -28,5 +21,6 @@ public class GolemCompat {
 			}
 		}
 	}
+ */
 
 }

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "C": {
       "item": "l2complements:resonant_feather"
@@ -16,5 +17,6 @@
   "result": {
     "count": 4,
     "item": "l2archery:dispell_arrow"
-  }
+  },
+  "show_notification": true
 }

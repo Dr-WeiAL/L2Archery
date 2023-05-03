@@ -1,5 +1,6 @@
 {
-  "type": "l2archery:bow_craft",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "A": {
       "item": "l2archery:earth_bow"
@@ -21,5 +22,6 @@
   ],
   "result": {
     "item": "l2archery:gaia_bow"
-  }
+  },
+  "show_notification": false
 }

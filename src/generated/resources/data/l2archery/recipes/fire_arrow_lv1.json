@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "A": {
       "item": "minecraft:soul_soil"
@@ -19,5 +20,6 @@
   "result": {
     "count": 4,
     "item": "l2archery:fire_arrow_lv1"
-  }
+  },
+  "show_notification": true
 }

@@ -23,8 +23,8 @@ public class ArrowDisplayOverlay implements IGuiOverlay {
 		gui.setupOverlayRenderState(true, false);
 		int x = gui.screenWidth / 2 + 16;
 		int y = gui.screenHeight / 2 - 8;
-		Minecraft.getInstance().getItemRenderer().renderAndDecorateItem(arrowStack, x, y);
-		Minecraft.getInstance().getItemRenderer().renderGuiItemDecorations(Minecraft.getInstance().font, arrowStack, x, y);
+		Minecraft.getInstance().getItemRenderer().renderAndDecorateItem(poseStack, arrowStack, x, y);
+		Minecraft.getInstance().getItemRenderer().renderGuiItemDecorations(poseStack, Minecraft.getInstance().font, arrowStack, x, y);
 	}
 
 }

@@ -1,5 +1,6 @@
 {
-  "type": "l2archery:bow_craft",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "A": {
       "item": "minecraft:spyglass"
@@ -14,5 +15,6 @@
   ],
   "result": {
     "item": "l2archery:magnify_bow"
-  }
+  },
+  "show_notification": false
 }

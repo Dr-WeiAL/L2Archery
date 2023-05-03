@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "C": {
       "item": "minecraft:diamond"
@@ -16,5 +17,6 @@
   "result": {
     "count": 4,
     "item": "l2archery:diamond_arrow"
-  }
+  },
+  "show_notification": true
 }

@@ -1,6 +1,11 @@
 package dev.xkmc.l2archery.init.registrate;
 
 import com.google.common.collect.ImmutableList;
+import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.*;
@@ -13,21 +18,18 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2archery.init.data.ArcheryDamageMultiplex;
+import dev.xkmc.l2archery.init.data.ArcheryDamageState;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.data.TagGen;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
-import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemModelProvider;
-import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
+import dev.xkmc.l2library.init.events.damage.DefaultDamageState;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 
@@ -40,25 +42,10 @@ import static dev.xkmc.l2archery.init.L2Archery.REGISTRATE;
 @SuppressWarnings({"rawtypes", "unsafe"})
 public class ArcheryItems {
 
-	public static class Tab extends CreativeModeTab {
-
-		private final Supplier<ItemEntry> icon;
-
-		public Tab(String id, Supplier<ItemEntry> icon) {
-			super(L2Archery.MODID + "." + id);
-			this.icon = icon;
-		}
-
-		@Override
-		public ItemStack makeIcon() {
-			return icon.get().asStack();
-		}
-	}
-
-	public static final Tab TAB_PROF = new Tab("archery", () -> ArcheryItems.STARTER_BOW);
-
 	static {
-		REGISTRATE.creativeModeTab(() -> TAB_PROF);
+		REGISTRATE.creativeModeTab("archery", b -> b
+				.icon(ArcheryItems.STARTER_BOW::asStack)
+				.title(Component.translatable("itemGroup.l2archery.archery")));
 	}
 
 	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MASTER_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
@@ -94,7 +81,7 @@ public class ArcheryItems {
 			ENDER_AIM_BOW = genBow("ender_aim_bow", 2, 600, e -> e.add(new EnderShootFeature(128)))
 					.lang("Ender Bow").register();
 			EAGLE_BOW = genBow("eagle_bow", 2, 600, e -> e.add(new DamageArrowFeature(
-					(a, s) -> s.bypassArmor(),
+					(a, s) -> s.enable(DefaultDamageState.BYPASS_ARMOR),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			))).register();
 			EXPLOSION_BOW = genBow("explosion_bow", 2, 300, e -> e
@@ -132,7 +119,7 @@ public class ArcheryItems {
 			)))).lang("Bless of Gaia").register();
 			VOID_BOW = genBow("void_bow", 3, 300, e -> e.add(new EnderShootFeature(128))
 					.add(new DamageArrowFeature(
-							(a, s) -> s.bypassArmor().bypassMagic().bypassInvul(),
+							(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 							LangData.FEATURE_PIERCE_INVUL::get
 					))).lang("Sight of the Void").register();
 			SUN_BOW = genBow("sun_bow", 3, 600, e -> e.add(new FireArrowFeature(200))
@@ -159,16 +146,16 @@ public class ArcheryItems {
 			ICE_ARROW = genArrow("frozen_arrow", false);
 			ACID_ARROW = genArrow("acid_arrow", false);
 			DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageArrowFeature(
-					(a, s) -> s.bypassMagic(),
+					(a, s) -> s.enable(DefaultDamageState.BYPASS_MAGIC),
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
 			WITHER_ARROW = genArrow("wither_arrow", false, e -> e.add(new DamageArrowFeature(
-					(a, s) -> s.setMagic().bypassArmor(),
+					(a, s) -> s.enable(DefaultDamageState.BYPASS_ARMOR),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			))).register();
 			STORM_ARROW = genArrow("storm_arrow", false, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
 			VOID_ARROW = genArrow("void_arrow", false, e -> e.add(new DamageArrowFeature(
-					(a, s) -> s.bypassArmor().bypassMagic().bypassInvul(),
+					(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 					LangData.FEATURE_PIERCE_INVUL::get
 			)).add(new VoidArrowFeature())).register();
 		}

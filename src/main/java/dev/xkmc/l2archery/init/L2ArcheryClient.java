@@ -40,8 +40,9 @@ public class L2ArcheryClient {
 
 	@SubscribeEvent
 	public static void registerItemDecorations(RegisterItemDecorationsEvent event) {
+		BowFluxBarRenderer deco = new BowFluxBarRenderer();
 		for (GenericBowItem bow : BOW_LIKE) {
-			event.register(bow, BowFluxBarRenderer::renderFluxBar);
+			event.register(bow, deco);
 		}
 	}
 

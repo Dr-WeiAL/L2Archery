@@ -1,14 +1,15 @@
 package dev.xkmc.l2archery.init.data;
 
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.util.DataIngredient;
 import dev.xkmc.l2archery.content.crafting.BowBuilder;
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.materials.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.base.ingredients.EnchantmentIngredient;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
-import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -209,7 +210,7 @@ public class RecipeGen {
 
 		// upgrade
 		{
-			unlock(pvd, new ShapedRecipeBuilder(ArcheryItems.UPGRADE.get(), 1)::unlockedBy, Items.AMETHYST_SHARD)
+			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.COMBAT, ArcheryItems.UPGRADE.get(), 1)::unlockedBy, Items.AMETHYST_SHARD)
 					.pattern("BCB").pattern("DAD").pattern("BCB")
 					.define('A', Items.AMETHYST_SHARD)
 					.define('B', Items.GOLD_NUGGET)
@@ -390,14 +391,14 @@ public class RecipeGen {
 	}
 
 	private static void cross(RegistrateRecipeProvider pvd, Item core, Item side, Item out, int count) {
-		unlock(pvd, new ShapedRecipeBuilder(out, count)::unlockedBy, core)
+		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.COMBAT, out, count)::unlockedBy, core)
 				.pattern(" S ").pattern("SCS").pattern(" S ")
 				.define('S', side).define('C', core)
 				.save(pvd);
 	}
 
 	private static void full(RegistrateRecipeProvider pvd, Item core, Item side, Item corner, Item out, int count) {
-		unlock(pvd, new ShapedRecipeBuilder(out, count)::unlockedBy, core)
+		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.COMBAT, out, count)::unlockedBy, core)
 				.pattern("CSC").pattern("SAS").pattern("CSC")
 				.define('A', core).define('S', side).define('C', corner)
 				.save(pvd);

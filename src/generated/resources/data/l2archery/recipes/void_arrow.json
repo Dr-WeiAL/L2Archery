@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "A": {
       "item": "l2archery:destroyer_arrow"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "l2archery:void_arrow"
-  }
+  },
+  "show_notification": true
 }

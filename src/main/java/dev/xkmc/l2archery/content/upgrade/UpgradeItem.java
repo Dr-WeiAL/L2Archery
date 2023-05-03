@@ -42,13 +42,12 @@ public class UpgradeItem extends Item {
 		super(props);
 	}
 
-	@Override
+	//FIXME category
 	public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> list) {
-		if (this.allowedIn(tab)) {
-			list.add(new ItemStack(this));
-			for (Upgrade upgrade : ArcheryRegister.UPGRADE.get().getValues())
-				list.add(setUpgrade(new ItemStack(this), upgrade));
-		}
+		//if (this.allowedIn(tab)) {
+		list.add(new ItemStack(this));
+		for (Upgrade upgrade : ArcheryRegister.UPGRADE.get().getValues())
+			list.add(setUpgrade(new ItemStack(this), upgrade));
 	}
 
 	@Override

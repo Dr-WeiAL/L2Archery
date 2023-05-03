@@ -1,5 +1,6 @@
 {
-  "type": "l2archery:bow_craft",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "A": {
       "item": "l2archery:storm_arrow"
@@ -21,5 +22,6 @@
   ],
   "result": {
     "item": "l2archery:wind_bow"
-  }
+  },
+  "show_notification": false
 }

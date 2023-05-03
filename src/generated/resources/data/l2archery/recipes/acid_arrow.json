@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "A": {
       "item": "minecraft:fermented_spider_eye"
@@ -19,5 +20,6 @@
   "result": {
     "count": 4,
     "item": "l2archery:acid_arrow"
-  }
+  },
+  "show_notification": true
 }

@@ -1,12 +1,12 @@
 package dev.xkmc.l2archery.init.registrate;
 
+import com.tterrag.registrate.builders.NoConfigBuilder;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2archery.content.effects.QuickPullEffect;
 import dev.xkmc.l2archery.content.effects.RunBowEffect;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2complements.init.registrate.LCItems;
-import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
-import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;

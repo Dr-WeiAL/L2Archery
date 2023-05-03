@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "A": {
       "item": "minecraft:creeper_head"
@@ -19,5 +20,6 @@
   "result": {
     "count": 4,
     "item": "l2archery:tnt_arrow_lv3"
-  }
+  },
+  "show_notification": true
 }

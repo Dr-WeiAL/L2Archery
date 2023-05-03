@@ -7,6 +7,7 @@ import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2library.init.events.attack.CreateSourceEvent;
 import dev.xkmc.l2library.serial.codec.PacketCodec;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.util.annotation.ServerOnly;
@@ -15,7 +16,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -63,7 +64,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		super.onHitEntity(result);
 	}
 
-	public void onHurtEntity(IndirectEntityDamageSource ind) {
+	public void onHurtEntity(CreateSourceEvent ind) {
 		if (!level.isClientSide())
 			features.hit().forEach(e -> e.onHurtEntity(this, ind));
 	}
@@ -140,7 +141,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	}
 
 	@Override
-	public Packet<?> getAddEntityPacket() {
+	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 

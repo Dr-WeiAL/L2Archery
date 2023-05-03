@@ -1,11 +1,11 @@
 package dev.xkmc.l2archery.content.config;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.NetworkManager;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;

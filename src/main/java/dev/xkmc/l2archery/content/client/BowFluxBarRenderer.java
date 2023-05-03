@@ -7,10 +7,11 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.IItemDecorator;
 
-public class BowFluxBarRenderer {
+public class BowFluxBarRenderer implements IItemDecorator {
 
-	public static boolean renderFluxBar(Font font, ItemStack stack, int x, int y, float blitOffset) {
+	public boolean render(PoseStack poseStack, Font font, ItemStack stack, int x, int y) {
 		IFluxItem item = (IFluxItem) stack.getItem();
 		if (item.getFluxFeature(stack) == null) return false;
 		Tesselator t = Tesselator.getInstance();
@@ -26,7 +27,6 @@ public class BowFluxBarRenderer {
 	 */
 	private static void fillRect(BufferBuilder buffer, int x, int y, int w, int h, int z, int r, int g, int b, int a) {
 		RenderSystem.disableDepthTest();
-		RenderSystem.disableTexture();
 		RenderSystem.setShader(GameRenderer::getPositionColorShader);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
 		buffer.vertex(x, y, z).color(r, g, b, a).endVertex();

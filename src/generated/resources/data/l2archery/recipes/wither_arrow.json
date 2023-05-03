@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "C": {
       "item": "l2archery:starter_arrow"
@@ -15,5 +16,6 @@
   ],
   "result": {
     "item": "l2archery:wither_arrow"
-  }
+  },
+  "show_notification": true
 }

@@ -240,7 +240,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	@Override
-	public void onUsingTick(ItemStack stack, LivingEntity user, int count) {
+	public void onUseTick(Level level, LivingEntity user, ItemStack stack, int count) {
 		if (user instanceof Player player)
 			BowFeatureController.usingTick(player, new GenericItemStack<>(this, stack));
 	}

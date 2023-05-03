@@ -3,6 +3,7 @@ package dev.xkmc.l2archery.content.crafting;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.base.recipe.AbstractShapedRecipe;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.BowItem;
@@ -19,14 +20,14 @@ public class BowRecipe extends AbstractShapedRecipe<BowRecipe> {
 	}
 
 	@Override
-	public ItemStack assemble(CraftingContainer container) {
+	public ItemStack assemble(CraftingContainer container, RegistryAccess access) {
 		ItemStack bow = ItemStack.EMPTY;
 		for (int i = 0; i < container.getContainerSize(); i++) {
 			if (container.getItem(i).getItem() instanceof BowItem) {
 				bow = container.getItem(i);
 			}
 		}
-		ItemStack ans = super.assemble(container);
+		ItemStack ans = super.assemble(container, access);
 		if (!bow.isEmpty()) {
 			ans.setTag(bow.getTag());
 		}

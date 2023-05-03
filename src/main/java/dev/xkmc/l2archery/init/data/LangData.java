@@ -1,13 +1,12 @@
 package dev.xkmc.l2archery.init.data;
 
+import com.tterrag.registrate.providers.RegistrateLangProvider;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -70,7 +69,7 @@ public enum LangData {
 	public MutableComponent get(Object... args) {
 		if (args.length != arg)
 			throw new IllegalArgumentException("for " + name() + ": expect " + arg + " parameters, got " + args.length);
-		MutableComponent ans = MutableComponent.create(new TranslatableContents(key, args));
+		MutableComponent ans = Component.translatable(key, args);
 		if (format != null) {
 			return ans.withStyle(format);
 		}

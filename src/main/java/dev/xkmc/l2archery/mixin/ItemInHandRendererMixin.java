@@ -1,16 +1,16 @@
 package dev.xkmc.l2archery.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,7 +25,7 @@ public abstract class ItemInHandRendererMixin {
 	protected abstract void applyItemArmTransform(PoseStack pose, HumanoidArm arm, float f);
 
 	@Shadow
-	public abstract void renderItem(LivingEntity p_109323_, ItemStack p_109324_, ItemTransforms.TransformType p_109325_, boolean p_109326_, PoseStack p_109327_, MultiBufferSource p_109328_, int p_109329_);
+	public abstract void renderItem(LivingEntity p_109323_, ItemStack p_109324_, ItemDisplayContext p_109325_, boolean p_109326_, PoseStack p_109327_, MultiBufferSource p_109328_, int p_109329_);
 
 	@Shadow
 	protected abstract void applyItemArmAttackTransform(PoseStack p_109336_, HumanoidArm p_109337_, float p_109338_);
@@ -42,9 +42,9 @@ public abstract class ItemInHandRendererMixin {
 			if (player.isUsingItem() && player.getUseItemRemainingTicks() > 0 && player.getUsedItemHand() == hand) {
 				this.applyItemArmTransform(pose, arm, f2);
 				pose.translate(k * -0.2785682F, 0.18344387F, 0.15731531F);
-				pose.mulPose(Vector3f.XP.rotationDegrees(-13.935F));
-				pose.mulPose(Vector3f.YP.rotationDegrees((float) k * 35.3F));
-				pose.mulPose(Vector3f.ZP.rotationDegrees((float) k * -9.785F));
+				pose.mulPose(Axis.XP.rotationDegrees(-13.935F));
+				pose.mulPose(Axis.YP.rotationDegrees((float) k * 35.3F));
+				pose.mulPose(Axis.ZP.rotationDegrees((float) k * -9.785F));
 				float pull_time = (float) stack.getUseDuration() - ((float) player.getUseItemRemainingTicks() - partial_tick + 1);
 				float pull = bow.getPowerForTime(player, pull_time);
 				if (pull > 0.1F) {
@@ -56,7 +56,7 @@ public abstract class ItemInHandRendererMixin {
 
 				pose.translate(pull * 0.0F, 0, pull * 0.04F);
 				pose.scale(1.0F, 1.0F, 1.0F + pull * 0.2F);
-				pose.mulPose(Vector3f.YN.rotationDegrees((float) k * 45.0F));
+				pose.mulPose(Axis.YN.rotationDegrees((float) k * 45.0F));
 			} else {
 				float f5 = -0.4F * Mth.sin(Mth.sqrt(f) * (float) Math.PI);
 				float f6 = 0.2F * Mth.sin(Mth.sqrt(f) * ((float) Math.PI * 2F));
@@ -65,7 +65,7 @@ public abstract class ItemInHandRendererMixin {
 				this.applyItemArmTransform(pose, arm, f2);
 				this.applyItemArmAttackTransform(pose, arm, f);
 			}
-			ItemTransforms.TransformType type = is_right_hand ? ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND : ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
+			ItemDisplayContext type = is_right_hand ? ItemDisplayContext.FIRST_PERSON_RIGHT_HAND : ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
 			this.renderItem(player, stack, type, !is_right_hand, pose, buffer, i);
 			pose.popPose();
 			ci.cancel();

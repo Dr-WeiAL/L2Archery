@@ -83,6 +83,7 @@ mixin {
 }
 
 repositories {
+    maven { url 'https://jitpack.io' }
     maven {
         // Location of the maven that hosts JEI files (and TiC)
         name 'Progwml6 maven'
@@ -126,25 +127,31 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    compileOnly(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
+    implementation("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
-    implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}-slim")
     implementation fg.deobf("dev.xkmc.l2complements:l2complements:${l2complements_version}")
-    implementation fg.deobf('dev.xkmc.modulargolems:modulargolems:1.7.7')
+    //implementation fg.deobf('dev.xkmc.modulargolems:modulargolems:1.7.7')
 
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 
-    runtimeOnly fg.deobf("dev.xkmc.l2artifacts:l2artifacts:1.5.0")
-    runtimeOnly fg.deobf("dev.xkmc.l2backpack:l2backpack:1.7.0")
+    runtimeOnly fg.deobf("dev.xkmc.l2artifacts:l2artifacts:2.1.2")
+    runtimeOnly fg.deobf("dev.xkmc.l2backpack:l2backpack:2.1.1")
 
-    runtimeOnly fg.deobf('curse.maven:wthit-forge-455982:3906013')
-    runtimeOnly fg.deobf('curse.maven:badpackets-615134:3903799')
-    runtimeOnly fg.deobf('curse.maven:attributefix-280510:3943012')
-    runtimeOnly fg.deobf('curse.maven:max-health-fix-492246:3943055')
-    runtimeOnly fg.deobf('curse.maven:bookshelf-228525:4153136')
-    runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:4277356')
-    runtimeOnly fg.deobf('curse.maven:mekanism-268560:3954410')
+
+    runtimeOnly fg.deobf('curse.maven:wthit-forge-455982:4512108')
+    runtimeOnly fg.deobf('curse.maven:badpackets-615134:4438956')
+    runtimeOnly fg.deobf('curse.maven:attributefix-280510:4445193')
+    runtimeOnly fg.deobf('curse.maven:max-health-fix-492246:4447240')
+
+    runtimeOnly fg.deobf('curse.maven:bookshelf-228525:4454755')
+    runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:4445054')
+
+    //runtimeOnly fg.deobf('curse.maven:mekanism-268560:3954410')
 
 }
 
