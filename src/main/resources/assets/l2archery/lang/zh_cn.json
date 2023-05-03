@@ -90,7 +90,7 @@
   "l2archery.stat.punch": "击退: %s",
   "l2archery.stat.speed": "出弓速度: %s米每秒",
   "l2archery.tooltip.remain": "剩余升级槽: %s",
-  "l2archery.tooltip.damage": "增幅弓的伤害增益。对没有伤害增益对弓没有效果。",
+  "l2archery.tooltip.damage": "增幅弓的伤害增益。对没有伤害增益的弓没有效果。",
   "l2archery.tooltip.energy.consume": "能量消耗: %s FE",
   "l2archery.tooltip.energy.store": "能量: %s/%s FE",
   "upgrade.l2archery.anti_gravity": "无重力",

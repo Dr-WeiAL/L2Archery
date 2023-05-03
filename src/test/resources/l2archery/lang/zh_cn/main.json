@@ -38,7 +38,7 @@
 	},
 	"tooltip": {
 	  "remain": "剩余升级槽: %s",
-	  "damage": "增幅弓的伤害增益。对没有伤害增益对弓没有效果。",
+	  "damage": "增幅弓的伤害增益。对没有伤害增益的弓没有效果。",
 	  "energy.consume": "能量消耗: %s FE",
 	  "energy.store": "能量: %s/%s FE"
 	}
