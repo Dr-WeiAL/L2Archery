@@ -18,7 +18,6 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2archery.init.data.ArcheryDamageMultiplex;
 import dev.xkmc.l2archery.init.data.ArcheryDamageState;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.data.TagGen;
@@ -29,6 +28,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -39,11 +39,13 @@ import java.util.function.Supplier;
 
 import static dev.xkmc.l2archery.init.L2Archery.REGISTRATE;
 
-@SuppressWarnings({"rawtypes", "unsafe"})
+@SuppressWarnings({"ConstantCondition", "unsafe"})
 public class ArcheryItems {
 
+	private static final Supplier<CreativeModeTab> TAB;
+
 	static {
-		REGISTRATE.creativeModeTab("archery", b -> b
+		TAB = REGISTRATE.buildCreativeModeTab("archery", b -> b
 				.icon(ArcheryItems.STARTER_BOW::asStack)
 				.title(Component.translatable("itemGroup.l2archery.archery")));
 	}
@@ -160,7 +162,8 @@ public class ArcheryItems {
 			)).add(new VoidArrowFeature())).register();
 		}
 		{
-			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang().register();
+			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang()
+					.tab(TAB::get, e -> ArcheryItems.UPGRADE.get().fillItemCategory(e)).register();
 
 			MAGNIFY_UP_1 = genUpgrade("magnify_x2", () -> new StatFeature(2, 10, 1, 0, 1));
 			MAGNIFY_UP_2 = genUpgrade("magnify_x4", () -> new StatFeature(4, 30, 1, 0, 1));

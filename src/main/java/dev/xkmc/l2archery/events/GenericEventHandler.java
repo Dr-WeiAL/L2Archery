@@ -1,6 +1,5 @@
 package dev.xkmc.l2archery.events;
 
-import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.explosion.BaseExplosion;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
@@ -19,9 +18,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.GrindstoneEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.level.ExplosionEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Set;

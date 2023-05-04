@@ -2,12 +2,14 @@ package dev.xkmc.l2archery.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2archery.compat.GolemCompat;
+import dev.xkmc.l2archery.events.ArrowAttackListener;
 import dev.xkmc.l2archery.events.GenericEventHandler;
 import dev.xkmc.l2archery.init.data.*;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.l2library.init.events.attack.AttackEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
@@ -37,6 +39,7 @@ public class L2Archery {
 		ArcheryEffects.register();
 		NetworkManager.register();
 		ArcheryDamageMultiplex.register();
+		AttackEventHandler.register(2000, new ArrowAttackListener());
 		if (ModList.get().isLoaded("modulargolems")) GolemCompat.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);

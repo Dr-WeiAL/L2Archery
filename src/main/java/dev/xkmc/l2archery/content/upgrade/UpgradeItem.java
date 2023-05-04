@@ -1,16 +1,15 @@
 package dev.xkmc.l2archery.content.upgrade;
 
+import com.tterrag.registrate.util.CreativeModeTabModifier;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -42,12 +41,10 @@ public class UpgradeItem extends Item {
 		super(props);
 	}
 
-	//FIXME category
-	public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> list) {
-		//if (this.allowedIn(tab)) {
-		list.add(new ItemStack(this));
+	public void fillItemCategory(CreativeModeTabModifier tab) {
+		tab.accept(new ItemStack(this));
 		for (Upgrade upgrade : ArcheryRegister.UPGRADE.get().getValues())
-			list.add(setUpgrade(new ItemStack(this), upgrade));
+			tab.accept(setUpgrade(new ItemStack(this), upgrade));
 	}
 
 	@Override

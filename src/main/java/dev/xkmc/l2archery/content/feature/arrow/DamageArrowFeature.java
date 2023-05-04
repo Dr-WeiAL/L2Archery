@@ -4,7 +4,6 @@ import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2library.init.events.attack.CreateSourceEvent;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.damagesource.DamageSource;
 
 import java.util.List;
 import java.util.function.BiConsumer;
