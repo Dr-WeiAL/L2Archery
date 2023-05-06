@@ -97,9 +97,12 @@ public class GenericEventHandler {
 	public static void onGrind(GrindstoneEvent.OnplaceItem event) {
 		if (event.getTopItem().getItem() instanceof GenericBowItem bow) {
 			ItemStack copy = event.getTopItem().copy();
-			copy.getOrCreateTag().remove(GenericBowItem.KEY);
-			GenericBowItem.remakeEnergy(copy);
-			event.setOutput(copy);
+			if (GenericBowItem.getUpgrades(copy).size() > 0) {
+				copy.getOrCreateTag().remove(GenericBowItem.KEY);
+				GenericBowItem.remakeEnergy(copy);
+				event.setOutput(copy);
+				event.setXp(0);
+			}
 		}
 	}
 

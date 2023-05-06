@@ -76,11 +76,13 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 
 	public static List<Upgrade> getUpgrades(ItemStack stack) {
 		List<Upgrade> ans = new ArrayList<>();
-		ListTag list = ItemCompoundTag.of(stack).getSubList(KEY, Tag.TAG_STRING).getOrCreate();
-		for (int i = 0; i < list.size(); i++) {
-			Upgrade up = ArcheryRegister.UPGRADE.get().getValue(new ResourceLocation(list.getString(i)));
-			if (up != null) {
-				ans.add(up);
+		if (stack.getOrCreateTag().contains(KEY)) {
+			ListTag list = ItemCompoundTag.of(stack).getSubList(KEY, Tag.TAG_STRING).getOrCreate();
+			for (int i = 0; i < list.size(); i++) {
+				Upgrade up = ArcheryRegister.UPGRADE.get().getValue(new ResourceLocation(list.getString(i)));
+				if (up != null) {
+					ans.add(up);
+				}
 			}
 		}
 		return ans;
