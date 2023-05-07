@@ -1,9 +1,9 @@
 package dev.xkmc.l2archery.init;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
+import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.ConfigMerger;
-import dev.xkmc.l2library.serial.network.BaseConfig;
-import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
+import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Locale;

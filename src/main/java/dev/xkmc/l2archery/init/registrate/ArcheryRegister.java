@@ -10,7 +10,7 @@ import dev.xkmc.l2archery.content.stats.StatType;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.base.recipe.AbstractShapedRecipe;
+import dev.xkmc.l2library.serial.recipe.AbstractShapedRecipe;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.ForgeRegistries;
 

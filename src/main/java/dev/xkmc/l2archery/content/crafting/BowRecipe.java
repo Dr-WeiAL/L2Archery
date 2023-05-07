@@ -1,7 +1,7 @@
 package dev.xkmc.l2archery.content.crafting;
 
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import dev.xkmc.l2library.base.recipe.AbstractShapedRecipe;
+import dev.xkmc.l2library.serial.recipe.AbstractShapedRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;

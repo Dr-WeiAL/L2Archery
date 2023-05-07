@@ -3,8 +3,8 @@ package dev.xkmc.l2archery.init.data;
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
-import dev.xkmc.l2library.serial.network.BaseConfig;
-import dev.xkmc.l2library.serial.network.ConfigDataProvider;
+import dev.xkmc.l2library.serial.config.BaseConfig;
+import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.effect.MobEffects;
 
