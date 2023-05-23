@@ -33,6 +33,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -41,6 +42,8 @@ import static dev.xkmc.l2archery.init.L2Archery.REGISTRATE;
 
 @SuppressWarnings({"ConstantCondition", "unsafe"})
 public class ArcheryItems {
+
+	public static final List<GenericBowItem> BOW_LIKE = new ArrayList<>();
 
 	private static final Supplier<CreativeModeTab> TAB;
 

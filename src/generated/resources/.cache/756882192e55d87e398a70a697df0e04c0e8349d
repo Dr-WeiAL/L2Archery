@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-13T23:14:19.80388	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.4	2023-05-22T18:58:15.040527	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 81df9da6625946b5c6901cbd6dffe0c99dbba69a assets/l2archery/lang/en_ud.json
 ca5c5b5490fb051727480ae2ba340cb27065891e assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
@@ -253,4 +253,5 @@ cfa2371274642b7a030c9311c64b56a81ef1d361 data/l2archery/recipes/winter_bow.json
 d1c2e1c5ce22a8b2374af2e414c78f1a2317787e data/l2archery/recipes/wither_arrow.json
 81fbdb28283fefcd944474a6bf3ac438185eed66 data/l2archery/tags/items/arrows.json
 a04e437fcac34d118f85df1d2f3610bd937ad429 data/l2archery/tags/items/bows.json
+787eeb936d3f5bf066d59310c5db1423d49a5b8f data/minecraft/tags/entity_types/arrows.json
 81fbdb28283fefcd944474a6bf3ac438185eed66 data/minecraft/tags/items/arrows.json

@@ -8,6 +8,7 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.StatHolder;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
+import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,11 +21,12 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.GrindstoneEvent;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Set;
 import java.util.TreeSet;
 
-@SuppressWarnings("unused")
+@Mod.EventBusSubscriber(modid = L2Archery.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GenericEventHandler {
 
 	@OnlyIn(Dist.CLIENT)

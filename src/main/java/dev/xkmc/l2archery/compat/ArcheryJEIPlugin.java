@@ -5,7 +5,6 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.events.GenericEventHandler;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2archery.init.L2ArcheryClient;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.base.NamedEntry;
@@ -53,7 +52,7 @@ public class ArcheryJEIPlugin implements IModPlugin {
 		for (Upgrade upgrade : ArcheryRegister.UPGRADE.get().getValues()) {
 			ItemStack stack = ArcheryItems.UPGRADE.asStack();
 			UpgradeItem.setUpgrade(stack, upgrade);
-			for (GenericBowItem bow : L2ArcheryClient.BOW_LIKE) {
+			for (GenericBowItem bow : ArcheryItems.BOW_LIKE) {
 				ItemStack left = bow.getDefaultInstance();
 				if (GenericEventHandler.allowUpgrade(bow, left, upgrade)) {
 					ItemStack right = bow.getDefaultInstance();
