@@ -56,7 +56,7 @@ public interface IFluxItem extends IEnergyContainerItem, IForgeItem {
 
 	default int getEnergyPerUse(ItemStack container) {
 		FluxFeature fluxFeature = getFluxFeature(container);
-		if (fluxFeature == null) return 0;
+		if (fluxFeature == null) return 100;
 		return (int) (Math.pow(2, getConsumptionRank(container)) * fluxFeature.perUsed());
 	}
 
