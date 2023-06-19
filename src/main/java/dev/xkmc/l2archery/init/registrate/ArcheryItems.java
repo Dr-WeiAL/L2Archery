@@ -22,9 +22,8 @@ import dev.xkmc.l2archery.init.data.ArcheryDamageState;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.data.TagGen;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
+import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
 import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.init.events.damage.DefaultDamageState;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -45,12 +44,11 @@ public class ArcheryItems {
 
 	public static final List<GenericBowItem> BOW_LIKE = new ArrayList<>();
 
-	private static final Supplier<CreativeModeTab> TAB;
+	private static final RegistryEntry<CreativeModeTab> TAB;
 
 	static {
-		TAB = REGISTRATE.buildCreativeModeTab("archery", b -> b
-				.icon(ArcheryItems.STARTER_BOW::asStack)
-				.title(Component.translatable("itemGroup.l2archery.archery")));
+		TAB = REGISTRATE.buildL2CreativeTab("archery", "L2 Archery", b -> b
+				.icon(ArcheryItems.STARTER_BOW::asStack));
 	}
 
 	public static final ItemEntry<GenericBowItem> STARTER_BOW, IRON_BOW, MASTER_BOW, MAGNIFY_BOW, GLOW_AIM_BOW, ENDER_AIM_BOW,
@@ -166,7 +164,7 @@ public class ArcheryItems {
 		}
 		{
 			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang()
-					.tab(TAB::get, e -> ArcheryItems.UPGRADE.get().fillItemCategory(e)).register();
+					.tab(TAB.getKey(), e -> ArcheryItems.UPGRADE.get().fillItemCategory(e)).register();
 
 			MAGNIFY_UP_1 = genUpgrade("magnify_x2", () -> new StatFeature(2, 10, 1, 0, 1));
 			MAGNIFY_UP_2 = genUpgrade("magnify_x4", () -> new StatFeature(4, 30, 1, 0, 1));

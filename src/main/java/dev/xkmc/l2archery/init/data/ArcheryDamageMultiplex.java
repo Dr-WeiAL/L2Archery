@@ -1,12 +1,12 @@
 package dev.xkmc.l2archery.init.data;
 
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2damagetracker.contents.damage.DamageTypeRoot;
+import dev.xkmc.l2damagetracker.contents.damage.DamageTypeWrapper;
+import dev.xkmc.l2damagetracker.contents.damage.DamageWrapperTagProvider;
+import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
+import dev.xkmc.l2damagetracker.init.data.DamageTypeAndTagsGen;
 import dev.xkmc.l2library.init.L2Library;
-import dev.xkmc.l2library.init.data.DamageTypeAndTagsGen;
-import dev.xkmc.l2library.init.events.damage.DamageTypeRoot;
-import dev.xkmc.l2library.init.events.damage.DamageTypeWrapper;
-import dev.xkmc.l2library.init.events.damage.DamageWrapperTagProvider;
-import dev.xkmc.l2library.init.events.damage.DefaultDamageState;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;

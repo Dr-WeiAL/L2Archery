@@ -18,7 +18,7 @@ public class GolemCompat {
 		var golem = event.getEntity();
 		if (event.getStack().getItem() instanceof GenericBowItem item) {
 			var opt = item.releaseUsingAndShootArrow(event.getStack(),
-					golem.level, golem, golem.getUseItemRemainingTicks());
+					golem.level(), golem, golem.getUseItemRemainingTicks());
 			if (opt.isPresent()) {
 				var arrow = opt.get();
 				event.setArrow(arrow, arrow.pickup != AbstractArrow.Pickup.ALLOWED, true);

@@ -4,7 +4,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
-import dev.xkmc.l2archery.init.NetworkManager;
+import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class BowArrowStatConfig extends BaseConfig {
 
 	public static BowArrowStatConfig get() {
-		return NetworkManager.STATS.getMerged();
+		return L2Archery.STATS.getMerged();
 	}
 
 	@ConfigCollect(CollectType.MAP_COLLECT)

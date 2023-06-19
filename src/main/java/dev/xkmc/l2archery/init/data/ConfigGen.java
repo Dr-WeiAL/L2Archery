@@ -1,24 +1,23 @@
 package dev.xkmc.l2archery.init.data;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
+import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
-import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
-
-import java.util.Map;
 
 public class ConfigGen extends ConfigDataProvider {
 
 	public ConfigGen(DataGenerator generator) {
-		super(generator, "data/l2archery/archery_config/", "Archery Config");
+		super(generator, "Archery Config");
 	}
 
 	@Override
-	public void add(Map<String, BaseConfig> map) {
-		map.put("stats/bows", new BowArrowStatConfig()
+	public void add(Collector map) {
+		map.add(L2Archery.STATS, new ResourceLocation(L2Archery.MODID, "bows"), new BowArrowStatConfig()
 				.putBow(ArcheryItems.STARTER_BOW).end()
 				.putBow(ArcheryItems.IRON_BOW).damage(3).bothTimes(40).end()
 				.putBow(ArcheryItems.MASTER_BOW).damage(1).fovs(20, 0.3).end()
@@ -39,7 +38,7 @@ public class ConfigGen extends ConfigDataProvider {
 				.putBow(ArcheryItems.SUN_BOW).putEffect(LCEffects.FLAME.get(), 200, 1).end()
 		);
 
-		map.put("stats/arrows", new BowArrowStatConfig()
+		map.add(L2Archery.STATS, new ResourceLocation(L2Archery.MODID, "arrows"), new BowArrowStatConfig()
 				.putArrow(ArcheryItems.STARTER_ARROW).end()
 				.putArrow(ArcheryItems.COPPER_ARROW).damage(1).end()
 				.putArrow(ArcheryItems.IRON_ARROW).damage(1).punch(1).end()

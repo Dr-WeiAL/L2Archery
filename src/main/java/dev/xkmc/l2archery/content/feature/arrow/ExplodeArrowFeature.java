@@ -1,9 +1,9 @@
 package dev.xkmc.l2archery.content.feature.arrow;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
-import dev.xkmc.l2archery.content.explosion.*;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2archery.init.data.LangData;
+import dev.xkmc.l2library.init.explosion.*;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -36,7 +36,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 	}
 
 	private void explode(GenericArrowEntity arrow, double x, double y, double z) {
-		BaseExplosionContext base = new BaseExplosionContext(arrow.level, x, y, z, radius);
+		BaseExplosionContext base = new BaseExplosionContext(arrow.level(), x, y, z, radius);
 		Explosion.BlockInteraction type = breakBlock() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP;
 		VanillaExplosionContext mc = new VanillaExplosionContext(arrow, getSource(arrow), null, false, type);
 		ModExplosionContext mod = entity -> onExplosionHurt(arrow, entity);
@@ -67,7 +67,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 	private DamageSource getSource(GenericArrowEntity arrow) {
 		Entity ent = arrow.getOwner();
 		if (ent instanceof LivingEntity le) {
-			return le.level.damageSources().explosion(arrow, ent);
+			return le.level().damageSources().explosion(arrow, ent);
 		}
 		return null;
 	}

@@ -51,7 +51,7 @@ public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeat
 
 	@Override
 	public void stopAim(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
-		if (player.level.isClientSide()) {
+		if (player.level().isClientSide()) {
 			if (player instanceof LocalPlayer)
 				RayTraceUtil.TARGET.updateTarget(null);
 		}

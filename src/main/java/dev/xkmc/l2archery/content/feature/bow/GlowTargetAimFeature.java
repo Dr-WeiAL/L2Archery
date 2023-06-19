@@ -22,7 +22,7 @@ public record GlowTargetAimFeature(int range) implements OnPullFeature, IGlowFea
 
 	@Override
 	public void tickAim(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
-		if (player.level.isClientSide()) {
+		if (player.level().isClientSide()) {
 			Vec3 vec3 = player.getEyePosition();
 			Vec3 vec31 = player.getViewVector(1.0F).scale(range);
 			Vec3 vec32 = vec3.add(vec31);

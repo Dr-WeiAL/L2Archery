@@ -1,6 +1,5 @@
 package dev.xkmc.l2archery.events;
 
-import dev.xkmc.l2archery.content.explosion.BaseExplosion;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.item.BowData;
@@ -19,7 +18,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.GrindstoneEvent;
-import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -46,13 +44,6 @@ public class GenericEventHandler {
 			BowData data = BowData.of(bow, stack);
 			float p = data.getConfig().fov_time();
 			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * data.getConfig().fov()));
-		}
-	}
-
-	@SubscribeEvent
-	public static void onDetonate(ExplosionEvent.Detonate event) {
-		if (event.getExplosion() instanceof BaseExplosion exp) {
-			event.getAffectedEntities().removeIf(e -> !exp.hurtEntity(e));
 		}
 	}
 
@@ -96,7 +87,7 @@ public class GenericEventHandler {
 	}
 
 	@SubscribeEvent
-	public static void onGrind(GrindstoneEvent.OnplaceItem event) {
+	public static void onGrind(GrindstoneEvent.OnPlaceItem event) {
 		if (event.getTopItem().getItem() instanceof GenericBowItem bow) {
 			ItemStack copy = event.getTopItem().copy();
 			if (GenericBowItem.getUpgrades(copy).size() > 0) {

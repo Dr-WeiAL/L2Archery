@@ -7,7 +7,7 @@ import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import dev.xkmc.l2library.init.events.attack.CreateSourceEvent;
+import dev.xkmc.l2damagetracker.contents.attack.CreateSourceEvent;
 import dev.xkmc.l2library.util.annotation.ServerOnly;
 import dev.xkmc.l2serial.serialization.codec.PacketCodec;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
@@ -59,19 +59,19 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
-		if (!level.isClientSide())
+		if (!level().isClientSide())
 			features.hit().forEach(e -> e.onHitEntity(this, result.getEntity(), result));
 		super.onHitEntity(result);
 	}
 
 	public void onHurtEntity(CreateSourceEvent ind) {
-		if (!level.isClientSide())
+		if (!level().isClientSide())
 			features.hit().forEach(e -> e.onHurtEntity(this, ind));
 	}
 
 	@Override
 	public void doPostHurtEffects(LivingEntity target) {
-		if (!level.isClientSide())
+		if (!level().isClientSide())
 			features.hit().forEach(e -> e.postHurtEntity(this, target));
 	}
 

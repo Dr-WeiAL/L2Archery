@@ -16,7 +16,7 @@ public class VoidArrowFeature implements OnHitFeature {
 
 	@Override
 	public void onHitEntity(GenericArrowEntity genericArrow, Entity target, EntityHitResult hit) {
-		target.hurt(target.level.damageSources().outOfWorld(), Float.MAX_VALUE);
+		target.hurt(target.level().damageSources().fellOutOfWorld(), Float.MAX_VALUE);
 		genericArrow.discard();
 		if (target instanceof LivingEntity le) {
 			onHitLivingEntity(genericArrow, le, hit);
@@ -38,7 +38,7 @@ public class VoidArrowFeature implements OnHitFeature {
 
 	@Override
 	public void onHitBlock(GenericArrowEntity genericArrow, BlockHitResult result) {
-		genericArrow.getLevel().setBlockAndUpdate(result.getBlockPos(), Blocks.AIR.defaultBlockState());
+		genericArrow.level().setBlockAndUpdate(result.getBlockPos(), Blocks.AIR.defaultBlockState());
 		genericArrow.discard();
 	}
 

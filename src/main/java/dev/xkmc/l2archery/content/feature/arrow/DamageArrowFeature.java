@@ -2,7 +2,7 @@ package dev.xkmc.l2archery.content.feature.arrow;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
-import dev.xkmc.l2library.init.events.attack.CreateSourceEvent;
+import dev.xkmc.l2damagetracker.contents.attack.CreateSourceEvent;
 import net.minecraft.network.chat.MutableComponent;
 
 import java.util.List;

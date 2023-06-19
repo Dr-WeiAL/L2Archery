@@ -1,8 +1,8 @@
 package dev.xkmc.l2archery.init.data;
 
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2library.init.data.L2DamageTypes;
-import dev.xkmc.l2library.init.events.damage.DamageState;
+import dev.xkmc.l2damagetracker.contents.damage.DamageState;
+import dev.xkmc.l2damagetracker.init.data.L2DamageTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
@@ -25,6 +25,11 @@ public enum ArcheryDamageState implements DamageState {
 		for (var tag : tags) {
 			collector.accept(tag);
 		}
+	}
+
+	@Override
+	public void removeTags(Consumer<TagKey<DamageType>> consumer) {
+
 	}
 
 	@Override
