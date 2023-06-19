@@ -243,7 +243,8 @@ public class ArcheryItems {
 		consumer.accept(f);
 		return REGISTRATE.item(id, p -> new GenericArrowItem(p, new ArrowConfig(
 						new ResourceLocation(L2Archery.MODID, id), is_inf, f.build())))
-				.model(ArcheryItems::createArrowModel).tag(TagGen.FORGE_ARROWS, TagGen.PROF_ARROWS);
+				.model(ArcheryItems::createArrowModel).tag(TagGen.FORGE_ARROWS, TagGen.PROF_ARROWS)
+				.defaultLang();
 	}
 
 	public static <T extends GenericArrowItem> void createArrowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {

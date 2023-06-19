@@ -104,7 +104,6 @@ public enum LangData {
 				pvd.add(str, pref_name + " of " + name);
 			}
 		}
-		pvd.add("itemGroup." + L2Archery.MODID + ".archery", "L2 Archery");
 	}
 
 }

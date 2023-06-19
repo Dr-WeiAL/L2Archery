@@ -61,7 +61,7 @@
   "item.minecraft.splash_potion.effect.quick_pull": "喷溅型快速拉弓药水",
   "item.minecraft.splash_potion.effect.long_quick_pull": "喷溅型快速拉弓药水",
   "item.minecraft.splash_potion.effect.strong_quick_pull": "喷溅型快速拉弓药水",
-  "itemGroup.l2archery.archery": "弓艺",
+  "itemGroup.l2library.archery": "弓艺",
   "entity.l2archery.generic_arrow": "箭",
   "stat_type.l2archery.damage": "伤害",
   "stat_type.l2archery.fov_time": "放大时间",
