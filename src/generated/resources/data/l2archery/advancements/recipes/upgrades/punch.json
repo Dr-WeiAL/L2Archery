@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:punch"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

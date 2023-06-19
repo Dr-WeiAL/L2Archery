@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:fire_arrow_lv1"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

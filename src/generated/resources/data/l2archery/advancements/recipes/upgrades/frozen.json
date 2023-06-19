@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:frozen"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -1,5 +1,4 @@
 {
-  "_class": "dev.xkmc.l2archery.content.config.BowArrowStatConfig",
   "arrow_effects": {
     "l2archery:acid_arrow": {
       "l2complements:armor_reduce": {

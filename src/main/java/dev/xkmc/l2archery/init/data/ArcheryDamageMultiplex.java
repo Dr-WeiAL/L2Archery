@@ -5,6 +5,7 @@ import dev.xkmc.l2damagetracker.contents.damage.DamageTypeRoot;
 import dev.xkmc.l2damagetracker.contents.damage.DamageTypeWrapper;
 import dev.xkmc.l2damagetracker.contents.damage.DamageWrapperTagProvider;
 import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
+import dev.xkmc.l2damagetracker.init.L2DamageTracker;
 import dev.xkmc.l2damagetracker.init.data.DamageTypeAndTagsGen;
 import dev.xkmc.l2library.init.L2Library;
 import net.minecraft.core.HolderLookup;
@@ -29,7 +30,7 @@ public class ArcheryDamageMultiplex extends DamageTypeAndTagsGen {
 		ARROW.add(DefaultDamageState.BYPASS_MAGIC);
 		ARROW.add(DefaultDamageState.BYPASS_ARMOR);
 		ARROW.add(ArcheryDamageState.BYPASS_INVUL);
-		DamageTypeRoot.configureGeneration(Set.of(L2Library.MODID, L2Archery.MODID), L2Archery.MODID, LIST);
+		DamageTypeRoot.configureGeneration(Set.of(L2DamageTracker.MODID, L2Archery.MODID), L2Archery.MODID, LIST);
 	}
 
 	protected static final List<DamageTypeWrapper> LIST = new ArrayList<>();

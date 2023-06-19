@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:soul_fire"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

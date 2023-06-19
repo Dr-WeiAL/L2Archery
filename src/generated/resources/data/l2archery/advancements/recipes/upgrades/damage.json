@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:damage"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

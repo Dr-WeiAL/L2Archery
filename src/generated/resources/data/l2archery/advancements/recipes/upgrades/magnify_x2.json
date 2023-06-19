@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:magnify_x2"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:upgrade"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

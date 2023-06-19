@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:blackstone"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

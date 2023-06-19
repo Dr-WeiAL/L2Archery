@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:blackstone_arrow"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:no_fall_arrow"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

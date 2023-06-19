@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:void"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

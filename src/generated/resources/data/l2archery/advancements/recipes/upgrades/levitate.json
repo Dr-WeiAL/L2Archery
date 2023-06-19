@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:levitate"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

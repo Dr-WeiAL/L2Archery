@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:tnt_arrow_lv2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

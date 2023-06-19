@@ -30,5 +30,6 @@
     "recipes": [
       "l2archery:railgun"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }
