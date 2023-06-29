@@ -10,7 +10,7 @@ public class PotionArrowEnchantment extends BaseBowEnchantment {
 	private final int max;
 
 	public PotionArrowEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots, int max) {
-		super(pRarity, pCategory, pApplicableSlots);
+		super(pRarity, pCategory, pApplicableSlots, max);
 		this.max = max;
 	}
 
@@ -19,8 +19,4 @@ public class PotionArrowEnchantment extends BaseBowEnchantment {
 		return BowArrowStatConfig.get().getEnchEffects(this, v);
 	}
 
-	@Override
-	public int getMaxLevel() {
-		return max;
-	}
 }

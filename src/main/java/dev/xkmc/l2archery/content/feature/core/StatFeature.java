@@ -13,7 +13,7 @@ import java.util.Set;
 public record StatFeature(float fov, int fov_time, float damage, int punch,
 						  float speed) implements BowArrowFeature, IBowConfig {
 
-	public static final StatFeature NOOP = new StatFeature(1, 1, 1, 0, 1);
+	public static final StatFeature NOOP = new StatFeature(1, 0, 1, 0, 1);
 
 	/**
 	 * cannot be implemented due to pulling not having access to ItemStack

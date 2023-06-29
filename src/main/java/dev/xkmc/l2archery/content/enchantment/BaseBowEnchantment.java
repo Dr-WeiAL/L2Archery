@@ -6,7 +6,16 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public abstract class BaseBowEnchantment extends UnobtainableEnchantment implements IBowEnchantment {
 
-	protected BaseBowEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
+	protected final int max;
+
+	public BaseBowEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots, int max) {
 		super(pRarity, pCategory, pApplicableSlots);
+		this.max = max;
 	}
+
+	@Override
+	public final int getMaxLevel() {
+		return max;
+	}
+
 }

@@ -1,6 +1,6 @@
-// 1.20	2023-06-29T09:08:48.129187	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-f26751512c94e58a98d7abef542941040cdd417a assets/l2archery/lang/en_ud.json
-a893210497e50162654e624a6d7b638a6ba3fc7f assets/l2archery/lang/en_us.json
+// 1.20	2023-06-29T13:23:21.396729	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+0021e1798b2618640bcde47545745a70b564698b assets/l2archery/lang/en_ud.json
+bd904af4138666f0371643240199638b8dd4e6ca assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -175,7 +175,9 @@ e6f55ecae487b2f8f11968e1dced72ff6767171e data/l2archery/advancements/recipes/sto
 37dc0cde8165bfacb3d3e13da469adeb26247549 data/l2archery/advancements/recipes/turtle_bow.json
 f0cafdb54ee3ff0524170a07dd1c41712a87f91e data/l2archery/advancements/recipes/upgrades/anti_gravity.json
 2ea954a61f3f0adcc9f8d5920a363c8770b65a96 data/l2archery/advancements/recipes/upgrades/blackstone.json
+5f4afacbf0edf9b418e648c6c1dfe6b089028510 data/l2archery/advancements/recipes/upgrades/cleanse.json
 4aa5ef68a2746e837c2ed4641692b9fc16e62d77 data/l2archery/advancements/recipes/upgrades/corrosion.json
+60028ce0943ed3e52d2f7460b7b9342ee3ca6d8e data/l2archery/advancements/recipes/upgrades/curse.json
 0ced8bd6e0b604fd371fc70c1259d1595e892d92 data/l2archery/advancements/recipes/upgrades/damage.json
 b79359ff18c100f1ab92cabf6f60f1afb2b471a9 data/l2archery/advancements/recipes/upgrades/explosion.json
 bdcb09632afff093fbdb5033852d7254e7e2420c data/l2archery/advancements/recipes/upgrades/flux_up.json
@@ -216,7 +218,7 @@ f4fa64dc57a525c0576779aee3a7c2f979bf30cf data/l2archery/recipes/enchantments/har
 e1a5047ded18d37fd382f4b4a4c9fcddc4eddddd data/l2archery/recipes/enchantments/levitate.json
 8f15e33c38f76483fc0366c74657b80b24bcb2e7 data/l2archery/recipes/enchantments/poison.json
 0861aa61812b1ec97f0f8fe271b0f6393155a2ce data/l2archery/recipes/enchantments/slow.json
-65794d23a819d3bc408a3867e4b40502d11ff679 data/l2archery/recipes/enchantments/weak.json
+1d09706a9942e1fcec83b37b220bb1912678a9fd data/l2archery/recipes/enchantments/weak.json
 739dd18f8fae34ad4d1d6e0fcf02853e9ddbe4cf data/l2archery/recipes/enchantments/wither.json
 6d366a09a40fbb99f1afc9eda13301617cbbfbfe data/l2archery/recipes/ender_aim_bow.json
 09737710442d2bdac0dcfad6b3d853876a3021de data/l2archery/recipes/ender_arrow.json
@@ -249,7 +251,9 @@ d36e1f9d1c9cac6f90fccb54e49339c324a5ab0f data/l2archery/recipes/tnt_arrow_lv2.js
 b2de46b6cb1537e76624f86dca8ca8f9470a24ef data/l2archery/recipes/upgrade.json
 4e0b86b1dca4321af63eee4a53a85fce7a669a08 data/l2archery/recipes/upgrades/anti_gravity.json
 bf44b327be22f98eca632e112135e7e9a5484d56 data/l2archery/recipes/upgrades/blackstone.json
+3902c8fd687cf2103599e783eef98a2d0200437a data/l2archery/recipes/upgrades/cleanse.json
 7496fd7bc0613dbf326434828c535a2161b34d6a data/l2archery/recipes/upgrades/corrosion.json
+ab179aaec8a853a0b9f375a88f1d91ec00ca5cd8 data/l2archery/recipes/upgrades/curse.json
 aae2b8264bbe446c066441441884d702acfddd16 data/l2archery/recipes/upgrades/damage.json
 79775fa92edc5186215a40154f15063ae4bd8f8e data/l2archery/recipes/upgrades/explosion.json
 df4b3bca6c5d497ee0fbeacf9574278593ae00f6 data/l2archery/recipes/upgrades/flux_up.json
@@ -279,5 +283,11 @@ cfa2371274642b7a030c9311c64b56a81ef1d361 data/l2archery/recipes/winter_bow.json
 d1c2e1c5ce22a8b2374af2e414c78f1a2317787e data/l2archery/recipes/wither_arrow.json
 81fbdb28283fefcd944474a6bf3ac438185eed66 data/l2archery/tags/items/arrows.json
 a04e437fcac34d118f85df1d2f3610bd937ad429 data/l2archery/tags/items/bows.json
+3cf66998381625cc84307cf761569d0edda80287 data/l2complements/advancements/recipes/enchantments/explode.json
+0bbb3139c30af1231baecfbc1560cfd16e947e14 data/l2complements/advancements/recipes/enchantments/glow_aim.json
+36e5a7cd2a8971aeca719e0ac9e2c5d62f92d459 data/l2complements/advancements/recipes/enchantments/magnify.json
+6a6e99cfec38551cfcaead42abcb8b05d30906c7 data/l2complements/recipes/explode.json
+3c54d03e915001af7fd58f059eed5b378405752f data/l2complements/recipes/glow_aim.json
+8ec575dc51c90c738737096f9a036649c42ccd45 data/l2complements/recipes/magnify.json
 787eeb936d3f5bf066d59310c5db1423d49a5b8f data/minecraft/tags/entity_types/arrows.json
 81fbdb28283fefcd944474a6bf3ac438185eed66 data/minecraft/tags/items/arrows.json

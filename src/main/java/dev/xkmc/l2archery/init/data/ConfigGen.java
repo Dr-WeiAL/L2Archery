@@ -78,6 +78,8 @@ public class ConfigGen extends ConfigDataProvider {
 				.putUpgrade(ArcheryItems.WITHER_UP).putEffect(MobEffects.WITHER, 100, 2).end()
 				.putUpgrade(ArcheryItems.WEAK_UP).putEffect(MobEffects.WEAKNESS, 300, 4).end()
 				.putUpgrade(ArcheryItems.CORROSION_UP).putEffect(LCEffects.ARMOR_REDUCE.get(), 400, 1).end()
+				.putUpgrade(ArcheryItems.CURSE_UP).putEffect(LCEffects.CURSE.get(), 200, 0).end()
+				.putUpgrade(ArcheryItems.CLEANSE_UP).putEffect(LCEffects.CLEANSE.get(), 200, 0).end()
 		);
 
 		map.add(L2Archery.STATS, new ResourceLocation(L2Archery.MODID, "enchantments"), new BowArrowStatConfig()

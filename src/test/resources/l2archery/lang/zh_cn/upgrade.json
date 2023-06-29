@@ -24,7 +24,9 @@
 	"corrosion": "腐蚀",
 	"poison": "剧毒",
 	"weak": "虚弱",
-	"wither": "凋零"
+	"wither": "凋零",
+	"cleanse": "净化",
+	"curse": "诅咒"
   },
   "effect.l2archery": {
 	"quick_pull": "快速拉弓",

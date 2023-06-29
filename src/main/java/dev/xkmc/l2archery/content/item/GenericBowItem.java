@@ -362,7 +362,10 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 			ans.stage = FeatureList.Stage.ENCHANT;
 			stack.getAllEnchantments().forEach((k, v) -> {
 				if (k instanceof IBowEnchantment b) {
-					ans.add(b.getFeature(v));
+					BowArrowFeature f = b.getFeature(v);
+					if (!(f instanceof StatFeature)) {
+						ans.add(f);
+					}
 				}
 			});
 		}

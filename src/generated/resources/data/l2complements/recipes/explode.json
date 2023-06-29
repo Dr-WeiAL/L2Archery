@@ -10,23 +10,23 @@
       "item": "minecraft:dragon_breath"
     },
     "C": {
-      "item": "minecraft:glowstone_dust"
+      "item": "l2complements:storm_core"
     },
-    "E": {
-      "item": "minecraft:fermented_spider_eye"
+    "D": {
+      "item": "l2complements:strong_fire_charge"
     }
   },
   "pattern": [
-    "CEC",
-    "EAE",
-    "CBC"
+    "CDC",
+    "BAB",
+    "CDC"
   ],
   "result": {
     "item": "minecraft:enchanted_book",
     "nbt": {
       "StoredEnchantments": [
         {
-          "id": "l2archery:weak",
+          "id": "l2archery:explode",
           "lvl": 1
         }
       ]

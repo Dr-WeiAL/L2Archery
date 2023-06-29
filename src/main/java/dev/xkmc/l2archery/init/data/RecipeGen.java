@@ -418,7 +418,6 @@ public class RecipeGen {
 					.define('D', Items.WITHER_SKELETON_SKULL)
 					.save(pvd);
 
-
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.CORROSION_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("CEC").pattern("EAE").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
@@ -426,8 +425,25 @@ public class RecipeGen {
 					.define('C', Items.MAGMA_CREAM)
 					.define('E', Items.FERMENTED_SPIDER_EYE)
 					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.CURSE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("EAE").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', LCItems.CURSED_DROPLET)
+					.define('E', Items.REDSTONE)
+					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.CLEANSE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("EAE").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', LCItems.LIFE_ESSENCE)
+					.define('E', Items.REDSTONE)
+					.save(pvd);
 		}
 
+		// enchantments
 		{
 
 			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_GLOW.get(), 1)::unlockedBy, Items.BOOK)
@@ -436,6 +452,13 @@ public class RecipeGen {
 					.define('C', Items.SPECTRAL_ARROW)
 					.define('B', Items.GLOWSTONE_DUST)
 					.save(pvd, getID(ArcheryEnchantments.ENCH_GLOW.get()));
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_MAGNIFY.get(), 1)::unlockedBy, Items.BOOK)
+					.pattern(" B ").pattern("CAC").pattern(" C ")
+					.define('A', Items.BOOK)
+					.define('B', Items.SPYGLASS)
+					.define('C', Items.COPPER_INGOT)
+					.save(pvd);
 
 			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_HARM.get(), 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("CAC").pattern("CBC")
@@ -478,7 +501,7 @@ public class RecipeGen {
 					.save(pvd, getID(ArcheryEnchantments.ENCH_SLOW.get()));
 
 			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_WEAK.get(), 1)::unlockedBy, Items.BOOK)
-					.pattern("CEC").pattern("CAC").pattern("CBC")
+					.pattern("CEC").pattern("EAE").pattern("CBC")
 					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.GLOWSTONE_DUST)
@@ -500,6 +523,21 @@ public class RecipeGen {
 					.define('C', Items.WITHER_ROSE)
 					.define('E', Items.WITHER_SKELETON_SKULL)
 					.save(pvd, getID(ArcheryEnchantments.ENCH_WITHER.get()));
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_GLOW_AIM.get(), 1)::unlockedBy, Items.BOOK)
+					.pattern("BCB").pattern("BAB").pattern("B B")
+					.define('A', Items.BOOK)
+					.define('B', Items.GLOWSTONE_DUST)
+					.define('C', Items.ENDER_EYE)
+					.save(pvd);
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_EXPLODE.get(), 1)::unlockedBy, Items.BOOK)
+					.pattern("CDC").pattern("BAB").pattern("CDC")
+					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', LCItems.STORM_CORE)
+					.define('D', LCItems.STRONG_CHARGE)
+					.save(pvd);
 		}
 
 	}

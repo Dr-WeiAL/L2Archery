@@ -6,7 +6,6 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.*;
@@ -59,13 +58,14 @@ public class ArcheryItems {
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, GOLD_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW, DESTROYER_ARROW,
 			ICE_ARROW, DISPELL_ARROW, ACID_ARROW, BLACKSTONE_ARROW, DIAMOND_ARROW, QUARTZ_ARROW, WITHER_ARROW, STORM_ARROW,
-			VOID_ARROW;
+			VOID_ARROW;//TODO eternal arrow, bleed arrow
 
 	public static final ItemEntry<UpgradeItem> UPGRADE;
 
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
-			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP, FLOAT_UP, SLOW_UP, POISON_UP, WITHER_UP, WEAK_UP,CORROSION_UP;
+			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP, FLOAT_UP, SLOW_UP, POISON_UP, WITHER_UP, WEAK_UP, CORROSION_UP,
+			CURSE_UP, CLEANSE_UP;
 
 	static {
 		{
@@ -170,9 +170,9 @@ public class ArcheryItems {
 			MAGNIFY_UP_1 = genUpgrade("magnify_x2", () -> new StatFeature(2, 10, 1, 0, 1));
 			MAGNIFY_UP_2 = genUpgrade("magnify_x4", () -> new StatFeature(4, 30, 1, 0, 1));
 			MAGNIFY_UP_3 = genUpgrade("magnify_x8", () -> new StatFeature(8, 50, 1, 0, 1));
-			DAMAGE_UP = genUpgrade("damage", () -> new StatFeature(1, 1, 2, 0, 1));
-			SUPERDAMAGE_UP = genUpgrade("super_damage", () -> new StatFeature(1, 1, 3, 0, 1));
-			PUNCH_UP = genUpgrade("punch", () -> new StatFeature(1, 1, 1, 3, 1));
+			DAMAGE_UP = genUpgrade("damage", () -> new StatFeature(1, 0, 2, 0, 1));
+			SUPERDAMAGE_UP = genUpgrade("super_damage", () -> new StatFeature(1, 0, 3, 0, 1));
+			PUNCH_UP = genUpgrade("punch", () -> new StatFeature(1, 0, 1, 3, 1));
 
 			GLOW_UP = genUpgrade("glow", () -> new GlowTargetAimFeature(128));
 			NO_FALL_UP = genUpgrade("anti_gravity", () -> new NoFallArrowFeature(40));
@@ -194,6 +194,8 @@ public class ArcheryItems {
 			WITHER_UP = genPotionUpgrade("wither");
 			WEAK_UP = genPotionUpgrade("weak");
 			CORROSION_UP = genPotionUpgrade("corrosion");
+			CURSE_UP = genPotionUpgrade("curse");
+			CLEANSE_UP = genPotionUpgrade("cleanse");
 		}
 	}
 

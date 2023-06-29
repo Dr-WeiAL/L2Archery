@@ -11,10 +11,22 @@
         "duration": 100
       }
     },
+    "l2archery:cleanse": {
+      "l2complements:cleanse": {
+        "amplifier": 0,
+        "duration": 200
+      }
+    },
     "l2archery:corrosion": {
       "l2complements:armor_reduce": {
         "amplifier": 1,
         "duration": 400
+      }
+    },
+    "l2archery:curse": {
+      "l2complements:curse": {
+        "amplifier": 0,
+        "duration": 200
       }
     },
     "l2archery:frozen": {
