@@ -1,0 +1,87 @@
+{
+  "arrow_effects": {},
+  "arrow_stats": {},
+  "bow_effects": {},
+  "bow_stats": {},
+  "enchantment_effects": {},
+  "upgrade_effects": {
+    "l2archery:blackstone": {
+      "l2complements:stone_cage": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
+    "l2archery:corrosion": {
+      "l2complements:armor_reduce": {
+        "amplifier": 1,
+        "duration": 400
+      }
+    },
+    "l2archery:frozen": {
+      "l2complements:frozen": {
+        "amplifier": 0,
+        "duration": 600
+      }
+    },
+    "l2archery:glowing": {
+      "minecraft:glowing": {
+        "amplifier": 0,
+        "duration": 600
+      }
+    },
+    "l2archery:harm": {
+      "minecraft:instant_damage": {
+        "amplifier": 2,
+        "duration": 1
+      }
+    },
+    "l2archery:heal": {
+      "minecraft:instant_health": {
+        "amplifier": 2,
+        "duration": 1
+      }
+    },
+    "l2archery:levitate": {
+      "minecraft:levitation": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
+    "l2archery:levitation": {
+      "minecraft:slow_falling": {
+        "amplifier": 0,
+        "duration": 300
+      }
+    },
+    "l2archery:poison": {
+      "minecraft:poison": {
+        "amplifier": 0,
+        "duration": 300
+      }
+    },
+    "l2archery:slowness": {
+      "minecraft:slowness": {
+        "amplifier": 5,
+        "duration": 300
+      }
+    },
+    "l2archery:soul_fire": {
+      "l2complements:flame": {
+        "amplifier": 0,
+        "duration": 100
+      }
+    },
+    "l2archery:weak": {
+      "minecraft:weakness": {
+        "amplifier": 4,
+        "duration": 300
+      }
+    },
+    "l2archery:wither": {
+      "minecraft:wither": {
+        "amplifier": 2,
+        "duration": 100
+      }
+    }
+  }
+}

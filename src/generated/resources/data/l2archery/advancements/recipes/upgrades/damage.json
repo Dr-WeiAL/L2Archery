@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:damage"
+        "recipe": "l2archery:upgrades/damage"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:damage"
+      "l2archery:upgrades/damage"
     ]
   },
   "sends_telemetry_event": true

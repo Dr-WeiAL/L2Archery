@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2archery:upgrades/poison"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_upgrade": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2archery:upgrade"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_upgrade",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2archery:upgrades/poison"
+    ]
+  },
+  "sends_telemetry_event": true
+}

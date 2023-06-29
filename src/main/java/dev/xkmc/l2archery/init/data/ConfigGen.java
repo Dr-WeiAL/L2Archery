@@ -2,6 +2,7 @@ package dev.xkmc.l2archery.init.data;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
@@ -61,6 +62,34 @@ public class ConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.DISPELL_ARROW).end()
 				.putArrow(ArcheryItems.WITHER_ARROW).putEffect(MobEffects.WITHER, 200, 0).end()
 				.putArrow(ArcheryItems.STORM_ARROW).end()
+		);
+
+		map.add(L2Archery.STATS, new ResourceLocation(L2Archery.MODID, "upgrades"), new BowArrowStatConfig()
+				.putUpgrade(ArcheryItems.FIRE_UP).putEffect(LCEffects.FLAME.get(), 100, 0).end()
+				.putUpgrade(ArcheryItems.ICE_UP).putEffect(LCEffects.ICE.get(), 600, 0).end()
+				.putUpgrade(ArcheryItems.BLACKSTONE_UP).putEffect(LCEffects.STONE_CAGE.get(), 100, 0).end()
+				.putUpgrade(ArcheryItems.HARM_UP).putEffect(MobEffects.HARM, 1, 2).end()
+				.putUpgrade(ArcheryItems.HEAL_UP).putEffect(MobEffects.HEAL, 1, 2).end()
+				.putUpgrade(ArcheryItems.SHINE_UP).putEffect(MobEffects.GLOWING, 600, 0).end()
+				.putUpgrade(ArcheryItems.LEVITATE_UP).putEffect(MobEffects.LEVITATION, 100, 0).end()
+				.putUpgrade(ArcheryItems.FLOAT_UP).putEffect(MobEffects.SLOW_FALLING, 300, 0).end()
+				.putUpgrade(ArcheryItems.SLOW_UP).putEffect(MobEffects.MOVEMENT_SLOWDOWN, 300, 5).end()
+				.putUpgrade(ArcheryItems.POISON_UP).putEffect(MobEffects.POISON, 300, 0).end()
+				.putUpgrade(ArcheryItems.WITHER_UP).putEffect(MobEffects.WITHER, 100, 2).end()
+				.putUpgrade(ArcheryItems.WEAK_UP).putEffect(MobEffects.WEAKNESS, 300, 4).end()
+				.putUpgrade(ArcheryItems.CORROSION_UP).putEffect(LCEffects.ARMOR_REDUCE.get(), 400, 1).end()
+		);
+
+		map.add(L2Archery.STATS, new ResourceLocation(L2Archery.MODID, "enchantments"), new BowArrowStatConfig()
+				.putEnchantment(ArcheryEnchantments.ENCH_FLOAT).putEffect(MobEffects.SLOW_FALLING, 60, 0, 60, 0).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_LEVITATE).putEffect(MobEffects.LEVITATION, 20, 0, 20, 0).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_SLOW).putEffect(MobEffects.MOVEMENT_SLOWDOWN, 200, 1, 0, 1).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_WEAK).putEffect(MobEffects.WEAKNESS, 200, 0, 0, 1).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_HEAL).putEffect(MobEffects.HEAL, 1, 0, 0, 1).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_HARM).putEffect(MobEffects.HARM, 1, 0, 0, 1).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_GLOW).putEffect(MobEffects.GLOWING, 600, 0, 0, 0).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_POISON).putEffect(MobEffects.POISON, 100, 0, 100, 0).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_WITHER).putEffect(MobEffects.WITHER, 100, 0, 0, 1).end()
 		);
 	}
 

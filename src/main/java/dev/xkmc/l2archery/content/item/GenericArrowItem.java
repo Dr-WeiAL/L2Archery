@@ -4,7 +4,6 @@ import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -17,14 +16,15 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class GenericArrowItem extends ArrowItem {
 
 	private final ArrowConfig config;
 
-	public GenericArrowItem(Properties properties, ArrowConfig config) {
+	public GenericArrowItem(Properties properties, Function<GenericArrowItem, ArrowConfig> config) {
 		super(properties);
-		this.config = config;
+		this.config = config.apply(this);
 	}
 
 	public AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity user) {
@@ -46,9 +46,9 @@ public class GenericArrowItem extends ArrowItem {
 
 	public FeatureList getFeatures() {
 		FeatureList list = new FeatureList();
-		List<MobEffectInstance> arrow_eff = config.getEffects();
-		if (arrow_eff.size() > 0) {
-			list.add(new PotionArrowFeature(arrow_eff));
+		PotionArrowFeature arrow_eff = config.getEffects();
+		if (arrow_eff.instances().size() > 0) {
+			list.add(arrow_eff);
 		}
 		for (BowArrowFeature feature : config.feature()) {
 			list.add(feature);

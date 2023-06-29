@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:infinity",
+      "min_level": 1
+    },
+    "B": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "C": {
+      "item": "minecraft:spectral_arrow"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "l2archery:glow",
+          "lvl": 1
+        }
+      ]
+    }
+  }
+}

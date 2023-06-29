@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:frozen"
+        "recipe": "l2archery:upgrades/frozen"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:frozen"
+      "l2archery:upgrades/frozen"
     ]
   },
   "sends_telemetry_event": true

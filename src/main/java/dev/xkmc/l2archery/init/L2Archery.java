@@ -6,6 +6,7 @@ import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.events.ArrowAttackListener;
 import dev.xkmc.l2archery.init.data.*;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
+import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
@@ -44,6 +45,7 @@ public class L2Archery {
 		ArcheryRegister.register();
 		ArcheryItems.register();
 		ArcheryEffects.register();
+		ArcheryEnchantments.register();
 		ArcheryDamageMultiplex.register();
 		AttackEventHandler.register(2000, new ArrowAttackListener());
 		ArcheryConfig.init();

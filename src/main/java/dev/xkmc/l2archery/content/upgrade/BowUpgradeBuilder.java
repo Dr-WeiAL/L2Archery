@@ -81,13 +81,14 @@ public class BowUpgradeBuilder implements RecipeBuilder {
 	}
 
 	public void save(Consumer<FinishedRecipe> pvd) {
-		this.save(pvd, this.upgrade.getRegistryName());
+		ResourceLocation id = this.upgrade.getRegistryName();
+		this.save(pvd, new ResourceLocation(id.getNamespace(), "upgrades/" + id.getPath()));
 	}
 
 	public void save(Consumer<FinishedRecipe> p_126141_, ResourceLocation p_126142_) {
 		this.ensureValid(p_126142_);
 		this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126142_)).rewards(AdvancementRewards.Builder.recipe(p_126142_)).requirements(RequirementsStrategy.OR);
-		p_126141_.accept(new Result(p_126142_, this.upgrade, this.group == null ? "" : this.group, this.rows, this.key, this.advancement, new ResourceLocation(p_126142_.getNamespace(), "recipes/upgrades/" + p_126142_.getPath())));
+		p_126141_.accept(new Result(p_126142_, this.upgrade, this.group == null ? "" : this.group, this.rows, this.key, this.advancement, new ResourceLocation(p_126142_.getNamespace(), "recipes/" + p_126142_.getPath())));
 	}
 
 	private void ensureValid(ResourceLocation p_126144_) {

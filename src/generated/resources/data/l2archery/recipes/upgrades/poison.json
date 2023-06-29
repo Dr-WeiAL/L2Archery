@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "C": {
+      "item": "minecraft:spider_eye"
+    },
+    "D": {
+      "item": "minecraft:pufferfish"
+    },
+    "E": {
+      "item": "minecraft:fermented_spider_eye"
+    }
+  },
+  "pattern": [
+    "CDC",
+    "EAE",
+    "CBC"
+  ],
+  "result": {
+    "item": "l2archery:upgrade",
+    "nbt": {
+      "upgrade": "l2archery:poison"
+    }
+  }
+}

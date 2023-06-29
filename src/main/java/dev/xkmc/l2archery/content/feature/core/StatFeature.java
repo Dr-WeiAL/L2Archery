@@ -24,8 +24,8 @@ public record StatFeature(float fov, int fov_time, float damage, int punch,
 	}
 
 	@Override
-	public List<MobEffectInstance> getEffects() {
-		return List.of();
+	public PotionArrowFeature getEffects() {
+		return PotionArrowFeature.NULL;
 	}
 
 	@Override

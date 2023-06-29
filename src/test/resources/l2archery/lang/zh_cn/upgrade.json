@@ -20,7 +20,11 @@
 	"railgun": "超电磁炮",
 	"flux_up": "通量升级",
 	"levitation": "漂浮",
-	"slowness": "缓慢"
+	"slowness": "缓慢",
+	"corrosion": "腐蚀",
+	"poison": "剧毒",
+	"weak": "虚弱",
+	"wither": "凋零"
   },
   "effect.l2archery": {
 	"quick_pull": "快速拉弓",

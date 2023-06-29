@@ -1,0 +1,81 @@
+{
+  "arrow_effects": {},
+  "arrow_stats": {},
+  "bow_effects": {},
+  "bow_stats": {},
+  "enchantment_effects": {
+    "l2archery:float": {
+      "minecraft:slow_falling": {
+        "amplifier": 0,
+        "amplifier_bonus": 0,
+        "duration": 60,
+        "duration_bonus": 60
+      }
+    },
+    "l2archery:glow": {
+      "minecraft:glowing": {
+        "amplifier": 0,
+        "amplifier_bonus": 0,
+        "duration": 600,
+        "duration_bonus": 0
+      }
+    },
+    "l2archery:harm": {
+      "minecraft:instant_damage": {
+        "amplifier": 0,
+        "amplifier_bonus": 1,
+        "duration": 1,
+        "duration_bonus": 0
+      }
+    },
+    "l2archery:heal": {
+      "minecraft:instant_health": {
+        "amplifier": 0,
+        "amplifier_bonus": 1,
+        "duration": 1,
+        "duration_bonus": 0
+      }
+    },
+    "l2archery:levitate": {
+      "minecraft:levitation": {
+        "amplifier": 0,
+        "amplifier_bonus": 0,
+        "duration": 20,
+        "duration_bonus": 20
+      }
+    },
+    "l2archery:poison": {
+      "minecraft:poison": {
+        "amplifier": 0,
+        "amplifier_bonus": 0,
+        "duration": 100,
+        "duration_bonus": 100
+      }
+    },
+    "l2archery:slow": {
+      "minecraft:slowness": {
+        "amplifier": 1,
+        "amplifier_bonus": 1,
+        "duration": 200,
+        "duration_bonus": 0
+      }
+    },
+    "l2archery:weak": {
+      "minecraft:weakness": {
+        "amplifier": 0,
+        "amplifier_bonus": 1,
+        "duration": 200,
+        "duration_bonus": 0
+      }
+    },
+    "l2archery:wither": {
+      "minecraft:wither": {
+        "amplifier": 0,
+        "amplifier_bonus": 1,
+        "duration": 100,
+        "duration_bonus": 0
+      }
+    }
+  },
+  "upgrade_effects": {}
+}

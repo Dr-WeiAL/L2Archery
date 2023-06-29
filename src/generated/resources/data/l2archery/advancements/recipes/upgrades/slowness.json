@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:slowness"
+        "recipe": "l2archery:upgrades/slowness"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:slowness"
+      "l2archery:upgrades/slowness"
     ]
   },
   "sends_telemetry_event": true

@@ -1,6 +1,6 @@
 package dev.xkmc.l2archery.content.item;
 
-import dev.xkmc.l2archery.content.enchantment.BowEnchantment;
+import dev.xkmc.l2archery.content.enchantment.IBowEnchantment;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
@@ -35,7 +35,7 @@ public record BowData(Item item, ArrayList<Upgrade> upgrade, HashMap<Enchantment
 		upgrade.forEach(e -> ans.add(e.getFeature()));
 		ans.stage = FeatureList.Stage.ENCHANT;
 		ench.forEach((k, v) -> {
-			if (k instanceof BowEnchantment b) {
+			if (k instanceof IBowEnchantment b) {
 				ans.add(b.getFeature(v));
 			}
 		});

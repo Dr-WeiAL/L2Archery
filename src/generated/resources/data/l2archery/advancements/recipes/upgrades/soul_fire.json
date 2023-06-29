@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:soul_fire"
+        "recipe": "l2archery:upgrades/soul_fire"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:soul_fire"
+      "l2archery:upgrades/soul_fire"
     ]
   },
   "sends_telemetry_event": true

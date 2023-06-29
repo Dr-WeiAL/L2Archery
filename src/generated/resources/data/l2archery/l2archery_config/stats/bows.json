@@ -83,5 +83,7 @@
       "l2archery:punch": 1.0,
       "l2archery:speed": 3.9
     }
-  }
+  },
+  "enchantment_effects": {},
+  "upgrade_effects": {}
 }

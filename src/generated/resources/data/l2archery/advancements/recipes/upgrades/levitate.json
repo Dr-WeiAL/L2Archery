@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:levitate"
+        "recipe": "l2archery:upgrades/levitate"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:levitate"
+      "l2archery:upgrades/levitate"
     ]
   },
   "sends_telemetry_event": true

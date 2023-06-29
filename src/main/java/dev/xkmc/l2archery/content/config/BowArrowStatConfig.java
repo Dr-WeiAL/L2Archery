@@ -1,18 +1,22 @@
 package dev.xkmc.l2archery.content.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
+import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2library.util.annotation.DataGenOnly;
 import dev.xkmc.l2serial.serialization.SerialClass;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 import java.util.HashMap;
 
@@ -25,21 +29,72 @@ public class BowArrowStatConfig extends BaseConfig {
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
-	public HashMap<ResourceLocation, HashMap<BowArrowStatType, Double>> bow_stats = new HashMap<>();
+	public HashMap<Item, HashMap<BowArrowStatType, Double>> bow_stats = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
-	public HashMap<ResourceLocation, HashMap<BowArrowStatType, Double>> arrow_stats = new HashMap<>();
+	public HashMap<Item, HashMap<BowArrowStatType, Double>> arrow_stats = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
-	public HashMap<ResourceLocation, HashMap<MobEffect, Effect>> bow_effects = new HashMap<>();
+	public HashMap<Item, HashMap<MobEffect, ConfigEffect>> bow_effects = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
-	public HashMap<ResourceLocation, HashMap<MobEffect, Effect>> arrow_effects = new HashMap<>();
+	public HashMap<Item, HashMap<MobEffect, ConfigEffect>> arrow_effects = new HashMap<>();
 
-	public record Effect(int duration, int amplifier) {
+	@ConfigCollect(CollectType.MAP_COLLECT)
+	@SerialClass.SerialField
+	public HashMap<Enchantment, HashMap<MobEffect, EnchantmentConfigEffect>> enchantment_effects = new HashMap<>();
+
+	@ConfigCollect(CollectType.MAP_COLLECT)
+	@SerialClass.SerialField
+	public HashMap<Upgrade, HashMap<MobEffect, ConfigEffect>> upgrade_effects = new HashMap<>();
+
+	private final HashMap<ConfigIdentifier, PotionArrowFeature> potion_cache = new HashMap<>();
+
+	private <T> PotionArrowFeature getEffects(T upgrade, HashMap<T, HashMap<MobEffect, ConfigEffect>> config) {
+		ConfigIdentifier id = new ConfigIdentifier(upgrade, 0);
+		if (potion_cache.containsKey(id)) return potion_cache.get(id);
+		var map = config.get(upgrade);
+		PotionArrowFeature ans = map != null ? new PotionArrowFeature(map.entrySet().stream().map(e -> new MobEffectInstance(e.getKey(),
+				e.getValue().duration(), e.getValue().amplifier())).toList()) : PotionArrowFeature.NULL;
+		potion_cache.put(id, ans);
+		return ans;
+	}
+
+	public PotionArrowFeature getUpgradeEffects(Upgrade upgrade) {
+		return getEffects(upgrade, upgrade_effects);
+	}
+
+	public PotionArrowFeature getBowEffects(GenericBowItem bow) {
+		return getEffects(bow, bow_effects);
+	}
+
+	public PotionArrowFeature getArrowEffects(GenericArrowItem arrow) {
+		return getEffects(arrow, arrow_effects);
+	}
+
+	public PotionArrowFeature getEnchEffects(PotionArrowEnchantment enchantment, int lv) {
+		ConfigIdentifier id = new ConfigIdentifier(enchantment, lv);
+		if (potion_cache.containsKey(id)) return potion_cache.get(id);
+		var map = enchantment_effects.get(enchantment);
+		PotionArrowFeature ans = map != null ? new PotionArrowFeature(map.entrySet().stream().map(e -> new MobEffectInstance(e.getKey(),
+				e.getValue().duration() + e.getValue().duration_bonus() * (lv - 1),
+				e.getValue().amplifier() + e.getValue().amplifier_bonus() * (lv - 1)
+		)).toList()) : PotionArrowFeature.NULL;
+		potion_cache.put(id, ans);
+		return ans;
+	}
+
+	public record ConfigEffect(int duration, int amplifier) {
+	}
+
+	public record EnchantmentConfigEffect(int duration, int amplifier, int duration_bonus, int amplifier_bonus) {
+	}
+
+	public record ConfigIdentifier(Object item, int lv) {
+
 	}
 
 	@DataGenOnly
@@ -47,112 +102,19 @@ public class BowArrowStatConfig extends BaseConfig {
 		return new BowBuilder(this, bow);
 	}
 
-
 	@DataGenOnly
 	public ArrowBuilder putArrow(RegistryEntry<GenericArrowItem> arrow) {
 		return new ArrowBuilder(this, arrow);
 	}
 
-
 	@DataGenOnly
-	public static class BowBuilder {
-
-		private final BowArrowStatConfig config;
-		private final ResourceLocation id;
-
-		private final HashMap<BowArrowStatType, Double> stats = new HashMap<>();
-		private final HashMap<MobEffect, Effect> effects = new HashMap<>();
-
-		private BowBuilder(BowArrowStatConfig config, RegistryEntry<GenericBowItem> bow) {
-			this.config = config;
-			this.id = bow.getId();
-		}
-
-		public BowBuilder putStat(BowArrowStatType type, double val) {
-			this.stats.put(type, val);
-			return this;
-		}
-
-		public BowBuilder damage(double val) {
-			return putStat(ArcheryRegister.DAMAGE.get(), val);
-		}
-
-		public BowBuilder punch(double val) {
-			return putStat(ArcheryRegister.PUNCH.get(), val);
-		}
-
-		public BowBuilder speed(double val) {
-			return putStat(ArcheryRegister.SPEED.get(), val);
-		}
-
-		public BowBuilder bothTimes(double val) {
-			putStat(ArcheryRegister.PULL_TIME.get(), val);
-			putStat(ArcheryRegister.FOV_TIME.get(), val);
-			return this;
-		}
-
-		public BowBuilder fovs(int time, double fov) {
-			putStat(ArcheryRegister.FOV_TIME.get(), time);
-			putStat(ArcheryRegister.FOV.get(), fov);
-			return this;
-		}
-
-		public BowBuilder putEffect(MobEffect type, int duration, int amplifier) {
-			this.effects.put(type, new Effect(duration, amplifier));
-			return this;
-		}
-
-		public BowArrowStatConfig end() {
-			if (stats.size() > 0)
-				config.bow_stats.put(id, stats);
-			if (effects.size() > 0)
-				config.bow_effects.put(id, effects);
-			return config;
-		}
-
+	public EnchBuilder putEnchantment(RegistryEntry<PotionArrowEnchantment> arrow) {
+		return new EnchBuilder(this, arrow);
 	}
 
 	@DataGenOnly
-	public static class ArrowBuilder {
-
-		private final BowArrowStatConfig config;
-		private final ResourceLocation id;
-
-		private final HashMap<BowArrowStatType, Double> stats = new HashMap<>();
-		private final HashMap<MobEffect, Effect> effects = new HashMap<>();
-
-		private ArrowBuilder(BowArrowStatConfig config, RegistryEntry<GenericArrowItem> bow) {
-			this.config = config;
-			this.id = bow.getId();
-		}
-
-		public ArrowBuilder putStat(BowArrowStatType type, double val) {
-			this.stats.put(type, val);
-			return this;
-		}
-
-		public ArrowBuilder damage(double val) {
-			return putStat(ArcheryRegister.DAMAGE.get(), val);
-		}
-
-		public ArrowBuilder punch(double val) {
-			return putStat(ArcheryRegister.PUNCH.get(), val);
-		}
-
-		public ArrowBuilder putEffect(MobEffect type, int duration, int amplifier) {
-			this.effects.put(type, new Effect(duration, amplifier));
-			return this;
-		}
-
-		public BowArrowStatConfig end() {
-			if (stats.size() > 0)
-				config.arrow_stats.put(id, stats);
-			if (effects.size() > 0)
-				config.arrow_effects.put(id, effects);
-			return config;
-		}
-
+	public UpgradeBuilder putUpgrade(RegistryEntry<Upgrade> arrow) {
+		return new UpgradeBuilder(this, arrow);
 	}
-
 
 }

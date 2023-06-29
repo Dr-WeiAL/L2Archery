@@ -2,14 +2,13 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 
-public record BowConfig(ResourceLocation id, int rank, List<BowArrowFeature> feature) implements IBowConfig {
+public record BowConfig(GenericBowItem id, int rank, List<BowArrowFeature> feature) implements IBowConfig {
 
 	private double getValue(BowArrowStatType type) {
 		var map = BowArrowStatConfig.get().bow_stats.get(id);
@@ -17,10 +16,8 @@ public record BowConfig(ResourceLocation id, int rank, List<BowArrowFeature> fea
 		return map.getOrDefault(type, type.getDefault());
 	}
 
-	public List<MobEffectInstance> getEffects() {
-		var map = BowArrowStatConfig.get().bow_effects.get(id);
-		if (map == null) return List.of();
-		return map.entrySet().stream().map(e -> new MobEffectInstance(e.getKey(), e.getValue().duration(), e.getValue().amplifier())).toList();
+	public PotionArrowFeature getEffects() {
+		return BowArrowStatConfig.get().getBowEffects(id);
 	}
 
 	public float damage() {

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:glow"
+        "recipe": "l2archery:upgrades/glow"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:glow"
+      "l2archery:upgrades/glow"
     ]
   },
   "sends_telemetry_event": true

@@ -1,7 +1,10 @@
 package dev.xkmc.l2archery.content.feature.core;
 
+import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
+import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
+import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2library.base.effects.EffectUtil;
 import net.minecraft.network.chat.Component;
@@ -16,6 +19,12 @@ import net.minecraft.world.phys.EntityHitResult;
 import java.util.List;
 
 public record PotionArrowFeature(List<MobEffectInstance> instances) implements OnHitFeature {
+
+	public static final PotionArrowFeature NULL = new PotionArrowFeature(List.of());
+
+	public static BowArrowFeature fromUpgradeConfig(Upgrade upgrade) {
+		return BowArrowStatConfig.get().getUpgradeEffects(upgrade);
+	}
 
 	@Override
 	public void onHitLivingEntity(GenericArrowEntity arrow, LivingEntity target, EntityHitResult hit) {
@@ -64,4 +73,5 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 	public boolean allowDuplicate() {
 		return true;
 	}
+
 }

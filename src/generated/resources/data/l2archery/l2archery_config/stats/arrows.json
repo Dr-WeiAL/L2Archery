@@ -63,5 +63,7 @@
     }
   },
   "bow_effects": {},
-  "bow_stats": {}
+  "bow_stats": {},
+  "enchantment_effects": {},
+  "upgrade_effects": {}
 }

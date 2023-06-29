@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.content.item;
 
+import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.init.data.LangData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -18,7 +19,7 @@ public interface IBowConfig extends IGeneralConfig {
 
 	int fov_time();
 
-	List<MobEffectInstance> getEffects();
+	PotionArrowFeature getEffects();
 
 	default void addStatTooltip(List<Component> list) {
 		LangData.STAT_DAMAGE.getWithSign(list, damage());

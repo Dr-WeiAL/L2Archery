@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:blackstone"
+        "recipe": "l2archery:upgrades/blackstone"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:blackstone"
+      "l2archery:upgrades/blackstone"
     ]
   },
   "sends_telemetry_event": true

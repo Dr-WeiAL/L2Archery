@@ -31,7 +31,7 @@ public record CompoundBowConfig(IBowConfig config, StatFeature feature) implemen
 	}
 
 	@Override
-	public List<MobEffectInstance> getEffects() {
+	public PotionArrowFeature getEffects() {
 		return config.getEffects();
 	}
 

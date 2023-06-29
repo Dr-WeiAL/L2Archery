@@ -6,15 +6,21 @@ import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraftforge.common.util.Lazy;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Upgrade extends NamedEntry<Upgrade> {
 
-	private final Lazy<BowArrowFeature> feature;
+	private final Supplier<BowArrowFeature> feature;
 
 	public Upgrade(Supplier<BowArrowFeature> feature) {
 		super(ArcheryRegister.UPGRADE);
 		this.feature = Lazy.of(feature);
+	}
+
+	public Upgrade(Function<Upgrade, BowArrowFeature> feature) {
+		super(ArcheryRegister.UPGRADE);
+		this.feature = () -> feature.apply(this);
 	}
 
 	public BowArrowFeature getFeature() {

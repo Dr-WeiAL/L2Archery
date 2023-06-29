@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2archery:punch"
+        "recipe": "l2archery:upgrades/punch"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "l2archery:punch"
+      "l2archery:upgrades/punch"
     ]
   },
   "sends_telemetry_event": true

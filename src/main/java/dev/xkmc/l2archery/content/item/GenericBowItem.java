@@ -3,7 +3,7 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
 import dev.xkmc.l2archery.content.controller.BowFeatureController;
-import dev.xkmc.l2archery.content.enchantment.BowEnchantment;
+import dev.xkmc.l2archery.content.enchantment.IBowEnchantment;
 import dev.xkmc.l2archery.content.energy.IFluxItem;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static dev.xkmc.l2archery.init.data.TagGen.TAG_ENERGY;
@@ -100,9 +101,9 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 
 	public final BowConfig config;
 
-	public GenericBowItem(Properties properties, BowConfig config) {
+	public GenericBowItem(Properties properties, Function<GenericBowItem, BowConfig> config) {
 		super(properties);
-		this.config = config;
+		this.config = config.apply(this);
 		ArcheryItems.BOW_LIKE.add(this);
 	}
 
@@ -346,8 +347,8 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 
 	public FeatureList getFeatures(@Nullable ItemStack stack) {
 		FeatureList ans = new FeatureList();
-		List<MobEffectInstance> bow_eff = config.getEffects();
-		if (bow_eff.size() > 0) ans.add(new PotionArrowFeature(bow_eff));
+		PotionArrowFeature bow_eff = config.getEffects();
+		if (bow_eff.instances().size() > 0) ans.add(bow_eff);
 		for (BowArrowFeature feature : config.feature()) {
 			ans.add(feature);
 		}
@@ -360,7 +361,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 			}
 			ans.stage = FeatureList.Stage.ENCHANT;
 			stack.getAllEnchantments().forEach((k, v) -> {
-				if (k instanceof BowEnchantment b) {
+				if (k instanceof IBowEnchantment b) {
 					ans.add(b.getFeature(v));
 				}
 			});

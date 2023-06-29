@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:infinity",
+      "min_level": 1
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "C": {
+      "item": "l2complements:captured_shulker_bullet"
+    },
+    "E": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "l2archery:levitate",
+          "lvl": 1
+        }
+      ]
+    }
+  }
+}

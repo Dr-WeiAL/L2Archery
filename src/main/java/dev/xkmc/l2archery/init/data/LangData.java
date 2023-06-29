@@ -83,7 +83,7 @@ public enum LangData {
 	public void getWithSign(List<Component> list, double val) {
 		if (val == 0) return;
 		String sign = val > 0 ? "attribute.modifier.plus.0" : "attribute.modifier.take.0";
-		list.add(get(Component.translatable(sign, ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(val)))));
+		list.add(get(Component.translatable(sign, ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(val)), "")));
 	}
 
 	public static void genLang(RegistrateLangProvider pvd) {

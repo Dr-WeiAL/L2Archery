@@ -6,6 +6,7 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.*;
@@ -64,7 +65,7 @@ public class ArcheryItems {
 
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
-			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP, FLOAT_UP, SLOW_UP;
+			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP, FLOAT_UP, SLOW_UP, POISON_UP, WITHER_UP, WEAK_UP,CORROSION_UP;
 
 	static {
 		{
@@ -124,7 +125,7 @@ public class ArcheryItems {
 					.add(new DamageArrowFeature(
 							(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 							LangData.FEATURE_PIERCE_INVUL::get
-					))).lang("Sight of the Void").register();
+					))).lang("Sight of the Void (Creative Only)").register();
 			SUN_BOW = genBow("sun_bow", 3, 600, e -> e.add(new FireArrowFeature(200))
 					.add(new ExplodeArrowFeature(4, true, false)))
 					.lang("Bless of Helios").register();
@@ -160,7 +161,7 @@ public class ArcheryItems {
 			VOID_ARROW = genArrow("void_arrow", false, e -> e.add(new DamageArrowFeature(
 					(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 					LangData.FEATURE_PIERCE_INVUL::get
-			)).add(new VoidArrowFeature())).register();
+			)).add(new VoidArrowFeature())).lang("Void Arrow (Creative Only)").register();
 		}
 		{
 			UPGRADE = REGISTRATE.item("upgrade", UpgradeItem::new).defaultModel().defaultLang()
@@ -175,28 +176,24 @@ public class ArcheryItems {
 
 			GLOW_UP = genUpgrade("glow", () -> new GlowTargetAimFeature(128));
 			NO_FALL_UP = genUpgrade("anti_gravity", () -> new NoFallArrowFeature(40));
-			FIRE_UP = genUpgrade("soul_fire", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(LCEffects.FLAME.get(), 100, 0))));
-			ICE_UP = genUpgrade("frozen", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(LCEffects.ICE.get(), 600, 0))));
 			EXPLOSION_UP = genUpgrade("explosion", () -> new ExplodeArrowFeature(3, true, false));
 			ENDER_UP = genUpgrade("void", () -> new EnderShootFeature(128));
-			BLACKSTONE_UP = genUpgrade("blackstone", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(LCEffects.STONE_CAGE.get(), 100, 0))));
-			HARM_UP = genUpgrade("harm", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(MobEffects.HARM, 1, 1))));
-			HEAL_UP = genUpgrade("heal", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(MobEffects.HEAL, 1, 1))));
-			SHINE_UP = genUpgrade("glowing", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(MobEffects.GLOWING, 600, 0))));
-			LEVITATE_UP = genUpgrade("levitate", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(MobEffects.LEVITATION, 300, 0))));
 			RAILGUN_UP = genUpgrade("railgun", () -> new StatFeature(1, 1, 1, 0, 100));
 			FLUX_UP = genUpgrade("flux_up", () -> FluxFeature.DEFAULT);
-			FLOAT_UP = genUpgrade("levitation", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(MobEffects.LEVITATION, 100, 0))));
-			SLOW_UP = genUpgrade("slowness", () -> new PotionArrowFeature(
-					List.of(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 5))));
+
+			FIRE_UP = genPotionUpgrade("soul_fire");
+			ICE_UP = genPotionUpgrade("frozen");
+			BLACKSTONE_UP = genPotionUpgrade("blackstone");
+			HARM_UP = genPotionUpgrade("harm");
+			HEAL_UP = genPotionUpgrade("heal");
+			SHINE_UP = genPotionUpgrade("glowing");
+			LEVITATE_UP = genPotionUpgrade("levitate");
+			FLOAT_UP = genPotionUpgrade("levitation");
+			SLOW_UP = genPotionUpgrade("slowness");
+			POISON_UP = genPotionUpgrade("poison");
+			WITHER_UP = genPotionUpgrade("wither");
+			WEAK_UP = genPotionUpgrade("weak");
+			CORROSION_UP = genPotionUpgrade("corrosion");
 		}
 	}
 
@@ -211,8 +208,7 @@ public class ArcheryItems {
 	public static ItemBuilder<GenericBowItem, L2Registrate> genBow(String id, int rank, int durability, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
 		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
-		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability),
-						new BowConfig(new ResourceLocation(L2Archery.MODID, id), rank, f.build())))
+		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability), e -> new BowConfig(e, rank, f.build())))
 				.model(ArcheryItems::createBowModel).defaultLang().tag(TagGen.FORGE_BOWS, TagGen.PROF_BOWS);
 	}
 
@@ -241,8 +237,7 @@ public class ArcheryItems {
 	public static ItemBuilder<GenericArrowItem, L2Registrate> genArrow(String id, boolean is_inf, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
 		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
-		return REGISTRATE.item(id, p -> new GenericArrowItem(p, new ArrowConfig(
-						new ResourceLocation(L2Archery.MODID, id), is_inf, f.build())))
+		return REGISTRATE.item(id, p -> new GenericArrowItem(p, e -> new ArrowConfig(e, is_inf, f.build())))
 				.model(ArcheryItems::createArrowModel).tag(TagGen.FORGE_ARROWS, TagGen.PROF_ARROWS)
 				.defaultLang();
 	}
@@ -253,6 +248,10 @@ public class ArcheryItems {
 
 	public static RegistryEntry<Upgrade> genUpgrade(String str, Supplier<BowArrowFeature> sup) {
 		return REGISTRATE.generic(ArcheryRegister.UPGRADE, str, () -> new Upgrade(sup)).defaultLang().register();
+	}
+
+	public static RegistryEntry<Upgrade> genPotionUpgrade(String str) {
+		return REGISTRATE.generic(ArcheryRegister.UPGRADE, str, () -> new Upgrade(PotionArrowFeature::fromUpgradeConfig)).defaultLang().register();
 	}
 
 }

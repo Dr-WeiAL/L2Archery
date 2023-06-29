@@ -8,15 +8,15 @@
       "item": "minecraft:dragon_breath"
     },
     "C": {
-      "item": "l2complements:black_fire_charge"
+      "item": "minecraft:cobweb"
     },
     "E": {
-      "item": "l2complements:blackstone_core"
+      "item": "minecraft:fermented_spider_eye"
     }
   },
   "pattern": [
     "CEC",
-    "CAC",
+    "EAE",
     "CBC"
   ],
   "result": {
