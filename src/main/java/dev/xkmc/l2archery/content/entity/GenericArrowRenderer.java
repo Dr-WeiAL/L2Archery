@@ -23,7 +23,7 @@ public class GenericArrowRenderer extends ArrowRenderer<GenericArrowEntity> {
 			arrow = ArcheryItems.STARTER_ARROW.get();
 		}
 		ResourceLocation rl = ForgeRegistries.ITEMS.getKey(arrow);
-		return new ResourceLocation(rl.getNamespace(), "textures/entity/arrow/" + rl.getPath() + ".png");
+		return new ResourceLocation(rl.getNamespace(), "textures/entity/arrow/arrow.png");
 	}
 
 }

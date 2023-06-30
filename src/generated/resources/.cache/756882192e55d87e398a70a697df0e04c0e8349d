@@ -1,6 +1,6 @@
-// 1.20	2023-06-29T13:23:21.396729	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-0021e1798b2618640bcde47545745a70b564698b assets/l2archery/lang/en_ud.json
-bd904af4138666f0371643240199638b8dd4e6ca assets/l2archery/lang/en_us.json
+// 1.20	2023-06-30T08:29:09.92492	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+34aaebcc6e5b5a512f655c2edc26c15ffa683105 assets/l2archery/lang/en_ud.json
+4f6ea22966bf0b4c4061210ee8eafb67a55f18e3 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -68,6 +68,7 @@ a0f72a9e88cd1f4ae994257b59484e73ee522a03 assets/l2archery/models/item/eagle_bow.
 4baf251dca59b58768d866a399a02bede33e792e assets/l2archery/models/item/earth_bow.json
 14abc0d48fe49302165551555fcc98199a6d65b2 assets/l2archery/models/item/ender_aim_bow.json
 56225b78956ab222fd8cccc6889a2f8bbc478866 assets/l2archery/models/item/ender_arrow.json
+726fa23a3dd1cfd28246753af928afe3f945eb45 assets/l2archery/models/item/eternium_arrow.json
 9f1e23295a400cff4e482490b6e3e7f7d870bfee assets/l2archery/models/item/explosion_bow.json
 3836a45c1d7936141a1f370769562f61df1d391b assets/l2archery/models/item/fire_arrow_lv1.json
 3ca4deb8c70fb3f21695fa988598beed964b4a64 assets/l2archery/models/item/fire_arrow_lv2.json
@@ -83,16 +84,21 @@ ea320bbc9f766725900ea9843251df67b37b13fc assets/l2archery/models/item/glow_aim_b
 a4e3f7d3a86843221f485bd832245a50616c5c6b assets/l2archery/models/item/master_bow.json
 b75010a07f33f8eb409225e26d672ea903e02992 assets/l2archery/models/item/no_fall_arrow.json
 4fddbb80a6676c68d7f418c7e0ce257e376e5da5 assets/l2archery/models/item/obsidian_arrow.json
+affa2b12b8383b7b3b105c236a04a19d4e2ea6fd assets/l2archery/models/item/poseidite_arrow.json
 cccbcfabe67da352c4f8d592db6c575d6097c420 assets/l2archery/models/item/quartz_arrow.json
+8dc281a84c44962436c3f7478b9622fff56744ce assets/l2archery/models/item/sculkium_arrow.json
+989ef6a073416acd356bcfaa24cbe69fdab2eac7 assets/l2archery/models/item/shulkerate_arrow.json
 a3d836f2d92f9df9cd6662442cc2f4cf67d088de assets/l2archery/models/item/slow_bow.json
 f432254df44084ef6833dba562b143e70b33a890 assets/l2archery/models/item/starter_arrow.json
 4da336cef099849162a1e79402c8aecdc5d5b7fc assets/l2archery/models/item/starter_bow.json
 eeab764de79a6c14531d90cb12775317d60660dd assets/l2archery/models/item/storm_arrow.json
 025c3665acd046f73e6afb5157978a89c8467c02 assets/l2archery/models/item/storm_bow.json
 c5446e16cfa6b2eb0e3947fbfe1c0bdd45020089 assets/l2archery/models/item/sun_bow.json
+26a5860871bf3518a753bc12356be6a363c55f7f assets/l2archery/models/item/tearing_arrow.json
 38c47c75a62b4a9f18098ec3f4f73554160a416d assets/l2archery/models/item/tnt_arrow_lv1.json
 9542f4ae2289c80b5ae335f69bed34f1bef88311 assets/l2archery/models/item/tnt_arrow_lv2.json
 d0b71942a3a352ff7533d856d16e7ea195298894 assets/l2archery/models/item/tnt_arrow_lv3.json
+06c98ff1f141bd2052c9439cb688e9009e919451 assets/l2archery/models/item/totemic_gold_arrow.json
 b96bd04ebae913f78adcb0e79f9935888662a21c assets/l2archery/models/item/turtle_bow.json
 e574f20a9e541c11544be249c530a13649f7dc89 assets/l2archery/models/item/upgrade.json
 e14b6b61c7c42bbbfd88838d66731fb180ad0334 assets/l2archery/models/item/void_arrow.json
@@ -132,6 +138,7 @@ adc5359b3a7f15a3486ae919126824199f3df5c7 data/l2archery/advancements/recipes/com
 4cf02c5e40aa00f69a06ea65fab95995de2790bd data/l2archery/advancements/recipes/combat/diamond_arrow.json
 1f8756530addbb36ce9afe374a53163b21ed1a05 data/l2archery/advancements/recipes/combat/dispell_arrow.json
 78eacf52a951cbbbc8a132d97f7a0ae6b452c194 data/l2archery/advancements/recipes/combat/ender_arrow.json
+ebaa43a5bf7e1905ff5c6baa029683ccc7853001 data/l2archery/advancements/recipes/combat/eternium_arrow.json
 4b4e744929d48fc3c749ccc8648d836b871a59b3 data/l2archery/advancements/recipes/combat/fire_arrow_lv1.json
 937f9f956d8227f6476c77262ee70220912c3300 data/l2archery/advancements/recipes/combat/fire_arrow_lv2.json
 7d823cbe1ec190503fd146a59c873e2d9b9510cd data/l2archery/advancements/recipes/combat/frozen_arrow.json
@@ -139,12 +146,17 @@ e9dc5440524e6113195de582322d022797bb9379 data/l2archery/advancements/recipes/com
 dc06a9b73a081c8163c201da1e228876bb10e787 data/l2archery/advancements/recipes/combat/iron_arrow.json
 cfae6b6da7f1c96c564f8dcbf7bdd09c538b25fa data/l2archery/advancements/recipes/combat/no_fall_arrow.json
 a00be8aa27f56a91f3867de96a92b16128d0f1ed data/l2archery/advancements/recipes/combat/obsidian_arrow.json
+5ae76f3c65b6221addcd5747ec0437e61bc3d44e data/l2archery/advancements/recipes/combat/poseidite_arrow.json
 2cdc63740f62d74287ec572ff8aaeb82e3b8b97d data/l2archery/advancements/recipes/combat/quartz_arrow.json
+5f5c00916501ce5bf2ec59d5e7b006fa96a85ee7 data/l2archery/advancements/recipes/combat/sculkium_arrow.json
+85a72a672ac659229ac95a58b65ff1e1a90e9cf2 data/l2archery/advancements/recipes/combat/shulkerate_arrow.json
 7fc7fe2ca958dd1e3eb4eabe9cbe8e8cbc20ccdc data/l2archery/advancements/recipes/combat/starter_arrow.json
 2635b25054942cda0af5f643640265a48d2e2342 data/l2archery/advancements/recipes/combat/storm_arrow.json
+2bf978c6538408850a3b64041d64ce386ec69ddd data/l2archery/advancements/recipes/combat/tearing_arrow.json
 3469f6680e9bdbfa3ce800a2bf106396cd71f32b data/l2archery/advancements/recipes/combat/tnt_arrow_lv1.json
 78eacb79c29bf280a9b72a36e958e5a6f1123dda data/l2archery/advancements/recipes/combat/tnt_arrow_lv2.json
 2bc8187a0058eeb0d11913142a4dc261fd958d47 data/l2archery/advancements/recipes/combat/tnt_arrow_lv3.json
+ec9170714650fc5c0c740fe6e82f06c70612ee0a data/l2archery/advancements/recipes/combat/totemic_gold_arrow.json
 479b76ed8c15ee775c9409924453291a257e5353 data/l2archery/advancements/recipes/combat/upgrade.json
 30aa8f4b54406fa5d2ed58d985d20d0cfb7ba81d data/l2archery/advancements/recipes/combat/void_arrow.json
 29874195a0b41a19b94cefb16eb3320c7ee923cc data/l2archery/advancements/recipes/combat/wither_arrow.json
@@ -222,6 +234,7 @@ e1a5047ded18d37fd382f4b4a4c9fcddc4eddddd data/l2archery/recipes/enchantments/lev
 739dd18f8fae34ad4d1d6e0fcf02853e9ddbe4cf data/l2archery/recipes/enchantments/wither.json
 6d366a09a40fbb99f1afc9eda13301617cbbfbfe data/l2archery/recipes/ender_aim_bow.json
 09737710442d2bdac0dcfad6b3d853876a3021de data/l2archery/recipes/ender_arrow.json
+c3908b535c34d07527de22819c70dd7a4469c0ce data/l2archery/recipes/eternium_arrow.json
 5cd4c3235fac3a638c9f699acd28628736323bf1 data/l2archery/recipes/explosion_bow.json
 a9a25f3af8b48e87fc2646e4272fc5c24ead856d data/l2archery/recipes/fire_arrow_lv1.json
 40e2257edb8a2282efbc9ab06106e26b284c328c data/l2archery/recipes/fire_arrow_lv2.json
@@ -237,16 +250,21 @@ a23faaa8892ee4398054f0873872c25943ba8965 data/l2archery/recipes/magnify_bow.json
 f29f4c1cc93f60123ba1f1fd44d08c424d8b82b0 data/l2archery/recipes/master_bow.json
 8deee8876c123eac88a105dc4f5ec472db3951fa data/l2archery/recipes/no_fall_arrow.json
 7e47eda5cde25c476a1306c42c11b43010b52c3f data/l2archery/recipes/obsidian_arrow.json
+cbd1a5ef56c5430e6478bd887979b0ef9bc257d3 data/l2archery/recipes/poseidite_arrow.json
 4c3efce300b26165f018607eefef0a29d32f39e1 data/l2archery/recipes/quartz_arrow.json
+4d5535da857ed0873e75758233498fb9c01c5c2d data/l2archery/recipes/sculkium_arrow.json
+e02f6dadeeab99eb37f62824b24beda714747fb6 data/l2archery/recipes/shulkerate_arrow.json
 2037e8f8afcf609f551e80f57116766401f584d7 data/l2archery/recipes/slow_bow.json
 5ffc9e61d4d428fc30eacc63b1b856ea23660788 data/l2archery/recipes/starter_arrow.json
 bf6e9150b1c0ea0e9ebd857cac47a5e306a6a7c1 data/l2archery/recipes/starter_bow.json
 92b01044b6464bc0fafa217632bd21ccaea11dcd data/l2archery/recipes/storm_arrow.json
 1631bf16147e8141c679f9f7628940ac703b6400 data/l2archery/recipes/storm_bow.json
 d8be7c978e640672e45f40e9f6ea38cac108eedd data/l2archery/recipes/sun_bow.json
+87917be84ba1b3d97180188b1dd0b6a61a7f495e data/l2archery/recipes/tearing_arrow.json
 a9f94da451540b9b166c307ee498e8835c159f78 data/l2archery/recipes/tnt_arrow_lv1.json
 d36e1f9d1c9cac6f90fccb54e49339c324a5ab0f data/l2archery/recipes/tnt_arrow_lv2.json
 5cd6c7111d9c05729a6f9af9a082c9898289cb93 data/l2archery/recipes/tnt_arrow_lv3.json
+366a34b5dcb4b7f43403763d5b06dbb215e55c4a data/l2archery/recipes/totemic_gold_arrow.json
 7da0f476303ba40f684402a437d89d9de1d8a7f9 data/l2archery/recipes/turtle_bow.json
 b2de46b6cb1537e76624f86dca8ca8f9470a24ef data/l2archery/recipes/upgrade.json
 4e0b86b1dca4321af63eee4a53a85fce7a669a08 data/l2archery/recipes/upgrades/anti_gravity.json
@@ -281,7 +299,7 @@ f23bcd27f307837e5066ad967aa77d55df1e2f17 data/l2archery/recipes/void_arrow.json
 44ff1a9af6d5787c7d4e76204cb5bf5128024f2f data/l2archery/recipes/wind_bow.json
 cfa2371274642b7a030c9311c64b56a81ef1d361 data/l2archery/recipes/winter_bow.json
 d1c2e1c5ce22a8b2374af2e414c78f1a2317787e data/l2archery/recipes/wither_arrow.json
-81fbdb28283fefcd944474a6bf3ac438185eed66 data/l2archery/tags/items/arrows.json
+8d54f4513cffd6ced91aaea2a3ecdad4065dd132 data/l2archery/tags/items/arrows.json
 a04e437fcac34d118f85df1d2f3610bd937ad429 data/l2archery/tags/items/bows.json
 3cf66998381625cc84307cf761569d0edda80287 data/l2complements/advancements/recipes/enchantments/explode.json
 0bbb3139c30af1231baecfbc1560cfd16e947e14 data/l2complements/advancements/recipes/enchantments/glow_aim.json
@@ -290,4 +308,4 @@ a04e437fcac34d118f85df1d2f3610bd937ad429 data/l2archery/tags/items/bows.json
 3c54d03e915001af7fd58f059eed5b378405752f data/l2complements/recipes/glow_aim.json
 8ec575dc51c90c738737096f9a036649c42ccd45 data/l2complements/recipes/magnify.json
 787eeb936d3f5bf066d59310c5db1423d49a5b8f data/minecraft/tags/entity_types/arrows.json
-81fbdb28283fefcd944474a6bf3ac438185eed66 data/minecraft/tags/items/arrows.json
+8d54f4513cffd6ced91aaea2a3ecdad4065dd132 data/minecraft/tags/items/arrows.json

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "l2complements:totemic_gold_nugget"
+    },
+    "S": {
+      "item": "l2archery:starter_arrow"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:totemic_gold_arrow"
+  },
+  "show_notification": true
+}

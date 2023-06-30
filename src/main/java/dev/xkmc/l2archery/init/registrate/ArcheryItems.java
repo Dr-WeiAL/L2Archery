@@ -11,6 +11,8 @@ import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.*;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
+import dev.xkmc.l2archery.content.feature.materials.PoseiditeArrowFeature;
+import dev.xkmc.l2archery.content.feature.materials.TotemicArrowFeature;
 import dev.xkmc.l2archery.content.item.ArrowConfig;
 import dev.xkmc.l2archery.content.item.BowConfig;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
@@ -21,7 +23,9 @@ import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.data.ArcheryDamageState;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.data.TagGen;
+import dev.xkmc.l2complements.init.materials.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
+import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
 import dev.xkmc.l2library.base.L2Registrate;
 import net.minecraft.resources.ResourceLocation;
@@ -29,6 +33,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 
@@ -58,7 +63,7 @@ public class ArcheryItems {
 	public static final ItemEntry<GenericArrowItem> STARTER_ARROW, COPPER_ARROW, IRON_ARROW, GOLD_ARROW, OBSIDIAN_ARROW,
 			NO_FALL_ARROW, ENDER_ARROW, TNT_1_ARROW, TNT_2_ARROW, TNT_3_ARROW, FIRE_1_ARROW, FIRE_2_ARROW, DESTROYER_ARROW,
 			ICE_ARROW, DISPELL_ARROW, ACID_ARROW, BLACKSTONE_ARROW, DIAMOND_ARROW, QUARTZ_ARROW, WITHER_ARROW, STORM_ARROW,
-			VOID_ARROW;//TODO eternal arrow, bleed arrow
+			VOID_ARROW, TOTEMIC_GOLD_ARROW, POSEIDITE_ARROW, SHULKERATE_ARROW, SCULKIUM_ARROW, ETERNIUM_ARROW, TEARING_ARROW;
 
 	public static final ItemEntry<UpgradeItem> UPGRADE;
 
@@ -84,7 +89,7 @@ public class ArcheryItems {
 					.lang("Sniper Bow with Lens").register();
 			ENDER_AIM_BOW = genBow("ender_aim_bow", 2, 600, e -> e.add(new EnderShootFeature(128)))
 					.lang("Ender Bow").register();
-			EAGLE_BOW = genBow("eagle_bow", 2, 600, e -> e.add(new DamageArrowFeature(
+			EAGLE_BOW = genBow("eagle_bow", 2, 600, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(DefaultDamageState.BYPASS_ARMOR),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			))).register();
@@ -122,7 +127,7 @@ public class ArcheryItems {
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 4)
 			)))).lang("Bless of Gaia").register();
 			VOID_BOW = genBow("void_bow", 3, 300, e -> e.add(new EnderShootFeature(128))
-					.add(new DamageArrowFeature(
+					.add(new DamageSourceArrowFeature(
 							(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 							LangData.FEATURE_PIERCE_INVUL::get
 					))).lang("Sight of the Void (Creative Only)").register();
@@ -140,6 +145,31 @@ public class ArcheryItems {
 			QUARTZ_ARROW = genArrow("quartz_arrow", false);
 			DIAMOND_ARROW = genArrow("diamond_arrow", false);
 			DESTROYER_ARROW = genArrow("destroyer_arrow", false);
+
+			TOTEMIC_GOLD_ARROW = genArrow("totemic_gold_arrow", false, e -> e.add(new DamageModifierArrowFeature(
+					(a, s) -> LCMats.TOTEMIC_GOLD.getExtraToolConfig().onDamage(s, ItemStack.EMPTY),
+					list -> LCMats.TOTEMIC_GOLD.getExtraToolConfig().addTooltip(ItemStack.EMPTY, list)
+			)).add(new TotemicArrowFeature(4))).register();
+			POSEIDITE_ARROW = genArrow("poseidite_arrow", false, e -> e.add(new DamageModifierArrowFeature(
+							(a, s) -> {
+								LCMats.POSEIDITE.getExtraToolConfig().onDamage(s, ItemStack.EMPTY);
+								if (a.isInWaterRainOrBubble()) {
+									s.addHurtModifier(DamageModifier.multAttr(1.5f));
+								}
+							},
+							list -> LCMats.POSEIDITE.getExtraToolConfig().addTooltip(ItemStack.EMPTY, list)))
+					.add(new PoseiditeArrowFeature())).register();
+			SHULKERATE_ARROW = genArrow("shulkerate_arrow", false, e -> e.add(new NoFallArrowFeature(40))).register();
+			SCULKIUM_ARROW = genArrow("sculkium_arrow", false, e -> e.add(new DamageSourceArrowFeature(
+					(a, s) -> {
+						s.enable(DefaultDamageState.BYPASS_MAGIC);
+						s.enable(DefaultDamageState.BYPASS_ARMOR);
+					},
+					LangData.FEATURE_PIERCE_BOTH::get
+			))).register();
+			ETERNIUM_ARROW = genArrow("eternium_arrow", true);
+			TEARING_ARROW = genArrow("tearing_arrow", false, e -> e.add(new BleedingArrowFeature(100, 9))).register();
+
 			NO_FALL_ARROW = genArrow("no_fall_arrow", false, e -> e.add(new NoFallArrowFeature(40))).lang("Anti-Gravity Arrow").register();
 			ENDER_ARROW = genArrow("ender_arrow", false, e -> e.add(new EnderArrowFeature())).register();
 			TNT_1_ARROW = genArrow("tnt_arrow_lv1", false, e -> e.add(new ExplodeArrowFeature(2, true, false))).lang("Explosion Arrow").register();
@@ -149,16 +179,16 @@ public class ArcheryItems {
 			FIRE_2_ARROW = genArrow("fire_arrow_lv2", false, e -> e.add(new FireArrowFeature(200))).lang("Cursed Fire Arrow").register();
 			ICE_ARROW = genArrow("frozen_arrow", false);
 			ACID_ARROW = genArrow("acid_arrow", false);
-			DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageArrowFeature(
+			DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(DefaultDamageState.BYPASS_MAGIC),
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
-			WITHER_ARROW = genArrow("wither_arrow", false, e -> e.add(new DamageArrowFeature(
+			WITHER_ARROW = genArrow("wither_arrow", false, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(DefaultDamageState.BYPASS_ARMOR),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			))).register();
 			STORM_ARROW = genArrow("storm_arrow", false, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
-			VOID_ARROW = genArrow("void_arrow", false, e -> e.add(new DamageArrowFeature(
+			VOID_ARROW = genArrow("void_arrow", false, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 					LangData.FEATURE_PIERCE_INVUL::get
 			)).add(new VoidArrowFeature())).lang("Void Arrow (Creative Only)").register();

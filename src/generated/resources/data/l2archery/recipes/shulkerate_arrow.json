@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "l2complements:shulkerate_nugget"
+    },
+    "S": {
+      "item": "l2archery:starter_arrow"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:shulkerate_arrow"
+  },
+  "show_notification": true
+}

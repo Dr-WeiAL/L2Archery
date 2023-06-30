@@ -51,6 +51,12 @@ public class RecipeGen {
 			cross(pvd, LCItems.RESONANT_FEATHER.get(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.DISPELL_ARROW.get(), 4);
 			full(pvd, Items.FERMENTED_SPIDER_EYE, ArcheryItems.STARTER_ARROW.get(), Items.MAGMA_CREAM, ArcheryItems.ACID_ARROW.get(), 4);
 			full(pvd, ArcheryItems.DESTROYER_ARROW.get(), LCItems.SPACE_SHARD.get(), LCItems.VOID_EYE.get(), ArcheryItems.VOID_ARROW.get(), 1);
+			cross(pvd, LCMats.TOTEMIC_GOLD.getNugget(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.TOTEMIC_GOLD_ARROW.get(), 4);
+			cross(pvd, LCMats.POSEIDITE.getNugget(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.POSEIDITE_ARROW.get(), 4);
+			cross(pvd, LCMats.SHULKERATE.getNugget(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.SHULKERATE_ARROW.get(), 4);
+			cross(pvd, LCMats.SCULKIUM.getNugget(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.SCULKIUM_ARROW.get(), 4);
+			cross(pvd, LCMats.ETERNIUM.getNugget(), ArcheryItems.STARTER_ARROW.get(), ArcheryItems.ETERNIUM_ARROW.get(), 4);
+			cross(pvd, LCItems.EXPLOSION_SHARD.get(), ArcheryItems.QUARTZ_ARROW.get(), ArcheryItems.TEARING_ARROW.get(), 4);
 		}
 
 		// bow

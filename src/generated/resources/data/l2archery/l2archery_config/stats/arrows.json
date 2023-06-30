@@ -47,6 +47,9 @@
     "l2archery:diamond_arrow": {
       "l2archery:damage": 4.0
     },
+    "l2archery:eternium_arrow": {
+      "l2archery:damage": 4.0
+    },
     "l2archery:gold_arrow": {
       "l2archery:damage": 2.0,
       "l2archery:punch": 3.0
@@ -58,8 +61,25 @@
     "l2archery:obsidian_arrow": {
       "l2archery:damage": 2.0
     },
+    "l2archery:poseidite_arrow": {
+      "l2archery:damage": 4.0,
+      "l2archery:punch": 1.0
+    },
     "l2archery:quartz_arrow": {
       "l2archery:damage": 3.0
+    },
+    "l2archery:sculkium_arrow": {
+      "l2archery:damage": 6.0
+    },
+    "l2archery:shulkerate_arrow": {
+      "l2archery:damage": 4.0
+    },
+    "l2archery:tearing_arrow": {
+      "l2archery:damage": 5.0
+    },
+    "l2archery:totemic_gold_arrow": {
+      "l2archery:damage": 3.0,
+      "l2archery:punch": 3.0
     }
   },
   "bow_effects": {},

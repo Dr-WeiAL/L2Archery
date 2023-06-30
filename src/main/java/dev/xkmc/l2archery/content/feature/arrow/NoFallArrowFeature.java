@@ -16,6 +16,11 @@ public class NoFallArrowFeature extends FlightControlFeature {
 	}
 
 	@Override
+	public boolean allowDuplicate() {
+		return true;
+	}
+
+	@Override
 	public void addTooltip(List<MutableComponent> list) {
 		list.add(LangData.FEATURE_NO_FALL.get(life / 20d));
 	}

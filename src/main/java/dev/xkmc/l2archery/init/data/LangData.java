@@ -25,6 +25,8 @@ public enum LangData {
 	STAT_FOV("stat.fov", "Magnification: %s", 1, ChatFormatting.BLUE),
 	STAT_EFFECT("stat.effects", "Apply Effects on Hit:", 0, ChatFormatting.GREEN),
 
+	FEATURE_INFINITY("feature.infinity", "This arrow support Infinity", 0, ChatFormatting.AQUA),
+	FEATURE_BLEED("feature.bleed","Stacking Bleed effect on enemy",0,null),
 	FEATURE_NO_FALL("feature.no_fall", "Arrow will not feel gravity, but will disappear after %s seconds.", 1, null),
 	FEATURE_AIM_GLOW("feature.aim_flow", "Aimed targets within range of %s will appear glowing (only to you).", 1, null),
 	FEATURE_WIND_BOW("feature.wind_bow", "Pulling bow will not slow down player.", 0, null),
@@ -36,6 +38,7 @@ public enum LangData {
 	FEATURE_EXPLOSION_NONE("feature.explosion.none", "Create an explosion of radius %s on hit. Will not destroy block or hurt mobs.", 1, null),
 	FEATURE_PIERCE_ARMOR("feature.pierce_armor", "Arrow damage will pierce armor", 0, null),
 	FEATURE_PIERCE_MAGIC("feature.pierce_magic", "Arrow damage will bypass magic protection", 0, null),
+	FEATURE_PIERCE_BOTH("feature.pierce_both", "Arrow damage will pierce armor and magic protection", 0, null),
 	FEATURE_PIERCE_INVUL("feature.pierce_invul", "Arrow damage will cause void damage", 0, null),
 	FEATURE_PULL_EFFECT("feature.pull_effect", "Apply effects when pulling bow:", 0, null),
 	FEATURE_FLUX_UP("feature.flux_up", "Consume energy in place of durability loss", 0, null),

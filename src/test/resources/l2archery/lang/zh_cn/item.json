@@ -41,7 +41,13 @@
 	"gaia_bow": "破天巨岩",
 	"sun_bow": "神威烈焰",
 	"void_bow": "虚空凝视(创造)",
-	"upgrade": "魔晶"
+	"upgrade": "魔晶",
+	"eternium_arrow": "永恒箭",
+	"poseidite_arrow": "海神箭",
+	"sculkium_arrow": "幽匿箭",
+	"shulkerate_arrow": "潜影箭",
+	"tearing_arrow": "撕裂箭",
+	"totemic_gold_arrow": "生命箭"
   },
   "item.minecraft.tipped_arrow.effect": {
 	"run_bow": "移动射击之箭",

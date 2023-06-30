@@ -2,25 +2,27 @@ package dev.xkmc.l2archery.content.feature.arrow;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
-import dev.xkmc.l2damagetracker.contents.attack.CreateSourceEvent;
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2serial.util.Wrappers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.Supplier;
+import java.util.function.Consumer;
 
-public record DamageArrowFeature(
-		BiConsumer<GenericArrowEntity, CreateSourceEvent> source,
-		Supplier<MutableComponent> comp) implements OnHitFeature {
+public record DamageModifierArrowFeature(
+		BiConsumer<GenericArrowEntity, AttackCache> source,
+		Consumer<List<Component>> comp) implements OnHitFeature {
 
 	@Override
-	public void onHurtEntity(GenericArrowEntity genericArrow, CreateSourceEvent source) {
+	public void onHurtModifier(GenericArrowEntity genericArrow, AttackCache source) {
 		this.source.accept(genericArrow, source);
 	}
 
 	@Override
 	public void addTooltip(List<MutableComponent> list) {
-		list.add(comp.get());
+		comp.accept(Wrappers.cast(list));
 	}
 
 	@Override

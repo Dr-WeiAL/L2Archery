@@ -7,7 +7,6 @@ import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 
@@ -35,6 +34,9 @@ public record ArrowConfig(GenericArrowItem id, boolean is_inf,
 	public void addTooltip(List<Component> list) {
 		LangData.STAT_DAMAGE.getWithSign(list, damage());
 		LangData.STAT_PUNCH.getWithSign(list, punch());
+		if (is_inf()) {
+			list.add(LangData.FEATURE_INFINITY.get());
+		}
 		PotionArrowFeature.addTooltip(getEffects().instances(), list);
 	}
 

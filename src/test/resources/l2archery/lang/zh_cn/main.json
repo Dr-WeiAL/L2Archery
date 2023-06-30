@@ -24,6 +24,9 @@
 	  "pierce_armor": "伤害穿透盔甲",
 	  "pierce_magic": "伤害穿透魔法保护",
 	  "pierce_invul": "造成虚空伤害",
+	  "bleed": "让敌人流血",
+	  "infinity": "这支箭支持无限",
+	  "pierce_both": "伤害穿透盔甲和魔法保护",
 	  "wind_bow": "拉弓不减速",
 	  "pull_effect": "拉弓时获得效果：",
 	  "flux_up": "消耗能源代替耐久损耗"

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "l2complements:explosion_shard"
+    },
+    "S": {
+      "item": "l2archery:quartz_arrow"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2archery:tearing_arrow"
+  },
+  "show_notification": true
+}
