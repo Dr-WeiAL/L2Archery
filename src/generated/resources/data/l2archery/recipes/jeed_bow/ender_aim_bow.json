@@ -1,5 +1,11 @@
 {
   "type": "l2archery:jeed_archery",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "jeed"
+    }
+  ],
   "entryName": "l2archery:ender_aim_bow",
   "jeedType": "BOW"
 }

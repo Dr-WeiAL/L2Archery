@@ -18,7 +18,9 @@ import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.compat.jeed.JeedDataGenerator;
 import dev.xkmc.l2library.serial.ingredients.EnchantmentIngredient;
+import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
 import dev.xkmc.l2library.serial.recipe.RecordRecipeFinished;
+import net.mehvahdjukaar.jeed.Jeed;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -557,25 +559,26 @@ public class RecipeGen {
 
 		//JEED
 		{
+			var loader = ConditionalRecipeWrapper.mod(pvd, Jeed.MOD_ID);
 			for (var e : ForgeRegistries.ITEMS.getEntries()) {
 				if (e.getValue() instanceof GenericBowItem) {
-					pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_bow/" + e.getKey().location().getPath()),
+					loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_bow/" + e.getKey().location().getPath()),
 							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.BOW, e.getKey().location())));
 				}
 				if (e.getValue() instanceof GenericArrowItem) {
-					pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_arrow/" + e.getKey().location().getPath()),
+					loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_arrow/" + e.getKey().location().getPath()),
 							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.ARROW, e.getKey().location())));
 				}
 			}
 
 			for (var e : ForgeRegistries.ENCHANTMENTS.getEntries()) {
 				if (e.getValue() instanceof PotionArrowEnchantment) {
-					pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_enchantment/" + e.getKey().location().getPath()),
+					loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_enchantment/" + e.getKey().location().getPath()),
 							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.ENCHANTMENT, e.getKey().location())));
 				}
 			}
 			for (var e : ArcheryRegister.UPGRADE.get().getEntries()) {
-				pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_upgrade/" + e.getKey().location().getPath()),
+				loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_upgrade/" + e.getKey().location().getPath()),
 						JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.UPGRADE, e.getKey().location())));
 			}
 
