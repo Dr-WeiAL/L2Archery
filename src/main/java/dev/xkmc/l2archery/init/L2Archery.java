@@ -2,6 +2,7 @@ package dev.xkmc.l2archery.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2archery.compat.GolemCompat;
+import dev.xkmc.l2archery.compat.JeedHelper;
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.events.ArrowAttackListener;
 import dev.xkmc.l2archery.init.data.*;
@@ -13,6 +14,7 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
+import net.mehvahdjukaar.jeed.Jeed;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -50,6 +52,7 @@ public class L2Archery {
 		AttackEventHandler.register(2000, new ArrowAttackListener());
 		ArcheryConfig.init();
 		if (ModList.get().isLoaded("modulargolems")) GolemCompat.register();
+		if (ModList.get().isLoaded(Jeed.MOD_ID)) JeedHelper.register();
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.ADVANCEMENT, AdvGen::genAdvancements);

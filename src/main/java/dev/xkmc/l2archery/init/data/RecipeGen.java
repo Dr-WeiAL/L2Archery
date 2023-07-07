@@ -2,19 +2,28 @@ package dev.xkmc.l2archery.init.data;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
+import dev.xkmc.l2archery.compat.JeedHelper;
 import dev.xkmc.l2archery.content.crafting.BowBuilder;
+import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
+import dev.xkmc.l2archery.content.item.GenericArrowItem;
+import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
+import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2complements.content.enchantment.core.EnchantmentRecipeBuilder;
 import dev.xkmc.l2complements.init.materials.LCMats;
+import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2complements.init.registrate.LCItems;
+import dev.xkmc.l2library.compat.jeed.JeedDataGenerator;
 import dev.xkmc.l2library.serial.ingredients.EnchantmentIngredient;
+import dev.xkmc.l2library.serial.recipe.RecordRecipeFinished;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -212,7 +221,7 @@ public class RecipeGen {
 
 			unlock(pvd, new BowBuilder(ArcheryItems.WIND_BOW.get(), 1)::unlockedBy, ArcheryItems.STORM_BOW.get())
 					.pattern("CCB").pattern("DAB").pattern("CCB")
-					.define('A', ArcheryItems.STORM_ARROW.get())
+					.define('A', ArcheryItems.STORM_BOW.get())
 					.define('B', LCItems.CAPTURED_WIND.get())
 					.define('C', Items.PHANTOM_MEMBRANE)
 					.define('D', LCItems.CAPTURED_BULLET.get())
@@ -544,6 +553,38 @@ public class RecipeGen {
 					.define('C', LCItems.STORM_CORE)
 					.define('D', LCItems.STRONG_CHARGE)
 					.save(pvd);
+		}
+
+		//JEED
+		{
+			for (var e : ForgeRegistries.ITEMS.getEntries()) {
+				if (e.getValue() instanceof GenericBowItem) {
+					pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_bow/" + e.getKey().location().getPath()),
+							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.BOW, e.getKey().location())));
+				}
+				if (e.getValue() instanceof GenericArrowItem) {
+					pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_arrow/" + e.getKey().location().getPath()),
+							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.ARROW, e.getKey().location())));
+				}
+			}
+
+			for (var e : ForgeRegistries.ENCHANTMENTS.getEntries()) {
+				if (e.getValue() instanceof PotionArrowEnchantment) {
+					pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_enchantment/" + e.getKey().location().getPath()),
+							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.ENCHANTMENT, e.getKey().location())));
+				}
+			}
+			for (var e : ArcheryRegister.UPGRADE.get().getEntries()) {
+				pvd.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_upgrade/" + e.getKey().location().getPath()),
+						JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.UPGRADE, e.getKey().location())));
+			}
+
+			var gen = new JeedDataGenerator(L2Archery.MODID);
+			gen.add(ArcheryItems.TURTLE_BOW.get(), MobEffects.MOVEMENT_SLOWDOWN, MobEffects.DAMAGE_RESISTANCE);
+			gen.add(ArcheryItems.EARTH_BOW.get(), MobEffects.MOVEMENT_SLOWDOWN, MobEffects.DAMAGE_RESISTANCE);
+			gen.add(ArcheryItems.GAIA_BOW.get(), LCEffects.STONE_CAGE.get(), MobEffects.DAMAGE_RESISTANCE);
+			gen.add(ArcheryItems.WIND_BOW.get(), MobEffects.MOVEMENT_SPEED);
+			gen.generate(pvd);
 		}
 
 	}

@@ -1,0 +1,9 @@
+{
+  "type": "jeed:effect_provider",
+  "effect": "minecraft:speed",
+  "providers": [
+    {
+      "item": "l2archery:wind_bow"
+    }
+  ]
+}

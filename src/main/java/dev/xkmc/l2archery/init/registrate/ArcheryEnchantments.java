@@ -47,8 +47,7 @@ public class ArcheryEnchantments {
 	}
 
 	public static <T extends BaseBowEnchantment> RegistryEntry<T> reg(String id, int max, String def, BowEnchantmentSupplier<T> sup, String desc) {
-		L2Archery.REGISTRATE.addRawLang("enchantment." + L2Archery.MODID + "." + id + ".desc", desc);
-		return L2Archery.REGISTRATE.enchantment(id, BOW, (a, b, c) -> sup.get(a, b, c, max)).lang(def).register();
+		return L2Archery.REGISTRATE.enchantment(id, BOW, (a, b, c) -> sup.get(a, b, c, max), desc).lang(def).register();
 	}
 
 	public static RegistryEntry<GenericBowEnchantment> regStat(String id, int max, String def, Function<Integer, BowArrowFeature> func, String desc) {

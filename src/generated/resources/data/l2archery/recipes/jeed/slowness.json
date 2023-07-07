@@ -1,0 +1,12 @@
+{
+  "type": "jeed:effect_provider",
+  "effect": "minecraft:slowness",
+  "providers": [
+    {
+      "item": "l2archery:turtle_bow"
+    },
+    {
+      "item": "l2archery:earth_bow"
+    }
+  ]
+}
