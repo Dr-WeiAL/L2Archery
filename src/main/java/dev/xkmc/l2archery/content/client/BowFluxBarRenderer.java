@@ -15,8 +15,8 @@ public class BowFluxBarRenderer implements IItemDecorator {
 		IFluxItem item = (IFluxItem) stack.getItem();
 		if (item.getFluxFeature(stack) == null) return false;
 		int w = Mth.ceil(13.0F * item.getEnergyStored(stack) / item.getMaxEnergyStored(stack));
-		g.fill(x + 2, y + 14, w, 1, color(255, 255, 255, 255));
-		g.fill(x + 2 + w, y + 14, 13 - w, 1, 0, color(0, 0, 0, 255));
+		g.fill(x + 2, y + 14, x + 2 + w, y + 14+1, color(255, 255, 255, 255));
+		g.fill(x + 2 + w, y + 14, x + 2 + w+13 - w, y + 14+1, color(0, 0, 0, 255));
 		return true;
 	}
 
