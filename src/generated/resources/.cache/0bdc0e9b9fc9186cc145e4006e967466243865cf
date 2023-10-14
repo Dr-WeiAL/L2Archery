@@ -1,6 +1,6 @@
-// 1.20	2023-07-07T16:26:41.603132	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-736661ccc01c8dd1f9cb0b848db77020a4965f38 assets/l2archery/lang/en_ud.json
-a75a29b0a6d73caf306a822a11bf49cce730cc60 assets/l2archery/lang/en_us.json
+// 1.20.1	2023-10-12T15:35:05.718694	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+3bb8559c5bfe1467f9c310b0c2b2c10fde726271 assets/l2archery/lang/en_ud.json
+ff053e8b53ee650df948bcb56a518de56ef8bf65 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -185,6 +185,7 @@ d34b24c300eb17c4f44205a61b087beb8703816e data/l2archery/advancements/recipes/slo
 e6f55ecae487b2f8f11968e1dced72ff6767171e data/l2archery/advancements/recipes/storm_bow.json
 107df454a72fcc79d57ef26fe9dcddf7762a1e21 data/l2archery/advancements/recipes/sun_bow.json
 37dc0cde8165bfacb3d3e13da469adeb26247549 data/l2archery/advancements/recipes/turtle_bow.json
+6ca0935c6191d0fc538037088b9815877e053363 data/l2archery/advancements/recipes/upgrades/advanced_infinity.json
 f0cafdb54ee3ff0524170a07dd1c41712a87f91e data/l2archery/advancements/recipes/upgrades/anti_gravity.json
 2ea954a61f3f0adcc9f8d5920a363c8770b65a96 data/l2archery/advancements/recipes/upgrades/blackstone.json
 5f4afacbf0edf9b418e648c6c1dfe6b089028510 data/l2archery/advancements/recipes/upgrades/cleanse.json
@@ -306,6 +307,7 @@ d350eb2fe403dc13b8ac123663d8ba77dc85a722 data/l2archery/recipes/jeed_enchantment
 24c449dcb03dfa872cddc875df449d02e78eb2a6 data/l2archery/recipes/jeed_enchantment/slow.json
 0be79c304241ff8efbbb7dd39b337260e93fa607 data/l2archery/recipes/jeed_enchantment/weak.json
 b10c3e7c1a677737f22b751204610e2e91a499bb data/l2archery/recipes/jeed_enchantment/wither.json
+50f632f4e2d6dc4868590f0f8708a6a806b9be34 data/l2archery/recipes/jeed_upgrade/advanced_infinity.json
 8f655fc779ab04c291cd0530ea81a4b50f46995d data/l2archery/recipes/jeed_upgrade/anti_gravity.json
 0d66bddaab3a6650eb714df4c669a6e0daaac79b data/l2archery/recipes/jeed_upgrade/blackstone.json
 b59db61a519e2f72a161373ab6a83c3b80227a70 data/l2archery/recipes/jeed_upgrade/cleanse.json
@@ -354,6 +356,7 @@ d36e1f9d1c9cac6f90fccb54e49339c324a5ab0f data/l2archery/recipes/tnt_arrow_lv2.js
 366a34b5dcb4b7f43403763d5b06dbb215e55c4a data/l2archery/recipes/totemic_gold_arrow.json
 7da0f476303ba40f684402a437d89d9de1d8a7f9 data/l2archery/recipes/turtle_bow.json
 b2de46b6cb1537e76624f86dca8ca8f9470a24ef data/l2archery/recipes/upgrade.json
+e23f423cd46daeca4d66e7ebc0b3baa825399da1 data/l2archery/recipes/upgrades/advanced_infinity.json
 4e0b86b1dca4321af63eee4a53a85fce7a669a08 data/l2archery/recipes/upgrades/anti_gravity.json
 bf44b327be22f98eca632e112135e7e9a5484d56 data/l2archery/recipes/upgrades/blackstone.json
 3902c8fd687cf2103599e783eef98a2d0200437a data/l2archery/recipes/upgrades/cleanse.json

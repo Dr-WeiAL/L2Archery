@@ -10,7 +10,7 @@ import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
-public record ArrowConfig(GenericArrowItem id, boolean is_inf,
+public record ArrowConfig(GenericArrowItem id, int infLevel,
 						  List<BowArrowFeature> feature) implements IGeneralConfig {
 
 	private double getValue(BowArrowStatType type) {
@@ -34,8 +34,10 @@ public record ArrowConfig(GenericArrowItem id, boolean is_inf,
 	public void addTooltip(List<Component> list) {
 		LangData.STAT_DAMAGE.getWithSign(list, damage());
 		LangData.STAT_PUNCH.getWithSign(list, punch());
-		if (is_inf()) {
+		if (infLevel() == 2) {
 			list.add(LangData.FEATURE_INFINITY.get());
+		} else if (infLevel() == 1) {
+			list.add(LangData.FEATURE_INFINITY_ADV.get());
 		}
 		PotionArrowFeature.addTooltip(getEffects().instances(), list);
 	}

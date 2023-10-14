@@ -2,6 +2,7 @@ package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
+import dev.xkmc.l2archery.content.feature.bow.InfinityFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,7 +36,20 @@ public class GenericArrowItem extends ArrowItem {
 
 	public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
 		int enchant = bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS);
-		return enchant > 0 && config.is_inf();
+		int infLevel = enchant > 0 ? 1 : 0;
+		if (bow.getItem() instanceof GenericBowItem bowItem) {
+			for (var f : bowItem.getFeatures(bow).all()) {
+				if (f instanceof InfinityFeature inf) {
+					infLevel = Math.max(inf.level(), infLevel);
+				}
+			}
+		}
+		if (config.infLevel() == 2) {
+			return infLevel >= 1 || super.isInfinite(stack, bow, player);
+		} else if (config.infLevel() == 1) {
+			return infLevel >= 2 || super.isInfinite(stack, bow, player);
+		}
+		return false;
 	}
 
 	@Override

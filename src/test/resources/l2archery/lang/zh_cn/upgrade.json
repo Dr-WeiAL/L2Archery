@@ -26,10 +26,13 @@
 	"weak": "虚弱",
 	"wither": "凋零",
 	"cleanse": "净化",
-	"curse": "诅咒"
+	"curse": "诅咒",
+	"advanced_infinity": "高级无限"
   },
   "effect.l2archery": {
 	"quick_pull": "快速拉弓",
-	"run_bow": "移动射击"
+	"run_bow": "移动射击",
+	"quick_pull.description": "提升拉弓速度",
+	"run_bow.description": "拉弓时不减速"
   }
 }

@@ -1,4 +1,4 @@
-// 1.20	2023-06-19T13:14:44.774534	Tags for minecraft:damage_type mod id l2archery
+// 1.20.1	2023-10-12T15:21:24.27214	Tags for minecraft:damage_type mod id l2archery
 ea5acae2e7353a190f862ed8e59116c6f5a88237 data/minecraft/tags/damage_type/bypasses_armor.json
 c14a1e0d9df699913f8d72594057527adb8f474c data/minecraft/tags/damage_type/bypasses_effects.json
 c14a1e0d9df699913f8d72594057527adb8f474c data/minecraft/tags/damage_type/bypasses_enchantments.json

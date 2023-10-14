@@ -458,6 +458,14 @@ public class RecipeGen {
 					.define('C', LCItems.LIFE_ESSENCE)
 					.define('E', Items.REDSTONE)
 					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ADVANCED_INFINITY.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("EAE").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('C', LCItems.CAPTURED_BULLET)
+					.define('E', Items.LAPIS_LAZULI)
+					.save(pvd);
 		}
 
 		// enchantments

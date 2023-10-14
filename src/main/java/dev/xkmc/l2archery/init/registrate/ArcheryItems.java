@@ -70,7 +70,7 @@ public class ArcheryItems {
 	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
 			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP, FLOAT_UP, SLOW_UP, POISON_UP, WITHER_UP, WEAK_UP, CORROSION_UP,
-			CURSE_UP, CLEANSE_UP;
+			CURSE_UP, CLEANSE_UP, ADVANCED_INFINITY;
 
 	static {
 		{
@@ -136,21 +136,21 @@ public class ArcheryItems {
 					.lang("Bless of Helios").register();
 		}
 		{
-			STARTER_ARROW = genArrow("starter_arrow", true);
-			COPPER_ARROW = genArrow("copper_arrow", false);
-			IRON_ARROW = genArrow("iron_arrow", false);
-			GOLD_ARROW = genArrow("gold_arrow", false);
-			OBSIDIAN_ARROW = genArrow("obsidian_arrow", false);
-			BLACKSTONE_ARROW = genArrow("blackstone_arrow", false);
-			QUARTZ_ARROW = genArrow("quartz_arrow", false);
-			DIAMOND_ARROW = genArrow("diamond_arrow", false);
-			DESTROYER_ARROW = genArrow("destroyer_arrow", false);
+			STARTER_ARROW = genArrow("starter_arrow", 2);
+			COPPER_ARROW = genArrow("copper_arrow", 1);
+			IRON_ARROW = genArrow("iron_arrow", 1);
+			GOLD_ARROW = genArrow("gold_arrow", 1);
+			OBSIDIAN_ARROW = genArrow("obsidian_arrow", 1);
+			BLACKSTONE_ARROW = genArrow("blackstone_arrow", 1);
+			QUARTZ_ARROW = genArrow("quartz_arrow", 1);
+			DIAMOND_ARROW = genArrow("diamond_arrow", 1);
+			DESTROYER_ARROW = genArrow("destroyer_arrow", 0);
 
-			TOTEMIC_GOLD_ARROW = genArrow("totemic_gold_arrow", false, e -> e.add(new DamageModifierArrowFeature(
+			TOTEMIC_GOLD_ARROW = genArrow("totemic_gold_arrow", 0, e -> e.add(new DamageModifierArrowFeature(
 					(a, s) -> LCMats.TOTEMIC_GOLD.getExtraToolConfig().onDamage(s, ItemStack.EMPTY),
 					list -> LCMats.TOTEMIC_GOLD.getExtraToolConfig().addTooltip(ItemStack.EMPTY, list)
 			)).add(new TotemicArrowFeature(4))).register();
-			POSEIDITE_ARROW = genArrow("poseidite_arrow", false, e -> e.add(new DamageModifierArrowFeature(
+			POSEIDITE_ARROW = genArrow("poseidite_arrow", 0, e -> e.add(new DamageModifierArrowFeature(
 							(a, s) -> {
 								LCMats.POSEIDITE.getExtraToolConfig().onDamage(s, ItemStack.EMPTY);
 								if (a.isInWaterRainOrBubble()) {
@@ -159,36 +159,36 @@ public class ArcheryItems {
 							},
 							list -> LCMats.POSEIDITE.getExtraToolConfig().addTooltip(ItemStack.EMPTY, list)))
 					.add(new PoseiditeArrowFeature())).register();
-			SHULKERATE_ARROW = genArrow("shulkerate_arrow", false, e -> e.add(new NoFallArrowFeature(40))).register();
-			SCULKIUM_ARROW = genArrow("sculkium_arrow", false, e -> e.add(new DamageSourceArrowFeature(
+			SHULKERATE_ARROW = genArrow("shulkerate_arrow", 0, e -> e.add(new NoFallArrowFeature(40))).register();
+			SCULKIUM_ARROW = genArrow("sculkium_arrow", 0, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> {
 						s.enable(DefaultDamageState.BYPASS_MAGIC);
 						s.enable(DefaultDamageState.BYPASS_ARMOR);
 					},
 					LangData.FEATURE_PIERCE_BOTH::get
 			))).register();
-			ETERNIUM_ARROW = genArrow("eternium_arrow", true);
-			TEARING_ARROW = genArrow("tearing_arrow", false, e -> e.add(new BleedingArrowFeature(100, 9))).register();
+			ETERNIUM_ARROW = genArrow("eternium_arrow", 2);
+			TEARING_ARROW = genArrow("tearing_arrow", 0, e -> e.add(new BleedingArrowFeature(100, 9))).register();
 
-			NO_FALL_ARROW = genArrow("no_fall_arrow", false, e -> e.add(new NoFallArrowFeature(40))).lang("Anti-Gravity Arrow").register();
-			ENDER_ARROW = genArrow("ender_arrow", false, e -> e.add(new EnderArrowFeature())).register();
-			TNT_1_ARROW = genArrow("tnt_arrow_lv1", false, e -> e.add(new ExplodeArrowFeature(2, true, false))).lang("Explosion Arrow").register();
-			TNT_2_ARROW = genArrow("tnt_arrow_lv2", false, e -> e.add(new ExplodeArrowFeature(4, true, false))).lang("TNT Arrow").register();
-			TNT_3_ARROW = genArrow("tnt_arrow_lv3", false, e -> e.add(new ExplodeArrowFeature(6, true, false))).lang("End Crystal Arrow").register();
-			FIRE_1_ARROW = genArrow("fire_arrow_lv1", false, e -> e.add(new FireArrowFeature(100))).lang("Soul Fire Arrow").register();
-			FIRE_2_ARROW = genArrow("fire_arrow_lv2", false, e -> e.add(new FireArrowFeature(200))).lang("Cursed Fire Arrow").register();
-			ICE_ARROW = genArrow("frozen_arrow", false);
-			ACID_ARROW = genArrow("acid_arrow", false);
-			DISPELL_ARROW = genArrow("dispell_arrow", false, e -> e.add(new DamageSourceArrowFeature(
+			NO_FALL_ARROW = genArrow("no_fall_arrow", 1, e -> e.add(new NoFallArrowFeature(40))).lang("Anti-Gravity Arrow").register();
+			ENDER_ARROW = genArrow("ender_arrow", 0, e -> e.add(new EnderArrowFeature())).register();
+			TNT_1_ARROW = genArrow("tnt_arrow_lv1", 0, e -> e.add(new ExplodeArrowFeature(2, true, false))).lang("Explosion Arrow").register();
+			TNT_2_ARROW = genArrow("tnt_arrow_lv2", 0, e -> e.add(new ExplodeArrowFeature(4, true, false))).lang("TNT Arrow").register();
+			TNT_3_ARROW = genArrow("tnt_arrow_lv3", 0, e -> e.add(new ExplodeArrowFeature(6, true, false))).lang("End Crystal Arrow").register();
+			FIRE_1_ARROW = genArrow("fire_arrow_lv1", 0, e -> e.add(new FireArrowFeature(100))).lang("Soul Fire Arrow").register();
+			FIRE_2_ARROW = genArrow("fire_arrow_lv2", 0, e -> e.add(new FireArrowFeature(200))).lang("Cursed Fire Arrow").register();
+			ICE_ARROW = genArrow("frozen_arrow", 0);
+			ACID_ARROW = genArrow("acid_arrow", 0);
+			DISPELL_ARROW = genArrow("dispell_arrow", 0, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(DefaultDamageState.BYPASS_MAGIC),
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
-			WITHER_ARROW = genArrow("wither_arrow", false, e -> e.add(new DamageSourceArrowFeature(
+			WITHER_ARROW = genArrow("wither_arrow", 0, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(DefaultDamageState.BYPASS_ARMOR),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			))).register();
-			STORM_ARROW = genArrow("storm_arrow", false, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
-			VOID_ARROW = genArrow("void_arrow", false, e -> e.add(new DamageSourceArrowFeature(
+			STORM_ARROW = genArrow("storm_arrow", 0, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
+			VOID_ARROW = genArrow("void_arrow", 0, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 					LangData.FEATURE_PIERCE_INVUL::get
 			)).add(new VoidArrowFeature())).lang("Void Arrow (Creative Only)").register();
@@ -210,6 +210,8 @@ public class ArcheryItems {
 			ENDER_UP = genUpgrade("void", () -> new EnderShootFeature(128));
 			RAILGUN_UP = genUpgrade("railgun", () -> new StatFeature(1, 1, 1, 0, 100));
 			FLUX_UP = genUpgrade("flux_up", () -> FluxFeature.DEFAULT);
+
+			ADVANCED_INFINITY = genUpgrade("advanced_infinity", () -> new InfinityFeature(2));
 
 			FIRE_UP = genPotionUpgrade("soul_fire");
 			ICE_UP = genPotionUpgrade("frozen");
@@ -261,15 +263,15 @@ public class ArcheryItems {
 		}
 	}
 
-	public static ItemEntry<GenericArrowItem> genArrow(String id, boolean is_inf) {
-		return genArrow(id, is_inf, e -> {
+	public static ItemEntry<GenericArrowItem> genArrow(String id, int infLevel) {
+		return genArrow(id, infLevel, e -> {
 		}).register();
 	}
 
-	public static ItemBuilder<GenericArrowItem, L2Registrate> genArrow(String id, boolean is_inf, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
+	public static ItemBuilder<GenericArrowItem, L2Registrate> genArrow(String id, int infLevel, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
 		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
-		return REGISTRATE.item(id, p -> new GenericArrowItem(p, e -> new ArrowConfig(e, is_inf, f.build())))
+		return REGISTRATE.item(id, p -> new GenericArrowItem(p, e -> new ArrowConfig(e, infLevel, f.build())))
 				.model(ArcheryItems::createArrowModel).tag(TagGen.FORGE_ARROWS, TagGen.PROF_ARROWS)
 				.defaultLang();
 	}
