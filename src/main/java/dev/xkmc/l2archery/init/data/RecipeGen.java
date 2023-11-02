@@ -466,6 +466,14 @@ public class RecipeGen {
 					.define('C', LCItems.CAPTURED_BULLET)
 					.define('E', Items.LAPIS_LAZULI)
 					.save(pvd);
+
+			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.EXPLOSION_BREAKER.get())::unlockedBy, ArcheryItems.UPGRADE.get())
+					.pattern("CEC").pattern("EAE").pattern("CBC")
+					.define('A', ArcheryItems.UPGRADE.get())
+					.define('B', new EnchantmentIngredient(Enchantments.BLOCK_EFFICIENCY, 1))
+					.define('C', Items.END_CRYSTAL)
+					.define('E', Items.LAPIS_LAZULI)
+					.save(pvd);
 		}
 
 		// enchantments
@@ -563,6 +571,15 @@ public class RecipeGen {
 					.define('C', LCItems.STORM_CORE)
 					.define('D', LCItems.STRONG_CHARGE)
 					.save(pvd);
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_EXPLOSION_BREAK.get(), 1)::unlockedBy, Items.BOOK)
+					.pattern("CDC").pattern("BAB").pattern("CDC")
+					.define('A', new EnchantmentIngredient(Enchantments.BLOCK_EFFICIENCY, 1))
+					.define('B', Items.CREEPER_HEAD)
+					.define('C', LCItems.STORM_CORE)
+					.define('D', Items.END_CRYSTAL)
+					.save(pvd);
+
 		}
 
 		//JEED

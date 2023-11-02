@@ -38,6 +38,7 @@ public enum LangData {
 	FEATURE_EXPLOSION_ALL("feature.explosion.all", "Create an explosion of radius %s on hit.", 1, null),
 	FEATURE_EXPLOSION_HURT("feature.explosion.hurt", "Create an explosion of radius %s on hit. Will not destroy block.", 1, null),
 	FEATURE_EXPLOSION_NONE("feature.explosion.none", "Create an explosion of radius %s on hit. Will not destroy block or hurt mobs.", 1, null),
+	FEATURE_EXPLOSION_BREAK("feature.explosion.break", "Arrow explosions will break blocks anyway.", 0, null),
 	FEATURE_PIERCE_ARMOR("feature.pierce_armor", "Arrow damage will pierce armor", 0, null),
 	FEATURE_PIERCE_MAGIC("feature.pierce_magic", "Arrow damage will bypass magic protection", 0, null),
 	FEATURE_PIERCE_BOTH("feature.pierce_both", "Arrow damage will pierce armor and magic protection", 0, null),

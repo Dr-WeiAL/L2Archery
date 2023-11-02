@@ -26,7 +26,9 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 
 		@Override
 		public boolean shouldRefreshIdle(SideBar<?> sideBar, @Nullable BowInfoOverlay.BowStackSignature old) {
-			return !equals(old);
+			if (old == null) return true;
+			if (sel != old.sel) return true;
+			return !ItemStack.isSameItemSameTags(bow, old.bow);
 		}
 	}
 

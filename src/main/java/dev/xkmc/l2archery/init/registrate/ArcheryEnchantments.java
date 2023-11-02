@@ -7,6 +7,7 @@ import dev.xkmc.l2archery.content.enchantment.GenericBowEnchantment;
 import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.ExplodeArrowFeature;
+import dev.xkmc.l2archery.content.feature.arrow.ExplosionBreakFeature;
 import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
@@ -22,7 +23,7 @@ public class ArcheryEnchantments {
 	public static final RegistryEntry<PotionArrowEnchantment> ENCH_GLOW, ENCH_HARM, ENCH_HEAL, ENCH_FLOAT, ENCH_SLOW,
 			ENCH_LEVITATE, ENCH_POISON, ENCH_WITHER, ENCH_WEAK;
 
-	public static final RegistryEntry<GenericBowEnchantment> ENCH_MAGNIFY, ENCH_EXPLODE, ENCH_GLOW_AIM;
+	public static final RegistryEntry<GenericBowEnchantment> ENCH_MAGNIFY, ENCH_EXPLODE, ENCH_GLOW_AIM, ENCH_EXPLOSION_BREAK;
 
 	static {
 		ENCH_MAGNIFY = regStat("magnify", 3, "Archery - Magnify Upgrade",
@@ -34,6 +35,8 @@ public class ArcheryEnchantments {
 		ENCH_EXPLODE = regStat("explode", 3, "Archery - Explosion Upgrade",
 				i -> new ExplodeArrowFeature(i, false, false),
 				"Create explosion on hit. It will not break block or hurt entities. Works only on L2Archery Bows.");
+		ENCH_EXPLOSION_BREAK = regStat("explosion_break", 1, "Archery - Explosion Breaking",
+				i -> ExplosionBreakFeature.INS, "Explosion will break blocks anyway.");
 
 		ENCH_GLOW = regPotion("glow", 1, "Archery - Glow Upgrade", "Make enemy glow on hit.");
 		ENCH_HARM = regPotion("harm", 3, "Archery - Instant Damage Upgrade", "Inflict enemy with Instant Damage on hit.");

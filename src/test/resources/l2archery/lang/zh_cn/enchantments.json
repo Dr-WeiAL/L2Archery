@@ -23,6 +23,8 @@
 	"glow_aim": "弓艺-荧光瞄准升级",
 	"glow_aim.desc": "瞄准的实体会发光。只对弓艺的弓有效",
 	"magnify": "弓艺-望远镜升级",
-	"magnify.desc": "瞄准时逐步放大。只对弓艺的弓有效"
+	"magnify.desc": "瞄准时逐步放大。只对弓艺的弓有效",
+	"explosion_break": "弓艺-爆炸破坏",
+	"explosion_break.desc": "让爆炸会破坏方块"
   }
 }

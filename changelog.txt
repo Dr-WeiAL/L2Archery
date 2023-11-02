@@ -1,0 +1,9 @@
+2.4.10
+- add explosion breaker enchantment and upgrade
+- fix bow info not disappearing
+
+2.4.9
+- add advanced infinity
+
+2.4.8
+- fix flux bar renderer
