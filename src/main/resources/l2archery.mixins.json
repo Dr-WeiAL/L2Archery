@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "refmap": "l2archery.refmap.json",
   "mixins": [
+	"AbstractArrowAccessor"
   ],
   "client": [
 	"ItemInHandRendererMixin"

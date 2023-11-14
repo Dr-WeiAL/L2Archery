@@ -1,9 +1,12 @@
 package dev.xkmc.l2archery.content.item;
 
+import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
+import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.InfinityFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
+import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -29,8 +32,17 @@ public class GenericArrowItem extends ArrowItem {
 	}
 
 	public AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity user) {
-		Arrow arrow = new Arrow(level, user);
-		arrow.setEffectsFromItem(stack);
+		ItemStack bow = user.getItemInHand(user.getUsedItemHand());
+		BowData bowData = bow.getItem() instanceof GenericBowItem bowItem ?
+				BowData.of(bowItem, bow) : BowData.of(ArcheryItems.STARTER_BOW.get(), bow);
+		var arrow = ArrowFeatureController.createArrowEntity(
+				new ArrowFeatureController.BowArrowUseContext(level, user, true, 1),
+				bowData, ArrowData.of(this));
+		if (arrow == null) {
+			arrow = new Arrow(level, user);
+		} else {
+			arrow.addTag(GenericArrowEntity.TAG);
+		}
 		return arrow;
 	}
 

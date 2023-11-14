@@ -5,6 +5,7 @@ import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
 import dev.xkmc.l2archery.content.controller.BowFeatureController;
 import dev.xkmc.l2archery.content.enchantment.IBowEnchantment;
 import dev.xkmc.l2archery.content.energy.IFluxItem;
+import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
@@ -18,6 +19,7 @@ import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2archery.mixin.AbstractArrowAccessor;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
@@ -298,6 +300,25 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	 * return custom arrow entity
 	 */
 	public AbstractArrow customArrow(AbstractArrow arrow) {
+		if (arrow instanceof GenericArrowEntity)
+			return arrow;
+		ItemStack arrowStack = ((AbstractArrowAccessor) arrow).callGetPickupItem();
+		if (arrowStack != null && getAllSupportedProjectiles().test(arrowStack)) {
+			ArrowData data = parseArrow(arrowStack);
+			if (data != null && arrow.getOwner() instanceof LivingEntity user) {
+				Level level = arrow.level();
+				ItemStack bow = user.getItemInHand(user.getUsedItemHand());
+				if (bow.getItem() == this) {
+					var arrowEntity = ArrowFeatureController.createArrowEntity(
+							new ArrowFeatureController.BowArrowUseContext(level, user, true, 1),
+							BowData.of(this, bow), data);
+					if (arrowEntity != null) {
+						arrowEntity.addTag(GenericArrowEntity.TAG);
+						return arrowEntity;
+					}
+				}
+			}
+		}
 		return arrow;
 	}
 

@@ -20,6 +20,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -31,6 +32,8 @@ import net.minecraftforge.network.NetworkHooks;
 
 @FieldsAreNonnullByDefault
 public class GenericArrowEntity extends AbstractArrow implements IEntityAdditionalSpawnData {
+
+	public static final String TAG = "l2archery:rawShoot";
 
 	public record ArrowEntityData(BowData bow, ArrowData arrow,
 								  boolean no_consume, float power) {
@@ -103,7 +106,23 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		if (this.life >= features.flight().ground_life) {
 			this.discard();
 		}
+	}
 
+	@Override
+	public void shoot(double vx, double vy, double vz, float v, float variation) {
+		if (getTags().contains(TAG)) {
+			removeTag(TAG);
+			if (getOwner() instanceof Mob mob) {
+				var target = mob.getTarget();
+				if (target != null && target.isAlive()) {
+					float speed = data.bow().getConfig().speed() / 3 * v;
+					float gravity = features.flight().gravity;
+					MobShootHelper.shootAimHelper(target, this, speed, gravity);
+					return;
+				}
+			}
+		}
+		super.shoot(vx, vy, vz, v, variation);
 	}
 
 	protected void onHitBlock(BlockHitResult result) {
