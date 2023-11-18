@@ -1,6 +1,6 @@
-// 1.20.1	2023-11-17T15:47:16.957946	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (enchantments), Tags (traits), Patchouli Provider]
-981f8c532d80c2ae9046c0faed994fa6761b93c2 assets/l2archery/lang/en_ud.json
-d5e16dd98ef74829f88d918860b813e1dd689db1 assets/l2archery/lang/en_us.json
+// 1.20.1	2023-11-18T10:11:42.018236	Registrate Provider for l2archery [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (enchantments), Tags (traits), Patchouli Provider]
+6624c9482f6f93eb8627ce080a9dda82c4e6ad6d assets/l2archery/lang/en_ud.json
+fb97d80fce3a735d3a28142873cb9d8c2ad760fe assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -299,6 +299,8 @@ f80900b5ce8e0977678398da616e3ef333f0b6c2 data/l2archery/recipes/jeed_bow/sun_bow
 2a7056c64f1242861103efc982e9e7ce175940f9 data/l2archery/recipes/jeed_bow/void_bow.json
 6097992c254ca6f26b55d04f33603018aab2586a data/l2archery/recipes/jeed_bow/wind_bow.json
 fb81b38de972d70d8b25b94114ddb829e8b3997a data/l2archery/recipes/jeed_bow/winter_bow.json
+c35a0909ed6c585f6b95a6b936b0f5c1fba47d8f data/l2archery/recipes/jeed_enchantment/chaotic.json
+6f5935b26c959c5b0defb839421d384d2e991b07 data/l2archery/recipes/jeed_enchantment/distortion.json
 07eae5689b40ba005646cdfaf009042afdfbc200 data/l2archery/recipes/jeed_enchantment/float.json
 880e42d59a29f783e17ed859fb4ce12b361fbc8c data/l2archery/recipes/jeed_enchantment/glow.json
 2aa49a6d4d387660ae6e8a55de15d065f0d46c62 data/l2archery/recipes/jeed_enchantment/harm.json
@@ -394,10 +396,14 @@ cfa2371274642b7a030c9311c64b56a81ef1d361 data/l2archery/recipes/winter_bow.json
 d1c2e1c5ce22a8b2374af2e414c78f1a2317787e data/l2archery/recipes/wither_arrow.json
 8d54f4513cffd6ced91aaea2a3ecdad4065dd132 data/l2archery/tags/items/arrows.json
 a04e437fcac34d118f85df1d2f3610bd937ad429 data/l2archery/tags/items/bows.json
+ce43b28235678de83867de58d8bdc7b8f4170c56 data/l2complements/advancements/recipes/enchantments/chaotic.json
+435dcb056db27873728029fb5449a669c2be3405 data/l2complements/advancements/recipes/enchantments/distortion.json
 3cf66998381625cc84307cf761569d0edda80287 data/l2complements/advancements/recipes/enchantments/explode.json
 ba24ba1525b621939111c2a5f9fb25a722e6c385 data/l2complements/advancements/recipes/enchantments/explosion_break.json
 0bbb3139c30af1231baecfbc1560cfd16e947e14 data/l2complements/advancements/recipes/enchantments/glow_aim.json
 36e5a7cd2a8971aeca719e0ac9e2c5d62f92d459 data/l2complements/advancements/recipes/enchantments/magnify.json
+9ebf2dc64bb9fb1c0bc150afd9f900f0780eb03b data/l2complements/recipes/chaotic.json
+cae5af92af88b0f4b6d50ff7c7a0a0405e2fa233 data/l2complements/recipes/distortion.json
 6a6e99cfec38551cfcaead42abcb8b05d30906c7 data/l2complements/recipes/explode.json
 f0a050a625df881310e8b116032ee8f0eadd817c data/l2complements/recipes/explosion_break.json
 3c54d03e915001af7fd58f059eed5b378405752f data/l2complements/recipes/glow_aim.json

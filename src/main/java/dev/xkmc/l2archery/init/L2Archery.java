@@ -83,7 +83,7 @@ public class L2Archery {
 		var output = event.getGenerator().getPackOutput();
 		var lookup = event.getLookupProvider();
 		var helper = event.getExistingFileHelper();
-		event.getGenerator().addProvider(gen, new ConfigGen(event.getGenerator()));
+		event.getGenerator().addProvider(gen, new ArcheryConfigGen(event.getGenerator()));
 		new ArcheryDamageMultiplex(output, lookup, helper).generate(gen, event.getGenerator());
 	}
 

@@ -10,9 +10,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 
-public class ConfigGen extends ConfigDataProvider {
+public class ArcheryConfigGen extends ConfigDataProvider {
 
-	public ConfigGen(DataGenerator generator) {
+	public ArcheryConfigGen(DataGenerator generator) {
 		super(generator, "Archery Config");
 	}
 
@@ -98,6 +98,22 @@ public class ConfigGen extends ConfigDataProvider {
 				.putEnchantment(ArcheryEnchantments.ENCH_GLOW).putEffect(MobEffects.GLOWING, 600, 0, 0, 0).end()
 				.putEnchantment(ArcheryEnchantments.ENCH_POISON).putEffect(MobEffects.POISON, 100, 0, 100, 0).end()
 				.putEnchantment(ArcheryEnchantments.ENCH_WITHER).putEffect(MobEffects.WITHER, 100, 0, 0, 1).end()
+				.putEnchantment(ArcheryEnchantments.ENCH_CHAOTIC)
+				.putEffect(MobEffects.MOVEMENT_SPEED, 100, 0, 100, 0)
+				.putEffect(MobEffects.DAMAGE_BOOST, 100, 0, 100, 0)
+				.putEffect(MobEffects.JUMP, 100, 0, 100, 0)
+				.putEffect(MobEffects.HUNGER, 100, 0, 100, 0)
+				.putEffect(MobEffects.DIG_SPEED, 100, 0, 100, 0)
+				.putEffect(MobEffects.DIG_SLOWDOWN, 100, 0, 100, 0)
+				.putEffect(MobEffects.LUCK, 100, 0, 100, 0)
+				.putEffect(MobEffects.UNLUCK, 100, 0, 100, 0)
+				.putEffect(MobEffects.NIGHT_VISION, 100, 0, 100, 0)
+				.end()
+				.putEnchantment(ArcheryEnchantments.ENCH_DISTORTION)
+				.putEffect(MobEffects.CONFUSION, 100, 0, 100, 0)
+				.putEffect(MobEffects.DARKNESS, 100, 0, 100, 0)
+				.putEffect(MobEffects.BLINDNESS, 100, 0, 100, 0)
+				.end()
 		);
 	}
 

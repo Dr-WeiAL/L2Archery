@@ -47,6 +47,9 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 	}
 
 	public static void addTooltip(List<MobEffectInstance> instances, List<Component> list) {
+		if (instances.size() > 5){
+			list.add(LangData.STAT_EFFECT_TOO_MANY.get(instances.size()));
+		}
 		if (instances.size() > 0) {
 			list.add(LangData.STAT_EFFECT.get());
 		}

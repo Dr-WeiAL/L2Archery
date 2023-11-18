@@ -21,7 +21,7 @@ public class ArcheryEnchantments {
 	public static final EnchantmentCategory BOW = EnchantmentCategory.create("l2bows", e -> e instanceof GenericBowItem);
 
 	public static final RegistryEntry<PotionArrowEnchantment> ENCH_GLOW, ENCH_HARM, ENCH_HEAL, ENCH_FLOAT, ENCH_SLOW,
-			ENCH_LEVITATE, ENCH_POISON, ENCH_WITHER, ENCH_WEAK;
+			ENCH_LEVITATE, ENCH_POISON, ENCH_WITHER, ENCH_WEAK, ENCH_CHAOTIC, ENCH_DISTORTION;
 
 	public static final RegistryEntry<GenericBowEnchantment> ENCH_MAGNIFY, ENCH_EXPLODE, ENCH_GLOW_AIM, ENCH_EXPLOSION_BREAK;
 
@@ -47,6 +47,8 @@ public class ArcheryEnchantments {
 		ENCH_POISON = regPotion("poison", 3, "Archery - Poison Upgrade", "Inflict enemy with Poison on hit.");
 		ENCH_WITHER = regPotion("wither", 3, "Archery - Wither Upgrade", "Inflict enemy with Wither on hit.");
 		ENCH_WEAK = regPotion("weak", 5, "Archery - Weak Upgrade", "Inflict enemy with Weakenss on hit.");
+		ENCH_CHAOTIC = regPotion("chaotic", 3, "Archery - Chaotic Upgrade", "Inflict enemy with various beneficial and harmful effects.");
+		ENCH_DISTORTION = regPotion("distortion", 3, "Archery - Distortion Upgrade", "Inflict enemy with various visual-only effects.");
 	}
 
 	public static <T extends BaseBowEnchantment> RegistryEntry<T> reg(String id, int max, String def, BowEnchantmentSupplier<T> sup, String desc) {

@@ -36,7 +36,8 @@
 	},
 	"stat": {
 	  "damage": "伤害: %s",
-	  "effects": "效果:",
+	  "effects": "命中敌人施加效果:",
+	  "effects_too_many": "命中敌人施加%s种效果",
 	  "fov": "放大倍率: %s",
 	  "pull_time": "拉弓时间: %s秒",
 	  "punch": "击退: %s",

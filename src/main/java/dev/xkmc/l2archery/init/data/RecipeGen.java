@@ -580,6 +580,22 @@ public class RecipeGen {
 					.define('D', Items.END_CRYSTAL)
 					.save(pvd);
 
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_DISTORTION.get(), 1)::unlockedBy, Items.BOOK)
+					.pattern("CDC").pattern("BAB").pattern("CDC")
+					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', Items.PUFFERFISH)
+					.define('D', LCItems.GUARDIAN_EYE)
+					.save(pvd);
+
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_CHAOTIC.get(), 1)::unlockedBy, Items.BOOK)
+					.pattern("CDC").pattern("BAB").pattern("CDC")
+					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('B', Items.DRAGON_BREATH)
+					.define('C', Items.DRAGON_HEAD)
+					.define('D', LCItems.GUARDIAN_EYE)
+					.save(pvd);
+
 		}
 
 		//JEED

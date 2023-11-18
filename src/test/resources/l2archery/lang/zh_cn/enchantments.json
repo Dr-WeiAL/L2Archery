@@ -25,6 +25,10 @@
 	"magnify": "弓艺-望远镜升级",
 	"magnify.desc": "瞄准时逐步放大。只对弓艺的弓有效",
 	"explosion_break": "弓艺-爆炸破坏",
-	"explosion_break.desc": "让爆炸会破坏方块"
+	"explosion_break.desc": "让爆炸会破坏方块",
+	"chaotic": "弓艺-狂乱升级",
+	"chaotic.desc": "箭附带多种正负面药水效果，只对弓艺的弓有效",
+	"distortion": "弓艺-扭曲升级",
+	"distortion.desc": "箭附带多种只有视觉效果的药水效果，只对弓艺的弓有效"
   }
 }

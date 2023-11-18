@@ -24,6 +24,7 @@ public enum LangData {
 	STAT_SPEED("stat.speed", "Arrow Speed: %s m/s", 1, ChatFormatting.BLUE),
 	STAT_FOV("stat.fov", "Magnification: %s", 1, ChatFormatting.BLUE),
 	STAT_EFFECT("stat.effects", "Apply Effects on Hit:", 0, ChatFormatting.GREEN),
+	STAT_EFFECT_TOO_MANY("stat.effects_too_many", "Apply %s Effects on Hit", 1, ChatFormatting.GREEN),
 
 	FEATURE_INFINITY("feature.infinity", "This arrow support Infinity", 0, ChatFormatting.AQUA),
 	FEATURE_INFINITY_ADV("feature.infinity_adv", "This arrow support only Advanced Infinity", 0, ChatFormatting.AQUA),
