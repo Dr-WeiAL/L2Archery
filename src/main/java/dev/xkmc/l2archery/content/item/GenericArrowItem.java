@@ -50,11 +50,7 @@ public class GenericArrowItem extends ArrowItem {
 		int enchant = bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS);
 		int infLevel = enchant > 0 ? 1 : 0;
 		if (bow.getItem() instanceof GenericBowItem bowItem) {
-			for (var f : bowItem.getFeatures(bow).all()) {
-				if (f instanceof InfinityFeature inf) {
-					infLevel = Math.max(inf.level(), infLevel);
-				}
-			}
+			infLevel = Math.max(InfinityFeature.getLevel(bowItem.getFeatures(bow)), infLevel);
 		}
 		if (config.infLevel() == 2) {
 			return infLevel >= 1 || super.isInfinite(stack, bow, player);

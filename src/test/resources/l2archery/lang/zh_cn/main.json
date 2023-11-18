@@ -12,7 +12,7 @@
   "l2archery": {
 	"feature": {
 	  "infinity_adv": "这种箭支持高级无限",
-	  "infinity_adv_bow": "支持高级无限的箭在射出时不会消耗",
+	  "infinity_adv_bow": "药水箭和支持高级无限的箭在射出时不会消耗",
 	  "aim_flow": "让%s米内被瞄准的目标高亮显示（仅自己可见）",
 	  "ender_arrow": "射中实体时交换玩家和实体的位置。射中方块时传送",
 	  "ender_shoot": "瞄准实体射击时直接命中，未瞄准则不发射",

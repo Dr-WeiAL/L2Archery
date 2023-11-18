@@ -27,7 +27,7 @@ public enum LangData {
 
 	FEATURE_INFINITY("feature.infinity", "This arrow support Infinity", 0, ChatFormatting.AQUA),
 	FEATURE_INFINITY_ADV("feature.infinity_adv", "This arrow support only Advanced Infinity", 0, ChatFormatting.AQUA),
-	FEATURE_INFINITY_ADV_BOW("feature.infinity_adv_bow", "Arrows that support Advanced Infinity will not consume when shot", 0, null),
+	FEATURE_INFINITY_ADV_BOW("feature.infinity_adv_bow", "Tipped arrows and arrows that support Advanced Infinity will not consume when shot", 0, null),
 	FEATURE_BLEED("feature.bleed", "Stacking Bleed effect on enemy", 0, null),
 	FEATURE_NO_FALL("feature.no_fall", "Arrow will not feel gravity, but will disappear after %s seconds.", 1, null),
 	FEATURE_AIM_GLOW("feature.aim_flow", "Aimed targets within range of %s will appear glowing (only to you).", 1, null),

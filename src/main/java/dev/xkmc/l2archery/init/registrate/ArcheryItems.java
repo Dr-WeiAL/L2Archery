@@ -172,22 +172,22 @@ public class ArcheryItems {
 
 			NO_FALL_ARROW = genArrow("no_fall_arrow", 1, e -> e.add(new NoFallArrowFeature(40))).lang("Anti-Gravity Arrow").register();
 			ENDER_ARROW = genArrow("ender_arrow", 0, e -> e.add(new EnderArrowFeature())).register();
-			TNT_1_ARROW = genArrow("tnt_arrow_lv1", 0, e -> e.add(new ExplodeArrowFeature(2, true, false))).lang("Explosion Arrow").register();
+			TNT_1_ARROW = genArrow("tnt_arrow_lv1", 1, e -> e.add(new ExplodeArrowFeature(2, true, false))).lang("Explosion Arrow").register();
 			TNT_2_ARROW = genArrow("tnt_arrow_lv2", 0, e -> e.add(new ExplodeArrowFeature(4, true, false))).lang("TNT Arrow").register();
 			TNT_3_ARROW = genArrow("tnt_arrow_lv3", 0, e -> e.add(new ExplodeArrowFeature(6, true, false))).lang("End Crystal Arrow").register();
-			FIRE_1_ARROW = genArrow("fire_arrow_lv1", 0, e -> e.add(new FireArrowFeature(100))).lang("Soul Fire Arrow").register();
+			FIRE_1_ARROW = genArrow("fire_arrow_lv1", 1, e -> e.add(new FireArrowFeature(100))).lang("Soul Fire Arrow").register();
 			FIRE_2_ARROW = genArrow("fire_arrow_lv2", 0, e -> e.add(new FireArrowFeature(200))).lang("Cursed Fire Arrow").register();
-			ICE_ARROW = genArrow("frozen_arrow", 0);
-			ACID_ARROW = genArrow("acid_arrow", 0);
+			ICE_ARROW = genArrow("frozen_arrow", 1);
+			ACID_ARROW = genArrow("acid_arrow", 1);
 			DISPELL_ARROW = genArrow("dispell_arrow", 0, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(DefaultDamageState.BYPASS_MAGIC),
 					LangData.FEATURE_PIERCE_MAGIC::get
 			))).register();
-			WITHER_ARROW = genArrow("wither_arrow", 0, e -> e.add(new DamageSourceArrowFeature(
+			WITHER_ARROW = genArrow("wither_arrow", 1, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(DefaultDamageState.BYPASS_ARMOR),
 					LangData.FEATURE_PIERCE_ARMOR::get
 			))).register();
-			STORM_ARROW = genArrow("storm_arrow", 0, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
+			STORM_ARROW = genArrow("storm_arrow", 1, e -> e.add(new ExplodeArrowFeature(3, false, false))).register();
 			VOID_ARROW = genArrow("void_arrow", 0, e -> e.add(new DamageSourceArrowFeature(
 					(a, s) -> s.enable(ArcheryDamageState.BYPASS_INVUL),
 					LangData.FEATURE_PIERCE_INVUL::get

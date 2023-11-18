@@ -1,6 +1,7 @@
 2.4.11
 - allow other mobs to use bow and arrows properly
 - allow arrows to be used independently
+- advanced infinity supports tipped arrow and more L2Archery arrows
 
 2.4.10
 - add explosion breaker enchantment and upgrade

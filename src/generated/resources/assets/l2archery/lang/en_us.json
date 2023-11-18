@@ -159,7 +159,7 @@
   "l2archery.feature.flux_up": "Consume energy in place of durability loss",
   "l2archery.feature.infinity": "This arrow support Infinity",
   "l2archery.feature.infinity_adv": "This arrow support only Advanced Infinity",
-  "l2archery.feature.infinity_adv_bow": "Arrows that support Advanced Infinity will not consume when shot",
+  "l2archery.feature.infinity_adv_bow": "Tipped arrows and arrows that support Advanced Infinity will not consume when shot",
   "l2archery.feature.no_fall": "Arrow will not feel gravity, but will disappear after %s seconds.",
   "l2archery.feature.pierce_armor": "Arrow damage will pierce armor",
   "l2archery.feature.pierce_both": "Arrow damage will pierce armor and magic protection",

@@ -10,6 +10,7 @@ import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
+import dev.xkmc.l2archery.content.feature.bow.InfinityFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
@@ -145,6 +146,9 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 				no_consume |= arrowItem.isInfinite(arrow, bow, player);
 			} else {
 				no_consume = arrowIsInfinite(arrowItem, arrow, bow);
+			}
+			if (arrow.is(Items.TIPPED_ARROW) || arrow.is(Items.SPECTRAL_ARROW)) {
+				no_consume |= InfinityFeature.getLevel(getFeatures(bow)) >= 2;
 			}
 		}
 		Optional<AbstractArrow> arrowOpt = Optional.empty();
