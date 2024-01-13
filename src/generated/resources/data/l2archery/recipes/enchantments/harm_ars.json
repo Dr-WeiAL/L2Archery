@@ -1,0 +1,61 @@
+{
+  "type": "ars_nouveau:enchantment",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "enchantment": "l2archery:harm",
+  "level": 1,
+  "pedestalItems": [
+    {
+      "item": {
+        "type": "l2library:enchantment",
+        "enchantment": "minecraft:infinity",
+        "min_level": 1
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:dragon_breath"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:nether_wart"
+      }
+    }
+  ],
+  "sourceCost": 2000
+}

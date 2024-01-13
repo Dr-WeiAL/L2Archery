@@ -1,0 +1,34 @@
+{
+  "type": "ars_nouveau:enchantment",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "enchantment": "l2archery:magnify",
+  "level": 1,
+  "pedestalItems": [
+    {
+      "item": {
+        "item": "minecraft:copper_ingot"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:copper_ingot"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:copper_ingot"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:spyglass"
+      }
+    }
+  ],
+  "sourceCost": 2000
+}

@@ -1,0 +1,61 @@
+{
+  "type": "ars_nouveau:enchantment",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "enchantment": "l2archery:glow",
+  "level": 1,
+  "pedestalItems": [
+    {
+      "item": {
+        "type": "l2library:enchantment",
+        "enchantment": "minecraft:infinity",
+        "min_level": 1
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:spectral_arrow"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:spectral_arrow"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:spectral_arrow"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:spectral_arrow"
+      }
+    }
+  ],
+  "sourceCost": 2000
+}

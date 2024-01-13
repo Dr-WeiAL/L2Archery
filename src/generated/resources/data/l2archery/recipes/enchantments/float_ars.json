@@ -1,0 +1,61 @@
+{
+  "type": "ars_nouveau:enchantment",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "enchantment": "l2archery:float",
+  "level": 1,
+  "pedestalItems": [
+    {
+      "item": {
+        "type": "l2library:enchantment",
+        "enchantment": "minecraft:infinity",
+        "min_level": 1
+      }
+    },
+    {
+      "item": {
+        "item": "l2complements:captured_shulker_bullet"
+      }
+    },
+    {
+      "item": {
+        "item": "l2complements:captured_shulker_bullet"
+      }
+    },
+    {
+      "item": {
+        "item": "l2complements:captured_shulker_bullet"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:dragon_breath"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:phantom_membrane"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:phantom_membrane"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:phantom_membrane"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:phantom_membrane"
+      }
+    }
+  ],
+  "sourceCost": 2000
+}

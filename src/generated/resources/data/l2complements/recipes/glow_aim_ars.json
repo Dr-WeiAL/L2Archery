@@ -1,0 +1,49 @@
+{
+  "type": "ars_nouveau:enchantment",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "enchantment": "l2archery:glow_aim",
+  "level": 1,
+  "pedestalItems": [
+    {
+      "item": {
+        "item": "minecraft:ender_eye"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    },
+    {
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      }
+    }
+  ],
+  "sourceCost": 2000
+}
