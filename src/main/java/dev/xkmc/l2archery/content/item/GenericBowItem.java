@@ -56,7 +56,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static dev.xkmc.l2archery.init.data.TagGen.TAG_ENERGY;
+import static dev.xkmc.l2archery.init.data.ArcheryTagGen.TAG_ENERGY;
 
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget, IFluxItem {

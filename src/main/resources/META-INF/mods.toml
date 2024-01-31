@@ -26,13 +26,13 @@ Combine them for better combat experience
 [[dependencies.l2archery]]
     modId="l2library"
     mandatory=true
-    versionRange="[2.4.6,)"
+    versionRange="[2.4.23,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.l2archery]]
     modId="l2complements"
     mandatory=true
-    versionRange="[2.4.7,)"
+    versionRange="[2.4.29,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.l2archery]]

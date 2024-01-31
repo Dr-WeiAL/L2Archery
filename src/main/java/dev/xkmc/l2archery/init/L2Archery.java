@@ -10,6 +10,7 @@ import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2complements.init.data.TagGen;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.serial.config.ConfigTypeEntry;
@@ -37,7 +38,7 @@ public class L2Archery {
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
 	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
-			new ResourceLocation(L2Archery.MODID, "main"), 1
+			new ResourceLocation(L2Archery.MODID, "main"), 2
 	);
 	public static final ConfigTypeEntry<BowArrowStatConfig> STATS =
 			new ConfigTypeEntry<>(HANDLER, "stats", BowArrowStatConfig.class);
@@ -56,7 +57,8 @@ public class L2Archery {
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.ADVANCEMENT, AdvGen::genAdvancements);
-		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, TagGen::onEntityTagGen);
+		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArcheryTagGen::onEntityTagGen);
+		REGISTRATE.addDataGenerator(TagGen.EFF_TAGS, ArcheryTagGen::onEffectTagGen);
 	}
 
 	private static void registerForgeEvents() {

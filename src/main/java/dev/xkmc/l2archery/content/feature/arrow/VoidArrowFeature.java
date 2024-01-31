@@ -27,8 +27,9 @@ public class VoidArrowFeature implements OnHitFeature {
 
 	@Override
 	public void onHitLivingEntity(GenericArrowEntity genericArrow, LivingEntity target, EntityHitResult hit) {
-		if (!target.isDeadOrDying()) target.setHealth(0);
-		if (!target.isDeadOrDying()) target.kill();
+		if (target.isAlive()) target.setHealth(0);
+		if (target.isAlive()) target.kill();
+		if (target.isAlive()) target.discard();
 	}
 
 	@Override

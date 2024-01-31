@@ -76,7 +76,7 @@ public class AdvGen {
 							CriterionBuilder.item(ArcheryItems.UPGRADE.get()),
 							"Mystical Crystal", "Obtain an upgrade")
 					.create("binding", Items.ENCHANTED_BOOK,
-							CriterionBuilder.enchanted(TagGen.PROF_BOWS, Enchantments.BINDING_CURSE),
+							CriterionBuilder.enchanted(ArcheryTagGen.PROF_BOWS, Enchantments.BINDING_CURSE),
 							"Extra Slots", "Put curse of binding on a bow to increase upgrade slot")
 					.type(FrameType.CHALLENGE);
 			root.enter().create("void", LCItems.SPACE_SHARD.get(),

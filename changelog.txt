@@ -1,3 +1,9 @@
+2.4.13
+- sync arrow owner and tags to client
+
+2.4.12
+- Add ars compat
+
 2.4.11
 - allow other mobs to use bow and arrows properly
 - allow arrows to be used independently

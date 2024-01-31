@@ -22,7 +22,7 @@ import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.data.ArcheryDamageState;
 import dev.xkmc.l2archery.init.data.LangData;
-import dev.xkmc.l2archery.init.data.TagGen;
+import dev.xkmc.l2archery.init.data.ArcheryTagGen;
 import dev.xkmc.l2complements.init.materials.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
@@ -244,7 +244,7 @@ public class ArcheryItems {
 		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
 		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability), e -> new BowConfig(e, rank, f.build())))
-				.model(ArcheryItems::createBowModel).defaultLang().tag(TagGen.FORGE_BOWS, TagGen.PROF_BOWS);
+				.model(ArcheryItems::createBowModel).defaultLang().tag(ArcheryTagGen.FORGE_BOWS, ArcheryTagGen.PROF_BOWS);
 	}
 
 	private static final float[] BOW_PULL_VALS = {0, 0.65f, 0.9f};
@@ -273,7 +273,7 @@ public class ArcheryItems {
 		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
 		return REGISTRATE.item(id, p -> new GenericArrowItem(p, e -> new ArrowConfig(e, infLevel, f.build())))
-				.model(ArcheryItems::createArrowModel).tag(TagGen.FORGE_ARROWS, TagGen.PROF_ARROWS)
+				.model(ArcheryItems::createArrowModel).tag(ArcheryTagGen.FORGE_ARROWS, ArcheryTagGen.PROF_ARROWS)
 				.defaultLang();
 	}
 

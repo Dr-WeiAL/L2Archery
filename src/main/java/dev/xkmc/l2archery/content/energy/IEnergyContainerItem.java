@@ -5,7 +5,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.IEnergyStorage;
 
-import static dev.xkmc.l2archery.init.data.TagGen.TAG_ENERGY;
+import static dev.xkmc.l2archery.init.data.ArcheryTagGen.TAG_ENERGY;
 import static net.minecraft.util.Mth.clamp;
 
 

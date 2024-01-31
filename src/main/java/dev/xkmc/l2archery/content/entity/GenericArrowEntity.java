@@ -18,6 +18,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -155,6 +156,12 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	@Override
 	public void writeSpawnData(FriendlyByteBuf buffer) {
 		PacketCodec.to(buffer, data);
+		var owner = getOwner();
+		buffer.writeInt(owner == null ? -1 : owner.getId());
+		buffer.writeInt(getTags().size());
+		for (var e : getTags()) {
+			buffer.writeUtf(e);
+		}
 	}
 
 	@Override
@@ -163,6 +170,13 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		data = temp == null ? ArrowEntityData.DEFAULT : temp;
 		features = FeatureList.merge(data.bow.getFeatures(), data.arrow().getFeatures());
 		features.shot().forEach(e -> e.onClientShoot(this));
+		int id = additionalData.readInt();
+		Entity owner = id == -1 ? null : level().getEntity(id);
+		setOwner(owner);
+		int size = additionalData.readInt();
+		for (int i = 0; i < size; i++) {
+			addTag(additionalData.readUtf());
+		}
 	}
 
 	@Override
