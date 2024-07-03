@@ -1,3 +1,6 @@
+2.4.14
+- Unify itemGroup naming
+
 2.4.13
 - sync arrow owner and tags to client, Fix compatibility with FruitsDelight
 - keep up with L2Complements recipe config toggle system
