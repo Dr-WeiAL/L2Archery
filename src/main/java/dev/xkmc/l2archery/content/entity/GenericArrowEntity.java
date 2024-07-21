@@ -95,6 +95,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	public void tick() {
 		Vec3 velocity = getDeltaMovement();
 		super.tick();
+		if (hasImpulse) velocity = getDeltaMovement();
 		FlightControlFeature flight = features.flight();
 		flight.tickMotion(this, velocity);
 		if (flight.life > 0 && this.tickCount > flight.life) {
