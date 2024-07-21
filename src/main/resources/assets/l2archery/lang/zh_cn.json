@@ -97,7 +97,7 @@
   "enchantment.l2archery.chaotic.desc": "箭附带多种正负面药水效果，只对弓艺的弓有效",
   "enchantment.l2archery.distortion": "弓艺-扭曲升级",
   "enchantment.l2archery.distortion.desc": "箭附带多种只有视觉效果的药水效果，只对弓艺的弓有效",
-  "itemGroup.l2library.archery": "弓艺",
+  "itemGroup.l2library.archery": "莱特兰·弓艺",
   "entity.l2archery.generic_arrow": "箭",
   "stat_type.l2archery.damage": "伤害",
   "stat_type.l2archery.fov_time": "放大时间",
