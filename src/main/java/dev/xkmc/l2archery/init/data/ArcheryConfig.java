@@ -1,19 +1,18 @@
 package dev.xkmc.l2archery.init.data;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.IConfigSpec;
-import net.minecraftforge.fml.config.ModConfig;
-import org.apache.commons.lang3.tuple.Pair;
+import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2core.util.ConfigInit;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ArcheryConfig {
 
-	public static class Client {
+	public static class Client extends ConfigInit {
 
-		public final ForgeConfigSpec.BooleanValue showInfo;
-		public final ForgeConfigSpec.BooleanValue showArrow;
+		public final ModConfigSpec.BooleanValue showInfo;
+		public final ModConfigSpec.BooleanValue showArrow;
 
-		Client(ForgeConfigSpec.Builder builder) {
+		Client(ModConfigSpec.Builder builder) {
+			markL2();
 			showInfo = builder.comment("Show combined bow arrow stats and features when holding bow")
 					.define("showInfo", true);
 			showArrow = builder.comment("Show projectile selection")
@@ -22,39 +21,9 @@ public class ArcheryConfig {
 
 	}
 
-	public static class Common {
-
-		Common(ForgeConfigSpec.Builder builder) {
-		}
-
-	}
-
-	public static final ForgeConfigSpec CLIENT_SPEC;
-	public static final Client CLIENT;
-
-	public static final ForgeConfigSpec COMMON_SPEC;
-	public static final Common COMMON;
-
-	static {
-		final Pair<Client, ForgeConfigSpec> client = new ForgeConfigSpec.Builder().configure(Client::new);
-		CLIENT_SPEC = client.getRight();
-		CLIENT = client.getLeft();
-
-		final Pair<Common, ForgeConfigSpec> common = new ForgeConfigSpec.Builder().configure(Common::new);
-		COMMON_SPEC = common.getRight();
-		COMMON = common.getLeft();
-	}
+	public static final Client CLIENT = L2Archery.REGISTRATE.registerClient(Client::new);
 
 	public static void init() {
-		register(ModConfig.Type.CLIENT, CLIENT_SPEC);
-		register(ModConfig.Type.COMMON, COMMON_SPEC);
 	}
-
-	private static void register(ModConfig.Type type, IConfigSpec<?> spec) {
-		var mod = ModLoadingContext.get().getActiveContainer();
-		String path = "l2_configs/" + mod.getModId() + "-" + type.extension() + ".toml";
-		ModLoadingContext.get().registerConfig(type, spec, path);
-	}
-
 
 }

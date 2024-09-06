@@ -11,40 +11,36 @@ import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2complements.init.data.TagGen;
+import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
+import dev.xkmc.l2core.serial.config.ConfigTypeEntry;
+import dev.xkmc.l2core.serial.config.PacketHandlerWithConfig;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
-import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.serial.config.ConfigTypeEntry;
-import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
 import net.mehvahdjukaar.jeed.Jeed;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(L2Archery.MODID)
-@Mod.EventBusSubscriber(modid = L2Archery.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = L2Archery.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class L2Archery {
 
 	public static final String MODID = "l2archery";
 
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
-	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
-			new ResourceLocation(L2Archery.MODID, "main"), 2
-	);
+	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(MODID, 2);
 	public static final ConfigTypeEntry<BowArrowStatConfig> STATS =
 			new ConfigTypeEntry<>(HANDLER, "stats", BowArrowStatConfig.class);
 
-
-	private static void registerRegistrates(IEventBus bus) {
+	public L2Archery() {
 		ArcheryRegister.register();
 		ArcheryItems.register();
 		ArcheryEffects.register();
@@ -59,17 +55,6 @@ public class L2Archery {
 		REGISTRATE.addDataGenerator(ProviderType.ADVANCEMENT, AdvGen::genAdvancements);
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArcheryTagGen::onEntityTagGen);
 		REGISTRATE.addDataGenerator(TagGen.EFF_TAGS, ArcheryTagGen::onEffectTagGen);
-	}
-
-	private static void registerForgeEvents() {
-
-	}
-
-	public L2Archery() {
-		FMLJavaModLoadingContext ctx = FMLJavaModLoadingContext.get();
-		IEventBus bus = ctx.getModEventBus();
-		registerRegistrates(bus);
-		registerForgeEvents();
 	}
 
 	@SubscribeEvent
@@ -91,6 +76,10 @@ public class L2Archery {
 
 	@SubscribeEvent
 	public static void registerCaps(RegisterCapabilitiesEvent event) {
+	}
+
+	public static ResourceLocation loc(String id) {
+		return ResourceLocation.fromNamespaceAndPath(MODID, id);
 	}
 
 }

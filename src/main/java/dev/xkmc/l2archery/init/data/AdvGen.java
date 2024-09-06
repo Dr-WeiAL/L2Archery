@@ -6,9 +6,9 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.registrate.LCItems;
-import dev.xkmc.l2library.serial.advancements.AdvancementGenerator;
-import dev.xkmc.l2library.serial.advancements.CriterionBuilder;
-import net.minecraft.advancements.FrameType;
+import dev.xkmc.l2core.serial.advancements.AdvancementGenerator;
+import dev.xkmc.l2core.serial.advancements.CriterionBuilder;
+import net.minecraft.advancements.AdvancementType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 
@@ -32,7 +32,7 @@ public class AdvGen {
 			create(sniper, ArcheryItems.MAGNIFY_BOW,
 					"Zoom In", "Add lens to a sniper bow");
 			create(sniper, ArcheryItems.ENDER_AIM_BOW,
-					"How am I Shot?", "Craft an ender bow").type(FrameType.CHALLENGE);
+					"How am I Shot?", "Craft an ender bow").type(AdvancementType.CHALLENGE);
 
 			var iron =
 					create(start, ArcheryItems.IRON_BOW,
@@ -42,9 +42,9 @@ public class AdvGen {
 			create(create(create(iron, ArcheryItems.TURTLE_BOW,
 									"Stand Still, Shoot Stronger", "Craft a turtle bow"),
 							ArcheryItems.EARTH_BOW,
-							"Power of the Earth", "Craft the bow of the Earth").type(FrameType.GOAL),
+							"Power of the Earth", "Craft the bow of the Earth").type(AdvancementType.GOAL),
 					ArcheryItems.GAIA_BOW,
-					"Indestructable Archer", "Craft the Bless of Gaia").type(FrameType.CHALLENGE);
+					"Indestructable Archer", "Craft the Bless of Gaia").type(AdvancementType.CHALLENGE);
 
 			var master =
 					create(start, ArcheryItems.MASTER_BOW,
@@ -53,19 +53,19 @@ public class AdvGen {
 			create(create(create(master, ArcheryItems.FLAME_BOW,
 									"Magical Ignition", "Craft a blazing bow"),
 							ArcheryItems.EXPLOSION_BOW,
-							"Bow of Destruction", "Craft an explosion bow").type(FrameType.GOAL),
+							"Bow of Destruction", "Craft an explosion bow").type(AdvancementType.GOAL),
 					ArcheryItems.SUN_BOW,
-					"Descending Sun", "Craft the Bless of Helios").type(FrameType.CHALLENGE);
+					"Descending Sun", "Craft the Bless of Helios").type(AdvancementType.CHALLENGE);
 
 			create(create(master, ArcheryItems.FROZE_BOW,
 							"Watch it Shake", "Craft a freezing bow"),
 					ArcheryItems.WINTER_BOW,
-					"It's Snowing", "Craft the Ever Freezing Night").type(FrameType.GOAL);
+					"It's Snowing", "Craft the Ever Freezing Night").type(AdvancementType.GOAL);
 
 			create(create(master, ArcheryItems.STORM_BOW,
 							"Pair it with Tipped Arrow", "Craft a storm bow"),
 					ArcheryItems.WIND_BOW,
-					"Legendary Archer", "Craft the Bless of Favonius").type(FrameType.CHALLENGE);
+					"Legendary Archer", "Craft the Bless of Favonius").type(AdvancementType.CHALLENGE);
 
 			create(master, ArcheryItems.BLACKSTONE_BOW,
 					"Lock it There", "Craft the bow of seal");
@@ -78,19 +78,19 @@ public class AdvGen {
 					.create("binding", Items.ENCHANTED_BOOK,
 							CriterionBuilder.enchanted(ArcheryTagGen.PROF_BOWS, Enchantments.BINDING_CURSE),
 							"Extra Slots", "Put curse of binding on a bow to increase upgrade slot")
-					.type(FrameType.CHALLENGE);
+					.type(AdvancementType.CHALLENGE);
 			root.enter().create("void", LCItems.SPACE_SHARD.get(),
 							CriterionBuilder.item(LCItems.SPACE_SHARD.get()),
 							"Halfway Godhood", "Obtain a space shard")
-					.type(FrameType.CHALLENGE, true, true, true)
+					.type(AdvancementType.CHALLENGE, true, true, true)
 					.create("void_bow", ArcheryItems.VOID_BOW.get(),
 							CriterionBuilder.item(ArcheryItems.VOID_BOW.get()),
 							"Is this Creative Item?", "Obtain the Sight of the Void")
-					.type(FrameType.CHALLENGE)
+					.type(AdvancementType.CHALLENGE)
 					.create("void_arrow", ArcheryItems.VOID_ARROW.get(),
 							CriterionBuilder.item(ArcheryItems.VOID_ARROW.get()),
 							"Delete that Entity", "Obtain the Void Arrow")
-					.type(FrameType.CHALLENGE);
+					.type(AdvancementType.CHALLENGE);
 		}
 
 		root.finish();

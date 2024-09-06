@@ -1,7 +1,7 @@
 package dev.xkmc.l2archery.content.controller;
 
 import dev.xkmc.l2archery.content.item.GenericBowItem;
-import dev.xkmc.l2library.util.code.GenericItemStack;
+import dev.xkmc.l2library.util.GenericItemStack;
 import net.minecraft.world.entity.LivingEntity;
 
 public class BowFeatureController {

@@ -2,6 +2,7 @@ package dev.xkmc.l2archery.content.config;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
+import dev.xkmc.l2core.util.DataGenOnly;
 import dev.xkmc.l2library.util.annotation.DataGenOnly;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.enchantment.Enchantment;

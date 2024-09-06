@@ -3,8 +3,10 @@ package dev.xkmc.l2archery.content.feature.arrow;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2archery.init.data.LangData;
-import dev.xkmc.l2library.init.explosion.*;
+import dev.xkmc.l2library.content.explosion.*;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -46,7 +48,12 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 		Explosion.BlockInteraction type = breaking ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP;
 		VanillaExplosionContext mc = new VanillaExplosionContext(arrow, getSource(arrow), null, false, type);
 		ModExplosionContext mod = entity -> onExplosionHurt(arrow, entity);
-		ExplosionHandler.explode(new BaseExplosion(base, mc, mod));
+		ParticleExplosionContext particle = new ParticleExplosionContext(
+				ParticleTypes.EXPLOSION,
+				ParticleTypes.EXPLOSION_EMITTER,
+				SoundEvents.GENERIC_EXPLODE
+		);
+		ExplosionHandler.explode(new BaseExplosion(base, mc, mod, particle));
 	}
 
 	private boolean onExplosionHurt(GenericArrowEntity arrow, Entity target) {

@@ -4,8 +4,8 @@ import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.types.OnPullFeature;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.data.LangData;
-import dev.xkmc.l2library.base.effects.EffectUtil;
-import dev.xkmc.l2library.util.code.GenericItemStack;
+import dev.xkmc.l2core.base.effects.EffectUtil;
+import dev.xkmc.l2library.util.GenericItemStack;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,7 +20,7 @@ public record PullEffectFeature(List<Supplier<MobEffectInstance>> effects) imple
 	public void onPull(LivingEntity player, GenericItemStack<GenericBowItem> bow) {
 		if (player instanceof ServerPlayer) {
 			for (var eff : effects) {
-				EffectUtil.addEffect(player, eff.get(), EffectUtil.AddReason.SELF, player);
+				EffectUtil.addEffect(player, eff.get(), player);
 			}
 		}
 	}

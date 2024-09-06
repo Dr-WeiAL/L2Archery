@@ -1,7 +1,7 @@
 package dev.xkmc.l2archery.content.stats;
 
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import dev.xkmc.l2library.base.NamedEntry;
+import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 
 public class BowArrowStatType extends NamedEntry<BowArrowStatType> {
 

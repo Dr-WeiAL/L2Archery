@@ -6,7 +6,7 @@ import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.data.LangData;
-import dev.xkmc.l2library.base.effects.EffectUtil;
+import dev.xkmc.l2core.base.effects.EffectUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
@@ -37,7 +37,7 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 	@Override
 	public void postHurtEntity(GenericArrowEntity arrow, LivingEntity target) {
 		for (MobEffectInstance instance : instances) {
-			EffectUtil.addEffect(target, instance, EffectUtil.AddReason.PROF, arrow.getOwner());
+			EffectUtil.addEffect(target, instance, arrow.getOwner());
 		}
 	}
 
@@ -47,7 +47,7 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 	}
 
 	public static void addTooltip(List<MobEffectInstance> instances, List<Component> list) {
-		if (instances.size() > 5){
+		if (instances.size() > 5) {
 			list.add(LangData.STAT_EFFECT_TOO_MANY.get(instances.size()));
 			return;
 		}
@@ -61,14 +61,14 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 
 	public static MutableComponent getTooltip(MobEffectInstance eff) {
 		MutableComponent comp = Component.translatable(eff.getDescriptionId());
-		MobEffect mobeffect = eff.getEffect();
+		MobEffect mobeffect = eff.getEffect().value();
 		if (eff.getAmplifier() > 0) {
 			comp = Component.translatable("potion.withAmplifier", comp,
 					Component.translatable("potion.potency." + eff.getAmplifier()));
 		}
 		if (eff.getDuration() > 20) {
 			comp = Component.translatable("potion.withDuration", comp,
-					MobEffectUtil.formatDuration(eff, 1));
+					MobEffectUtil.formatDuration(eff, 1, 20));
 		}
 		return comp.withStyle(mobeffect.getCategory().getTooltipFormatting());
 	}

@@ -7,7 +7,7 @@ import dev.xkmc.l2archery.content.item.ArrowData;
 import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
-import dev.xkmc.l2library.util.code.GenericItemStack;
+import dev.xkmc.l2library.util.GenericItemStack;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;

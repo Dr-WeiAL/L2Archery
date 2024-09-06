@@ -21,6 +21,8 @@ import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2archery.mixin.AbstractArrowAccessor;
+import dev.xkmc.l2library.content.raytrace.FastItem;
+import dev.xkmc.l2library.content.raytrace.IGlowingTarget;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;

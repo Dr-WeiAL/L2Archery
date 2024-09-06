@@ -13,6 +13,7 @@ import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -80,14 +81,14 @@ public class BowUpgradeBuilder implements RecipeBuilder {
 		return ArcheryItems.UPGRADE.get();
 	}
 
-	public void save(Consumer<FinishedRecipe> pvd) {
+	public void save(RecipeOutput pvd) {
 		ResourceLocation id = this.upgrade.getRegistryName();
-		this.save(pvd, new ResourceLocation(id.getNamespace(), "upgrades/" + id.getPath()));
+		this.save(pvd, id.withPath("upgrades/"));
 	}
 
-	public void save(Consumer<FinishedRecipe> p_126141_, ResourceLocation p_126142_) {
+	public void save(RecipeOutput p_126141_, ResourceLocation p_126142_) {
 		this.ensureValid(p_126142_);
-		this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126142_)).rewards(AdvancementRewards.Builder.recipe(p_126142_)).requirements(RequirementsStrategy.OR);
+		this.advancement.parent( ResourceLocation.withDefaultNamespace("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126142_)).rewards(AdvancementRewards.Builder.recipe(p_126142_)).requirements(RequirementsStrategy.OR);
 		p_126141_.accept(new Result(p_126142_, this.upgrade, this.group == null ? "" : this.group, this.rows, this.key, this.advancement, new ResourceLocation(p_126142_.getNamespace(), "recipes/" + p_126142_.getPath())));
 	}
 

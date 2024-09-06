@@ -1,21 +1,16 @@
 package dev.xkmc.l2archery.init.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
-import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
+import static net.minecraft.world.item.component.ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT;
 
 public enum LangData {
 	STAT_DAMAGE("stat.damage", "Damage: %s", 1, ChatFormatting.BLUE),
@@ -96,20 +91,6 @@ public enum LangData {
 	public static void genLang(RegistrateLangProvider pvd) {
 		for (LangData lang : LangData.values()) {
 			pvd.add(lang.key, lang.def);
-		}
-		List<Item> list = List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW);
-		for (RegistryEntry<? extends Potion> ent : ArcheryEffects.POTION_LIST) {
-			for (Item item : list) {
-				String pref = item.getDescriptionId();
-				String[] prefs = pref.split("\\.");
-				String str = ent.get().getName(item.getDescriptionId() + ".effect.");
-				String[] ids = ent.get().getEffects().get(0).getDescriptionId().split("\\.");
-				String id = ids[ids.length - 1];
-				String name = ArcheryEffects.NAME_CACHE.getOrDefault(id, RegistrateLangProvider.toEnglishName(id));
-				String pref_name = RegistrateLangProvider.toEnglishName(prefs[prefs.length - 1]);
-				if (item == Items.TIPPED_ARROW) pref_name = "Arrow";
-				pvd.add(str, pref_name + " of " + name);
-			}
 		}
 	}
 

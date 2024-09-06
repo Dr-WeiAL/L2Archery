@@ -7,8 +7,10 @@ import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2core.util.ServerOnly;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.CreateSourceEvent;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import dev.xkmc.l2library.util.annotation.ServerOnly;
 import dev.xkmc.l2serial.serialization.codec.PacketCodec;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
@@ -16,6 +18,7 @@ import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.Entity;
@@ -30,9 +33,10 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 
 @FieldsAreNonnullByDefault
-public class GenericArrowEntity extends AbstractArrow implements IEntityAdditionalSpawnData {
+public class GenericArrowEntity extends AbstractArrow implements IEntityWithComplexSpawn {
 
 	public static final String TAG = "l2archery:rawShoot";
 
@@ -74,7 +78,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 			features.hit().forEach(e -> e.onHurtEntity(this, ind));
 	}
 
-	public void onHurtModification(AttackCache cache) {
+	public void onHurtModification(DamageData.Offence cache) {
 		if (!level().isClientSide())
 			features.hit().forEach(e -> e.onHurtModifier(this, cache));
 	}
@@ -136,7 +140,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	@Override
 	public void addAdditionalSaveData(CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
-		Tag data_tag = TagCodec.valueToTag(data);
+		Tag data_tag = new TagCodec(level().registryAccess()).valueToTag(ArrowEntityData.class, data);
 		if (data_tag != null) {
 			tag.put(L2Archery.MODID, data_tag);
 		}
@@ -148,14 +152,14 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		super.readAdditionalSaveData(tag);
 		if (tag.contains(L2Archery.MODID)) {
 			CompoundTag data_tag = tag.getCompound(L2Archery.MODID);
-			ArrowEntityData temp = TagCodec.valueFromTag(data_tag, ArrowEntityData.class);
+			ArrowEntityData temp = new TagCodec(level().registryAccess()).valueFromTag(data_tag, ArrowEntityData.class);
 			data = temp == null ? ArrowEntityData.DEFAULT : temp;
 		}
 		features = FeatureList.merge(data.bow.getFeatures(), data.arrow().getFeatures());
 	}
 
 	@Override
-	public void writeSpawnData(FriendlyByteBuf buffer) {
+	public void writeSpawnData(RegistryFriendlyByteBuf buffer) {
 		PacketCodec.to(buffer, data);
 		var owner = getOwner();
 		buffer.writeInt(owner == null ? -1 : owner.getId());
@@ -166,7 +170,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 	}
 
 	@Override
-	public void readSpawnData(FriendlyByteBuf additionalData) {
+	public void readSpawnData(RegistryFriendlyByteBuf additionalData) {
 		ArrowEntityData temp = PacketCodec.from(additionalData, ArrowEntityData.class, null);
 		data = temp == null ? ArrowEntityData.DEFAULT : temp;
 		features = FeatureList.merge(data.bow.getFeatures(), data.arrow().getFeatures());
@@ -178,11 +182,6 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityAddition
 		for (int i = 0; i < size; i++) {
 			addTag(additionalData.readUtf());
 		}
-	}
-
-	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 }

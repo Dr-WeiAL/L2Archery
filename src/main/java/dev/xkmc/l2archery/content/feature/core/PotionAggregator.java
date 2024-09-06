@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.content.feature.core;
 
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 
@@ -7,7 +8,7 @@ import java.util.*;
 
 public class PotionAggregator {
 
-	private final Map<MobEffect, TreeMap<Integer, MobEffectInstance>> map = new LinkedHashMap<>();
+	private final Map<Holder<MobEffect>, TreeMap<Integer, MobEffectInstance>> map = new LinkedHashMap<>();
 
 	public void add(MobEffectInstance ins) {
 		TreeMap<Integer, MobEffectInstance> sub = map.computeIfAbsent(ins.getEffect(), e -> new TreeMap<>());

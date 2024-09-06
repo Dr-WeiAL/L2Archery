@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.content.config;
 
+import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
@@ -8,11 +9,19 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
+import dev.xkmc.l2core.serial.config.BaseConfig;
+import dev.xkmc.l2core.serial.config.CollectType;
+import dev.xkmc.l2core.serial.config.ConfigCollect;
+import dev.xkmc.l2core.util.DataGenOnly;
 import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2library.util.annotation.DataGenOnly;
 import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
@@ -28,32 +37,32 @@ public class BowArrowStatConfig extends BaseConfig {
 	}
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	@SerialClass.SerialField
+	@SerialField
 	public HashMap<Item, HashMap<BowArrowStatType, Double>> bow_stats = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	@SerialClass.SerialField
+	@SerialField
 	public HashMap<Item, HashMap<BowArrowStatType, Double>> arrow_stats = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	@SerialClass.SerialField
-	public HashMap<Item, HashMap<MobEffect, ConfigEffect>> bow_effects = new HashMap<>();
+	@SerialField
+	public HashMap<Item, HashMap<Holder<MobEffect>, ConfigEffect>> bow_effects = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	@SerialClass.SerialField
-	public HashMap<Item, HashMap<MobEffect, ConfigEffect>> arrow_effects = new HashMap<>();
+	@SerialField
+	public HashMap<Item, HashMap<Holder<MobEffect>, ConfigEffect>> arrow_effects = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	@SerialClass.SerialField
-	public HashMap<Enchantment, HashMap<MobEffect, EnchantmentConfigEffect>> enchantment_effects = new HashMap<>();
+	@SerialField
+	public HashMap<Enchantment, HashMap<Holder<MobEffect>, EnchantmentConfigEffect>> enchantment_effects = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	@SerialClass.SerialField
-	public HashMap<Upgrade, HashMap<MobEffect, ConfigEffect>> upgrade_effects = new HashMap<>();
+	@SerialField
+	public HashMap<Upgrade, HashMap<Holder<MobEffect>, ConfigEffect>> upgrade_effects = new HashMap<>();
 
 	private final HashMap<ConfigIdentifier, PotionArrowFeature> potion_cache = new HashMap<>();
 
-	private <T> PotionArrowFeature getEffects(T upgrade, HashMap<T, HashMap<MobEffect, ConfigEffect>> config) {
+	private <T> PotionArrowFeature getEffects(T upgrade, HashMap<T, HashMap<Holder<MobEffect>, ConfigEffect>> config) {
 		ConfigIdentifier id = new ConfigIdentifier(upgrade, 0);
 		if (potion_cache.containsKey(id)) return potion_cache.get(id);
 		var map = config.get(upgrade);
@@ -98,22 +107,22 @@ public class BowArrowStatConfig extends BaseConfig {
 	}
 
 	@DataGenOnly
-	public BowBuilder putBow(RegistryEntry<GenericBowItem> bow) {
+	public BowBuilder putBow(ItemEntry<GenericBowItem> bow) {
 		return new BowBuilder(this, bow);
 	}
 
 	@DataGenOnly
-	public ArrowBuilder putArrow(RegistryEntry<GenericArrowItem> arrow) {
+	public ArrowBuilder putArrow(ItemEntry<GenericArrowItem> arrow) {
 		return new ArrowBuilder(this, arrow);
 	}
 
 	@DataGenOnly
-	public EnchBuilder putEnchantment(RegistryEntry<PotionArrowEnchantment> arrow) {
+	public EnchBuilder putEnchantment(SimpleEntry<PotionArrowEnchantment> arrow) {
 		return new EnchBuilder(this, arrow);
 	}
 
 	@DataGenOnly
-	public UpgradeBuilder putUpgrade(RegistryEntry<Upgrade> arrow) {
+	public UpgradeBuilder putUpgrade(SimpleEntry<Upgrade> arrow) {
 		return new UpgradeBuilder(this, arrow);
 	}
 

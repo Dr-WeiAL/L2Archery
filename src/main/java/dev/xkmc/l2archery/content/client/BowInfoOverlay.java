@@ -4,6 +4,8 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.item.*;
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.data.LangData;
+import dev.xkmc.l2itemselector.overlay.InfoSideBar;
+import dev.xkmc.l2itemselector.overlay.SideBar;
 import dev.xkmc.l2library.base.overlay.InfoSideBar;
 import dev.xkmc.l2library.base.overlay.SideBar;
 import dev.xkmc.l2library.util.Proxy;
@@ -28,7 +30,7 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 		public boolean shouldRefreshIdle(SideBar<?> sideBar, @Nullable BowInfoOverlay.BowStackSignature old) {
 			if (old == null) return true;
 			if (sel != old.sel) return true;
-			return !ItemStack.isSameItemSameTags(bow, old.bow);
+			return !ItemStack.isSameItemSameComponents(bow, old.bow);
 		}
 	}
 

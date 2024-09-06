@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.content.config;
 
+import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
@@ -9,7 +10,7 @@ import net.minecraft.world.item.Item;
 @DataGenOnly
 public class BowBuilder extends BaseStatBuilder<BowBuilder, GenericBowItem, Item> {
 
-	BowBuilder(BowArrowStatConfig config, RegistryEntry<GenericBowItem> bow) {
+	BowBuilder(BowArrowStatConfig config, ItemEntry<GenericBowItem> bow) {
 		super(config, config.bow_effects, config.bow_stats, bow);
 	}
 

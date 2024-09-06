@@ -5,7 +5,6 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.*;
 import dev.xkmc.l2archery.content.feature.bow.*;
@@ -21,21 +20,22 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.data.ArcheryDamageState;
-import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.data.ArcheryTagGen;
+import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2complements.init.materials.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
+import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
+import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
-import dev.xkmc.l2library.base.L2Registrate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class ArcheryItems {
 
 	public static final List<GenericBowItem> BOW_LIKE = new ArrayList<>();
 
-	private static final RegistryEntry<CreativeModeTab> TAB;
+	private static final SimpleEntry<CreativeModeTab> TAB;
 
 	static {
 		TAB = REGISTRATE.buildL2CreativeTab("archery", "L2 Archery", b -> b
@@ -67,7 +67,7 @@ public class ArcheryItems {
 
 	public static final ItemEntry<UpgradeItem> UPGRADE;
 
-	public static final RegistryEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
+	public static final SimpleEntry<Upgrade> GLOW_UP, NO_FALL_UP, FIRE_UP, ICE_UP, EXPLOSION_UP, ENDER_UP,
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
 			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP, FLOAT_UP, SLOW_UP, POISON_UP, WITHER_UP, WEAK_UP, CORROSION_UP,
 			CURSE_UP, CLEANSE_UP, ADVANCED_INFINITY, EXPLOSION_BREAKER;
@@ -123,7 +123,7 @@ public class ArcheryItems {
 					.add(new ExplodeArrowFeature(3, false, false)))
 					.lang("Ever Freezing Night").register();
 			GAIA_BOW = genBow("gaia_bow", 3, 600, e -> e.add(new PullEffectFeature(List.of(
-					() -> new MobEffectInstance(LCEffects.STONE_CAGE.get(), 80, 0),
+					() -> new MobEffectInstance(LCEffects.INCARCERATE, 80, 0),
 					() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 4)
 			)))).lang("Bless of Gaia").register();
 			VOID_BOW = genBow("void_bow", 3, 300, e -> e.add(new EnderShootFeature(128))
@@ -154,7 +154,7 @@ public class ArcheryItems {
 							(a, s) -> {
 								LCMats.POSEIDITE.getExtraToolConfig().onDamage(s, ItemStack.EMPTY);
 								if (a.isInWaterRainOrBubble()) {
-									s.addHurtModifier(DamageModifier.multAttr(1.5f));
+									s.addHurtModifier(DamageModifier.multAttr(1.5f, L2Archery.loc("poseidite_arrow")));
 								}
 							},
 							list -> LCMats.POSEIDITE.getExtraToolConfig().addTooltip(ItemStack.EMPTY, list)))
@@ -257,9 +257,9 @@ public class ArcheryItems {
 			ItemModelBuilder ret = pvd.getBuilder("item/bow/" + name).parent(new ModelFile.UncheckedModelFile("minecraft:item/bow_pulling_" + i));
 			ret.texture("layer0", "item/bow/" + name);
 			ItemModelBuilder.OverrideBuilder override = builder.override();
-			override.predicate(new ResourceLocation("pulling"), 1);
+			override.predicate(ResourceLocation.withDefaultNamespace("pulling"), 1);
 			if (BOW_PULL_VALS[i] > 0)
-				override.predicate(new ResourceLocation("pull"), BOW_PULL_VALS[i]);
+				override.predicate(ResourceLocation.withDefaultNamespace("pull"), BOW_PULL_VALS[i]);
 			override.model(new ModelFile.UncheckedModelFile(L2Archery.MODID + ":item/bow/" + name));
 		}
 	}
@@ -278,15 +278,15 @@ public class ArcheryItems {
 	}
 
 	public static <T extends GenericArrowItem> void createArrowModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd) {
-		pvd.generated(ctx, new ResourceLocation(L2Archery.MODID, "item/arrow/" + ctx.getName()));
+		pvd.generated(ctx, L2Archery.loc("item/arrow/" + ctx.getName()));
 	}
 
-	public static RegistryEntry<Upgrade> genUpgrade(String str, Supplier<BowArrowFeature> sup) {
-		return REGISTRATE.generic(ArcheryRegister.UPGRADE, str, () -> new Upgrade(sup)).defaultLang().register();
+	public static SimpleEntry<Upgrade> genUpgrade(String str, Supplier<BowArrowFeature> sup) {
+		return new SimpleEntry<>(REGISTRATE.generic(ArcheryRegister.UPGRADE, str, () -> new Upgrade(sup)).defaultLang().register());
 	}
 
-	public static RegistryEntry<Upgrade> genPotionUpgrade(String str) {
-		return REGISTRATE.generic(ArcheryRegister.UPGRADE, str, () -> new Upgrade(PotionArrowFeature::fromUpgradeConfig)).defaultLang().register();
+	public static SimpleEntry<Upgrade> genPotionUpgrade(String str) {
+		return new SimpleEntry<>(REGISTRATE.generic(ArcheryRegister.UPGRADE, str, () -> new Upgrade(PotionArrowFeature::fromUpgradeConfig)).defaultLang().register());
 	}
 
 }
