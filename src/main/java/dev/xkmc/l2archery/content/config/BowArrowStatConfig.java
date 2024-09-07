@@ -1,7 +1,6 @@
 package dev.xkmc.l2archery.content.config;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.item.GenericArrowItem;
@@ -9,16 +8,13 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
+import dev.xkmc.l2core.init.reg.ench.EnchVal;
+import dev.xkmc.l2core.init.reg.ench.LegacyEnchantment;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2core.serial.config.BaseConfig;
 import dev.xkmc.l2core.serial.config.CollectType;
 import dev.xkmc.l2core.serial.config.ConfigCollect;
 import dev.xkmc.l2core.util.DataGenOnly;
-import dev.xkmc.l2library.serial.config.BaseConfig;
-import dev.xkmc.l2library.serial.config.CollectType;
-import dev.xkmc.l2library.serial.config.ConfigCollect;
-import dev.xkmc.l2library.util.annotation.DataGenOnly;
-import dev.xkmc.l2serial.serialization.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.core.Holder;
@@ -54,7 +50,7 @@ public class BowArrowStatConfig extends BaseConfig {
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialField
-	public HashMap<Enchantment, HashMap<Holder<MobEffect>, EnchantmentConfigEffect>> enchantment_effects = new HashMap<>();
+	public HashMap<LegacyEnchantment, HashMap<Holder<MobEffect>, EnchantmentConfigEffect>> enchantment_effects = new HashMap<>();
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialField
@@ -117,7 +113,7 @@ public class BowArrowStatConfig extends BaseConfig {
 	}
 
 	@DataGenOnly
-	public EnchBuilder putEnchantment(SimpleEntry<PotionArrowEnchantment> arrow) {
+	public EnchBuilder putEnchantment(EnchVal.Legacy<PotionArrowEnchantment> arrow) {
 		return new EnchBuilder(this, arrow);
 	}
 

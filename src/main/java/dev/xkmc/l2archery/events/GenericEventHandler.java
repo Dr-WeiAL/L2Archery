@@ -15,16 +15,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ComputeFovModifierEvent;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.GrindstoneEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
+import net.neoforged.neoforge.event.AnvilUpdateEvent;
+import net.neoforged.neoforge.event.GrindstoneEvent;
 
 import java.util.Set;
 import java.util.TreeSet;
 
-@Mod.EventBusSubscriber(modid = L2Archery.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = L2Archery.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class GenericEventHandler {
 
 	@OnlyIn(Dist.CLIENT)
@@ -37,7 +37,7 @@ public class GenericEventHandler {
 		if (stack.getItem() instanceof GenericBowItem bow) {
 			float f = event.getFovModifier();
 			float i = player.getTicksUsingItem();
-			MobEffectInstance ins = player.getEffect(ArcheryEffects.QUICK_PULL.get());
+			MobEffectInstance ins = player.getEffect(ArcheryEffects.QUICK_PULL);
 			if (ins != null) {
 				i *= 1.5 + 0.5 * ins.getAmplifier();
 			}
@@ -90,7 +90,7 @@ public class GenericEventHandler {
 	public static void onGrind(GrindstoneEvent.OnPlaceItem event) {
 		if (event.getTopItem().getItem() instanceof GenericBowItem bow) {
 			ItemStack copy = event.getTopItem().copy();
-			if (GenericBowItem.getUpgrades(copy).size() > 0) {
+			if (!GenericBowItem.getUpgrades(copy).isEmpty()) {
 				copy.getOrCreateTag().remove(GenericBowItem.KEY);
 				GenericBowItem.remakeEnergy(copy);
 				event.setOutput(copy);

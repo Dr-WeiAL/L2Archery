@@ -7,17 +7,17 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RegisterItemDecorationsEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = L2Archery.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(value = Dist.CLIENT, modid = L2Archery.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class L2ArcheryClient {
 
 	@SubscribeEvent
@@ -27,8 +27,11 @@ public class L2ArcheryClient {
 
 	public static void registerItemProperties() {
 		for (GenericBowItem bow : ArcheryItems.BOW_LIKE) {
-			ItemProperties.register(bow, new ResourceLocation("pull"), (stack, level, entity, i) -> entity == null || entity.getUseItem() != stack ? 0.0F : bow.getPullForTime(entity, stack.getUseDuration() - entity.getUseItemRemainingTicks()));
-			ItemProperties.register(bow, new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+			ItemProperties.register(bow, ResourceLocation.withDefaultNamespace("pull"),
+					(stack, level, entity, i) -> entity == null || entity.getUseItem() != stack ? 0.0F :
+							bow.getPullForTime(entity, stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()));
+			ItemProperties.register(bow, ResourceLocation.withDefaultNamespace("pulling"),
+					(stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 		}
 	}
 
@@ -45,9 +48,9 @@ public class L2ArcheryClient {
 	}
 
 	@SubscribeEvent
-	public static void registerOverlays(RegisterGuiOverlaysEvent event) {
-		event.registerAbove(VanillaGuiOverlay.CROSSHAIR.id(), "arrow", new ArrowDisplayOverlay());
-		event.registerBelow(VanillaGuiOverlay.HOTBAR.id(), "info", new BowInfoOverlay());
+	public static void registerOverlays(RegisterGuiLayersEvent event) {
+		event.registerAbove(VanillaGuiLayers.CROSSHAIR, L2Archery.loc("arrow"), new ArrowDisplayOverlay());
+		event.registerBelow(VanillaGuiLayers.HOTBAR, L2Archery.loc("info"), new BowInfoOverlay());
 	}
 
 	@SubscribeEvent

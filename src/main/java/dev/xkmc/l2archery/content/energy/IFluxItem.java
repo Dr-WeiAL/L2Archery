@@ -8,21 +8,21 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.extensions.IForgeItem;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.ItemCapability;
+import net.neoforged.neoforge.common.extensions.IItemExtension;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
 
-public interface IFluxItem extends IEnergyContainerItem, IForgeItem {
+public interface IFluxItem extends IEnergyContainerItem, IItemExtension {
 
-	default Capability<? extends IEnergyStorage> getEnergyCapability() {
-		return ForgeCapabilities.ENERGY;
+	default ItemCapability<IEnergyStorage, @Nullable Void> getEnergyCapability() {
+		return Capabilities.EnergyStorage.ITEM;
 	}
 
 	@Nullable

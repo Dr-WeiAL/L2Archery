@@ -1,8 +1,6 @@
 package dev.xkmc.l2archery.init.registrate;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.enchantment.BaseBowEnchantment;
-import dev.xkmc.l2archery.content.enchantment.BowEnchantmentSupplier;
 import dev.xkmc.l2archery.content.enchantment.GenericBowEnchantment;
 import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
@@ -10,20 +8,22 @@ import dev.xkmc.l2archery.content.feature.arrow.ExplodeArrowFeature;
 import dev.xkmc.l2archery.content.feature.arrow.ExplosionBreakFeature;
 import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
-import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.L2Archery;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import dev.xkmc.l2archery.init.data.ArcheryTagGen;
+import dev.xkmc.l2core.init.reg.ench.EnchReg;
+import dev.xkmc.l2core.init.reg.ench.EnchVal;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ArcheryEnchantments {
 
-	public static final EnchantmentCategory BOW = EnchantmentCategory.create("l2bows", e -> e instanceof GenericBowItem);
+	private static final EnchReg REG = EnchReg.of(L2Archery.REG, L2Archery.REGISTRATE);
 
-	public static final RegistryEntry<PotionArrowEnchantment> ENCH_GLOW, ENCH_HARM, ENCH_HEAL, ENCH_FLOAT, ENCH_SLOW,
+	public static final EnchVal.Legacy<PotionArrowEnchantment> ENCH_GLOW, ENCH_HARM, ENCH_HEAL, ENCH_FLOAT, ENCH_SLOW,
 			ENCH_LEVITATE, ENCH_POISON, ENCH_WITHER, ENCH_WEAK, ENCH_CHAOTIC, ENCH_DISTORTION;
 
-	public static final RegistryEntry<GenericBowEnchantment> ENCH_MAGNIFY, ENCH_EXPLODE, ENCH_GLOW_AIM, ENCH_EXPLOSION_BREAK;
+	public static final EnchVal.Legacy<GenericBowEnchantment> ENCH_MAGNIFY, ENCH_EXPLODE, ENCH_GLOW_AIM, ENCH_EXPLOSION_BREAK;
 
 	static {
 		ENCH_MAGNIFY = regStat("magnify", 3, "Archery - Magnify Upgrade",
@@ -51,15 +51,15 @@ public class ArcheryEnchantments {
 		ENCH_DISTORTION = regPotion("distortion", 3, "Archery - Distortion Upgrade", "Inflict enemy with various visual-only effects.");
 	}
 
-	public static <T extends BaseBowEnchantment> RegistryEntry<T> reg(String id, int max, String def, BowEnchantmentSupplier<T> sup, String desc) {
-		return L2Archery.REGISTRATE.enchantment(id, BOW, (a, b, c) -> sup.get(a, b, c, max), desc).lang(def).register();
+	public static <T extends BaseBowEnchantment> EnchVal.Legacy<T> reg(String id, int max, String def, Supplier<T> sup, String desc) {
+		return REG.enchLegacy(id, def, desc, b -> b.items(ArcheryTagGen.PROF_BOWS).maxLevel(max), sup);
 	}
 
-	public static RegistryEntry<GenericBowEnchantment> regStat(String id, int max, String def, Function<Integer, BowArrowFeature> func, String desc) {
-		return reg(id, max, def, (a, b, c, m) -> new GenericBowEnchantment(a, b, c, m, func), desc);
+	public static EnchVal.Legacy<GenericBowEnchantment> regStat(String id, int max, String def, Function<Integer, BowArrowFeature> func, String desc) {
+		return reg(id, max, def, () -> new GenericBowEnchantment(max, func), desc);
 	}
 
-	public static RegistryEntry<PotionArrowEnchantment> regPotion(String id, int max, String def, String desc) {
+	public static EnchVal.Legacy<PotionArrowEnchantment> regPotion(String id, int max, String def, String desc) {
 		return reg(id, max, def, PotionArrowEnchantment::new, desc + " Works only on L2Archery Bows.");
 	}
 

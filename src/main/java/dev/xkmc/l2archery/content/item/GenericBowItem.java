@@ -21,14 +21,14 @@ import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2archery.mixin.AbstractArrowAccessor;
+import dev.xkmc.l2core.init.reg.ench.EnchHelper;
+import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2library.content.raytrace.FastItem;
 import dev.xkmc.l2library.content.raytrace.IGlowingTarget;
-import dev.xkmc.l2library.util.Proxy;
-import dev.xkmc.l2library.util.code.GenericItemStack;
+import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
-import dev.xkmc.l2library.util.raytrace.FastItem;
-import dev.xkmc.l2library.util.raytrace.IGlowingTarget;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -49,6 +49,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -125,11 +126,11 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	public Optional<AbstractArrow> releaseUsingAndShootArrow(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
 		boolean instabuild = user instanceof Player pl && pl.getAbilities().instabuild;
 		BowFeatureController.stopUsing(user, new GenericItemStack<>(this, bow));
-		boolean has_inf = instabuild || bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS) > 0;
+		boolean has_inf = instabuild || EnchHelper.getLv(bow, Enchantments.INFINITY) > 0;
 		ItemStack arrow = user.getProjectile(bow);
 		int pull_time = this.getUseDuration(bow) - remaining_pull_time;
 		if (user instanceof Player player) {
-			pull_time = ForgeEventFactory.onArrowLoose(bow, level, player, pull_time, !arrow.isEmpty() || has_inf);
+			pull_time = EventHooks.onArrowLoose(bow, level, player, pull_time, !arrow.isEmpty() || has_inf);
 		}
 		if (pull_time < 0) return Optional.empty();
 		if (arrow.isEmpty() && !has_inf) {
@@ -195,17 +196,17 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 				abstractarrow.setCritArrow(true);
 			}
 
-			int j = bow.getEnchantmentLevel(Enchantments.POWER_ARROWS);
+			int j = EnchHelper.getLv(bow, Enchantments.POWER);
 			if (j > 0) {
 				abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + (double) j * 0.5D + 0.5D);
 			}
 
-			int k = bow.getEnchantmentLevel(Enchantments.PUNCH_ARROWS);
+			int k = EnchHelper.getLv(bow, Enchantments.PUNCH);
 			if (k > 0) {
 				abstractarrow.setKnockback(k);
 			}
 
-			if (bow.getEnchantmentLevel(Enchantments.FLAMING_ARROWS) > 0) {
+			if (EnchHelper.getLv(bow, Enchantments.FLAME) > 0) {
 				abstractarrow.setSecondsOnFire(100);
 			}
 			if (no_consume) {
@@ -215,7 +216,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		if (abstractarrow == null) {
 			return Optional.empty();
 		}
-		bow.hurtAndBreak(1, player, (pl) -> pl.broadcastBreakEvent(player.getUsedItemHand()));
+		bow.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
 		return Optional.of(abstractarrow);
 	}
 
@@ -337,7 +338,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 
 	@Override
 	public boolean isFast(ItemStack stack) {
-		if (Proxy.getPlayer().hasEffect(ArcheryEffects.RUN_BOW.get()))
+		if (Proxy.getPlayer().hasEffect(ArcheryEffects.RUN_BOW))
 			return true;
 		return config.feature().stream().anyMatch(e -> e instanceof WindBowFeature);
 	}
@@ -400,9 +401,9 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		if (enchantment == Enchantments.BINDING_CURSE) return true;
-		return super.canApplyAtEnchantingTable(stack, enchantment);
+	public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
+		if (enchantment.is(Enchantments.BINDING_CURSE)) return true;
+		return super.isPrimaryItemFor(stack, enchantment);
 	}
 
 	@Override
@@ -411,7 +412,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	public int getUpgradeSlot(ItemStack stack) {
-		return config.rank() + getEnchantmentLevel(stack, Enchantments.BINDING_CURSE) - getUpgrades(stack).size();
+		return config.rank() + EnchHelper.getLv(stack, Enchantments.BINDING_CURSE) - getUpgrades(stack).size();
 	}
 
 	public static void remakeEnergy(ItemStack stack) {

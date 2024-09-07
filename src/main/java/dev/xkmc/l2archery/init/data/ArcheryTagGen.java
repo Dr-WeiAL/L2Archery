@@ -1,5 +1,6 @@
 package dev.xkmc.l2archery.init.data;
 
+import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
@@ -32,4 +33,7 @@ public class ArcheryTagGen {
 				ArcheryEffects.RUN_BOW.get());
 	}
 
+	public static void genItemTag(RegistrateItemTagsProvider pvd) {
+
+	}
 }

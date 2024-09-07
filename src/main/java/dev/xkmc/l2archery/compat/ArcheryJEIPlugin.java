@@ -7,7 +7,7 @@ import dev.xkmc.l2archery.events.GenericEventHandler;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import dev.xkmc.l2library.base.NamedEntry;
+import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
@@ -25,9 +25,9 @@ import java.util.Optional;
 @JeiPlugin
 public class ArcheryJEIPlugin implements IModPlugin {
 
-	public static final ResourceLocation ID = new ResourceLocation(L2Archery.MODID, "main");
+	public static final ResourceLocation ID = L2Archery.loc("main");
 
-	public static final ResourceLocation NONE = new ResourceLocation(L2Archery.MODID, "empty");
+	public static final ResourceLocation NONE = L2Archery.loc("empty");
 
 
 	@Override
@@ -49,7 +49,7 @@ public class ArcheryJEIPlugin implements IModPlugin {
 	}
 
 	private void addUpgradeRecipes(List<IJeiAnvilRecipe> recipes, IVanillaRecipeFactory factory) {
-		for (Upgrade upgrade : ArcheryRegister.UPGRADE.get().getValues()) {
+		for (Upgrade upgrade : ArcheryRegister.UPGRADE.get()) {
 			ItemStack stack = ArcheryItems.UPGRADE.asStack();
 			UpgradeItem.setUpgrade(stack, upgrade);
 			for (GenericBowItem bow : ArcheryItems.BOW_LIKE) {

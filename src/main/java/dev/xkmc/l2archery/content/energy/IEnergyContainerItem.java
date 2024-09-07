@@ -2,8 +2,9 @@ package dev.xkmc.l2archery.content.energy;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.capabilities.ItemCapability;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import org.jetbrains.annotations.Nullable;
 
 import static dev.xkmc.l2archery.init.data.ArcheryTagGen.TAG_ENERGY;
 import static net.minecraft.util.Mth.clamp;
@@ -18,7 +19,7 @@ import static net.minecraft.util.Mth.clamp;
  */
 public interface IEnergyContainerItem {
 
-	Capability<? extends IEnergyStorage> getEnergyCapability();
+	ItemCapability<IEnergyStorage, @Nullable Void> getEnergyCapability();
 
 	int getExtract(ItemStack container);
 

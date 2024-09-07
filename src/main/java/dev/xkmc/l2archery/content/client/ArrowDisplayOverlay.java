@@ -2,17 +2,18 @@ package dev.xkmc.l2archery.content.client;
 
 import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2library.util.Proxy;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-public class ArrowDisplayOverlay implements IGuiOverlay {
+public class ArrowDisplayOverlay implements LayeredDraw.Layer {
 
 	@Override
-	public void render(ForgeGui gui, GuiGraphics g, float partialTick, int width, int height) {
+	public void render(GuiGraphics g, DeltaTracker deltaTracker) {
 		LocalPlayer player = Proxy.getClientPlayer();
 		if (player == null) return;
 		if (!ArcheryConfig.CLIENT.showArrow.get()) return;

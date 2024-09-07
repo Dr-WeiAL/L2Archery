@@ -1,10 +1,9 @@
 package dev.xkmc.l2archery.events;
 
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.AttackListener;
 import dev.xkmc.l2damagetracker.contents.attack.CreateSourceEvent;
-import net.minecraft.world.item.ItemStack;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 
 public class ArrowAttackListener implements AttackListener {
 
@@ -16,8 +15,8 @@ public class ArrowAttackListener implements AttackListener {
 	}
 
 	@Override
-	public void onHurt(AttackCache cache, ItemStack weapon) {
-		if (cache.getLivingHurtEvent().getSource().getDirectEntity() instanceof GenericArrowEntity gen) {
+	public void onHurt(DamageData.Offence cache) {
+		if (cache.getSource().getDirectEntity() instanceof GenericArrowEntity gen) {
 			gen.onHurtModification(cache);
 		}
 	}

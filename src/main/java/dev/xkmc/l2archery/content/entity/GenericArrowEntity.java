@@ -8,19 +8,14 @@ import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2core.util.ServerOnly;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.CreateSourceEvent;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
-import dev.xkmc.l2library.util.annotation.ServerOnly;
 import dev.xkmc.l2serial.serialization.codec.PacketCodec;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,8 +26,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.entity.IEntityAdditionalSpawnData;
-import net.minecraftforge.network.NetworkHooks;
 import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 
 @FieldsAreNonnullByDefault
@@ -60,8 +53,8 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityWithComp
 		super(type, level);
 	}
 
-	public GenericArrowEntity(Level level, LivingEntity user, ArrowEntityData data, FeatureList features) {
-		super(ArcheryRegister.ET_ARROW.get(), user, level);
+	public GenericArrowEntity(Level level, LivingEntity user, ArrowEntityData data, FeatureList features, ItemStack bowStack) {
+		super(ArcheryRegister.ET_ARROW.get(), user, level, data.arrow.stack(), bowStack);
 		this.data = data;
 		this.features = features;
 	}
@@ -81,6 +74,11 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityWithComp
 	public void onHurtModification(DamageData.Offence cache) {
 		if (!level().isClientSide())
 			features.hit().forEach(e -> e.onHurtModifier(this, cache));
+	}
+
+	@Override
+	protected ItemStack getDefaultPickupItem() {
+		return data.arrow().stack();
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2library.serial.ingredients.EnchantmentIngredient;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import dev.xkmc.l2serial.serialization.codec.JsonCodec;
@@ -14,6 +15,7 @@ import dev.xkmc.l2serial.serialization.codec.PacketCodec;
 import dev.xkmc.l2serial.util.Wrappers;
 import net.mehvahdjukaar.jeed.recipes.EffectProviderRecipe;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -31,16 +33,16 @@ import java.util.function.Function;
 public class JeedHelper {
 
 	public enum JeedType {
-		BOW(id -> BowArrowStatConfig.get().getBowEffects(Wrappers.cast(ForgeRegistries.ITEMS.getValue(id)))
+		BOW(id -> BowArrowStatConfig.get().getBowEffects(Wrappers.cast(BuiltInRegistries.ITEM.get(id)))
 				.instances().stream().map(MobEffectInstance::getEffect).toList(),
-				id -> Ingredient.of(ForgeRegistries.ITEMS.getValue(id))),
-		ARROW(id -> BowArrowStatConfig.get().getArrowEffects(Wrappers.cast(ForgeRegistries.ITEMS.getValue(id)))
+				id -> Ingredient.of(BuiltInRegistries.ITEM.get(id))),
+		ARROW(id -> BowArrowStatConfig.get().getArrowEffects(Wrappers.cast(BuiltInRegistries.ITEM.get(id)))
 				.instances().stream().map(MobEffectInstance::getEffect).toList(),
-				id -> Ingredient.of(ForgeRegistries.ITEMS.getValue(id))),
+				id -> Ingredient.of(BuiltInRegistries.ITEM.get(id))),
 		UPGRADE(id -> BowArrowStatConfig.get().getUpgradeEffects(Wrappers.cast(ArcheryRegister.UPGRADE.get().getValue(id)))
 				.instances().stream().map(MobEffectInstance::getEffect).toList(),
 				id -> Ingredient.of(UpgradeItem.setUpgrade(ArcheryItems.UPGRADE.asStack(), ArcheryRegister.UPGRADE.get().getValue(id)))),
-		ENCHANTMENT(id -> BowArrowStatConfig.get().getEnchEffects(Wrappers.cast(ForgeRegistries.ENCHANTMENTS.getValue(id)), 1)
+		ENCHANTMENT(id -> BowArrowStatConfig.get().getEnchEffects(Wrappers.cast(L2LibReg.ENCH.get().get(id)), 1)
 				.instances().stream().map(MobEffectInstance::getEffect).toList(),
 				id -> new EnchantmentIngredient(ForgeRegistries.ENCHANTMENTS.getValue(id), 1));
 

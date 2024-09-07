@@ -1,20 +1,20 @@
 package dev.xkmc.l2archery.content.config;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
+import dev.xkmc.l2core.init.reg.ench.EnchVal;
+import dev.xkmc.l2core.init.reg.ench.LegacyEnchantment;
 import dev.xkmc.l2core.util.DataGenOnly;
-import dev.xkmc.l2library.util.annotation.DataGenOnly;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.item.enchantment.Enchantment;
 
 @DataGenOnly
-public class EnchBuilder extends BaseBuilder<EnchBuilder, PotionArrowEnchantment, Enchantment, BowArrowStatConfig.EnchantmentConfigEffect> {
+public class EnchBuilder extends BaseBuilder<EnchBuilder, PotionArrowEnchantment, LegacyEnchantment, BowArrowStatConfig.EnchantmentConfigEffect> {
 
-	EnchBuilder(BowArrowStatConfig config, RegistryEntry<PotionArrowEnchantment> ench) {
-		super(config, config.enchantment_effects, ench);
+	EnchBuilder(BowArrowStatConfig config, EnchVal.Legacy<PotionArrowEnchantment> ench) {
+		super(config, config.enchantment_effects, ench.legacy());
 	}
 
-	public EnchBuilder putEffect(MobEffect type, int duration, int amplifier, int durBonus, int ampBonus) {
+	public EnchBuilder putEffect(Holder<MobEffect> type, int duration, int amplifier, int durBonus, int ampBonus) {
 		this.effects.put(type, new BowArrowStatConfig.EnchantmentConfigEffect(duration, amplifier, durBonus, ampBonus));
 		return this;
 	}

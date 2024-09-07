@@ -1,21 +1,7 @@
 package dev.xkmc.l2archery.content.enchantment;
 
-import dev.xkmc.l2complements.content.enchantment.core.UnobtainableEnchantment;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import dev.xkmc.l2core.init.reg.ench.LegacyEnchantment;
 
-public abstract class BaseBowEnchantment extends UnobtainableEnchantment implements IBowEnchantment {
-
-	protected final int max;
-
-	public BaseBowEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots, int max) {
-		super(pRarity, pCategory, pApplicableSlots);
-		this.max = max;
-	}
-
-	@Override
-	public final int getMaxLevel() {
-		return max;
-	}
+public abstract class BaseBowEnchantment extends LegacyEnchantment implements IBowEnchantment {
 
 }

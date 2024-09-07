@@ -1,7 +1,5 @@
 package dev.xkmc.l2archery.content.config;
 
-import com.tterrag.registrate.util.entry.ItemEntry;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2core.util.DataGenOnly;
 import net.minecraft.core.Holder;

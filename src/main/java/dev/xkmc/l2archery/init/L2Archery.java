@@ -11,12 +11,15 @@ import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2complements.init.data.TagGen;
+import dev.xkmc.l2core.init.L2TagGen;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
+import dev.xkmc.l2core.init.reg.simple.Reg;
 import dev.xkmc.l2core.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2core.serial.config.PacketHandlerWithConfig;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import net.mehvahdjukaar.jeed.Jeed;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -35,6 +38,7 @@ public class L2Archery {
 	public static final String MODID = "l2archery";
 
 	public static final Logger LOGGER = LogManager.getLogger();
+	public static final Reg REG = new Reg(MODID);
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
 	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(MODID, 2);
 	public static final ConfigTypeEntry<BowArrowStatConfig> STATS =
@@ -50,11 +54,6 @@ public class L2Archery {
 		ArcheryConfig.init();
 		if (ModList.get().isLoaded("modulargolems")) GolemCompat.register();
 		if (ModList.get().isLoaded(Jeed.MOD_ID)) JeedHelper.register();
-		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
-		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
-		REGISTRATE.addDataGenerator(ProviderType.ADVANCEMENT, AdvGen::genAdvancements);
-		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArcheryTagGen::onEntityTagGen);
-		REGISTRATE.addDataGenerator(TagGen.EFF_TAGS, ArcheryTagGen::onEffectTagGen);
 	}
 
 	@SubscribeEvent
@@ -64,8 +63,17 @@ public class L2Archery {
 		});
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
+
+		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
+		REGISTRATE.addDataGenerator(ProviderType.ADVANCEMENT, AdvGen::genAdvancements);
+		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, ArcheryTagGen::genItemTag);
+		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArcheryTagGen::onEntityTagGen);
+		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArcheryTagGen::onEffectTagGen);
+
+
 		boolean gen = event.includeServer();
 		var output = event.getGenerator().getPackOutput();
 		var lookup = event.getLookupProvider();
