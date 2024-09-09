@@ -1,9 +1,7 @@
 package dev.xkmc.l2archery.compat;
 
-import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.modulargolems.events.event.GolemBowAttackEvent;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
@@ -17,6 +15,7 @@ public class GolemCompat {
 	public static void onEquip(GolemBowAttackEvent event) {
 		var golem = event.getEntity();
 		if (event.getStack().getItem() instanceof GenericBowItem item) {
+			/* TODO
 			var opt = item.releaseUsingAndShootArrow(event.getStack(),
 					golem.level(), golem, golem.getUseItemRemainingTicks());
 			if (opt.isPresent()) {
@@ -26,6 +25,8 @@ public class GolemCompat {
 					event.setParams(entity.data.bow().getConfig().speed(), entity.features.flight().gravity);
 				}
 			}
+
+			 */
 		}
 	}
 

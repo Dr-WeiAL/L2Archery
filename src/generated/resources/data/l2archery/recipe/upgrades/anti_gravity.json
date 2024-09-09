@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "l2complements:captured_wind"
+    },
+    "C": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "E": {
+      "item": "l2complements:captured_shulker_bullet"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:anti_gravity"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

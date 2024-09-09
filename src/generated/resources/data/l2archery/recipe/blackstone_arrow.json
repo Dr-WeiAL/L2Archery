@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "l2archery:starter_arrow"
+    },
+    "S": {
+      "item": "minecraft:blackstone"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:blackstone_arrow"
+  }
+}

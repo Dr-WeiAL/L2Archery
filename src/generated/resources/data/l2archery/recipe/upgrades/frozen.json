@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:powder_snow_bucket"
+    },
+    "C": {
+      "item": "minecraft:blue_ice"
+    },
+    "E": {
+      "item": "l2complements:hard_ice"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:frozen"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

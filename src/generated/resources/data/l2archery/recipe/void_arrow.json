@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:destroyer_arrow"
+    },
+    "C": {
+      "item": "l2complements:void_eye"
+    },
+    "S": {
+      "item": "l2complements:space_shard"
+    }
+  },
+  "pattern": [
+    "CSC",
+    "SAS",
+    "CSC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:void_arrow"
+  }
+}

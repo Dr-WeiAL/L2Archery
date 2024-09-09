@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "1": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:infinity",
+      "minLevel": 1
+    },
+    "2": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:mending",
+      "minLevel": 1
+    },
+    "3": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:binding_curse",
+      "minLevel": 1
+    },
+    "4": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:vanishing_curse",
+      "minLevel": 1
+    },
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "l2complements:void_eye"
+    },
+    "C": {
+      "item": "minecraft:dragon_head"
+    }
+  },
+  "pattern": [
+    "3 4",
+    "CAC",
+    "1B2"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:void"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

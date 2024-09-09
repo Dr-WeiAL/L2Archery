@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:gold_ingot"
+    },
+    "G": {
+      "item": "minecraft:copper_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "minecraft:redstone"
+    },
+    "X": {
+      "item": "l2archery:upgrade"
+    }
+  },
+  "pattern": [
+    " X ",
+    "ICI",
+    "GPG"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:flux_up"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

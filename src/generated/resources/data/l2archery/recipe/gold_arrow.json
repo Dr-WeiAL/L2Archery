@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "l2archery:iron_arrow"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 4,
+    "id": "l2archery:gold_arrow"
+  }
+}

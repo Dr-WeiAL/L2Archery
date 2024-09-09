@@ -1,0 +1,33 @@
+{
+  "parent": "l2archery:archery/iron_bow",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2archery:eagle_bow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.l2archery.archery.eagle_bow.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "l2archery:eagle_bow"
+    },
+    "title": {
+      "translate": "advancements.l2archery.archery.eagle_bow.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

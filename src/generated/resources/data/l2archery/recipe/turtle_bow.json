@@ -1,0 +1,27 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:iron_bow"
+    },
+    "B": {
+      "item": "minecraft:turtle_scute"
+    },
+    "C": {
+      "item": "minecraft:iron_ingot"
+    },
+    "D": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "CCB",
+    "DAB",
+    "CCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:turtle_bow"
+  }
+}

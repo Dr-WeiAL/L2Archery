@@ -1,0 +1,33 @@
+{
+  "parent": "l2archery:archery/starter_bow",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2archery:glow_aim_bow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.l2archery.archery.glow_aim_bow.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "l2archery:glow_aim_bow"
+    },
+    "title": {
+      "translate": "advancements.l2archery.archery.glow_aim_bow.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

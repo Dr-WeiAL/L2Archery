@@ -1,0 +1,37 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "1": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:mending",
+      "minLevel": 1
+    },
+    "2": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:infinity",
+      "minLevel": 1
+    },
+    "A": {
+      "item": "l2complements:void_eye"
+    },
+    "B": {
+      "item": "l2archery:ender_aim_bow"
+    },
+    "O": {
+      "item": "minecraft:dragon_head"
+    },
+    "R": {
+      "item": "l2complements:space_shard"
+    }
+  },
+  "pattern": [
+    "2OR",
+    "ABR",
+    "1OR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:void_bow"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_explosion_bow": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2archery:explosion_bow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2archery:sun_bow"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_explosion_bow"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2archery:sun_bow"
+    ]
+  }
+}

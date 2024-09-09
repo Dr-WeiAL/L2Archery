@@ -70,6 +70,8 @@ public class L2Archery {
 		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, ArcheryTagGen::genItemTag);
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArcheryTagGen::onEntityTagGen);
 		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArcheryTagGen::onEffectTagGen);
+		var init = REGISTRATE.getDataGenInitializer();
+		init.addDependency(ProviderType.RECIPE, ProviderType.DYNAMIC);
 
 		new ArcheryDamageMultiplex().generate();
 

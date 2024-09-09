@@ -1,0 +1,30 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:master_bow"
+    },
+    "B": {
+      "item": "minecraft:soul_soil"
+    },
+    "C": {
+      "item": "minecraft:blaze_rod"
+    },
+    "D": {
+      "item": "minecraft:ghast_tear"
+    },
+    "E": {
+      "item": "l2complements:soul_flame"
+    }
+  },
+  "pattern": [
+    "DCB",
+    "EAB",
+    "DCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:flame_bow"
+  }
+}

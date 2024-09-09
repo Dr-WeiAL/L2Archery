@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:spyglass"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:magnify_x8"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

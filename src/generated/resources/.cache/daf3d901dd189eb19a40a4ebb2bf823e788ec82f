@@ -1,7 +1,0 @@
-// 1.20.1	2023-10-12T15:21:24.27214	Tags for minecraft:damage_type mod id l2archery
-ea5acae2e7353a190f862ed8e59116c6f5a88237 data/minecraft/tags/damage_type/bypasses_armor.json
-c14a1e0d9df699913f8d72594057527adb8f474c data/minecraft/tags/damage_type/bypasses_effects.json
-c14a1e0d9df699913f8d72594057527adb8f474c data/minecraft/tags/damage_type/bypasses_enchantments.json
-b1a47a47131e50b2777d9872a82c7c09abf4e8c8 data/minecraft/tags/damage_type/bypasses_invulnerability.json
-c14a1e0d9df699913f8d72594057527adb8f474c data/minecraft/tags/damage_type/bypasses_resistance.json
-29e70f8eeb7ac038492a4b2b262056e7b6f344c2 data/minecraft/tags/damage_type/is_projectile.json

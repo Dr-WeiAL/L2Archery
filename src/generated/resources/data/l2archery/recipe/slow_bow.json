@@ -1,0 +1,27 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:master_bow"
+    },
+    "B": {
+      "item": "minecraft:blackstone"
+    },
+    "C": {
+      "item": "minecraft:soul_sand"
+    },
+    "D": {
+      "item": "minecraft:gilded_blackstone"
+    }
+  },
+  "pattern": [
+    "CBB",
+    "DAB",
+    "CBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:slow_bow"
+  }
+}

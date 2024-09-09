@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "C": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "E": {
+      "item": "minecraft:fermented_spider_eye"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "EAE",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:weak"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

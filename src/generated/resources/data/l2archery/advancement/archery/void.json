@@ -1,0 +1,35 @@
+{
+  "parent": "l2archery:archery/upgrade",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2complements:space_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.l2archery.archery.void.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "l2complements:space_shard"
+    },
+    "title": {
+      "translate": "advancements.l2archery.archery.void.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

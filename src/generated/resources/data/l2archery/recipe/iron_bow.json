@@ -1,0 +1,24 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "l2archery:starter_bow"
+    },
+    "C": {
+      "item": "minecraft:weeping_vines"
+    }
+  },
+  "pattern": [
+    " AC",
+    "ABC",
+    " AC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:iron_bow"
+  }
+}

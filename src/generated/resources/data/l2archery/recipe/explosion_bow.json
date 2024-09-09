@@ -1,0 +1,27 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:flame_bow"
+    },
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "C": {
+      "item": "minecraft:nether_star"
+    },
+    "D": {
+      "item": "l2complements:explosion_shard"
+    }
+  },
+  "pattern": [
+    "DDB",
+    "CAB",
+    "DDB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:explosion_bow"
+  }
+}

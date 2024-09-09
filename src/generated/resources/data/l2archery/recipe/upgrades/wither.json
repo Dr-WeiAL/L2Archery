@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "C": {
+      "item": "minecraft:wither_rose"
+    },
+    "D": {
+      "item": "minecraft:wither_skeleton_skull"
+    }
+  },
+  "pattern": [
+    "CDC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:wither"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

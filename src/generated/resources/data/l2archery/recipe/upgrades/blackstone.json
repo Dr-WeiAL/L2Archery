@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:gilded_blackstone"
+    },
+    "C": {
+      "item": "minecraft:blackstone"
+    },
+    "E": {
+      "item": "l2complements:blackstone_core"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:blackstone"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

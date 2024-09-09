@@ -1,0 +1,24 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.l2archery.magnify"
+  },
+  "effects": {
+    "l2core:legacy": [
+      "l2archery:magnify"
+    ]
+  },
+  "max_cost": {
+    "base": 10,
+    "per_level_above_first": 5
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 5
+  },
+  "primary_items": "#l2archery:bows",
+  "slots": [],
+  "supported_items": "#l2archery:bows",
+  "weight": 1
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "C": {
+      "item": "l2complements:captured_shulker_bullet"
+    },
+    "E": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:levitate"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:master_bow"
+    },
+    "B": {
+      "item": "minecraft:blue_ice"
+    },
+    "D": {
+      "item": "minecraft:powder_snow_bucket"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "DAB",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:froze_bow"
+  }
+}

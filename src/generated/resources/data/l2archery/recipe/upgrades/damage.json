@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "l2archery:diamond_arrow"
+    },
+    "C": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:power",
+      "minLevel": 5
+    }
+  },
+  "pattern": [
+    "C C",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:damage"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

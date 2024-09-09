@@ -1,0 +1,20 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:spyglass"
+    },
+    "B": {
+      "item": "l2archery:glow_aim_bow"
+    }
+  },
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:magnify_bow"
+  }
+}

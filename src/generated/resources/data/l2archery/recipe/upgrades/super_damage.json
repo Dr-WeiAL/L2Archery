@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "l2complements:captured_wind"
+    },
+    "C": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:power",
+      "minLevel": 5
+    },
+    "D": {
+      "item": "l2complements:explosion_shard"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "DAD",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:super_damage"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "l2archery:obsidian_arrow"
+    },
+    "S": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:quartz_arrow"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:earth_bow"
+    },
+    "B": {
+      "item": "l2complements:blackstone_core"
+    },
+    "C": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "D": {
+      "item": "l2complements:force_field"
+    }
+  },
+  "pattern": [
+    "CCB",
+    "DAB",
+    "CCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:gaia_bow"
+  }
+}

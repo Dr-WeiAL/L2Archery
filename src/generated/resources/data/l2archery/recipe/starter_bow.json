@@ -1,0 +1,24 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:bamboo"
+    },
+    "B": {
+      "item": "minecraft:bow"
+    },
+    "C": {
+      "item": "minecraft:vine"
+    }
+  },
+  "pattern": [
+    " AC",
+    "ABC",
+    " AC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:starter_bow"
+  }
+}

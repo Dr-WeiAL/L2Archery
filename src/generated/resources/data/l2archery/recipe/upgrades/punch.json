@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:punch",
+      "minLevel": 2
+    },
+    "C": {
+      "item": "l2archery:gold_arrow"
+    }
+  },
+  "pattern": [
+    "C C",
+    " A ",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:punch"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

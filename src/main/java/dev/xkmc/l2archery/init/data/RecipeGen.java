@@ -4,7 +4,6 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import dev.xkmc.l2archery.content.crafting.BowBuilder;
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
-import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.content.enchantment.core.EnchantmentRecipeBuilder;
@@ -591,7 +590,7 @@ public class RecipeGen {
 
 	@SuppressWarnings("ConstantConditions")
 	private static ResourceLocation getID(EnchVal e) {
-		return L2Archery.loc("enchantments/" + e.id().location().getPath());
+		return e.id().location().withPrefix("enchantments/");
 	}
 
 	private static void cross(RegistrateRecipeProvider pvd, Item core, Item side, Item out, int count) {

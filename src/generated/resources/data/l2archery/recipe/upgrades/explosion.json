@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:nether_star"
+    },
+    "C": {
+      "item": "minecraft:creeper_head"
+    },
+    "D": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:infinity",
+      "minLevel": 1
+    },
+    "E": {
+      "item": "l2complements:explosion_shard"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "BAB",
+    "CDC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:explosion"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

@@ -9,12 +9,11 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
-import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2archery.init.registrate.ArcheryItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
@@ -33,12 +32,10 @@ public class GenericEventHandler {
 		ArcheryEffects.registerBrewingRecipe(event);
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void fov(ComputeFovModifierEvent event) {
-		Player player = Proxy.getClientPlayer();
-		if (player == null)
-			return;
+		Player player = Minecraft.getInstance().player;
+		if (player == null) return;
 		ItemStack stack = player.getMainHandItem();
 		if (stack.getItem() instanceof GenericBowItem bow) {
 			float f = event.getFovModifier();
@@ -96,8 +93,9 @@ public class GenericEventHandler {
 	public static void onGrind(GrindstoneEvent.OnPlaceItem event) {
 		if (event.getTopItem().getItem() instanceof GenericBowItem bow) {
 			ItemStack copy = event.getTopItem().copy();
-			if (!GenericBowItem.getUpgrades(copy).isEmpty()) {
-				copy.getOrCreateTag().remove(GenericBowItem.KEY);
+			var upgrades = ArcheryItems.BOW_UPGRADE.get(copy);
+			if (upgrades != null && !upgrades.list().isEmpty()) {
+				ArcheryItems.BOW_UPGRADE.set(copy, upgrades.clear());
 				GenericBowItem.remakeEnergy(copy);
 				event.setOutput(copy);
 				event.setXp(0);

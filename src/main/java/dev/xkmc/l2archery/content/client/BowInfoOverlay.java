@@ -9,10 +9,14 @@ import dev.xkmc.l2itemselector.overlay.SideBar;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -57,14 +61,15 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 	}
 
 	private static void addStat(List<Component> list, BowData data, IGeneralConfig arrow) {
+		HolderLookup.RegistryLookup<Enchantment> reg = CommonHooks.resolveLookup(Registries.ENCHANTMENT);
 		IBowConfig bow = data.getConfig();
 		double dmg = 2;
 		var map = data.ench();
-		int power = map.getOrDefault(Enchantments.POWER, 0);
+		int power = reg == null ? 0 : map.getLevel(reg.getOrThrow(Enchantments.POWER));
 		if (power > 0) {
 			dmg += power * 0.5D + 0.5D;
 		}
-		int punch = map.getOrDefault(Enchantments.PUNCH, 0);
+		int punch = reg == null ? 0 : map.getLevel(reg.getOrThrow(Enchantments.PUNCH));
 		dmg += bow.damage() + arrow.damage();
 		dmg *= bow.speed();
 		dmg = Math.ceil(dmg);

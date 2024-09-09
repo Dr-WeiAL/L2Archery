@@ -41,7 +41,7 @@ public class BowUpgradeBuilder {
 	}
 
 	public void save(RecipeOutput pvd) {
-		recipe.save(new DataRecipeWrapper(pvd, upgrade.item()));
+		recipe.save(new DataRecipeWrapper(pvd, upgrade.item()), upgrade.getRegistryName().withPrefix("upgrades/"));
 	}
 
 }

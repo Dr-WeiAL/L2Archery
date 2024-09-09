@@ -1,0 +1,27 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:turtle_bow"
+    },
+    "B": {
+      "item": "minecraft:blackstone"
+    },
+    "C": {
+      "item": "minecraft:gold_ingot"
+    },
+    "D": {
+      "item": "l2complements:blackstone_core"
+    }
+  },
+  "pattern": [
+    "CCB",
+    "DAB",
+    "CCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:earth_bow"
+  }
+}

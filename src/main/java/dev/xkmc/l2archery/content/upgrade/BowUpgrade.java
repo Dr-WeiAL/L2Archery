@@ -12,4 +12,8 @@ public record BowUpgrade(int additional, ArrayList<Upgrade> list) {
 		return new BowUpgrade(additional, ans);
 	}
 
+	public BowUpgrade clear() {
+		return new BowUpgrade(additional, new ArrayList<>());
+	}
+
 }

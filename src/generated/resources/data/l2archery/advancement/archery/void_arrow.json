@@ -1,0 +1,34 @@
+{
+  "parent": "l2archery:archery/void_bow",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2archery:void_arrow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.l2archery.archery.void_arrow.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "l2archery:void_arrow"
+    },
+    "title": {
+      "translate": "advancements.l2archery.archery.void_arrow.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

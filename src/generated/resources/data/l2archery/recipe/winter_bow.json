@@ -1,0 +1,27 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:froze_bow"
+    },
+    "B": {
+      "item": "minecraft:blue_ice"
+    },
+    "C": {
+      "item": "minecraft:powder_snow_bucket"
+    },
+    "D": {
+      "item": "l2complements:hard_ice"
+    }
+  },
+  "pattern": [
+    "CBB",
+    "DAB",
+    "CBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:winter_bow"
+  }
+}

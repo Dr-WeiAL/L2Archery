@@ -66,6 +66,11 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	@Override
+	protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float velocity, float inaccuracy, float angle, @Nullable LivingEntity target) {
+		super.shootProjectile(shooter, projectile, index, velocity * config.speed() / 3, 0, angle, target);
+	}
+
+	@Override
 	protected Projectile createProjectile(Level level, LivingEntity shooter, ItemStack weapon, ItemStack arrow, boolean isCrit) {
 		ArrowData data = parseArrow(arrow);
 		Projectile ans;

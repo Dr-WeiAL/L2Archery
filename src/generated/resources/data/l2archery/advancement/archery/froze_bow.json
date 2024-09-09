@@ -1,0 +1,33 @@
+{
+  "parent": "l2archery:archery/master_bow",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2archery:froze_bow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.l2archery.archery.froze_bow.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "l2archery:froze_bow"
+    },
+    "title": {
+      "translate": "advancements.l2archery.archery.froze_bow.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,30 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:explosion_bow"
+    },
+    "B": {
+      "item": "l2complements:explosion_shard"
+    },
+    "C": {
+      "item": "l2complements:sun_membrane"
+    },
+    "D": {
+      "item": "minecraft:nether_star"
+    },
+    "E": {
+      "item": "minecraft:creeper_head"
+    }
+  },
+  "pattern": [
+    "EDB",
+    "CAB",
+    "EDB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:sun_bow"
+  }
+}

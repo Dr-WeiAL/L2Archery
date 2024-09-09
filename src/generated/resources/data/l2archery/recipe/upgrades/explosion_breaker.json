@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:efficiency",
+      "minLevel": 1
+    },
+    "C": {
+      "item": "minecraft:end_crystal"
+    },
+    "E": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "EAE",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:explosion_breaker"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

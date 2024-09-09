@@ -1,37 +1,34 @@
 package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.enchantment.IBowEnchantment;
-import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
-import net.minecraft.core.HolderLookup;
+import dev.xkmc.l2core.init.reg.ench.LegacyEnchantment;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.neoforge.common.CommonHooks;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public record BowData(Item item, ArrayList<Upgrade> upgrade, ItemEnchantments ench) {
 
 	public static BowData of(GenericBowItem item) {
-		return new BowData(item, new ArrayList<>(0), new HashMap<>(0));
+		return new BowData(item, new ArrayList<>(0), ItemEnchantments.EMPTY);
 	}
 
-	public static BowData of(GenericBowItem item, List<Upgrade> upgrade, Map<Enchantment, Integer> ench) {
-		return new BowData(item, new ArrayList<>(upgrade), new HashMap<>(ench));
+	public static BowData of(GenericBowItem item, List<Upgrade> upgrade, ItemEnchantments ench) {
+		return new BowData(item, new ArrayList<>(upgrade), ench);
 	}
 
 	public static BowData of(GenericBowItem item, ItemStack stack) {
 		List<Upgrade> upgrade = GenericBowItem.getUpgrades(stack);
-		return of(item, upgrade, stack.getAllEnchantments(CommonHooks.resolveLookup(Registries.ENCHANTMENT)));
+		var reg = CommonHooks.resolveLookup(Registries.ENCHANTMENT);
+		return of(item, upgrade, reg == null ? ItemEnchantments.EMPTY : stack.getAllEnchantments(reg));
 	}
 
 	public FeatureList getFeatures() {
@@ -39,11 +36,12 @@ public record BowData(Item item, ArrayList<Upgrade> upgrade, ItemEnchantments en
 		ans.stage = FeatureList.Stage.UPGRADE;
 		upgrade.forEach(e -> ans.add(e.getFeature()));
 		ans.stage = FeatureList.Stage.ENCHANT;
-		ench.forEach((k, v) -> {
-			if (k instanceof IBowEnchantment b) {
-				ans.add(b.getFeature(v));
+		for (var e : ench.entrySet()) {
+			var legacy = LegacyEnchantment.firstOf(e.getKey(), IBowEnchantment.class);
+			if (legacy != null) {
+				ans.add(legacy.getFeature(e.getIntValue()));
 			}
-		});
+		}
 		return ans;
 	}
 
@@ -58,9 +56,10 @@ public record BowData(Item item, ArrayList<Upgrade> upgrade, ItemEnchantments en
 				ans = new CompoundBowConfig(ans, f);
 			}
 		}
-		for (var ent : ench.entrySet()) {
-			if (ent.getKey() instanceof IBowEnchantment bowEnch) {
-				BowArrowFeature f = bowEnch.getFeature(ent.getValue());
+		for (var e : ench.entrySet()) {
+			var legacy = LegacyEnchantment.firstOf(e.getKey(), IBowEnchantment.class);
+			if (legacy != null) {
+				var f = legacy.getFeature(e.getIntValue());
 				if (f instanceof StatFeature sf) {
 					ans = new CompoundBowConfig(ans, sf);
 				}

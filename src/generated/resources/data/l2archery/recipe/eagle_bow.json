@@ -1,0 +1,37 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "1": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:power",
+      "minLevel": 5
+    },
+    "2": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:punch",
+      "minLevel": 2
+    },
+    "A": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "B": {
+      "item": "l2archery:iron_bow"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "O": {
+      "item": "l2complements:resonant_feather"
+    }
+  },
+  "pattern": [
+    "1LO",
+    "AB2",
+    "1LO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:eagle_bow"
+  }
+}

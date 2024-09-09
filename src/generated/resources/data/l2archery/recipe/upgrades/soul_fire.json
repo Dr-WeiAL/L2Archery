@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "l2archery:upgrade"
+    },
+    "B": {
+      "item": "minecraft:soul_soil"
+    },
+    "C": {
+      "item": "minecraft:blaze_rod"
+    },
+    "D": {
+      "item": "minecraft:ghast_tear"
+    },
+    "E": {
+      "item": "l2complements:soul_flame"
+    }
+  },
+  "pattern": [
+    "DED",
+    "CAC",
+    "BBB"
+  ],
+  "result": {
+    "components": {
+      "l2archery:item_upgrade": "l2archery:soul_fire"
+    },
+    "count": 1,
+    "id": "l2archery:upgrade"
+  }
+}

@@ -11,11 +11,11 @@ public class ArcheryConfig {
 		public final ModConfigSpec.BooleanValue showInfo;
 		public final ModConfigSpec.BooleanValue showArrow;
 
-		Client(ModConfigSpec.Builder builder) {
+		Client(Builder builder) {
 			markL2();
-			showInfo = builder.comment("Show combined bow arrow stats and features when holding bow")
+			showInfo = builder.text("Show combined bow arrow stats and features when holding bow")
 					.define("showInfo", true);
-			showArrow = builder.comment("Show projectile selection")
+			showArrow = builder.text("Show projectile selection")
 					.define("showArrow", true);
 		}
 

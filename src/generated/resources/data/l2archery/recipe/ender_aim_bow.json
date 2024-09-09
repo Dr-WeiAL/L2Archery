@@ -1,0 +1,37 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "1": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:binding_curse",
+      "minLevel": 1
+    },
+    "2": {
+      "type": "l2core:enchantment",
+      "enchantment": "minecraft:vanishing_curse",
+      "minLevel": 1
+    },
+    "A": {
+      "item": "l2complements:void_eye"
+    },
+    "B": {
+      "item": "l2archery:glow_aim_bow"
+    },
+    "O": {
+      "item": "minecraft:dragon_head"
+    },
+    "R": {
+      "item": "l2complements:shulkerate_ingot"
+    }
+  },
+  "pattern": [
+    "2OR",
+    "ABR",
+    "1OR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:ender_aim_bow"
+  }
+}

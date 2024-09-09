@@ -1,0 +1,30 @@
+{
+  "type": "l2complements:bow_craft",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "l2archery:master_bow"
+    },
+    "B": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "C": {
+      "item": "minecraft:feather"
+    },
+    "D": {
+      "item": "minecraft:gunpowder"
+    },
+    "E": {
+      "item": "l2complements:storm_core"
+    }
+  },
+  "pattern": [
+    "DCB",
+    "EAB",
+    "DCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2archery:storm_bow"
+  }
+}
