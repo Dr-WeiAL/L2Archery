@@ -38,7 +38,7 @@ public record EnderShootFeature(int range) implements OnShootFeature, OnPullFeat
 			float w = finalTarget.getBbWidth(), h = finalTarget.getBbHeight();
 			Vec3 dst = finalTarget.position().add(0, h / 2, 0);
 			double r = Math.sqrt(w * w * 2 + h * h) / 2;
-			Vec3 src = dst.add(entity.getDeltaMovement().normalize().scale(-r - 1));
+			Vec3 src = player.getEyePosition().subtract(dst).normalize().scale(r + 1).add(dst);
 			entity.setPos(src);
 		});
 		return true;

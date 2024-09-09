@@ -10,8 +10,11 @@ import dev.xkmc.l2archery.content.feature.bow.GlowTargetAimFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.data.ArcheryTagGen;
+import dev.xkmc.l2complements.init.registrate.LCEnchantments;
+import dev.xkmc.l2core.init.reg.ench.EnchColor;
 import dev.xkmc.l2core.init.reg.ench.EnchReg;
 import dev.xkmc.l2core.init.reg.ench.EnchVal;
+import net.minecraft.ChatFormatting;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -24,6 +27,8 @@ public class ArcheryEnchantments {
 			ENCH_LEVITATE, ENCH_POISON, ENCH_WITHER, ENCH_WEAK, ENCH_CHAOTIC, ENCH_DISTORTION;
 
 	public static final EnchVal.Legacy<GenericBowEnchantment> ENCH_MAGNIFY, ENCH_EXPLODE, ENCH_GLOW_AIM, ENCH_EXPLOSION_BREAK;
+
+	private static final LCEnchantments.Order ORDER = new LCEnchantments.Order();
 
 	static {
 		ENCH_MAGNIFY = regStat("magnify", 3, "Archery - Magnify Upgrade",
@@ -46,13 +51,15 @@ public class ArcheryEnchantments {
 		ENCH_LEVITATE = regPotion("levitate", 5, "Archery - Levitation Upgrade", "Apply Levitation to enemy on hit.");
 		ENCH_POISON = regPotion("poison", 3, "Archery - Poison Upgrade", "Inflict enemy with Poison on hit.");
 		ENCH_WITHER = regPotion("wither", 3, "Archery - Wither Upgrade", "Inflict enemy with Wither on hit.");
-		ENCH_WEAK = regPotion("weak", 5, "Archery - Weak Upgrade", "Inflict enemy with Weakenss on hit.");
+		ENCH_WEAK = regPotion("weak", 5, "Archery - Weak Upgrade", "Inflict enemy with Weakness on hit.");
 		ENCH_CHAOTIC = regPotion("chaotic", 3, "Archery - Chaotic Upgrade", "Inflict enemy with various beneficial and harmful effects.");
 		ENCH_DISTORTION = regPotion("distortion", 3, "Archery - Distortion Upgrade", "Inflict enemy with various visual-only effects.");
 	}
 
 	public static <T extends BaseBowEnchantment> EnchVal.Legacy<T> reg(String id, int max, String def, Supplier<T> sup, String desc) {
-		return REG.enchLegacy(id, def, desc, b -> b.items(ArcheryTagGen.PROF_BOWS).maxLevel(max), sup);
+		return REG.enchLegacy(id, def, desc, b -> b.items(ArcheryTagGen.PROF_BOWS).maxLevel(max)
+				.color(new EnchColor(ChatFormatting.GREEN, ChatFormatting.GRAY))
+				.special(LCEnchantments.CRAFT, ORDER.of(0xffff7fff)), sup);
 	}
 
 	public static EnchVal.Legacy<GenericBowEnchantment> regStat(String id, int max, String def, Function<Integer, BowArrowFeature> func, String desc) {

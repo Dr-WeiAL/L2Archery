@@ -1,6 +1,6 @@
-// 1.21.1	2024-09-09T15:33:09.079273	Registrate Provider for l2archery [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type), Patchouli Provider]
-dbad7607b64ddcd16c680e12eaadfcb1e894dcc0 assets/l2archery/lang/en_ud.json
-b7510edcbe6acb01994c3427c1aaf9c23a1c1aba assets/l2archery/lang/en_us.json
+// 1.21.1	2024-09-09T21:00:42.566938	Registrate Provider for l2archery [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type), Patchouli Provider]
+b3cbc44d839f7e5964c99f35d4fd04c63fa3a265 assets/l2archery/lang/en_ud.json
+d913263f9a4d15f000540ab25bd14e474964bcf7 assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -227,21 +227,21 @@ f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass
 f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass_armor.json
 f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass_invul.json
 f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass_magic.json
-4af92d8f426583afb9c891b80b12fab0c40ab034 data/l2archery/enchantment/chaotic.json
-55d7bbb6e01109ca2ab4d766daf0db972a372b1f data/l2archery/enchantment/distortion.json
-21dd3f2ca0ea1a1f6c6be853bbc277487a6228ce data/l2archery/enchantment/explode.json
-1e486c52dc7ffe674cc387f30c1b09998ca8eda3 data/l2archery/enchantment/explosion_break.json
-2557e70aa5f4a262737433b27e2f454c2d58cbcb data/l2archery/enchantment/float.json
-6c734ecd0c4ed2dce33c4ad5614e312dd48b6d09 data/l2archery/enchantment/glow.json
-17155173e627084c2e9343e5c7563a3c44140f34 data/l2archery/enchantment/glow_aim.json
-a8697c0a155eddf66a02ef7cc3bb59c17b41337f data/l2archery/enchantment/harm.json
-96f290ef1e1a9509dae85323bbed38375ac70989 data/l2archery/enchantment/heal.json
-4a000076442973499ad019c268707c2cb9868fb7 data/l2archery/enchantment/levitate.json
-f4756b0774129912df18bf2f17bc7bb2b99abeb4 data/l2archery/enchantment/magnify.json
-98685e8fa8092f5819f907b6afc71d4bc06c3f0f data/l2archery/enchantment/poison.json
-01b40daa2903c0a07e50f8c2120e319b134ef42b data/l2archery/enchantment/slow.json
-0b2fad27687e24c943886b80bc762b49a8c6f7d9 data/l2archery/enchantment/weak.json
-15ddd2866e2017d5a4707d346b07cfcef6526244 data/l2archery/enchantment/wither.json
+9d461d7e5ca44c363ab0efa6cb998008305a4466 data/l2archery/enchantment/chaotic.json
+af2bbc873c48edb62ee1b26f3f0df27174b20491 data/l2archery/enchantment/distortion.json
+a8cde80cc01b7d466004633aab51434383e5cde0 data/l2archery/enchantment/explode.json
+d179b3341c6b853dc0d9e831c5479b194bf55417 data/l2archery/enchantment/explosion_break.json
+4260ca3fe9b2244ba6a8c38e19904f975f9072b3 data/l2archery/enchantment/float.json
+0479a67d5e682fac78e7e233296821f2f3e2349a data/l2archery/enchantment/glow.json
+5595f2ec6d131e0fae5e93772a0bf92dde6d768f data/l2archery/enchantment/glow_aim.json
+b0da86556ea50e6d0dfbf6e7dff6de9ac7f202fb data/l2archery/enchantment/harm.json
+c2fb140b6f2cd7decb2a4703f03cc1335e79b625 data/l2archery/enchantment/heal.json
+c220b24b380a9e8246e30fcc6c7b68b1082a6a73 data/l2archery/enchantment/levitate.json
+8f307d38c2bc363ddd97e45d69ed245b279264df data/l2archery/enchantment/magnify.json
+f82fdaea5bf83191524210fef180373cfc201fa2 data/l2archery/enchantment/poison.json
+c7d57b76402d0f5df7899742312aaf53548d3e51 data/l2archery/enchantment/slow.json
+7106646ed7f07bbbca1f3c78fb4662fa6ae028a8 data/l2archery/enchantment/weak.json
+697eec1de37c4a6673a07f8542ed89fa9677da4a data/l2archery/enchantment/wither.json
 a559e30cf6378305e21756f8e5d05b4aeb92791e data/l2archery/recipe/acid_arrow.json
 0b6c30f3ddf2cc7429beca410305c0979b065280 data/l2archery/recipe/blackstone_arrow.json
 581ac6dca7fe9ae379b1ba4d28f6cf5332f97167 data/l2archery/recipe/copper_arrow.json

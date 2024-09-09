@@ -1,24 +1,4 @@
-2.4.14
-- Unify itemGroup naming
-
-2.4.13
-- sync arrow owner and tags to client, Fix compatibility with FruitsDelight
-- keep up with L2Complements recipe config toggle system
-
-2.4.12
-- Add ars compat
-
-2.4.11
-- allow other mobs to use bow and arrows properly
-- allow arrows to be used independently
-- advanced infinity supports tipped arrow and more L2Archery arrows
-
-2.4.10
-- add explosion breaker enchantment and upgrade
-- fix bow info not disappearing
-
-2.4.9
-- add advanced infinity
-
-2.4.8
-- fix flux bar renderer
+Bugs:
+Create Shoot Pickup
+Bow / Arrow effects
+Pull time / power

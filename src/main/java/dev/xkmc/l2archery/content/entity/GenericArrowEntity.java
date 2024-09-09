@@ -4,6 +4,8 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.types.FlightControlFeature;
 import dev.xkmc.l2archery.content.item.ArrowData;
 import dev.xkmc.l2archery.content.item.BowData;
+import dev.xkmc.l2archery.content.item.GenericArrowItem;
+import dev.xkmc.l2archery.content.item.IGeneralConfig;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
@@ -16,12 +18,16 @@ import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -51,10 +57,14 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityWithComp
 		super(type, level);
 	}
 
-	public GenericArrowEntity(Level level, LivingEntity user, ArrowEntityData data, FeatureList features, ItemStack bowStack) {
-		super(ArcheryRegister.ET_ARROW.get(), user, level, data.arrow.stack(), bowStack);
+	public GenericArrowEntity(Level level, LivingEntity user, ArrowEntityData data, FeatureList features, ItemStack arrowStack, ItemStack bowStack) {
+		super(ArcheryRegister.ET_ARROW.get(), user, level, arrowStack, bowStack);
 		this.data = data;
 		this.features = features;
+	}
+
+	@Override
+	public void setBaseDamageFromMob(float v) {
 	}
 
 	@Override
@@ -62,6 +72,21 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityWithComp
 		if (!level().isClientSide())
 			features.hit().forEach(e -> e.onHitEntity(this, result.getEntity(), result));
 		super.onHitEntity(result);
+	}
+
+	protected void doKnockback(LivingEntity target, DamageSource source) {
+		ItemStack weapon = getWeaponItem();
+		IGeneralConfig config = data.arrow().item() instanceof GenericArrowItem gen ? gen.getConfig() : null;
+		int knock = data.bow().getConfig().punch() + (config == null ? 0 : config.punch());
+		double actual = weapon != null && this.level() instanceof ServerLevel sl ?
+				EnchantmentHelper.modifyKnockback(sl, weapon, target, source, knock) : knock;
+		if (actual > 0) {
+			double d1 = Math.max(0.0, 1.0 - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+			Vec3 vec3 = this.getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize().scale(actual * 0.6 * d1);
+			if (vec3.lengthSqr() > 0.0) {
+				target.push(vec3.x, 0.1, vec3.z);
+			}
+		}
 	}
 
 	public void onHurtEntity(CreateSourceEvent ind) {
@@ -76,7 +101,7 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityWithComp
 
 	@Override
 	protected ItemStack getDefaultPickupItem() {
-		return data.arrow().stack();
+		return ArcheryItems.STARTER_ARROW.asStack();
 	}
 
 	@Override
@@ -112,9 +137,9 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityWithComp
 
 	@Override
 	public void shoot(double vx, double vy, double vz, float v, float variation) {
-		if (getTags().contains(TAG)) {
-			removeTag(TAG);
-			if (getOwner() instanceof Mob mob) {
+		if (getOwner() instanceof Mob mob) {
+			if (!getTags().contains(TAG)) {
+				addTag(TAG);
 				var target = mob.getTarget();
 				if (target != null && target.isAlive()) {
 					float speed = data.bow().getConfig().speed() / 3 * v;

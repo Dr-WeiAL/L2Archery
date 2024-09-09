@@ -29,14 +29,14 @@ public class ArrowFeatureController {
 	}
 
 	@Nullable
-	public static AbstractArrow createArrowEntity(BowArrowUseContext ctx, BowData bow, ArrowData arrow, ItemStack bowStack) {
+	public static AbstractArrow createArrowEntity(BowArrowUseContext ctx, BowData bow, ArrowData arrow, ItemStack arrowStack, ItemStack bowStack) {
 		FeatureList features = FeatureList.merge(bow.getFeatures(), arrow.getFeatures());
 		List<Consumer<GenericArrowEntity>> list = new ArrayList<>();
 		for (OnShootFeature e : features.shot())
 			if (!e.onShoot(ctx.user, list::add))
 				return null;
 		GenericArrowEntity ans = new GenericArrowEntity(ctx.level(), ctx.user(),
-				new GenericArrowEntity.ArrowEntityData(bow, arrow), features, bowStack);
+				new GenericArrowEntity.ArrowEntityData(bow, arrow), features, arrowStack, bowStack);
 		list.forEach(e -> e.accept(ans));
 		return ans;
 	}

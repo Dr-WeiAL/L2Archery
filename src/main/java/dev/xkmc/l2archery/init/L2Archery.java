@@ -16,7 +16,10 @@ import dev.xkmc.l2core.init.reg.simple.Reg;
 import dev.xkmc.l2core.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2core.serial.config.PacketHandlerWithConfig;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
+import dev.xkmc.l2serial.serialization.custom_handler.CodecHandler;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
@@ -52,6 +55,8 @@ public class L2Archery {
 		AttackEventHandler.register(2000, new ArrowAttackListener());
 		ArcheryConfig.init();
 		if (ModList.get().isLoaded("modulargolems")) GolemCompat.register();
+		new CodecHandler<>(PotionContents.class, PotionContents.CODEC, PotionContents.STREAM_CODEC);
+		new CodecHandler<>(ItemEnchantments.class, ItemEnchantments.CODEC, ItemEnchantments.STREAM_CODEC);
 	}
 
 	@SubscribeEvent

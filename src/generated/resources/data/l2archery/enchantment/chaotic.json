@@ -4,6 +4,19 @@
     "translate": "enchantment.l2archery.chaotic"
   },
   "effects": {
+    "l2complements:craftable": [
+      {
+        "color": -32769,
+        "max": 1,
+        "order": 13
+      }
+    ],
+    "l2core:color": [
+      {
+        "base": "green",
+        "desc": "gray"
+      }
+    ],
     "l2core:legacy": [
       "l2archery:chaotic"
     ]

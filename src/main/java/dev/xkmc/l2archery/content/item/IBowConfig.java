@@ -11,7 +11,7 @@ import static net.minecraft.world.item.component.ItemAttributeModifiers.ATTRIBUT
 
 public interface IBowConfig extends IGeneralConfig {
 
-	float speed();//TODO implementation
+	float speed();
 
 	float fov();
 

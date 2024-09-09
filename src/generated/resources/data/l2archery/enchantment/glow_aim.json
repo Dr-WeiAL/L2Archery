@@ -4,6 +4,19 @@
     "translate": "enchantment.l2archery.glow_aim"
   },
   "effects": {
+    "l2complements:craftable": [
+      {
+        "color": -32769,
+        "max": 1,
+        "order": 1
+      }
+    ],
+    "l2core:color": [
+      {
+        "base": "green",
+        "desc": "gray"
+      }
+    ],
     "l2core:legacy": [
       "l2archery:glow_aim"
     ]

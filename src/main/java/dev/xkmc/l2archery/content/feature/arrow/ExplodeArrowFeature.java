@@ -49,7 +49,7 @@ public record ExplodeArrowFeature(float radius, boolean hurt, boolean breakBlock
 		VanillaExplosionContext mc = new VanillaExplosionContext(arrow, getSource(arrow), null, false, type);
 		ModExplosionContext mod = entity -> onExplosionHurt(arrow, entity);
 		ParticleExplosionContext particle = new ParticleExplosionContext(
-				ParticleTypes.EXPLOSION,
+				radius <= 2 ? ParticleTypes.EXPLOSION : ParticleTypes.EXPLOSION_EMITTER,
 				ParticleTypes.EXPLOSION_EMITTER,
 				SoundEvents.GENERIC_EXPLODE
 		);

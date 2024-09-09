@@ -80,7 +80,7 @@
   "enchantment.l2archery.slow": "Archery - Slow Upgrade",
   "enchantment.l2archery.slow.desc": "Apply Slowness to enemy on hit. Works only on L2Archery Bows.",
   "enchantment.l2archery.weak": "Archery - Weak Upgrade",
-  "enchantment.l2archery.weak.desc": "Inflict enemy with Weakenss on hit. Works only on L2Archery Bows.",
+  "enchantment.l2archery.weak.desc": "Inflict enemy with Weakness on hit. Works only on L2Archery Bows.",
   "enchantment.l2archery.wither": "Archery - Wither Upgrade",
   "enchantment.l2archery.wither.desc": "Inflict enemy with Wither on hit. Works only on L2Archery Bows.",
   "entity.l2archery.generic_arrow": "Generic Arrow",

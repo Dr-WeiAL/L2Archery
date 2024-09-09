@@ -37,11 +37,9 @@ public class GenericArrowItem extends ArrowItem {
 				BowData.of(bowItem, bow) : BowData.of(ArcheryItems.STARTER_BOW.get(), bow);
 		var arrow = ArrowFeatureController.createArrowEntity(
 				new ArrowFeatureController.BowArrowUseContext(level, user),
-				bowData, ArrowData.of(this), bow);
+				bowData, ArrowData.of(this), stack.copyWithCount(1), bow);
 		if (arrow == null) {
 			arrow = new Arrow(level, user, stack.copyWithCount(1), bow);
-		} else {
-			arrow.addTag(GenericArrowEntity.TAG);
 		}
 		return arrow;
 	}
