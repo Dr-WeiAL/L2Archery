@@ -10,6 +10,7 @@ import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2library.util.GenericItemStack;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
@@ -19,7 +20,7 @@ import java.util.function.Consumer;
 
 public class ArrowFeatureController {
 
-	public record BowArrowUseContext(Level level, LivingEntity user, boolean no_consume, float power) {
+	public record BowArrowUseContext(Level level, LivingEntity user) {
 
 	}
 
@@ -28,14 +29,14 @@ public class ArrowFeatureController {
 	}
 
 	@Nullable
-	public static AbstractArrow createArrowEntity(BowArrowUseContext ctx, BowData bow, ArrowData arrow) {
+	public static AbstractArrow createArrowEntity(BowArrowUseContext ctx, BowData bow, ArrowData arrow, ItemStack bowStack) {
 		FeatureList features = FeatureList.merge(bow.getFeatures(), arrow.getFeatures());
 		List<Consumer<GenericArrowEntity>> list = new ArrayList<>();
 		for (OnShootFeature e : features.shot())
 			if (!e.onShoot(ctx.user, list::add))
 				return null;
 		GenericArrowEntity ans = new GenericArrowEntity(ctx.level(), ctx.user(),
-				new GenericArrowEntity.ArrowEntityData(bow, arrow, ctx.no_consume, ctx.power), features);
+				new GenericArrowEntity.ArrowEntityData(bow, arrow), features, bowStack);
 		list.forEach(e -> e.accept(ans));
 		return ans;
 	}

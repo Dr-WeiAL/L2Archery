@@ -10,7 +10,6 @@ import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2core.init.reg.ench.EnchHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ArrowItem;
@@ -37,8 +36,8 @@ public class GenericArrowItem extends ArrowItem {
 		BowData bowData = bow.getItem() instanceof GenericBowItem bowItem ?
 				BowData.of(bowItem, bow) : BowData.of(ArcheryItems.STARTER_BOW.get(), bow);
 		var arrow = ArrowFeatureController.createArrowEntity(
-				new ArrowFeatureController.BowArrowUseContext(level, user, true, 1),
-				bowData, ArrowData.of(this));
+				new ArrowFeatureController.BowArrowUseContext(level, user),
+				bowData, ArrowData.of(this), bow);
 		if (arrow == null) {
 			arrow = new Arrow(level, user, stack.copyWithCount(1), bow);
 		} else {
@@ -54,10 +53,8 @@ public class GenericArrowItem extends ArrowItem {
 		if (bow.getItem() instanceof GenericBowItem bowItem) {
 			infLevel = Math.max(InfinityFeature.getLevel(bowItem.getFeatures(bow)), infLevel);
 		}
-		if (config.infLevel() == 2) {
-			return infLevel >= 1 || super.isInfinite(ammo, bow, player);
-		} else if (config.infLevel() == 1) {
-			return infLevel >= 2 || super.isInfinite(ammo, bow, player);
+		if (config.infLevel() > 0) {
+			return infLevel + config.infLevel() >= 3 || super.isInfinite(ammo, bow, player);
 		}
 		return false;
 	}

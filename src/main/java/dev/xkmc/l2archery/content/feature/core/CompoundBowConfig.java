@@ -1,9 +1,6 @@
 package dev.xkmc.l2archery.content.feature.core;
 
 import dev.xkmc.l2archery.content.item.IBowConfig;
-import net.minecraft.world.effect.MobEffectInstance;
-
-import java.util.List;
 
 public record CompoundBowConfig(IBowConfig config, StatFeature feature) implements IBowConfig {
 
@@ -21,13 +18,13 @@ public record CompoundBowConfig(IBowConfig config, StatFeature feature) implemen
 	}
 
 	@Override
-	public int pull_time() {
-		return config.pull_time() * feature.pull_time();
+	public int pullTime() {
+		return config.pullTime() * feature.pullTime();
 	}
 
 	@Override
-	public int fov_time() {
-		return config.fov_time() + feature.fov_time();
+	public int fovTime() {
+		return config.fovTime() + feature.fovTime();
 	}
 
 	@Override

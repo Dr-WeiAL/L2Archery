@@ -12,6 +12,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 
 public class ArcheryTagGen {
@@ -21,6 +22,7 @@ public class ArcheryTagGen {
 
 	public static final TagKey<Item> PROF_BOWS = ItemTags.create(L2Archery.loc("bows"));
 	public static final TagKey<Item> PROF_ARROWS = ItemTags.create(L2Archery.loc("arrows"));
+	public static final TagKey<Item> ADVANCED_INFINITE_ARROWS = ItemTags.create(L2Archery.loc("advanced_infinite_arrows"));
 
 	public static void onEntityTagGen(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> pvd) {
 		pvd.addTag(EntityTypeTags.ARROWS).add(ArcheryRegister.ET_ARROW.get());
@@ -33,6 +35,6 @@ public class ArcheryTagGen {
 	}
 
 	public static void genItemTag(RegistrateItemTagsProvider pvd) {
-
+		pvd.addTag(ADVANCED_INFINITE_ARROWS).add(Items.TIPPED_ARROW, Items.SPECTRAL_ARROW);
 	}
 }

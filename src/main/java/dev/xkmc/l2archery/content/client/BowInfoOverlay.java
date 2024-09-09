@@ -71,7 +71,7 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 		String result = ATTRIBUTE_MODIFIER_FORMAT.format(dmg) + "~" + ATTRIBUTE_MODIFIER_FORMAT.format(dmg + dmg / 2 + 2);
 		list.add(LangData.STAT_DAMAGE.getWithColor(result, ChatFormatting.GREEN));
 		list.add(LangData.STAT_PUNCH.getWithColor(punch + bow.punch() + arrow.punch(), ChatFormatting.GREEN));
-		list.add(LangData.STAT_PULL_TIME.getWithColor(bow.pull_time() / 20d, ChatFormatting.GREEN));
+		list.add(LangData.STAT_PULL_TIME.getWithColor(bow.pullTime() / 20d, ChatFormatting.GREEN));
 		list.add(LangData.STAT_SPEED.getWithColor(bow.speed() * 20, ChatFormatting.GREEN));
 		list.add(LangData.STAT_FOV.getWithColor(ATTRIBUTE_MODIFIER_FORMAT.format(1 / (1 - bow.fov())), ChatFormatting.GREEN));
 	}

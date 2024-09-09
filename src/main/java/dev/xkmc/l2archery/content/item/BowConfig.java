@@ -28,7 +28,7 @@ public record BowConfig(GenericBowItem id, int rank, List<BowArrowFeature> featu
 		return (int) getValue(ArcheryRegister.PUNCH.get());
 	}
 
-	public int pull_time() {
+	public int pullTime() {
 		return (int) getValue(ArcheryRegister.PULL_TIME.get());
 	}
 
@@ -36,7 +36,7 @@ public record BowConfig(GenericBowItem id, int rank, List<BowArrowFeature> featu
 		return (float) getValue(ArcheryRegister.SPEED.get());
 	}
 
-	public int fov_time() {
+	public int fovTime() {
 		return (int) getValue(ArcheryRegister.FOV_TIME.get());
 	}
 

@@ -4,13 +4,13 @@ import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.modulargolems.events.event.GolemBowAttackEvent;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
 public class GolemCompat {
 
 	public static void register() {
-		MinecraftForge.EVENT_BUS.register(GolemCompat.class);
+		NeoForge.EVENT_BUS.register(GolemCompat.class);
 	}
 
 	@SubscribeEvent

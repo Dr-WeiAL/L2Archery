@@ -2,8 +2,8 @@ package dev.xkmc.l2archery.content.item;
 
 public interface IGeneralConfig {
 
-	float damage();
+	float damage();//TODO implementation
 
-	int punch();
+	int punch();//TODO implementation
 
 }

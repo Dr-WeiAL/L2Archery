@@ -11,20 +11,20 @@ import static net.minecraft.world.item.component.ItemAttributeModifiers.ATTRIBUT
 
 public interface IBowConfig extends IGeneralConfig {
 
-	float speed();
+	float speed();//TODO implementation
 
 	float fov();
 
-	int pull_time();
+	int pullTime();
 
-	int fov_time();
+	int fovTime();
 
 	PotionArrowFeature getEffects();
 
 	default void addStatTooltip(List<Component> list) {
 		LangData.STAT_DAMAGE.getWithSign(list, damage());
 		LangData.STAT_PUNCH.getWithSign(list, punch());
-		list.add(LangData.STAT_PULL_TIME.get(pull_time() / 20d));
+		list.add(LangData.STAT_PULL_TIME.get(pullTime() / 20d));
 		list.add(LangData.STAT_SPEED.get(speed() * 20));
 		list.add(LangData.STAT_FOV.get(ATTRIBUTE_MODIFIER_FORMAT.format(1 / (1 - fov()))));
 	}

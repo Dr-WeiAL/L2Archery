@@ -33,13 +33,11 @@ public class GenericArrowEntity extends AbstractArrow implements IEntityWithComp
 
 	public static final String TAG = "l2archery:rawShoot";
 
-	public record ArrowEntityData(BowData bow, ArrowData arrow,
-								  boolean no_consume, float power) {
+	public record ArrowEntityData(BowData bow, ArrowData arrow) {
 
 		public static final ArrowEntityData DEFAULT = new ArrowEntityData(
 				BowData.of(ArcheryItems.STARTER_BOW.get()),
-				ArrowData.of(ArcheryItems.STARTER_ARROW.get()),
-				false, 1);
+				ArrowData.of(ArcheryItems.STARTER_ARROW.get()));
 
 	}
 

@@ -26,13 +26,11 @@ public class ArcheryEffects {
 
 	public static final SimpleEntry<MobEffect> RUN_BOW = genEffect("run_bow", "Sprinting Archer",
 			() -> new RunBowEffect(MobEffectCategory.BENEFICIAL, 0xffffff),
-			"Allow player to sprint while pulling bow"
-	);
+			"Allow player to sprint while pulling bow");
 
 	public static final SimpleEntry<MobEffect> QUICK_PULL = genEffect("quick_pull", "Fast Pulling",
 			() -> new QuickPullEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF),
-			"Increase pulling speed");//TODO test
-
+			"Increase pulling speed");
 
 	public static SimpleEntry<MobEffect> genEffect(String name, String lang, NonNullSupplier<MobEffect> sup, String desc) {
 		return new SimpleEntry<>(L2Archery.REGISTRATE.effect(name, sup, desc)

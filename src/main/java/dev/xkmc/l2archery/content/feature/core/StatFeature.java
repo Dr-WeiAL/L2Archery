@@ -10,7 +10,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import java.util.List;
 import java.util.Set;
 
-public record StatFeature(float fov, int fov_time, float damage, int punch,
+public record StatFeature(float fov, int fovTime, float damage, int punch,
 						  float speed) implements BowArrowFeature, IBowConfig {
 
 	public static final StatFeature NOOP = new StatFeature(1, 0, 1, 0, 1);
@@ -19,7 +19,7 @@ public record StatFeature(float fov, int fov_time, float damage, int punch,
 	 * cannot be implemented due to pulling not having access to ItemStack
 	 */
 	@Override
-	public int pull_time() {
+	public int pullTime() {
 		return 1;
 	}
 

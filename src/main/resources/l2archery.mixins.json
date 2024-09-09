@@ -6,7 +6,8 @@
   "refmap": "l2archery.refmap.json",
   "mixins": [
 	"AbstractArrowAccessor",
-	"AbstractSkeletonMixin"
+	"AbstractSkeletonMixin",
+	"ProjectileWeaponItemMixin"
   ],
   "client": [
   ],

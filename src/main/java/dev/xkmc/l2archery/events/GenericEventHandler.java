@@ -48,7 +48,7 @@ public class GenericEventHandler {
 				i *= 1.5f + 0.5f * ins.getAmplifier();
 			}
 			BowData data = BowData.of(bow, stack);
-			float p = data.getConfig().fov_time();
+			float p = data.getConfig().fovTime();
 			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * data.getConfig().fov()));
 		}
 	}

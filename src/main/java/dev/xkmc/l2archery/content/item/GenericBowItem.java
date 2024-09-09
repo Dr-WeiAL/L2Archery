@@ -1,16 +1,13 @@
 package dev.xkmc.l2archery.content.item;
 
-
 import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
 import dev.xkmc.l2archery.content.controller.BowFeatureController;
 import dev.xkmc.l2archery.content.enchantment.IBowEnchantment;
 import dev.xkmc.l2archery.content.energy.IFluxItem;
-import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.content.feature.bow.IGlowFeature;
-import dev.xkmc.l2archery.content.feature.bow.InfinityFeature;
 import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
@@ -20,7 +17,6 @@ import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
-import dev.xkmc.l2archery.mixin.AbstractArrowAccessor;
 import dev.xkmc.l2core.init.reg.ench.EnchHelper;
 import dev.xkmc.l2core.init.reg.ench.LegacyEnchantment;
 import dev.xkmc.l2library.content.raytrace.FastItem;
@@ -29,47 +25,28 @@ import dev.xkmc.l2library.util.GenericItemStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.*;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget, IFluxItem {
-
-	private static final HashSet<Class<?>> BLACKLIST = new HashSet<>();
-
-	@SuppressWarnings("ConstantConditions")
-	private boolean arrowIsInfinite(ArrowItem item, ItemStack arrow, ItemStack bow) {
-		if (BLACKLIST.contains(item.getClass())) {
-			return false;
-		}
-		try {
-			return item.isInfinite(arrow, bow, null);
-		} catch (NullPointerException npe) {
-			BLACKLIST.add(item.getClass());
-		}
-		return false;
-	}
 
 	public static List<Upgrade> getUpgrades(ItemStack stack) {
 		return ArcheryItems.BOW_UPGRADE.getOrDefault(stack, BowUpgrade.DEF).list();
@@ -88,102 +65,23 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		ArcheryItems.BOW_LIKE.add(this);
 	}
 
-	/** TODO
-	 * on release bow
-	 */
-	public void releaseUsing(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
-		if (user instanceof Player player) {
-			var arrow = releaseUsingAndShootArrow(bow, level, player, remaining_pull_time);
-			arrow.ifPresent(level::addFreshEntity);
-		}
-	}
-
-	/**TODO */
-	public Optional<AbstractArrow> releaseUsingAndShootArrow(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
-		boolean instabuild = user instanceof Player pl && pl.getAbilities().instabuild;
-		BowFeatureController.stopUsing(user, new GenericItemStack<>(this, bow));
-		boolean has_inf = instabuild || EnchHelper.getLv(bow, Enchantments.INFINITY) > 0;
-		ItemStack arrow = user.getProjectile(bow);
-		int pull_time = this.getUseDuration(bow) - remaining_pull_time;
-		if (user instanceof Player player) {
-			pull_time = EventHooks.onArrowLoose(bow, level, player, pull_time, !arrow.isEmpty() || has_inf);
-		}
-		if (pull_time < 0) return Optional.empty();
-		if (arrow.isEmpty() && !has_inf) {
-			return Optional.empty();
-		}
-		if (arrow.isEmpty()) { // no arrow: use default arrow
-			arrow = new ItemStack(Items.ARROW);
-		}
-		float power = getPowerForTime(user, pull_time);
-		if (((double) power < 0.1D)) { // not enough power: cancel
-			return Optional.empty();
-		}
-		boolean no_consume = instabuild;
-		if (arrow.getItem() instanceof ArrowItem arrowItem) {
-			if (user instanceof Player player) {
-				no_consume |= arrowItem.isInfinite(arrow, bow, player);
-			} else {
-				no_consume = arrowIsInfinite(arrowItem, arrow, bow);
-			}
-			if (arrow.is(Items.TIPPED_ARROW) || arrow.is(Items.SPECTRAL_ARROW)) {
-				no_consume |= InfinityFeature.getLevel(getFeatures(bow)) >= 2;
-			}
-		}
-		Optional<AbstractArrow> arrowOpt = Optional.empty();
-		if (!level.isClientSide) {
-			arrowOpt = shootArrowOnServer(user, level, bow, arrow, power, no_consume);
-			if (arrowOpt.isEmpty())
-				return Optional.empty();
-		}
-
-		float pitch = 1.0F / (level.getRandom().nextFloat() * 0.4F + 1.2F) + power * 0.5F;
-		level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, pitch);
-		if (!no_consume) {
-			if (!level.isClientSide) {
-				arrow.shrink(1);
-				if (arrow.isEmpty() && user instanceof Player player) {
-					player.getInventory().removeItem(arrow);
-				}
-			}
-		}
-		if (user instanceof Player player) {
-			player.awardStat(Stats.ITEM_USED.get(this));
-		}
-		return arrowOpt;
-	}
-
-	/** TODO
-	 * create arrow entity and add to world
-	 */
-	private Optional<AbstractArrow> shootArrowOnServer(LivingEntity player, Level level, ItemStack bow, ItemStack arrow, float power, boolean no_consume) {
-		AbstractArrow abstractarrow;
+	@Override
+	protected Projectile createProjectile(Level level, LivingEntity shooter, ItemStack weapon, ItemStack arrow, boolean isCrit) {
 		ArrowData data = parseArrow(arrow);
+		Projectile ans;
 		if (data != null) {
-			abstractarrow = ArrowFeatureController.createArrowEntity(
-					new ArrowFeatureController.BowArrowUseContext(level, player, no_consume, power),
-					BowData.of(this, bow), data);
-		} else {
-			ArrowItem arrowitem = (ArrowItem) (arrow.getItem() instanceof ArrowItem ? arrow.getItem() : Items.ARROW);
-			abstractarrow = arrowitem.createArrow(level, arrow, player);
-			abstractarrow = customArrow(abstractarrow);
-			abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, power * 3f, 1.0F);
-			if (power == 1.0F) {
-				abstractarrow.setCritArrow(true);
-			}
-			if (no_consume) {
-				abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
+			ans = ArrowFeatureController.createArrowEntity(
+					new ArrowFeatureController.BowArrowUseContext(level, shooter),
+					BowData.of(this, weapon), data, weapon);
+			if (ans != null) {
+				return ans;
 			}
 		}
-		if (abstractarrow == null) {
-			return Optional.empty();
-		}
-		bow.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
-		return Optional.of(abstractarrow);
+		return super.createProjectile(level, shooter, weapon, arrow, isCrit);
 	}
 
 	public float getPullForTime(LivingEntity entity, float time) {
-		float f = time / config.pull_time();
+		float f = time / config.pullTime();
 		MobEffectInstance ins = entity.getEffect(ArcheryEffects.QUICK_PULL);
 		if (ins != null) {
 			f *= (1.5f + 0.5f * ins.getAmplifier());
@@ -192,9 +90,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	/**
-	 * power of arrow, range 0~1
-	 * Formula: (t*(t+2))/3
-	 * Full in 1 second
+	 * TODO custom power
 	 */
 	public float getPowerForTime(LivingEntity entity, float time) {
 		float f = getPullForTime(entity, time);
@@ -205,37 +101,18 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		return Math.min(1, f);
 	}
 
-	public int getUseDuration(ItemStack stack) {
-		return 72000;
-	}
-
-	public UseAnim getUseAnimation(ItemStack stack) {
-		return UseAnim.BOW;
-	}
-
 	@Override
 	public void onUseTick(Level level, LivingEntity user, ItemStack stack, int count) {
 		if (user instanceof Player player)
 			BowFeatureController.usingTick(player, new GenericItemStack<>(this, stack));
 	}
 
-	/**
-	 * On start pulling
-	 */
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		boolean flag = !player.getProjectile(itemstack).isEmpty();
-
-		InteractionResultHolder<ItemStack> ret = EventHooks.onArrowNock(itemstack, level, player, hand, flag);
-		if (ret != null) return ret;
-
-		if (!player.hasInfiniteMaterials() && !flag) {
-			return InteractionResultHolder.fail(itemstack);
-		} else {
-			player.startUsingItem(hand);
-			BowFeatureController.startUsing(player, new GenericItemStack<>(this, itemstack));
-			return InteractionResultHolder.consume(itemstack);
+		var ans = super.use(level, player, hand);
+		if (player.isUsingItem()) {
+			BowFeatureController.startUsing(player, new GenericItemStack<>(this, player.getItemInHand(hand)));
 		}
+		return ans;
 	}
 
 	public Predicate<ItemStack> getAllSupportedProjectiles() {
@@ -260,42 +137,13 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		} else if (arrow.is(Items.SPECTRAL_ARROW)) {
 			data = ArrowData.of(arrow.getItem());
 		} else if (arrow.is(Items.TIPPED_ARROW)) {
-			data = ArrowData.of(arrow.getItem(), arrow);
+			data = ArrowData.of(arrow.getItem(), arrow.get(DataComponents.POTION_CONTENTS));
 		}
 		return data;
 	}
 
-	/**
-	 * return custom arrow entity TODO
-	 */
-	public AbstractArrow customArrow(AbstractArrow arrow) {
-		if (arrow instanceof GenericArrowEntity)
-			return arrow;
-		ItemStack arrowStack = ((AbstractArrowAccessor) arrow).callGetPickupItem();
-		if (arrowStack != null && getAllSupportedProjectiles().test(arrowStack)) {
-			ArrowData data = parseArrow(arrowStack);
-			if (data != null && arrow.getOwner() instanceof LivingEntity user) {
-				Level level = arrow.level();
-				ItemStack bow = user.getItemInHand(user.getUsedItemHand());
-				if (bow.getItem() == this) {
-					var arrowEntity = ArrowFeatureController.createArrowEntity(
-							new ArrowFeatureController.BowArrowUseContext(level, user, true, 1),
-							BowData.of(this, bow), data);
-					if (arrowEntity != null) {
-						arrowEntity.addTag(GenericArrowEntity.TAG);
-						return arrowEntity;
-					}
-				}
-			}
-		}
-		return arrow;
-	}
-
-	/**
-	 * For mobs
-	 */
 	public int getDefaultProjectileRange() {
-		return 15;
+		return 30;
 	}
 
 	@Override
@@ -368,7 +216,8 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	public int getUpgradeSlot(ItemStack stack) {
-		return config.rank() + EnchHelper.getLv(stack, Enchantments.BINDING_CURSE) - getUpgrades(stack).size();
+		var upgrades = ArcheryItems.BOW_UPGRADE.getOrDefault(stack, BowUpgrade.DEF);
+		return config.rank() + EnchHelper.getLv(stack, Enchantments.BINDING_CURSE) + upgrades.additional() - getUpgrades(stack).size();
 	}
 
 	public static void remakeEnergy(ItemStack stack) {
