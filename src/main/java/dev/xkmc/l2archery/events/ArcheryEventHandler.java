@@ -25,29 +25,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 @EventBusSubscriber(modid = L2Archery.MODID, bus = EventBusSubscriber.Bus.GAME)
-public class GenericEventHandler {
+public class ArcheryEventHandler {
 
 	@SubscribeEvent
 	public static void registerBrewingRecipe(RegisterBrewingRecipesEvent event) {
 		ArcheryEffects.registerBrewingRecipe(event);
-	}
-
-	@SubscribeEvent
-	public static void fov(ComputeFovModifierEvent event) {
-		Player player = Minecraft.getInstance().player;
-		if (player == null) return;
-		ItemStack stack = player.getMainHandItem();
-		if (stack.getItem() instanceof GenericBowItem bow) {
-			float f = event.getFovModifier();
-			float i = player.getTicksUsingItem();
-			MobEffectInstance ins = player.getEffect(ArcheryEffects.QUICK_PULL);
-			if (ins != null) {
-				i *= 1.5f + 0.5f * ins.getAmplifier();
-			}
-			BowData data = BowData.of(bow, stack);
-			float p = data.getConfig().fovTime();
-			event.setNewFovModifier(f * (1 - Math.min(1, i / p) * data.getConfig().fov()));
-		}
 	}
 
 	@SubscribeEvent

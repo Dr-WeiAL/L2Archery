@@ -3,7 +3,7 @@ package dev.xkmc.l2archery.compat;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
-import dev.xkmc.l2archery.events.GenericEventHandler;
+import dev.xkmc.l2archery.events.ArcheryEventHandler;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
@@ -54,7 +54,7 @@ public class ArcheryJEIPlugin implements IModPlugin {
 			UpgradeItem.setUpgrade(stack, upgrade);
 			for (GenericBowItem bow : ArcheryItems.BOW_LIKE) {
 				ItemStack left = bow.getDefaultInstance();
-				if (GenericEventHandler.allowUpgrade(bow, left, upgrade)) {
+				if (ArcheryEventHandler.allowUpgrade(bow, left, upgrade)) {
 					ItemStack right = bow.getDefaultInstance();
 					GenericBowItem.addUpgrade(right, upgrade);
 					recipes.add(factory.createAnvilRecipe(left, List.of(stack), List.of(right)));
