@@ -2,37 +2,24 @@ package dev.xkmc.l2archery.init.data;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
-import dev.xkmc.l2archery.compat.JeedHelper;
 import dev.xkmc.l2archery.content.crafting.BowBuilder;
-import dev.xkmc.l2archery.content.enchantment.PotionArrowEnchantment;
-import dev.xkmc.l2archery.content.item.GenericArrowItem;
-import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.BowUpgradeBuilder;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
-import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2complements.content.enchantment.core.EnchantmentRecipeBuilder;
 import dev.xkmc.l2complements.init.materials.LCMats;
-import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2core.init.reg.ench.EnchVal;
 import dev.xkmc.l2core.serial.ingredients.EnchantmentIngredient;
-import dev.xkmc.l2core.serial.recipe.ConditionalRecipeWrapper;
-import dev.xkmc.l2library.compat.jeed.JeedDataGenerator;
-import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
-import dev.xkmc.l2library.serial.recipe.RecordRecipeFinished;
-import net.mehvahdjukaar.jeed.Jeed;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.BiFunction;
 
@@ -598,39 +585,6 @@ public class RecipeGen {
 					.define('D', LCItems.GUARDIAN_EYE)
 					.save(pvd, getID(ArcheryEnchantments.ENCH_CHAOTIC));
 
-		}
-
-		//JEED
-		{
-			var loader = ConditionalRecipeWrapper.mod(pvd, Jeed.MOD_ID);
-			for (var e : ForgeRegistries.ITEMS.getEntries()) {
-				if (e.getValue() instanceof GenericBowItem) {
-					loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_bow/" + e.getKey().location().getPath()),
-							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.BOW, e.getKey().location())));
-				}
-				if (e.getValue() instanceof GenericArrowItem) {
-					loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_arrow/" + e.getKey().location().getPath()),
-							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.ARROW, e.getKey().location())));
-				}
-			}
-
-			for (var e : ForgeRegistries.ENCHANTMENTS.getEntries()) {
-				if (e.getValue() instanceof PotionArrowEnchantment) {
-					loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_enchantment/" + e.getKey().location().getPath()),
-							JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.ENCHANTMENT, e.getKey().location())));
-				}
-			}
-			for (var e : ArcheryRegister.UPGRADE.get().getEntries()) {
-				loader.accept(new RecordRecipeFinished<>(new ResourceLocation(L2Archery.MODID, "jeed_upgrade/" + e.getKey().location().getPath()),
-						JeedHelper.REC.get(), new JeedHelper.ArcheryJeedFinished(JeedHelper.JeedType.UPGRADE, e.getKey().location())));
-			}
-
-			var gen = new JeedDataGenerator(L2Archery.MODID);
-			gen.add(ArcheryItems.TURTLE_BOW.get(), MobEffects.MOVEMENT_SLOWDOWN, MobEffects.DAMAGE_RESISTANCE);
-			gen.add(ArcheryItems.EARTH_BOW.get(), MobEffects.MOVEMENT_SLOWDOWN, MobEffects.DAMAGE_RESISTANCE);
-			gen.add(ArcheryItems.GAIA_BOW.get(), LCEffects.INCARCERATE, MobEffects.DAMAGE_RESISTANCE);
-			gen.add(ArcheryItems.WIND_BOW.get(), MobEffects.MOVEMENT_SPEED);
-			gen.generate(pvd);
 		}
 
 	}

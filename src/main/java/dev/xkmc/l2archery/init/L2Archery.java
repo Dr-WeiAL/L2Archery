@@ -2,7 +2,6 @@ package dev.xkmc.l2archery.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2archery.compat.GolemCompat;
-import dev.xkmc.l2archery.compat.JeedHelper;
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.energy.EnergyContainerItemWrapper;
 import dev.xkmc.l2archery.events.ArrowAttackListener;
@@ -17,7 +16,6 @@ import dev.xkmc.l2core.init.reg.simple.Reg;
 import dev.xkmc.l2core.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2core.serial.config.PacketHandlerWithConfig;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
-import net.mehvahdjukaar.jeed.Jeed;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -54,7 +52,6 @@ public class L2Archery {
 		AttackEventHandler.register(2000, new ArrowAttackListener());
 		ArcheryConfig.init();
 		if (ModList.get().isLoaded("modulargolems")) GolemCompat.register();
-		if (ModList.get().isLoaded(Jeed.MOD_ID)) JeedHelper.register();
 	}
 
 	@SubscribeEvent
