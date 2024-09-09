@@ -15,26 +15,21 @@ import dev.xkmc.l2archery.content.feature.bow.WindBowFeature;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
+import dev.xkmc.l2archery.content.upgrade.BowUpgrade;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
-import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2archery.mixin.AbstractArrowAccessor;
 import dev.xkmc.l2core.init.reg.ench.EnchHelper;
-import dev.xkmc.l2core.util.Proxy;
+import dev.xkmc.l2core.init.reg.ench.LegacyEnchantment;
 import dev.xkmc.l2library.content.raytrace.FastItem;
 import dev.xkmc.l2library.content.raytrace.IGlowingTarget;
 import dev.xkmc.l2library.util.GenericItemStack;
-import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -52,14 +47,11 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
-import static dev.xkmc.l2archery.init.data.ArcheryTagGen.TAG_ENERGY;
 
 
 public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget, IFluxItem {
@@ -79,30 +71,13 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		return false;
 	}
 
-	public static final String KEY = "upgrades";
-
 	public static List<Upgrade> getUpgrades(ItemStack stack) {
-		List<Upgrade> ans = new ArrayList<>();
-		if (stack.getOrCreateTag().contains(KEY)) {
-			ListTag list = ItemCompoundTag.of(stack).getSubList(KEY, Tag.TAG_STRING).getOrCreate();
-			for (int i = 0; i < list.size(); i++) {
-				Upgrade up = ArcheryRegister.UPGRADE.get().getValue(new ResourceLocation(list.getString(i)));
-				if (up != null) {
-					ans.add(up);
-				}
-			}
-		}
-		return ans;
+		return ArcheryItems.BOW_UPGRADE.getOrDefault(stack, BowUpgrade.DEF).list();
 	}
 
 	public static void addUpgrade(ItemStack result, Upgrade upgrade) {
-		List<Upgrade> list = getUpgrades(result);
-		list.add(upgrade);
-		ListTag tag = new ListTag();
-		for (Upgrade up : list) {
-			tag.add(StringTag.valueOf(up.getID()));
-		}
-		ItemCompoundTag.of(result).getSubList(KEY, Tag.TAG_STRING).setTag(tag);
+		var current = ArcheryItems.BOW_UPGRADE.getOrDefault(result, BowUpgrade.DEF);
+		ArcheryItems.BOW_UPGRADE.set(result, current.add(upgrade));
 	}
 
 	public final BowConfig config;
@@ -113,7 +88,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		ArcheryItems.BOW_LIKE.add(this);
 	}
 
-	/**
+	/** TODO
 	 * on release bow
 	 */
 	public void releaseUsing(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
@@ -123,6 +98,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		}
 	}
 
+	/**TODO */
 	public Optional<AbstractArrow> releaseUsingAndShootArrow(ItemStack bow, Level level, LivingEntity user, int remaining_pull_time) {
 		boolean instabuild = user instanceof Player pl && pl.getAbilities().instabuild;
 		BowFeatureController.stopUsing(user, new GenericItemStack<>(this, bow));
@@ -177,7 +153,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		return arrowOpt;
 	}
 
-	/**
+	/** TODO
 	 * create arrow entity and add to world
 	 */
 	private Optional<AbstractArrow> shootArrowOnServer(LivingEntity player, Level level, ItemStack bow, ItemStack arrow, float power, boolean no_consume) {
@@ -195,20 +171,6 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 			if (power == 1.0F) {
 				abstractarrow.setCritArrow(true);
 			}
-
-			int j = EnchHelper.getLv(bow, Enchantments.POWER);
-			if (j > 0) {
-				abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + (double) j * 0.5D + 0.5D);
-			}
-
-			int k = EnchHelper.getLv(bow, Enchantments.PUNCH);
-			if (k > 0) {
-				abstractarrow.setKnockback(k);
-			}
-
-			if (EnchHelper.getLv(bow, Enchantments.FLAME) > 0) {
-				abstractarrow.setSecondsOnFire(100);
-			}
 			if (no_consume) {
 				abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 			}
@@ -222,9 +184,9 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 
 	public float getPullForTime(LivingEntity entity, float time) {
 		float f = time / config.pull_time();
-		MobEffectInstance ins = entity.getEffect(ArcheryEffects.QUICK_PULL.get());
+		MobEffectInstance ins = entity.getEffect(ArcheryEffects.QUICK_PULL);
 		if (ins != null) {
-			f *= (1.5 + 0.5 * ins.getAmplifier());
+			f *= (1.5f + 0.5f * ins.getAmplifier());
 		}
 		return Math.min(1, f);
 	}
@@ -264,10 +226,10 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		ItemStack itemstack = player.getItemInHand(hand);
 		boolean flag = !player.getProjectile(itemstack).isEmpty();
 
-		InteractionResultHolder<ItemStack> ret = ForgeEventFactory.onArrowNock(itemstack, level, player, hand, flag);
+		InteractionResultHolder<ItemStack> ret = EventHooks.onArrowNock(itemstack, level, player, hand, flag);
 		if (ret != null) return ret;
 
-		if (!player.getAbilities().instabuild && !flag) {
+		if (!player.hasInfiniteMaterials() && !flag) {
 			return InteractionResultHolder.fail(itemstack);
 		} else {
 			player.startUsingItem(hand);
@@ -304,7 +266,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	/**
-	 * return custom arrow entity
+	 * return custom arrow entity TODO
 	 */
 	public AbstractArrow customArrow(AbstractArrow arrow) {
 		if (arrow instanceof GenericArrowEntity)
@@ -338,7 +300,8 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 
 	@Override
 	public boolean isFast(ItemStack stack) {
-		if (Proxy.getPlayer().hasEffect(ArcheryEffects.RUN_BOW))
+		var player = Minecraft.getInstance().player;
+		if (player != null && player.hasEffect(ArcheryEffects.RUN_BOW))
 			return true;
 		return config.feature().stream().anyMatch(e -> e instanceof WindBowFeature);
 	}
@@ -354,7 +317,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> list, TooltipFlag flag) {
 		List<Upgrade> ups = getUpgrades(stack);
 		IBowConfig config = this.config;
 		for (Upgrade up : ups) {
@@ -376,7 +339,7 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 	public FeatureList getFeatures(@Nullable ItemStack stack) {
 		FeatureList ans = new FeatureList();
 		PotionArrowFeature bow_eff = config.getEffects();
-		if (bow_eff.instances().size() > 0) ans.add(bow_eff);
+		if (!bow_eff.instances().isEmpty()) ans.add(bow_eff);
 		for (BowArrowFeature feature : config.feature()) {
 			ans.add(feature);
 		}
@@ -388,14 +351,12 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 				ans.add(f);
 			}
 			ans.stage = FeatureList.Stage.ENCHANT;
-			stack.getAllEnchantments().forEach((k, v) -> {
-				if (k instanceof IBowEnchantment b) {
-					BowArrowFeature f = b.getFeature(v);
-					if (!(f instanceof StatFeature)) {
-						ans.add(f);
-					}
+			for (var e : LegacyEnchantment.findAll(stack, IBowEnchantment.class, true)) {
+				BowArrowFeature f = e.val().getFeature(e.lv());
+				if (!(f instanceof StatFeature)) {
+					ans.add(f);
 				}
-			});
+			}
 		}
 		return ans;
 	}
@@ -406,18 +367,12 @@ public class GenericBowItem extends BowItem implements FastItem, IGlowingTarget,
 		return super.isPrimaryItemFor(stack, enchantment);
 	}
 
-	@Override
-	public Rarity getRarity(ItemStack stack) {
-		return Rarity.values()[config.rank()];
-	}
-
 	public int getUpgradeSlot(ItemStack stack) {
 		return config.rank() + EnchHelper.getLv(stack, Enchantments.BINDING_CURSE) - getUpgrades(stack).size();
 	}
 
 	public static void remakeEnergy(ItemStack stack) {
-		CompoundTag tag = stack.getOrCreateTag();
-		tag.putInt(TAG_ENERGY, 0);
+		stack.remove(ArcheryItems.ENERGY);
 	}
 
 	@Nullable

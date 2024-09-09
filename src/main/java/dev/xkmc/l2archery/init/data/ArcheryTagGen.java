@@ -15,8 +15,7 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.Tags;
 
 public class ArcheryTagGen {
-	public static final String TAG_ENERGY = "Energy";
-	public static final String ID_FORGE = "forge";
+
 	public static final TagKey<Item> FORGE_BOWS = Tags.Items.TOOLS_BOW;
 	public static final TagKey<Item> FORGE_ARROWS = ItemTags.ARROWS;
 

@@ -2,8 +2,10 @@ package dev.xkmc.l2archery.content.upgrade;
 
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
+import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.util.Lazy;
 
 import java.util.function.Function;
@@ -30,4 +32,9 @@ public class Upgrade extends NamedEntry<Upgrade> {
 	public boolean allow(GenericBowItem bow) {
 		return feature.get().allow(bow.config);
 	}
+
+	public ItemStack item() {
+		return ArcheryItems.ITEM_UPGRADE.set(ArcheryItems.UPGRADE.asStack(), this);
+	}
+
 }

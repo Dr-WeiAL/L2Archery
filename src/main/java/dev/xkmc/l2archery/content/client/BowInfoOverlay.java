@@ -6,10 +6,8 @@ import dev.xkmc.l2archery.init.data.ArcheryConfig;
 import dev.xkmc.l2archery.init.data.LangData;
 import dev.xkmc.l2itemselector.overlay.InfoSideBar;
 import dev.xkmc.l2itemselector.overlay.SideBar;
-import dev.xkmc.l2library.base.overlay.InfoSideBar;
-import dev.xkmc.l2library.base.overlay.SideBar;
-import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BowItem;
@@ -20,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
+import static net.minecraft.world.item.component.ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT;
 
 public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature> {
 
@@ -40,7 +38,7 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 
 	@Override
 	protected List<Component> getText() {
-		LocalPlayer player = Proxy.getClientPlayer();
+		LocalPlayer player = Minecraft.getInstance().player;
 		assert player != null;
 		ItemStack bowStack = player.getMainHandItem();
 		ItemStack arrowStack = player.getProjectile(bowStack);
@@ -62,11 +60,11 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 		IBowConfig bow = data.getConfig();
 		double dmg = 2;
 		var map = data.ench();
-		int power = map.getOrDefault(Enchantments.POWER_ARROWS, 0);
+		int power = map.getOrDefault(Enchantments.POWER, 0);
 		if (power > 0) {
 			dmg += power * 0.5D + 0.5D;
 		}
-		int punch = map.getOrDefault(Enchantments.PUNCH_ARROWS, 0);
+		int punch = map.getOrDefault(Enchantments.PUNCH, 0);
 		dmg += bow.damage() + arrow.damage();
 		dmg *= bow.speed();
 		dmg = Math.ceil(dmg);
@@ -80,7 +78,7 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 
 	@Override
 	public BowStackSignature getSignature() {
-		LocalPlayer player = Proxy.getClientPlayer();
+		LocalPlayer player = Minecraft.getInstance().player;
 		assert player != null;
 		ItemStack bowStack = player.getMainHandItem();
 		ItemStack arrowStack = player.getProjectile(bowStack);
@@ -89,7 +87,7 @@ public class BowInfoOverlay extends InfoSideBar<BowInfoOverlay.BowStackSignature
 
 	@Override
 	public boolean isScreenOn() {
-		LocalPlayer player = Proxy.getClientPlayer();
+		LocalPlayer player = Minecraft.getInstance().player;
 		if (player == null) return false;
 		ItemStack bowStack = player.getMainHandItem();
 		if (!(bowStack.getItem() instanceof BowItem)) return false;

@@ -12,10 +12,8 @@ import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.feature.materials.PoseiditeArrowFeature;
 import dev.xkmc.l2archery.content.feature.materials.TotemicArrowFeature;
-import dev.xkmc.l2archery.content.item.ArrowConfig;
-import dev.xkmc.l2archery.content.item.BowConfig;
-import dev.xkmc.l2archery.content.item.GenericArrowItem;
-import dev.xkmc.l2archery.content.item.GenericBowItem;
+import dev.xkmc.l2archery.content.item.*;
+import dev.xkmc.l2archery.content.upgrade.BowUpgrade;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
@@ -26,6 +24,8 @@ import dev.xkmc.l2complements.init.materials.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
+import dev.xkmc.l2core.init.reg.simple.DCReg;
+import dev.xkmc.l2core.init.reg.simple.DCVal;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
 import net.minecraft.resources.ResourceLocation;
@@ -34,6 +34,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
@@ -71,6 +72,12 @@ public class ArcheryItems {
 			MAGNIFY_UP_1, MAGNIFY_UP_2, MAGNIFY_UP_3, DAMAGE_UP, PUNCH_UP, BLACKSTONE_UP, HARM_UP, HEAL_UP, SHINE_UP,
 			LEVITATE_UP, SUPERDAMAGE_UP, RAILGUN_UP, FLUX_UP, FLOAT_UP, SLOW_UP, POISON_UP, WITHER_UP, WEAK_UP, CORROSION_UP,
 			CURSE_UP, CLEANSE_UP, ADVANCED_INFINITY, EXPLOSION_BREAKER;
+
+	public static final DCReg DC = DCReg.of(L2Archery.REG);
+
+	public static final DCVal<Upgrade> ITEM_UPGRADE = DC.reg("item_upgrade", Upgrade.class, true);
+	public static final DCVal<BowUpgrade> BOW_UPGRADE = DC.reg("bow_upgrade", BowUpgrade.class, true);
+	public static final DCVal<Integer> ENERGY = DC.intVal("energy");
 
 	static {
 		{
@@ -243,8 +250,10 @@ public class ArcheryItems {
 	public static ItemBuilder<GenericBowItem, L2Registrate> genBow(String id, int rank, int durability, Consumer<ImmutableList.Builder<BowArrowFeature>> consumer) {
 		ImmutableList.Builder<BowArrowFeature> f = ImmutableList.builder();
 		consumer.accept(f);
-		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability), e -> new BowConfig(e, rank, f.build())))
-				.model(ArcheryItems::createBowModel).defaultLang().tag(ArcheryTagGen.FORGE_BOWS, ArcheryTagGen.PROF_BOWS);
+		return REGISTRATE.item(id, p -> new GenericBowItem(p.stacksTo(1).durability(durability).rarity(Rarity.values()[rank]),
+						e -> new BowConfig(e, rank, f.build())))
+				.model(ArcheryItems::createBowModel).clientExtension(() -> BowHandTransform::new)
+				.defaultLang().tag(ArcheryTagGen.FORGE_BOWS, ArcheryTagGen.PROF_BOWS);
 	}
 
 	private static final float[] BOW_PULL_VALS = {0, 0.65f, 0.9f};

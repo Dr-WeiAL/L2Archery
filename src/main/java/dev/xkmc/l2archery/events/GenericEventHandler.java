@@ -20,12 +20,18 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.neoforged.neoforge.event.GrindstoneEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 
 import java.util.Set;
 import java.util.TreeSet;
 
 @EventBusSubscriber(modid = L2Archery.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class GenericEventHandler {
+
+	@SubscribeEvent
+	public static void registerBrewingRecipe(RegisterBrewingRecipesEvent event) {
+		ArcheryEffects.registerBrewingRecipe(event);
+	}
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
@@ -39,7 +45,7 @@ public class GenericEventHandler {
 			float i = player.getTicksUsingItem();
 			MobEffectInstance ins = player.getEffect(ArcheryEffects.QUICK_PULL);
 			if (ins != null) {
-				i *= 1.5 + 0.5 * ins.getAmplifier();
+				i *= 1.5f + 0.5f * ins.getAmplifier();
 			}
 			BowData data = BowData.of(bow, stack);
 			float p = data.getConfig().fov_time();
@@ -62,7 +68,7 @@ public class GenericEventHandler {
 			GenericBowItem.remakeEnergy(result);
 			event.setOutput(result);
 			event.setMaterialCost(1);
-			event.setCost(8 << (count));
+			event.setCost(8L << count);
 
 		}
 	}

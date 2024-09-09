@@ -34,7 +34,7 @@ public enum ArcheryDamageState implements DamageState {
 
 	@Override
 	public ResourceLocation getId() {
-		return new ResourceLocation(L2Archery.MODID, name().toLowerCase(Locale.ROOT));
+		return L2Archery.loc(name().toLowerCase(Locale.ROOT));
 	}
 
 	@Override

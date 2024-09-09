@@ -11,13 +11,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpectralArrowItem;
 import net.minecraft.world.item.TippedArrowItem;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public record ArrowData(Item item, @Nullable CompoundTag tag) {
+public record ArrowData(Item item, @Nullable PotionContents tag) {
 
 	public static ArrowData of(Item item) {
 		return new ArrowData(item, null);
@@ -50,7 +52,7 @@ public record ArrowData(Item item, @Nullable CompoundTag tag) {
 	public ItemStack stack() {
 		if (item instanceof TippedArrowItem) {
 			ItemStack ans = new ItemStack(item);
-			ans.setTag(tag);
+			ans.set(DataComponents.POTION_CONTENTS, custom);
 			return ans;
 		}
 		return item.getDefaultInstance();

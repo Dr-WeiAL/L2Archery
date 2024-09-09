@@ -1,12 +1,11 @@
 package dev.xkmc.l2archery.content.energy;
 
-import net.minecraft.nbt.CompoundTag;
+import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.capabilities.ItemCapability;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
-import static dev.xkmc.l2archery.init.data.ArcheryTagGen.TAG_ENERGY;
 import static net.minecraft.util.Mth.clamp;
 
 
@@ -30,10 +29,6 @@ public interface IEnergyContainerItem {
 	 */
 	int getMaxEnergyStored(ItemStack container);
 
-	default CompoundTag getOrCreateEnergyTag(ItemStack container) {
-		return container.getOrCreateTag();
-	}
-
 	default int getSpace(ItemStack container) {
 		return getMaxEnergyStored(container) - getEnergyStored(container);
 	}
@@ -50,13 +45,11 @@ public interface IEnergyContainerItem {
 	 * Get the amount of energy currently stored in the container item.
 	 */
 	default int getEnergyStored(ItemStack container) {
-		CompoundTag tag = getOrCreateEnergyTag(container);
-		return Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
+		return Math.min(ArcheryItems.ENERGY.getOrDefault(container, 0), getMaxEnergyStored(container));
 	}
 
 	default void setEnergyStored(ItemStack container, int energy) {
-		CompoundTag tag = getOrCreateEnergyTag(container);
-		tag.putInt(TAG_ENERGY, clamp(energy, 0, getMaxEnergyStored(container)));
+		ArcheryItems.ENERGY.set(container, clamp(energy, 0, getMaxEnergyStored(container)));
 	}
 
 	/**
@@ -69,13 +62,12 @@ public interface IEnergyContainerItem {
 	 * @return Amount of energy that was (or would have been, if simulated) received by the item.
 	 */
 	default int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
-		CompoundTag tag = getOrCreateEnergyTag(container);
-		int stored = Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
+		int stored = Math.min(ArcheryItems.ENERGY.getOrDefault(container, 0), getMaxEnergyStored(container));
 		int receive = Math.min(Math.min(maxReceive, getReceive(container)), getSpace(container));
 
 		if (!simulate) {
 			stored += receive;
-			tag.putInt(TAG_ENERGY, stored);
+			ArcheryItems.ENERGY.set(container, stored);
 		}
 		return receive;
 	}
@@ -90,14 +82,12 @@ public interface IEnergyContainerItem {
 	 * @return Amount of energy that was (or would have been, if simulated) extracted from the item.
 	 */
 	default int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-
-		CompoundTag tag = getOrCreateEnergyTag(container);
-		int stored = Math.min(tag.getInt(TAG_ENERGY), getMaxEnergyStored(container));
+		int stored = Math.min(ArcheryItems.ENERGY.getOrDefault(container, 0), getMaxEnergyStored(container));
 		int extract = Math.min(Math.min(maxExtract, getExtract(container)), stored);
 
 		if (!simulate) {
 			stored -= extract;
-			tag.putInt(TAG_ENERGY, stored);
+			ArcheryItems.ENERGY.set(container, stored);
 		}
 		return extract;
 	}

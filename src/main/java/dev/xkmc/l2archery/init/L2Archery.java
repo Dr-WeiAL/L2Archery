@@ -4,13 +4,13 @@ import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2archery.compat.GolemCompat;
 import dev.xkmc.l2archery.compat.JeedHelper;
 import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
+import dev.xkmc.l2archery.content.energy.EnergyContainerItemWrapper;
 import dev.xkmc.l2archery.events.ArrowAttackListener;
 import dev.xkmc.l2archery.init.data.*;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
-import dev.xkmc.l2complements.init.data.TagGen;
 import dev.xkmc.l2core.init.L2TagGen;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
 import dev.xkmc.l2core.init.reg.simple.Reg;
@@ -25,6 +25,7 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
@@ -59,7 +60,7 @@ public class L2Archery {
 	@SubscribeEvent
 	public static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			ArcheryEffects.registerBrewingRecipe();
+
 		});
 	}
 
@@ -73,17 +74,21 @@ public class L2Archery {
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArcheryTagGen::onEntityTagGen);
 		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArcheryTagGen::onEffectTagGen);
 
+		new ArcheryDamageMultiplex().generate();
 
-		boolean gen = event.includeServer();
-		var output = event.getGenerator().getPackOutput();
-		var lookup = event.getLookupProvider();
+		boolean run = event.includeServer();
+		var gen = event.getGenerator();
+		var output = gen.getPackOutput();
+		var pvd = event.getLookupProvider();
 		var helper = event.getExistingFileHelper();
-		event.getGenerator().addProvider(gen, new ArcheryConfigGen(event.getGenerator()));
-		new ArcheryDamageMultiplex(output, lookup, helper).generate(gen, event.getGenerator());
+		gen.addProvider(run, new ArcheryConfigGen(gen, pvd));
+
 	}
 
 	@SubscribeEvent
 	public static void registerCaps(RegisterCapabilitiesEvent event) {
+		for (var e : ArcheryItems.BOW_LIKE)
+			event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, x) -> new EnergyContainerItemWrapper(stack, e), e);
 	}
 
 	public static ResourceLocation loc(String id) {

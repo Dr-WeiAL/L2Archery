@@ -7,6 +7,7 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.InfinityFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
+import dev.xkmc.l2core.init.reg.ench.EnchHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -31,37 +32,38 @@ public class GenericArrowItem extends ArrowItem {
 		this.config = config.apply(this);
 	}
 
-	public AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity user) {
-		ItemStack bow = user.getItemInHand(user.getUsedItemHand());
+	public AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity user, @Nullable ItemStack bow) {
+		if (bow == null) bow = user.getItemInHand(user.getUsedItemHand());
 		BowData bowData = bow.getItem() instanceof GenericBowItem bowItem ?
 				BowData.of(bowItem, bow) : BowData.of(ArcheryItems.STARTER_BOW.get(), bow);
 		var arrow = ArrowFeatureController.createArrowEntity(
 				new ArrowFeatureController.BowArrowUseContext(level, user, true, 1),
 				bowData, ArrowData.of(this));
 		if (arrow == null) {
-			arrow = new Arrow(level, user);
+			arrow = new Arrow(level, user, stack.copyWithCount(1), bow);
 		} else {
 			arrow.addTag(GenericArrowEntity.TAG);
 		}
 		return arrow;
 	}
 
-	public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
-		int enchant = bow.getEnchantmentLevel(Enchantments.INFINITY_ARROWS);
+	@Override
+	public boolean isInfinite(ItemStack ammo, ItemStack bow, LivingEntity player) {
+		int enchant = EnchHelper.getLv(bow, Enchantments.INFINITY);
 		int infLevel = enchant > 0 ? 1 : 0;
 		if (bow.getItem() instanceof GenericBowItem bowItem) {
 			infLevel = Math.max(InfinityFeature.getLevel(bowItem.getFeatures(bow)), infLevel);
 		}
 		if (config.infLevel() == 2) {
-			return infLevel >= 1 || super.isInfinite(stack, bow, player);
+			return infLevel >= 1 || super.isInfinite(ammo, bow, player);
 		} else if (config.infLevel() == 1) {
-			return infLevel >= 2 || super.isInfinite(stack, bow, player);
+			return infLevel >= 2 || super.isInfinite(ammo, bow, player);
 		}
 		return false;
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		config.addTooltip(list);
 		getFeatures().addTooltip(list);
 	}
@@ -69,7 +71,7 @@ public class GenericArrowItem extends ArrowItem {
 	public FeatureList getFeatures() {
 		FeatureList list = new FeatureList();
 		PotionArrowFeature arrow_eff = config.getEffects();
-		if (arrow_eff.instances().size() > 0) {
+		if (!arrow_eff.instances().isEmpty()) {
 			list.add(arrow_eff);
 		}
 		for (BowArrowFeature feature : config.feature()) {

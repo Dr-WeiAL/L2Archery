@@ -4,16 +4,14 @@ import com.tterrag.registrate.util.CreativeModeTabModifier;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.init.data.LangData;
+import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -27,14 +25,11 @@ public class UpgradeItem extends Item {
 
 	@Nullable
 	public static Upgrade getUpgrade(ItemStack stack) {
-		CompoundTag tag = stack.getTag();
-		if (tag == null || !tag.contains(KEY)) return null;
-		return ArcheryRegister.UPGRADE.get().getValue(new ResourceLocation(tag.getString(KEY)));
+		return ArcheryItems.ITEM_UPGRADE.get(stack);
 	}
 
 	public static ItemStack setUpgrade(ItemStack stack, Upgrade upgrade) {
-		stack.getOrCreateTag().putString(KEY, upgrade.getID());
-		return stack;
+		return ArcheryItems.ITEM_UPGRADE.set(stack, upgrade);
 	}
 
 	public UpgradeItem(Properties props) {
@@ -43,7 +38,7 @@ public class UpgradeItem extends Item {
 
 	public void fillItemCategory(CreativeModeTabModifier tab) {
 		tab.accept(new ItemStack(this));
-		for (Upgrade upgrade : ArcheryRegister.UPGRADE.get().getValues())
+		for (Upgrade upgrade : ArcheryRegister.UPGRADE.get().stream().toList())
 			tab.accept(setUpgrade(new ItemStack(this), upgrade));
 	}
 
@@ -61,7 +56,7 @@ public class UpgradeItem extends Item {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		Upgrade upgrade = getUpgrade(stack);
 		if (upgrade != null) {
 			if (upgrade.getFeature() instanceof PotionArrowFeature arr) {

@@ -16,11 +16,14 @@ import dev.xkmc.l2complements.content.enchantment.core.EnchantmentRecipeBuilder;
 import dev.xkmc.l2complements.init.materials.LCMats;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2complements.init.registrate.LCItems;
+import dev.xkmc.l2core.init.reg.ench.EnchVal;
+import dev.xkmc.l2core.serial.ingredients.EnchantmentIngredient;
+import dev.xkmc.l2core.serial.recipe.ConditionalRecipeWrapper;
 import dev.xkmc.l2library.compat.jeed.JeedDataGenerator;
-import dev.xkmc.l2library.serial.ingredients.EnchantmentIngredient;
 import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
 import dev.xkmc.l2library.serial.recipe.RecordRecipeFinished;
 import net.mehvahdjukaar.jeed.Jeed;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -28,7 +31,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -113,8 +115,8 @@ public class RecipeGen {
 					.pattern("2OR").pattern("ABR").pattern("1OR")
 					.define('O', Items.DRAGON_HEAD)
 					.define('R', LCMats.SHULKERATE.getIngot())
-					.define('1', new EnchantmentIngredient(Enchantments.BINDING_CURSE, 1))
-					.define('2', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
+					.define('1', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.BINDING_CURSE, 1))
+					.define('2', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.VANISHING_CURSE, 1))
 					.define('A', LCItems.VOID_EYE.get())
 					.define('B', ArcheryItems.GLOW_AIM_BOW.get())
 					.save(pvd);
@@ -123,8 +125,8 @@ public class RecipeGen {
 					.pattern("2OR").pattern("ABR").pattern("1OR")
 					.define('O', Items.DRAGON_HEAD)
 					.define('R', LCItems.SPACE_SHARD.get())
-					.define('1', new EnchantmentIngredient(Enchantments.MENDING, 1))
-					.define('2', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('1', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.MENDING, 1))
+					.define('2', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('A', LCItems.VOID_EYE.get())
 					.define('B', ArcheryItems.ENDER_AIM_BOW.get())
 					.save(pvd);
@@ -190,7 +192,7 @@ public class RecipeGen {
 			unlock(pvd, new BowBuilder(ArcheryItems.TURTLE_BOW.get(), 1)::unlockedBy, ArcheryItems.IRON_BOW.get())
 					.pattern("CCB").pattern("DAB").pattern("CCB")
 					.define('A', ArcheryItems.IRON_BOW.get())
-					.define('B', Items.SCUTE)
+					.define('B', Items.TURTLE_SCUTE)
 					.define('C', Items.IRON_INGOT)
 					.define('D', Items.GOLD_INGOT)
 					.save(pvd);
@@ -215,8 +217,8 @@ public class RecipeGen {
 					.pattern("1LO").pattern("AB2").pattern("1LO")
 					.define('O', LCItems.RESONANT_FEATHER.get())
 					.define('L', Items.LEATHER)
-					.define('1', new EnchantmentIngredient(Enchantments.POWER_ARROWS, 5))
-					.define('2', new EnchantmentIngredient(Enchantments.PUNCH_ARROWS, 2))
+					.define('1', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.POWER, 5))
+					.define('2', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.PUNCH, 2))
 					.define('A', Items.NETHERITE_INGOT)
 					.define('B', ArcheryItems.IRON_BOW.get())
 					.save(pvd);
@@ -270,7 +272,7 @@ public class RecipeGen {
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', Items.NETHER_STAR)
 					.define('C', Items.CREEPER_HEAD)
-					.define('D', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('D', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('E', LCItems.EXPLOSION_SHARD.get())
 					.save(pvd);
 
@@ -287,23 +289,23 @@ public class RecipeGen {
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', LCItems.VOID_EYE.get())
 					.define('C', Items.DRAGON_HEAD)
-					.define('1', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
-					.define('2', new EnchantmentIngredient(Enchantments.MENDING, 1))
-					.define('3', new EnchantmentIngredient(Enchantments.BINDING_CURSE, 1))
-					.define('4', new EnchantmentIngredient(Enchantments.VANISHING_CURSE, 1))
+					.define('1', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
+					.define('2', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.MENDING, 1))
+					.define('3', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.BINDING_CURSE, 1))
+					.define('4', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.VANISHING_CURSE, 1))
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.DAMAGE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("C C").pattern("CAC").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', ArcheryItems.DIAMOND_ARROW.get())
-					.define('C', new EnchantmentIngredient(Enchantments.POWER_ARROWS, 5))
+					.define('C', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.POWER, 5))
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.PUNCH_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("C C").pattern(" A ").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', new EnchantmentIngredient(Enchantments.PUNCH_ARROWS, 2))
+					.define('B', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.PUNCH, 2))
 					.define('C', ArcheryItems.GOLD_ARROW.get())
 					.save(pvd);
 
@@ -331,7 +333,7 @@ public class RecipeGen {
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.SHINE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("CBC").pattern("DAD").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('B', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('C', Items.SPECTRAL_ARROW)
 					.define('D', Items.GLOWSTONE_DUST)
 					.save(pvd);
@@ -341,7 +343,7 @@ public class RecipeGen {
 					.define('A', ArcheryItems.UPGRADE.get())
 					.define('B', LCItems.CAPTURED_WIND.get())
 					.define('D', LCItems.EXPLOSION_SHARD.get())
-					.define('C', new EnchantmentIngredient(Enchantments.POWER_ARROWS, 5))
+					.define('C', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.POWER, 5))
 					.save(pvd);
 
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.BLACKSTONE_UP.get())::unlockedBy, ArcheryItems.UPGRADE.get())
@@ -462,7 +464,7 @@ public class RecipeGen {
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.ADVANCED_INFINITY.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("CEC").pattern("EAE").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('B', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('C', LCItems.CAPTURED_BULLET)
 					.define('E', Items.LAPIS_LAZULI)
 					.save(pvd);
@@ -470,7 +472,7 @@ public class RecipeGen {
 			unlock(pvd, new BowUpgradeBuilder(ArcheryItems.EXPLOSION_BREAKER.get())::unlockedBy, ArcheryItems.UPGRADE.get())
 					.pattern("CEC").pattern("EAE").pattern("CBC")
 					.define('A', ArcheryItems.UPGRADE.get())
-					.define('B', new EnchantmentIngredient(Enchantments.BLOCK_EFFICIENCY, 1))
+					.define('B', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.EFFICIENCY, 1))
 					.define('C', Items.END_CRYSTAL)
 					.define('E', Items.LAPIS_LAZULI)
 					.save(pvd);
@@ -479,122 +481,122 @@ public class RecipeGen {
 		// enchantments
 		{
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_GLOW.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_GLOW, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CBC").pattern("BAB").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('C', Items.SPECTRAL_ARROW)
 					.define('B', Items.GLOWSTONE_DUST)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_GLOW.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_GLOW));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_MAGNIFY.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_MAGNIFY, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern(" B ").pattern("CAC").pattern(" C ")
 					.define('A', Items.BOOK)
 					.define('B', Items.SPYGLASS)
 					.define('C', Items.COPPER_INGOT)
-					.save(pvd);
+					.save(pvd, getID(ArcheryEnchantments.ENCH_MAGNIFY));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_HARM.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_HARM, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("CAC").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.FERMENTED_SPIDER_EYE)
 					.define('E', Items.NETHER_WART)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_HARM.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_HARM));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_HEAL.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_HEAL, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("CAC").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.GLISTERING_MELON_SLICE)
 					.define('E', Items.NETHER_WART)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_HEAL.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_HEAL));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_LEVITATE.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_LEVITATE, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("CAC").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', LCItems.CAPTURED_BULLET.get())
 					.define('E', Items.NETHER_WART)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_LEVITATE.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_LEVITATE));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_FLOAT.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_FLOAT, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("EAE").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.PHANTOM_MEMBRANE)
 					.define('E', LCItems.CAPTURED_BULLET.get())
-					.save(pvd, getID(ArcheryEnchantments.ENCH_FLOAT.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_FLOAT));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_SLOW.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_SLOW, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("CAC").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.COBWEB)
 					.define('E', Items.FERMENTED_SPIDER_EYE)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_SLOW.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_SLOW));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_WEAK.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_WEAK, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("EAE").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.GLOWSTONE_DUST)
 					.define('E', Items.FERMENTED_SPIDER_EYE)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_WEAK.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_WEAK));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_POISON.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_POISON, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("CAC").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.SPIDER_EYE)
 					.define('E', Items.PUFFERFISH)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_POISON.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_POISON));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_WITHER.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_WITHER, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CEC").pattern("CAC").pattern("CBC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.WITHER_ROSE)
 					.define('E', Items.WITHER_SKELETON_SKULL)
-					.save(pvd, getID(ArcheryEnchantments.ENCH_WITHER.get()));
+					.save(pvd, getID(ArcheryEnchantments.ENCH_WITHER));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_GLOW_AIM.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_GLOW_AIM, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("BCB").pattern("BAB").pattern("B B")
 					.define('A', Items.BOOK)
 					.define('B', Items.GLOWSTONE_DUST)
 					.define('C', Items.ENDER_EYE)
-					.save(pvd);
+					.save(pvd, getID(ArcheryEnchantments.ENCH_GLOW_AIM));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_EXPLODE.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_EXPLODE, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CDC").pattern("BAB").pattern("CDC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', LCItems.STORM_CORE)
 					.define('D', LCItems.STRONG_CHARGE)
-					.save(pvd);
+					.save(pvd, getID(ArcheryEnchantments.ENCH_EXPLODE));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_EXPLOSION_BREAK.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_EXPLOSION_BREAK, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CDC").pattern("BAB").pattern("CDC")
-					.define('A', new EnchantmentIngredient(Enchantments.BLOCK_EFFICIENCY, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.EFFICIENCY, 1))
 					.define('B', Items.CREEPER_HEAD)
 					.define('C', LCItems.STORM_CORE)
 					.define('D', Items.END_CRYSTAL)
-					.save(pvd);
+					.save(pvd, getID(ArcheryEnchantments.ENCH_EXPLOSION_BREAK));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_DISTORTION.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_DISTORTION, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CDC").pattern("BAB").pattern("CDC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.PUFFERFISH)
 					.define('D', LCItems.GUARDIAN_EYE)
-					.save(pvd);
+					.save(pvd, getID(ArcheryEnchantments.ENCH_DISTORTION));
 
-			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_CHAOTIC.get(), 1)::unlockedBy, Items.BOOK)
+			unlock(pvd, new EnchantmentRecipeBuilder(ArcheryEnchantments.ENCH_CHAOTIC, pvd, 1)::unlockedBy, Items.BOOK)
 					.pattern("CDC").pattern("BAB").pattern("CDC")
-					.define('A', new EnchantmentIngredient(Enchantments.INFINITY_ARROWS, 1))
+					.define('A', EnchantmentIngredient.of(pvd.getProvider(), Enchantments.INFINITY, 1))
 					.define('B', Items.DRAGON_BREATH)
 					.define('C', Items.DRAGON_HEAD)
 					.define('D', LCItems.GUARDIAN_EYE)
-					.save(pvd);
+					.save(pvd, getID(ArcheryEnchantments.ENCH_CHAOTIC));
 
 		}
 
@@ -626,7 +628,7 @@ public class RecipeGen {
 			var gen = new JeedDataGenerator(L2Archery.MODID);
 			gen.add(ArcheryItems.TURTLE_BOW.get(), MobEffects.MOVEMENT_SLOWDOWN, MobEffects.DAMAGE_RESISTANCE);
 			gen.add(ArcheryItems.EARTH_BOW.get(), MobEffects.MOVEMENT_SLOWDOWN, MobEffects.DAMAGE_RESISTANCE);
-			gen.add(ArcheryItems.GAIA_BOW.get(), LCEffects.STONE_CAGE.get(), MobEffects.DAMAGE_RESISTANCE);
+			gen.add(ArcheryItems.GAIA_BOW.get(), LCEffects.INCARCERATE, MobEffects.DAMAGE_RESISTANCE);
 			gen.add(ArcheryItems.WIND_BOW.get(), MobEffects.MOVEMENT_SPEED);
 			gen.generate(pvd);
 		}
@@ -634,8 +636,8 @@ public class RecipeGen {
 	}
 
 	@SuppressWarnings("ConstantConditions")
-	private static ResourceLocation getID(Enchantment item) {
-		return new ResourceLocation(L2Archery.MODID, "enchantments/" + ForgeRegistries.ENCHANTMENTS.getKey(item).getPath());
+	private static ResourceLocation getID(EnchVal e) {
+		return L2Archery.loc("enchantments/" + e.id().location().getPath());
 	}
 
 	private static void cross(RegistrateRecipeProvider pvd, Item core, Item side, Item out, int count) {
@@ -652,8 +654,8 @@ public class RecipeGen {
 				.save(pvd);
 	}
 
-	private static <T> T unlock(RegistrateRecipeProvider pvd, BiFunction<String, InventoryChangeTrigger.TriggerInstance, T> func, Item item) {
-		return func.apply("has_" + pvd.safeName(item), DataIngredient.items(item).getCritereon(pvd));
+	private static <T> T unlock(RegistrateRecipeProvider pvd, BiFunction<String, Criterion<InventoryChangeTrigger.TriggerInstance>, T> func, Item item) {
+		return func.apply("has_" + pvd.safeName(item), DataIngredient.items(item).getCriterion(pvd));
 	}
 
 }

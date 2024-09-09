@@ -6,13 +6,16 @@ import dev.xkmc.l2archery.init.registrate.ArcheryEnchantments;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2core.serial.config.ConfigDataProvider;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.effect.MobEffects;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ArcheryConfigGen extends ConfigDataProvider {
 
-	public ArcheryConfigGen(DataGenerator generator) {
-		super(generator, "Archery Config");
+	public ArcheryConfigGen(DataGenerator generator, CompletableFuture<HolderLookup.Provider> pvd) {
+		super(generator, pvd, "Archery Config");
 	}
 
 	@Override
@@ -27,15 +30,15 @@ public class ArcheryConfigGen extends ConfigDataProvider {
 				.putBow(ArcheryItems.EAGLE_BOW).damage(6).punch(2).bothTimes(40).end()
 				.putBow(ArcheryItems.WIND_BOW).punch(1).bothTimes(10).speed(3.9).end()
 				.putBow(ArcheryItems.EXPLOSION_BOW).end()
-				.putBow(ArcheryItems.FLAME_BOW).putEffect(LCEffects.FLAME.get(), 100, 0).end()
-				.putBow(ArcheryItems.FROZE_BOW).putEffect(LCEffects.ICE.get(), 600, 0).end()
+				.putBow(ArcheryItems.FLAME_BOW).putEffect(LCEffects.FLAME, 100, 0).end()
+				.putBow(ArcheryItems.FROZE_BOW).putEffect(LCEffects.ICE, 600, 0).end()
 				.putBow(ArcheryItems.STORM_BOW).end()
-				.putBow(ArcheryItems.BLACKSTONE_BOW).putEffect(LCEffects.INCARCERATE.get(), 100, 0).end()
-				.putBow(ArcheryItems.WINTER_BOW).putEffect(LCEffects.ICE.get(), 600, 0).end()
+				.putBow(ArcheryItems.BLACKSTONE_BOW).putEffect(LCEffects.INCARCERATE, 100, 0).end()
+				.putBow(ArcheryItems.WINTER_BOW).putEffect(LCEffects.ICE, 600, 0).end()
 				.putBow(ArcheryItems.TURTLE_BOW).damage(6).bothTimes(40).speed(3).end()
 				.putBow(ArcheryItems.EARTH_BOW).damage(10).bothTimes(60).speed(3).end()
 				.putBow(ArcheryItems.GAIA_BOW).damage(16).bothTimes(80).speed(3).end()
-				.putBow(ArcheryItems.SUN_BOW).putEffect(LCEffects.FLAME.get(), 200, 1).end()
+				.putBow(ArcheryItems.SUN_BOW).putEffect(LCEffects.FLAME, 200, 1).end()
 		);
 
 		map.add(L2Archery.STATS, L2Archery.loc("arrows"), new BowArrowStatConfig()
@@ -59,20 +62,20 @@ public class ArcheryConfigGen extends ConfigDataProvider {
 				.putArrow(ArcheryItems.TNT_1_ARROW).end()
 				.putArrow(ArcheryItems.TNT_2_ARROW).end()
 				.putArrow(ArcheryItems.TNT_3_ARROW).end()
-				.putArrow(ArcheryItems.FIRE_1_ARROW).putEffect(LCEffects.FLAME.get(), 100, 0).end()
-				.putArrow(ArcheryItems.FIRE_2_ARROW).putEffect(LCEffects.FLAME.get(), 200, 1).end()
-				.putArrow(ArcheryItems.ICE_ARROW).putEffect(LCEffects.ICE.get(), 600, 0).end()
-				.putArrow(ArcheryItems.BLACKSTONE_ARROW).putEffect(LCEffects.INCARCERATE.get(), 100, 0).end()
-				.putArrow(ArcheryItems.ACID_ARROW).putEffect(LCEffects.ARMOR_REDUCE.get(), 1200, 2).end()
+				.putArrow(ArcheryItems.FIRE_1_ARROW).putEffect(LCEffects.FLAME, 100, 0).end()
+				.putArrow(ArcheryItems.FIRE_2_ARROW).putEffect(LCEffects.FLAME, 200, 1).end()
+				.putArrow(ArcheryItems.ICE_ARROW).putEffect(LCEffects.ICE, 600, 0).end()
+				.putArrow(ArcheryItems.BLACKSTONE_ARROW).putEffect(LCEffects.INCARCERATE, 100, 0).end()
+				.putArrow(ArcheryItems.ACID_ARROW).putEffect(LCEffects.ARMOR_REDUCE, 1200, 2).end()
 				.putArrow(ArcheryItems.DISPELL_ARROW).end()
 				.putArrow(ArcheryItems.WITHER_ARROW).putEffect(MobEffects.WITHER, 200, 0).end()
 				.putArrow(ArcheryItems.STORM_ARROW).end()
 		);
 
 		map.add(L2Archery.STATS, L2Archery.loc("upgrades"), new BowArrowStatConfig()
-				.putUpgrade(ArcheryItems.FIRE_UP).putEffect(LCEffects.FLAME.get(), 100, 0).end()
-				.putUpgrade(ArcheryItems.ICE_UP).putEffect(LCEffects.ICE.get(), 600, 0).end()
-				.putUpgrade(ArcheryItems.BLACKSTONE_UP).putEffect(LCEffects.INCARCERATE.get(), 100, 0).end()
+				.putUpgrade(ArcheryItems.FIRE_UP).putEffect(LCEffects.FLAME, 100, 0).end()
+				.putUpgrade(ArcheryItems.ICE_UP).putEffect(LCEffects.ICE, 600, 0).end()
+				.putUpgrade(ArcheryItems.BLACKSTONE_UP).putEffect(LCEffects.INCARCERATE, 100, 0).end()
 				.putUpgrade(ArcheryItems.HARM_UP).putEffect(MobEffects.HARM, 1, 2).end()
 				.putUpgrade(ArcheryItems.HEAL_UP).putEffect(MobEffects.HEAL, 1, 2).end()
 				.putUpgrade(ArcheryItems.SHINE_UP).putEffect(MobEffects.GLOWING, 600, 0).end()
@@ -82,9 +85,9 @@ public class ArcheryConfigGen extends ConfigDataProvider {
 				.putUpgrade(ArcheryItems.POISON_UP).putEffect(MobEffects.POISON, 300, 0).end()
 				.putUpgrade(ArcheryItems.WITHER_UP).putEffect(MobEffects.WITHER, 100, 2).end()
 				.putUpgrade(ArcheryItems.WEAK_UP).putEffect(MobEffects.WEAKNESS, 300, 4).end()
-				.putUpgrade(ArcheryItems.CORROSION_UP).putEffect(LCEffects.ARMOR_REDUCE.get(), 400, 1).end()
-				.putUpgrade(ArcheryItems.CURSE_UP).putEffect(LCEffects.CURSE.get(), 200, 0).end()
-				.putUpgrade(ArcheryItems.CLEANSE_UP).putEffect(LCEffects.CLEANSE.get(), 200, 0).end()
+				.putUpgrade(ArcheryItems.CORROSION_UP).putEffect(LCEffects.ARMOR_REDUCE, 400, 1).end()
+				.putUpgrade(ArcheryItems.CURSE_UP).putEffect(LCEffects.CURSE, 200, 0).end()
+				.putUpgrade(ArcheryItems.CLEANSE_UP).putEffect(LCEffects.CLEANSE, 200, 0).end()
 		);
 
 		map.add(L2Archery.STATS, L2Archery.loc("enchantments"), new BowArrowStatConfig()

@@ -4,8 +4,8 @@ import dev.xkmc.l2archery.content.item.GenericArrowItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class GenericArrowRenderer extends ArrowRenderer<GenericArrowEntity> {
 
@@ -22,8 +22,8 @@ public class GenericArrowRenderer extends ArrowRenderer<GenericArrowEntity> {
 		} else {
 			arrow = ArcheryItems.STARTER_ARROW.get();
 		}
-		ResourceLocation rl = ForgeRegistries.ITEMS.getKey(arrow);
-		return new ResourceLocation(rl.getNamespace(), "textures/entity/arrow/arrow.png");
+		ResourceLocation rl = BuiltInRegistries.ITEM.getKey(arrow);
+		return rl.withPath("textures/entity/arrow/arrow.png");
 	}
 
 }

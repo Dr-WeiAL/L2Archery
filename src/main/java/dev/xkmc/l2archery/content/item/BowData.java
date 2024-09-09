@@ -6,16 +6,20 @@ import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.core.CompoundBowConfig;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.neoforged.neoforge.common.CommonHooks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public record BowData(Item item, ArrayList<Upgrade> upgrade, HashMap<Enchantment, Integer> ench) {
+public record BowData(Item item, ArrayList<Upgrade> upgrade, ItemEnchantments ench) {
 
 	public static BowData of(GenericBowItem item) {
 		return new BowData(item, new ArrayList<>(0), new HashMap<>(0));
@@ -27,7 +31,7 @@ public record BowData(Item item, ArrayList<Upgrade> upgrade, HashMap<Enchantment
 
 	public static BowData of(GenericBowItem item, ItemStack stack) {
 		List<Upgrade> upgrade = GenericBowItem.getUpgrades(stack);
-		return of(item, upgrade, stack.getAllEnchantments());
+		return of(item, upgrade, stack.getAllEnchantments(CommonHooks.resolveLookup(Registries.ENCHANTMENT)));
 	}
 
 	public FeatureList getFeatures() {

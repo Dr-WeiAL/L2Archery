@@ -2,13 +2,12 @@ package dev.xkmc.l2archery.content.energy;
 
 import dev.xkmc.l2archery.content.feature.bow.FluxFeature;
 import dev.xkmc.l2archery.init.data.LangData;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.ItemCapability;
 import net.neoforged.neoforge.common.extensions.IItemExtension;
@@ -80,14 +79,10 @@ public interface IFluxItem extends IEnergyContainerItem, IItemExtension {
 		return useEnergy(stack, amount, false);
 	}
 
-	default <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+	@Override
+	default <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T entity, Consumer<Item> onBroken) {
 		if (useEnergy(stack, amount * getEnergyPerUse(stack), entity)) return 0;
 		return amount;
-	}
-
-	@Override
-	default ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-		return new EnergyContainerItemWrapper(stack, this, getEnergyCapability());
 	}
 
 	default void tooltipDelegate(ItemStack stack, List<Component> tooltip) {
