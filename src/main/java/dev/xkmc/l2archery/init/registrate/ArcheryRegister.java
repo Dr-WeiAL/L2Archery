@@ -1,6 +1,9 @@
 package dev.xkmc.l2archery.init.registrate;
 
 import com.tterrag.registrate.util.entry.EntityEntry;
+import dev.xkmc.l2archery.content.config.ArcheryEffectConfig;
+import dev.xkmc.l2archery.content.config.ArcheryStatConfig;
+import dev.xkmc.l2archery.content.config.EnchantmentEffectConfig;
 import dev.xkmc.l2archery.content.crafting.BowRecipe;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.entity.GenericArrowRenderer;
@@ -9,13 +12,18 @@ import dev.xkmc.l2archery.content.stats.StatType;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2complements.init.L2Complements;
+import dev.xkmc.l2core.init.L2LibReg;
+import dev.xkmc.l2core.init.reg.datapack.DataMapReg;
+import dev.xkmc.l2core.init.reg.ench.LegacyEnchantment;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2core.init.reg.simple.SR;
 import dev.xkmc.l2core.init.reg.simple.Val;
 import dev.xkmc.l2core.serial.recipe.AbstractShapedRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class ArcheryRegister {
@@ -31,6 +39,14 @@ public class ArcheryRegister {
 	public static final SimpleEntry<BowArrowStatType> PULL_TIME = regStat("pull_time", StatType.BOW, 20);
 	public static final SimpleEntry<BowArrowStatType> FOV_TIME = regStat("fov_time", StatType.BOW, 20);
 	public static final SimpleEntry<BowArrowStatType> FOV = regStat("max_fov", StatType.BOW, 0.15);
+
+
+	public static final DataMapReg<Item, ArcheryStatConfig> ITEM_STAT =
+			L2Archery.REG.dataMap("item_config", Registries.ITEM, ArcheryStatConfig.class);
+	public static final DataMapReg<Upgrade, ArcheryEffectConfig> UPGRADE_STAT =
+			L2Archery.REG.dataMap("upgrade_config", UPGRADE.key(), ArcheryEffectConfig.class);
+	public static final DataMapReg<LegacyEnchantment, EnchantmentEffectConfig> ENCH_STAT =
+			L2Archery.REG.dataMap("enchantment_config", L2LibReg.ENCH.key(), EnchantmentEffectConfig.class);
 
 	public static final EntityEntry<GenericArrowEntity> ET_ARROW = L2Archery.REGISTRATE
 			.<GenericArrowEntity>entity("generic_arrow", GenericArrowEntity::new, MobCategory.MISC)

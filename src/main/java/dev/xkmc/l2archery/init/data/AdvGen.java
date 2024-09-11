@@ -10,6 +10,7 @@ import dev.xkmc.l2core.serial.advancements.AdvancementGenerator;
 import dev.xkmc.l2core.serial.advancements.CriterionBuilder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 public class AdvGen {
 
@@ -75,7 +76,7 @@ public class AdvGen {
 							CriterionBuilder.item(ArcheryItems.UPGRADE.get()),
 							"Mystical Crystal", "Obtain an upgrade")
 					.create("binding", Items.ENCHANTED_BOOK,
-							CriterionBuilder.item(ArcheryTagGen.PROF_BOWS),//TODO CriterionBuilder.enchanted(ArcheryTagGen.PROF_BOWS, Enchantments.BINDING_CURSE),
+							CriterionBuilder.enchanted(ArcheryTagGen.PROF_BOWS, pvd.resolve(Enchantments.BINDING_CURSE)),
 							"Extra Slots", "Put curse of binding on a bow to increase upgrade slot")
 					.type(AdvancementType.CHALLENGE);
 			root.enter().create("void", LCItems.SPACE_SHARD.get(),

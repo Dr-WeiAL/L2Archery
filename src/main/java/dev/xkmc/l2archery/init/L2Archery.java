@@ -2,7 +2,6 @@ package dev.xkmc.l2archery.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2archery.compat.GolemCompat;
-import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.energy.EnergyContainerItemWrapper;
 import dev.xkmc.l2archery.events.ArrowAttackListener;
 import dev.xkmc.l2archery.init.data.*;
@@ -13,7 +12,6 @@ import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2core.init.L2TagGen;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
 import dev.xkmc.l2core.init.reg.simple.Reg;
-import dev.xkmc.l2core.serial.config.ConfigTypeEntry;
 import dev.xkmc.l2core.serial.config.PacketHandlerWithConfig;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2serial.serialization.custom_handler.CodecHandler;
@@ -43,8 +41,6 @@ public class L2Archery {
 	public static final Reg REG = new Reg(MODID);
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
 	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(MODID, 2);
-	public static final ConfigTypeEntry<BowArrowStatConfig> STATS =
-			new ConfigTypeEntry<>(HANDLER, "stats", BowArrowStatConfig.class);
 
 	public L2Archery() {
 		ArcheryRegister.register();
@@ -75,17 +71,12 @@ public class L2Archery {
 		REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, ArcheryTagGen::genItemTag);
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArcheryTagGen::onEntityTagGen);
 		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArcheryTagGen::onEffectTagGen);
+		REGISTRATE.addDataGenerator(ProviderType.DATA_MAP, ArcheryConfigGen::onDataMapGen);
 		var init = REGISTRATE.getDataGenInitializer();
 		init.addDependency(ProviderType.RECIPE, ProviderType.DYNAMIC);
 
 		new ArcheryDamageMultiplex().generate();
 
-		boolean run = event.includeServer();
-		var gen = event.getGenerator();
-		var output = gen.getPackOutput();
-		var pvd = event.getLookupProvider();
-		var helper = event.getExistingFileHelper();
-		gen.addProvider(run, new ArcheryConfigGen(gen, pvd));
 
 	}
 

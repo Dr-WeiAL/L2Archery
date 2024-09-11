@@ -1,16 +1,15 @@
-package dev.xkmc.l2archery.content.config;
+package dev.xkmc.l2archery.init.data.builder;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2core.util.DataGenOnly;
-import net.minecraft.world.item.Item;
 
 @DataGenOnly
-public class BowBuilder extends BaseStatBuilder<BowBuilder, GenericBowItem, Item> {
+public class BowBuilder extends ItemStatBuilder<BowBuilder, GenericBowItem> {
 
-	BowBuilder(BowArrowStatConfig config, ItemEntry<GenericBowItem> bow) {
-		super(config, config.bow_effects, config.bow_stats, bow);
+	BowBuilder(ItemStatProvider parent, ItemEntry<GenericBowItem> bow) {
+		super(parent, bow);
 	}
 
 	public BowBuilder damage(double val) {

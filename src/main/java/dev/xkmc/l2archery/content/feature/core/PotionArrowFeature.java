@@ -1,12 +1,13 @@
 package dev.xkmc.l2archery.content.feature.core;
 
-import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.types.OnHitFeature;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.init.data.LangData;
+import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2core.base.effects.EffectUtil;
+import dev.xkmc.l2core.util.Proxy;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
@@ -23,7 +24,12 @@ public record PotionArrowFeature(List<MobEffectInstance> instances) implements O
 	public static final PotionArrowFeature NULL = new PotionArrowFeature(List.of());
 
 	public static BowArrowFeature fromUpgradeConfig(Upgrade upgrade) {
-		return BowArrowStatConfig.get().getUpgradeEffects(upgrade);
+		var reg = Proxy.getRegistryAccess();
+		if (reg != null) {
+			var ans = ArcheryRegister.UPGRADE_STAT.get(reg, ArcheryRegister.UPGRADE.get().wrapAsHolder(upgrade));
+			if (ans != null) return ans.getEffects();
+		}
+		return NULL;
 	}
 
 	@Override

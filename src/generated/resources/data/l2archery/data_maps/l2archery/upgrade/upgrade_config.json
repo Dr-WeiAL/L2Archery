@@ -1,0 +1,124 @@
+{
+  "values": {
+    "l2archery:blackstone": {
+      "effects": {
+        "l2complements:stone_cage": {
+          "amplifier": 0,
+          "duration": 100
+        }
+      }
+    },
+    "l2archery:cleanse": {
+      "effects": {
+        "l2complements:cleanse": {
+          "amplifier": 0,
+          "duration": 200
+        }
+      }
+    },
+    "l2archery:corrosion": {
+      "effects": {
+        "l2complements:armor_reduce": {
+          "amplifier": 1,
+          "duration": 400
+        }
+      }
+    },
+    "l2archery:curse": {
+      "effects": {
+        "l2complements:curse": {
+          "amplifier": 0,
+          "duration": 200
+        }
+      }
+    },
+    "l2archery:frozen": {
+      "effects": {
+        "l2complements:frozen": {
+          "amplifier": 0,
+          "duration": 600
+        }
+      }
+    },
+    "l2archery:glowing": {
+      "effects": {
+        "minecraft:glowing": {
+          "amplifier": 0,
+          "duration": 600
+        }
+      }
+    },
+    "l2archery:harm": {
+      "effects": {
+        "minecraft:instant_damage": {
+          "amplifier": 2,
+          "duration": 1
+        }
+      }
+    },
+    "l2archery:heal": {
+      "effects": {
+        "minecraft:instant_health": {
+          "amplifier": 2,
+          "duration": 1
+        }
+      }
+    },
+    "l2archery:levitate": {
+      "effects": {
+        "minecraft:levitation": {
+          "amplifier": 0,
+          "duration": 100
+        }
+      }
+    },
+    "l2archery:levitation": {
+      "effects": {
+        "minecraft:slow_falling": {
+          "amplifier": 0,
+          "duration": 300
+        }
+      }
+    },
+    "l2archery:poison": {
+      "effects": {
+        "minecraft:poison": {
+          "amplifier": 0,
+          "duration": 300
+        }
+      }
+    },
+    "l2archery:slowness": {
+      "effects": {
+        "minecraft:slowness": {
+          "amplifier": 5,
+          "duration": 300
+        }
+      }
+    },
+    "l2archery:soul_fire": {
+      "effects": {
+        "l2complements:flame": {
+          "amplifier": 0,
+          "duration": 100
+        }
+      }
+    },
+    "l2archery:weak": {
+      "effects": {
+        "minecraft:weakness": {
+          "amplifier": 4,
+          "duration": 300
+        }
+      }
+    },
+    "l2archery:wither": {
+      "effects": {
+        "minecraft:wither": {
+          "amplifier": 2,
+          "duration": 100
+        }
+      }
+    }
+  }
+}

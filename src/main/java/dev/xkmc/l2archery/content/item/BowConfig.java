@@ -1,23 +1,31 @@
 package dev.xkmc.l2archery.content.item;
 
-import dev.xkmc.l2archery.content.config.BowArrowStatConfig;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.core.PotionArrowFeature;
 import dev.xkmc.l2archery.content.stats.BowArrowStatType;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
+import dev.xkmc.l2core.util.Proxy;
 
 import java.util.List;
 
 public record BowConfig(GenericBowItem id, int rank, List<BowArrowFeature> feature) implements IBowConfig {
 
 	private double getValue(BowArrowStatType type) {
-		var map = BowArrowStatConfig.get().bow_stats.get(id);
-		if (map == null) return type.getDefault();
-		return map.getOrDefault(type, type.getDefault());
+		var reg = Proxy.getRegistryAccess();
+		if (reg != null) {
+			var ans = ArcheryRegister.ITEM_STAT.get(reg, id.builtInRegistryHolder());
+			if (ans != null) return ans.stats().getOrDefault(type, type.getDefault());
+		}
+		return type.getDefault();
 	}
 
 	public PotionArrowFeature getEffects() {
-		return BowArrowStatConfig.get().getBowEffects(id);
+		var reg = Proxy.getRegistryAccess();
+		if (reg != null) {
+			var ans = ArcheryRegister.ITEM_STAT.get(reg, id.builtInRegistryHolder());
+			if (ans != null) return ans.getEffects();
+		}
+		return PotionArrowFeature.NULL;
 	}
 
 	public float damage() {

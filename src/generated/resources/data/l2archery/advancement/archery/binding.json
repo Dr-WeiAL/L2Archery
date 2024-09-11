@@ -5,7 +5,14 @@
       "conditions": {
         "items": [
           {
-            "items": "#l2archery:bows"
+            "items": "#l2archery:bows",
+            "predicates": {
+              "minecraft:enchantments": [
+                {
+                  "enchantments": "minecraft:binding_curse"
+                }
+              ]
+            }
           }
         ]
       },
