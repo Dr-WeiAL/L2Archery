@@ -1,6 +1,6 @@
-// 1.21.1	2024-09-12T15:22:57.445109	Registrate Provider for l2archery [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type), Patchouli Provider]
-e74663c8ad8eb6d9fc5f330d6d3479d0aff99af1 assets/l2archery/lang/en_ud.json
-d64655b4c6f9705652ff62be36e1eb7f22c203c5 assets/l2archery/lang/en_us.json
+// 1.21.1	2024-09-12T16:49:55.074034	Registrate Provider for l2archery [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type), Patchouli Provider]
+2703c181842930cb488e97e5a4d31ecc35abce56 assets/l2archery/lang/en_ud.json
+5cdf0c926a6ea6fc7dceea492568d7849069198a assets/l2archery/lang/en_us.json
 e305034d9e1779af186e802b6253351086f6804a assets/l2archery/models/item/acid_arrow.json
 3f17382074dc6747b7cd59993881a383e7917319 assets/l2archery/models/item/blackstone_arrow.json
 b3febe33525589717437b10b7bd22ca66d6702cd assets/l2archery/models/item/bow/eagle_bow/bow_pulling_0.json
@@ -227,8 +227,8 @@ f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass
 f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass_armor.json
 f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass_invul.json
 f95d8c725961dc45cc25a379727ee90899a62af2 data/l2archery/damage_type/arrow-bypass_magic.json
-6edf6b8b83685e00fdb1d3cea7c687985c93d46b data/l2archery/data_maps/item/item_config.json
-baa84656927364a4ac1147a14854f3caa7b4a308 data/l2archery/data_maps/l2archery/upgrade/upgrade_config.json
+39cda2541ff2dc60f8576252120c14e32627e6a9 data/l2archery/data_maps/item/item_config.json
+25cf6f7af43d190abed2c3a416876730fa509f3e data/l2archery/data_maps/l2archery/upgrade/upgrade_config.json
 0e3b87230e985f1c69f76db8dc6e1f2611bb1a6c data/l2archery/data_maps/l2core/legacy_enchantment/enchantment_config.json
 9d461d7e5ca44c363ab0efa6cb998008305a4466 data/l2archery/enchantment/chaotic.json
 af2bbc873c48edb62ee1b26f3f0df27174b20491 data/l2archery/enchantment/distortion.json

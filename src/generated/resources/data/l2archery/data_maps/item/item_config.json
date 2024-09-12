@@ -2,7 +2,7 @@
   "values": {
     "l2archery:acid_arrow": {
       "effects": {
-        "l2complements:armor_reduce": {
+        "l2complements:armor_corrosion": {
           "amplifier": 2,
           "duration": 1200
         }
