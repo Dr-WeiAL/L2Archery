@@ -171,17 +171,12 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     mainFile.addEnvironment("Client", "Server")
     mainFile.addGameVersion("1.21.1")
     mainFile.addModLoader("NeoForge")
-    mainFile.addRequirement("l2library", "l2-complements")
+    mainFile.addRequirement("l2library", "l2-backpack", "l2-complements")
     mainFile.addOptional(
-            "aerial-hell",
             "ars-nouveau",
-            "better-combat-by-daedelus",
-            "ice-and-fire-dragons",
+            "bookshelf",
             "just-enough-effect-descriptions-jeed",
-            "modulargolems",
-            "passive-skill-tree",
-            "the-twilight-forest",
-            "the-undergarden")
+            "modulargolems")
     mainFile.releaseType = "beta"
     disableVersionDetection()
 }
@@ -189,7 +184,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
 modrinth {
     token = secrets.get("modrinth_token")
     projectId = project.modrinth_project
-    versionName = "L2Weaponry ${project.mod_version}"
+    versionName = "L2 Archery ${project.mod_version}"
     versionNumber = project.mod_version
     versionType = "beta"
     uploadFile = new File("./build/libs/${mod_id}-${mod_version}.jar")
@@ -198,13 +193,11 @@ modrinth {
     changelog = new File('./changelog.txt').text.split("\n\n")[0]
     dependencies {
         required.project "l2library"
+        required.project "l2backpack"
         required.project "l2-complements"
-        optional.project "aerial-hell"
         optional.project "ars-nouveau"
-        optional.project "better-combat"
-        optional.project "ice-and-fire-dragons"
+        optional.project "bookshelf-lib"
         optional.project "just-enough-effect-descriptions-jeed"
         optional.project "modular-golems"
-        optional.project "the-undergarden"
     }
 }
