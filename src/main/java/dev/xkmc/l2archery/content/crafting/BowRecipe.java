@@ -3,7 +3,6 @@ package dev.xkmc.l2archery.content.crafting;
 import dev.xkmc.l2archery.init.registrate.ArcheryRegister;
 import dev.xkmc.l2core.serial.recipe.AbstractShapedRecipe;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;

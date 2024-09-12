@@ -11,7 +11,7 @@
     },
     "l2archery:blackstone_arrow": {
       "effects": {
-        "l2complements:stone_cage": {
+        "l2complements:incarceration": {
           "amplifier": 0,
           "duration": 100
         }
@@ -78,7 +78,7 @@
     },
     "l2archery:fire_arrow_lv1": {
       "effects": {
-        "l2complements:flame": {
+        "l2complements:soul_burning": {
           "amplifier": 0,
           "duration": 100
         }
@@ -87,7 +87,7 @@
     },
     "l2archery:fire_arrow_lv2": {
       "effects": {
-        "l2complements:flame": {
+        "l2complements:soul_burning": {
           "amplifier": 1,
           "duration": 200
         }
@@ -96,7 +96,7 @@
     },
     "l2archery:flame_bow": {
       "effects": {
-        "l2complements:flame": {
+        "l2complements:soul_burning": {
           "amplifier": 0,
           "duration": 100
         }
@@ -105,7 +105,7 @@
     },
     "l2archery:froze_bow": {
       "effects": {
-        "l2complements:frozen": {
+        "l2complements:frost": {
           "amplifier": 0,
           "duration": 600
         }
@@ -114,7 +114,7 @@
     },
     "l2archery:frozen_arrow": {
       "effects": {
-        "l2complements:frozen": {
+        "l2complements:frost": {
           "amplifier": 0,
           "duration": 600
         }
@@ -212,7 +212,7 @@
     },
     "l2archery:slow_bow": {
       "effects": {
-        "l2complements:stone_cage": {
+        "l2complements:incarceration": {
           "amplifier": 0,
           "duration": 100
         }
@@ -237,7 +237,7 @@
     },
     "l2archery:sun_bow": {
       "effects": {
-        "l2complements:flame": {
+        "l2complements:soul_burning": {
           "amplifier": 1,
           "duration": 200
         }
@@ -293,7 +293,7 @@
     },
     "l2archery:winter_bow": {
       "effects": {
-        "l2complements:frozen": {
+        "l2complements:frost": {
           "amplifier": 0,
           "duration": 600
         }

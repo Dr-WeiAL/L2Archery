@@ -5,7 +5,6 @@ import dev.xkmc.l2archery.content.item.IBowConfig;
 import dev.xkmc.l2archery.content.upgrade.StatHolder;
 import dev.xkmc.l2archery.init.data.LangData;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 import java.util.Set;

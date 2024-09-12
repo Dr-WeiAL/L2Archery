@@ -1,7 +1,6 @@
 package dev.xkmc.l2archery.content.item;
 
 import dev.xkmc.l2archery.content.controller.ArrowFeatureController;
-import dev.xkmc.l2archery.content.entity.GenericArrowEntity;
 import dev.xkmc.l2archery.content.feature.BowArrowFeature;
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.bow.InfinityFeature;

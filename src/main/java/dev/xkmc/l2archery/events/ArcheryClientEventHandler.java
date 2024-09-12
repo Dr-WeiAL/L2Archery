@@ -1,15 +1,9 @@
 package dev.xkmc.l2archery.events;
 
-import dev.xkmc.l2archery.content.feature.FeatureList;
-import dev.xkmc.l2archery.content.feature.core.StatFeature;
 import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
-import dev.xkmc.l2archery.content.upgrade.StatHolder;
-import dev.xkmc.l2archery.content.upgrade.Upgrade;
-import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
 import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
-import dev.xkmc.l2archery.init.registrate.ArcheryItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
@@ -18,12 +12,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
-import net.neoforged.neoforge.event.AnvilUpdateEvent;
-import net.neoforged.neoforge.event.GrindstoneEvent;
-import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
-
-import java.util.Set;
-import java.util.TreeSet;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = L2Archery.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class ArcheryClientEventHandler {

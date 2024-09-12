@@ -2,24 +2,17 @@ package dev.xkmc.l2archery.events;
 
 import dev.xkmc.l2archery.content.feature.FeatureList;
 import dev.xkmc.l2archery.content.feature.core.StatFeature;
-import dev.xkmc.l2archery.content.item.BowData;
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.l2archery.content.upgrade.StatHolder;
 import dev.xkmc.l2archery.content.upgrade.Upgrade;
 import dev.xkmc.l2archery.content.upgrade.UpgradeItem;
 import dev.xkmc.l2archery.init.L2Archery;
-import dev.xkmc.l2archery.init.registrate.ArcheryEffects;
 import dev.xkmc.l2archery.init.registrate.ArcheryItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.neoforged.neoforge.event.GrindstoneEvent;
-import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -28,17 +21,11 @@ import java.util.TreeSet;
 public class ArcheryEventHandler {
 
 	@SubscribeEvent
-	public static void registerBrewingRecipe(RegisterBrewingRecipesEvent event) {
-		ArcheryEffects.registerBrewingRecipe(event);
-	}
-
-	@SubscribeEvent
 	public static void onAnvilUpdate(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft();
 		ItemStack right = event.getRight();
 		if (left.getItem() instanceof GenericBowItem bow && right.getItem() instanceof UpgradeItem) {
 			Upgrade upgrade = UpgradeItem.getUpgrade(right);
-			FeatureList list = bow.getFeatures(left);
 			if (upgrade == null) return;
 			if (!allowUpgrade(bow, left, upgrade)) return;
 			int count = GenericBowItem.getUpgrades(left).size();

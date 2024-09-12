@@ -12,7 +12,9 @@ public record BowHandTransform() implements IClientItemExtensions {
 
 	@Override
 	public boolean applyForgeHandTransform(PoseStack poseStack, LocalPlayer player, HumanoidArm arm, ItemStack stack, float partialTick, float equipProcess, float swingProcess) {
-		if (!(stack.getItem() instanceof GenericBowItem bow)) return false;
+		if (!(stack.getItem() instanceof GenericBowItem bow) || !player.isUsingItem() ||
+				player.getUseItemRemainingTicks() <= 0 || player.getUseItem() != stack)
+			return false;
 		int k = arm == HumanoidArm.RIGHT ? 1 : -1;
 		poseStack.translate(k * 0.56F, -0.52F + equipProcess * -0.6F, -0.72F);
 		poseStack.translate((float) k * -0.2785682F, 0.18344387F, 0.15731531F);
