@@ -1,4 +1,2 @@
-Bugs:
-Create Shoot Pickup
-Bow / Arrow effects
-Pull time / power
+3.0.0+4
+- Port to 1.21.1
